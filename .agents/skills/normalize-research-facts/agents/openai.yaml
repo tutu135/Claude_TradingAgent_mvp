@@ -1,0 +1,4 @@
+interface:
+  display_name: "Normalize Research Facts"
+  short_description: "Normalize candidate SMIC v3 context into atomic facts"
+  default_prompt: "Use $normalize-research-facts to normalize fixed Snapshot v3 candidate context."

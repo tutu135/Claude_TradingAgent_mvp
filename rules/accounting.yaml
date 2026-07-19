@@ -1,0 +1,159 @@
+rule_version: smic-v3-accounting-normalization-v1
+mapping_version: smic-v3-fixed-mappings-v1
+snapshot_id: smic-a283e95e2c9e8068
+primary_accounting_basis:
+  accounting_standard: IFRS
+  consolidation_scope: CONSOLIDATED
+  currency: USD
+allowed_derivations:
+  - YTD_DIFFERENCE
+  - TTM_SUM
+  - GROSS_MARGIN
+  - OPERATING_MARGIN
+  - OPERATING_CASH_FLOW_MARGIN
+  - PERIOD_CHANGE_PERCENT
+  - MARGIN_CHANGE_PP
+  - CURRENCY_CONVERSION
+  - SENSITIVITY_EX_GOVERNMENT_FUNDING
+currency_conversion:
+  status: UNAVAILABLE
+  reason: Snapshot v3 contains no independent frozen exchange-rate material.
+adjustment_whitelist:
+  - adjustment_id: GOVERNMENT_FUNDING_RECOGNIZED_IN_OPERATING_PROFIT
+    formula_id: SENSITIVITY_EX_GOVERNMENT_FUNDING
+    output_label: 政府资金剔除敏感性营业利润/率
+adjustment_tbd_reason_codes:
+  - NOT_PROVEN_IN_BASE_METRIC
+  - AMOUNT_NOT_SEPARABLE
+  - CASH_VS_PNL_MISMATCH
+  - PERIOD_OR_SCOPE_MISMATCH
+  - DIRECTION_UNCONFIRMED
+  - DUPLICATION_RISK
+  - CAPITAL_OR_BALANCE_SHEET_ITEM
+  - AWAITING_USER_CONFIRMATION
+entity_mappings:
+  - rule_id: ENTITY_SMIC_MATERIAL_PREFIX_V1
+    material_prefix: MATERIAL_SMIC_
+    source_label: Semiconductor Manufacturing International Corporation
+    entity_id: SMIC_GROUP
+  - rule_id: ENTITY_GLOBAL_SEMICONDUCTOR_MARKET_SIA_V1
+    material_prefix: MATERIAL_SIA_
+    source_label: Global semiconductor market reported by SIA/WSTS
+    entity_id: GLOBAL_SEMICONDUCTOR_MARKET
+metric_mappings:
+  - rule_id: METRIC_REVENUE_V1
+    metric_id: REVENUE
+    aliases: [revenue, total revenue, 收入, 营业收入]
+  - rule_id: METRIC_WAFER_REVENUE_V1
+    metric_id: WAFER_REVENUE
+    aliases: [wafer revenue, 晶圆收入]
+  - rule_id: METRIC_COST_OF_SALES_V1
+    metric_id: COST_OF_SALES
+    aliases: [cost of sales, 销售成本, 营业成本]
+  - rule_id: METRIC_GROSS_PROFIT_V1
+    metric_id: GROSS_PROFIT
+    aliases: [gross profit, 毛利]
+  - rule_id: METRIC_GROSS_MARGIN_V1
+    metric_id: GROSS_MARGIN
+    aliases: [gross margin, 毛利率]
+  - rule_id: METRIC_PROFIT_FROM_OPERATIONS_V1
+    metric_id: PROFIT_FROM_OPERATIONS
+    aliases: [profit from operations, profit from operation, operating profit, 经营利润, 营业利润]
+  - rule_id: METRIC_OPERATING_MARGIN_V1
+    metric_id: OPERATING_MARGIN
+    aliases: [operating margin, operating profit margin, 营业利润率]
+  - rule_id: METRIC_EBITDA_V1
+    metric_id: EBITDA
+    aliases: [ebitda]
+  - rule_id: METRIC_EBITDA_MARGIN_V1
+    metric_id: EBITDA_MARGIN
+    aliases: [ebitda margin]
+  - rule_id: METRIC_PROFIT_OWNERS_V1
+    metric_id: PROFIT_ATTRIBUTABLE_TO_OWNERS
+    aliases: [profit attributable to the company, profit attributable to owners, owners of the company, 归属于母公司所有者的净利润, 归属于上市公司股东的净利润]
+  - rule_id: METRIC_OPERATING_CASH_FLOW_V1
+    metric_id: NET_CASH_FROM_OPERATING_ACTIVITIES
+    aliases: [net cash generated from operating activities, net cash from operating activities, 经营活动产生的现金流量净额]
+  - rule_id: METRIC_CAPACITY_MONTHLY_EQUIVALENT_V1
+    metric_id: MONTHLY_CAPACITY_EIGHT_INCH_EQUIVALENT
+    aliases: [monthly capacity, monthly production capacity, 月产能]
+  - rule_id: METRIC_CAPACITY_PERIOD_END_V1
+    metric_id: PERIOD_END_CAPACITY
+    aliases: [capacity at the end, capacity reached, 期末产能]
+  - rule_id: METRIC_UTILIZATION_SOURCE_REPORTED_V1
+    metric_id: CAPACITY_UTILIZATION_RATE_SOURCE_REPORTED
+    aliases: [capacity utilization rate, utilization rate, capacity utilization, 产能利用率, 产能利用]
+  - rule_id: METRIC_WAFER_SHIPMENTS_V1
+    metric_id: WAFER_SHIPMENTS
+    aliases: [wafer shipments, wafer shipment, shipment units, 晶圆出货量, 出货量]
+  - rule_id: METRIC_ASP_SOURCE_REPORTED_V1
+    metric_id: ASP_SOURCE_REPORTED
+    aliases: [blended asp, average selling price, average wafer price, 平均售价]
+  - rule_id: METRIC_CAPEX_INCURRED_V1
+    metric_id: CAPITAL_EXPENDITURE_INCURRED
+    aliases: [capital expenditure, capital expenditures, capex, 资本开支, 资本性开支]
+  - rule_id: METRIC_CAPEX_CASH_PAID_V1
+    metric_id: CASH_PAID_FOR_PROPERTY_PLANT_EQUIPMENT
+    aliases: [payments for property plant and equipment, purchase of property plant and equipment, 购建固定资产无形资产和其他长期资产支付的现金]
+  - rule_id: METRIC_CAPEX_COMMITTED_V1
+    metric_id: CAPITAL_COMMITMENTS_UNPAID
+    aliases: [capital commitments, contracted but not provided, 已签约但尚未拨备, 资本承担]
+  - rule_id: METRIC_CAPEX_GUIDANCE_V1
+    metric_id: CAPITAL_EXPENDITURE_GUIDANCE
+    aliases: [capital expenditure guidance, planned capital expenditure, 资本开支计划, 预计资本开支]
+  - rule_id: METRIC_PROJECT_INVESTMENT_V1
+    metric_id: PROJECT_INVESTMENT_AMOUNT
+    aliases: [project investment, total investment of the project, 项目投资, 项目总投资]
+  - rule_id: METRIC_GOVERNMENT_FUNDING_PNL_V1
+    metric_id: GOVERNMENT_FUNDING_RECOGNIZED_IN_PNL
+    aliases: [government funding recognized, government grants recognized, government grants, 政府补助, 政府资金]
+  - rule_id: METRIC_OTHER_OPERATING_INCOME_V1
+    metric_id: OTHER_OPERATING_INCOME
+    aliases: [other operating income, 其他营业收入, 其他收益]
+  - rule_id: METRIC_DEPRECIATION_V1
+    metric_id: DEPRECIATION_EXPENSE
+    aliases: [depreciation, 折旧]
+  - rule_id: METRIC_RESEARCH_DEVELOPMENT_V1
+    metric_id: RESEARCH_AND_DEVELOPMENT_EXPENSE
+    aliases: [research and development, r&d, 研发费用, 研发投入]
+  - rule_id: METRIC_SEMICONDUCTOR_SALES_V1
+    metric_id: GLOBAL_SEMICONDUCTOR_SALES
+    aliases: [global semiconductor sales, worldwide semiconductor sales, worldwide chip sales, 全球半导体销售额]
+  - rule_id: METRIC_APPLICATION_MIX_V1
+    metric_id: APPLICATION_REVENUE_SHARE
+    aliases: [by application, application revenue, 按应用, 应用收入占比]
+  - rule_id: METRIC_WAFER_SIZE_MIX_V1
+    metric_id: WAFER_SIZE_REVENUE_SHARE
+    aliases: [by size, wafer revenue from 8-inch, wafer revenue from 12-inch, 按晶圆尺寸]
+wafer_basis_rules:
+  - rule_id: WAFER_BASIS_EIGHT_INCH_EQUIVALENT_V1
+    match_text: 8-inch equivalent
+    wafer_basis: EIGHT_INCH_EQUIVALENT
+  - rule_id: WAFER_BASIS_PHYSICAL_12_INCH_V1
+    match_text: 12-inch
+    wafer_basis: PHYSICAL_12_INCH
+  - rule_id: WAFER_BASIS_PHYSICAL_8_INCH_V1
+    match_text: 8-inch
+    wafer_basis: PHYSICAL_8_INCH
+bridge_row_rules:
+  - rule_id: BRIDGE_CAS_BASE_PROFIT_OWNERS_V1
+    match_text: 归属于母公司所有者的净利润
+    row_role: BASE
+    accounting_role: CAS
+    equity_attribution: OWNERS_OF_PARENT
+  - rule_id: BRIDGE_ADJUSTMENT_DETAIL_V1
+    match_text: 境内外会计准则差异
+    row_role: ADJUSTMENT_DETAIL
+    bridge_operation: ADD
+    accounting_role: BRIDGE_ADJUSTMENT
+    equity_attribution: OWNERS_OF_PARENT
+  - rule_id: BRIDGE_SUBTOTAL_V1
+    match_text: 调节后小计
+    row_role: SUBTOTAL
+    accounting_role: BRIDGE_SUBTOTAL
+    equity_attribution: OWNERS_OF_PARENT
+  - rule_id: BRIDGE_IFRS_TARGET_PROFIT_OWNERS_V1
+    match_text: 按国际财务报告准则
+    row_role: TARGET
+    accounting_role: IFRS
+    equity_attribution: OWNERS_OF_PARENT

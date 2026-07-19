@@ -1,0 +1,1053 @@
+snapshot_id: smic-a283e95e2c9e8068
+query_rule_version: smic-v3-context-retrieval-v3
+acceptance_version: smic-v3-retrieval-acceptance-v3
+labels:
+  - label_id: MUST_MAIN_Q1_REPORTED_RESULTS
+    level: MUST_HIT
+    query_family_id: RQ_MAIN
+    material_id: MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    locator: {paragraph_locator: 'paragraph:p[21]'}
+    reason: Q1 revenue, gross margin, operating profit and EBITDA are central profitability results.
+  - label_id: SHOULD_MAIN_Q1_OPERATING_COMMENT
+    level: SHOULD_HIT
+    query_family_id: RQ_MAIN
+    material_id: MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    locator: {paragraph_locator: 'paragraph:p[34]'}
+    reason: Management states the quarter gross-margin change and attributed drivers.
+  - label_id: MUST_D1_Q1_RESULTS_TABLE
+    level: MUST_HIT
+    query_family_id: D1_PROFITABILITY_CHANGE
+    material_id: MATERIAL_SMIC_2026_Q1_RESULTS
+    locator: {page_number: 4, table_number: 1}
+    reason: Issuer quarterly results table contains the load-bearing profitability values.
+    required_numeric_context: [headers, units, periods, footnotes]
+  - label_id: SHOULD_D1_Q2_TRANSCRIPT_RESULTS
+    level: SHOULD_HIT
+    query_family_id: D1_PROFITABILITY_CHANGE
+    material_id: MATERIAL_SMIC_2025_Q2_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    locator: {paragraph_locator: 'paragraph:p[21]'}
+    reason: Q2 transcript turn reports revenue, margin, operating profit and EBITDA.
+  - label_id: MUST_D2_Q1_UTILIZATION
+    level: MUST_HIT
+    query_family_id: D2_UTILIZATION_EFFECT
+    material_id: MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    locator: {paragraph_locator: 'paragraph:p[30]'}
+    reason: Q1 turn states added capacity and the source-reported utilization change.
+  - label_id: SHOULD_D2_Q2_UTILIZATION
+    level: SHOULD_HIT
+    query_family_id: D2_UTILIZATION_EFFECT
+    material_id: MATERIAL_SMIC_2025_Q2_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    locator: {paragraph_locator: 'paragraph:p[29]'}
+    reason: Q2 turn reports utilization and monthly eight-inch-equivalent capacity.
+  - label_id: MUST_D3_Q1_MIX
+    level: MUST_HIT
+    query_family_id: D3_MIX_EFFECT
+    material_id: MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    locator: {paragraph_locator: 'paragraph:p[34]'}
+    reason: Q1 management turn explicitly attributes margin to pricing and product mix.
+  - label_id: SHOULD_D3_Q2_MIX
+    level: SHOULD_HIT
+    query_family_id: D3_MIX_EFFECT
+    material_id: MATERIAL_SMIC_2025_Q2_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    locator: {paragraph_locator: 'paragraph:p[29]'}
+    reason: Q2 management turn links margin movement to ASP and product mix.
+  - label_id: MUST_D4_Q1_INVESTMENT_NEED
+    level: MUST_HIT
+    query_family_id: D4_CAPEX_CONVERSION
+    material_id: MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    locator: {paragraph_locator: 'paragraph:p[26]'}
+    reason: Turn distinguishes negative free cash flow after capex and continuing capacity/R&D investment.
+  - label_id: SHOULD_D4_Q2_CAPEX
+    level: SHOULD_HIT
+    query_family_id: D4_CAPEX_CONVERSION
+    material_id: MATERIAL_SMIC_2025_Q2_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    locator: {paragraph_locator: 'paragraph:p[30]'}
+    reason: Q2 turn reports first-half capital expenditure.
+  - label_id: MUST_D5_SIA_Q1_2026
+    level: MUST_HIT
+    query_family_id: D5_CYCLE_EXPLANATION
+    material_id: MATERIAL_SIA_2026_Q1_SALES
+    locator: {heading_locator: 'heading:h1[2]'}
+    reason: Official industry-association release provides the current semiconductor sales cycle context.
+  - label_id: SHOULD_D5_SIA_2025
+    level: SHOULD_HIT
+    query_family_id: D5_CYCLE_EXPLANATION
+    material_id: MATERIAL_SIA_2025_ANNUAL_SALES
+    locator: {heading_locator: 'heading:h1[2]'}
+    reason: Prior full-year release supplies cycle comparison context.
+  - label_id: MUST_D6_GOVERNMENT_FUNDING
+    level: MUST_HIT
+    query_family_id: D6_NONCORE_EXPLANATION
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    locator: {page_number: 117, paragraph_group: page_text}
+    reason: Annual-report note contains government-funding accounting content.
+  - label_id: SHOULD_D6_Q2_OTHER_INCOME
+    level: SHOULD_HIT
+    query_family_id: D6_NONCORE_EXPLANATION
+    material_id: MATERIAL_SMIC_2025_Q2_RESULTS
+    locator: {page_number: 7, paragraph_group: page_text}
+    reason: Quarterly release contains other-income and government-funding context.
+  - label_id: MUST_D7_Q1_OUTLOOK_DRIVERS
+    level: MUST_HIT
+    query_family_id: D7_SUSTAINABILITY_EVIDENCE
+    material_id: MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    locator: {paragraph_locator: 'paragraph:p[35]'}
+    reason: Turn preserves conditional order, price and guidance drivers.
+  - label_id: SHOULD_D7_Q1_RISKS
+    level: SHOULD_HIT
+    query_family_id: D7_SUSTAINABILITY_EVIDENCE
+    material_id: MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    locator: {paragraph_locator: 'paragraph:p[39]'}
+    reason: Turn records macro and supply-chain uncertainty as counterweight.
+  - label_id: MUST_G_SCOPE_Q1_TRANSCRIPT
+    level: MUST_HIT
+    query_family_id: G_ACCOUNTING_SCOPE
+    material_id: MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    locator: {paragraph_locator: 'paragraph:p[18]'}
+    reason: Transcript turn explicitly states IFRS and USD scope.
+  - label_id: SHOULD_G_SCOPE_Q2_TRANSCRIPT
+    level: SHOULD_HIT
+    query_family_id: G_ACCOUNTING_SCOPE
+    material_id: MATERIAL_SMIC_2025_Q2_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    locator: {paragraph_locator: 'paragraph:p[19]'}
+    reason: Q2 turn states IFRS and USD scope.
+  - label_id: MUST_G_PERIOD_Q1_RELEASE
+    level: MUST_HIT
+    query_family_id: G_PERIOD_UNIT
+    material_id: MATERIAL_SMIC_2026_Q1_RESULTS
+    locator: {page_number: 1, paragraph_group: page_text}
+    reason: Release cover states three-month period, report date, IFRS and USD.
+  - label_id: SHOULD_G_PERIOD_Q2_RELEASE
+    level: SHOULD_HIT
+    query_family_id: G_PERIOD_UNIT
+    material_id: MATERIAL_SMIC_2025_Q2_RESULTS
+    locator: {page_number: 1, paragraph_group: page_text}
+    reason: Q2 release cover states period and reporting units.
+  - label_id: MUST_G_BRIDGE_GOVERNMENT_FUNDING
+    level: MUST_HIT
+    query_family_id: G_ADJUSTMENT_BRIDGE
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    locator: {page_number: 117, paragraph_group: page_text}
+    reason: Note contains government-funding classification needed before sensitivity treatment.
+  - label_id: SHOULD_G_BRIDGE_Q2_OTHER_INCOME
+    level: SHOULD_HIT
+    query_family_id: G_ADJUSTMENT_BRIDGE
+    material_id: MATERIAL_SMIC_2025_Q2_RESULTS
+    locator: {page_number: 7, paragraph_group: page_text}
+    reason: Quarterly release contains adjustment and other-income context.
+  - label_id: NEGATIVE_TRANSCRIPT_BUY_CTA_Q1
+    level: NEGATIVE_CONTROL
+    query_family_id: RQ_MAIN
+    material_id: MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    locator: {paragraph_locator: 'paragraph:p[1]'}
+    reason: Page purchase CTA is structural chrome, not research context.
+  - label_id: NEGATIVE_TRANSCRIPT_FOOTER_Q1
+    level: NEGATIVE_CONTROL
+    query_family_id: RQ_MAIN
+    material_id: MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    locator: {paragraph_locator: 'paragraph:p[81]'}
+    reason: Copyright footer is structural chrome.
+precision_judgments:
+- query_id: RQ_MAIN_ZH
+  material_id: MATERIAL_SMIC_2025_Q3_A_SHARE_REPORT_CNINFO
+  locator:
+    page_number: 2
+    paragraph_group: page_text
+  relevant: true
+- query_id: RQ_MAIN_ZH
+  material_id: MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+  locator:
+    page_number: 26
+    paragraph_group: page_text
+  relevant: true
+- query_id: RQ_MAIN_ZH
+  material_id: MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+  locator:
+    page_number: 26
+    paragraph_group: page_text
+  relevant: true
+- query_id: RQ_MAIN_ZH
+  material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+  locator:
+    page_number: 26
+    table_number: 1
+  relevant: true
+- query_id: RQ_MAIN_ZH
+  material_id: MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+  locator:
+    page_number: 26
+    table_number: 1
+  relevant: true
+- query_id: RQ_MAIN_EN
+  material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+  locator:
+    page_number: 16
+    paragraph_group: page_text
+  relevant: true
+- query_id: RQ_MAIN_EN
+  material_id: MATERIAL_SMIC_2025_Q3_RESULTS
+  locator:
+    page_number: 4
+    table_number: 1
+  relevant: true
+- query_id: RQ_MAIN_EN
+  material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+  locator:
+    page_number: 16
+    table_number: 1
+  relevant: true
+- query_id: RQ_MAIN_EN
+  material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+  locator:
+    page_number: 16
+    table_number: 1
+  relevant: true
+- query_id: RQ_MAIN_EN
+  material_id: MATERIAL_SMIC_2025_Q2_RESULTS
+  locator:
+    page_number: 4
+    paragraph_group: page_text
+  relevant: true
+- query_id: RQ_MAIN_RESULTS_EN
+  material_id: MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+  locator:
+    paragraph_locator: paragraph:p[3]
+  relevant: true
+- query_id: RQ_MAIN_RESULTS_EN
+  material_id: MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+  locator:
+    paragraph_locator: paragraph:p[34]
+  relevant: true
+- query_id: RQ_MAIN_RESULTS_EN
+  material_id: MATERIAL_SMIC_2025_Q4_RESULTS
+  locator:
+    page_number: 4
+    paragraph_group: page_text
+  relevant: true
+- query_id: RQ_MAIN_RESULTS_EN
+  material_id: MATERIAL_SMIC_2025_Q2_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+  locator:
+    paragraph_locator: paragraph:p[29]
+  relevant: true
+- query_id: RQ_MAIN_RESULTS_EN
+  material_id: MATERIAL_SMIC_2026_Q1_RESULTS
+  locator:
+    page_number: 4
+    paragraph_group: page_text
+  relevant: true
+- query_id: D1_ZH
+  material_id: MATERIAL_SMIC_SMNC_49_TRANSACTION_SUMMARY_CNINFO
+  locator:
+    page_number: 14
+    table_number: 1
+  relevant: true
+- query_id: D1_ZH
+  material_id: MATERIAL_SMIC_SMNC_49_TRANSACTION_SUMMARY_CNINFO
+  locator:
+    page_number: 14
+    paragraph_group: page_text
+  relevant: true
+- query_id: D1_ZH
+  material_id: MATERIAL_SMIC_2025_Q3_A_SHARE_REPORT_CNINFO
+  locator:
+    page_number: 2
+    paragraph_group: page_text
+  relevant: true
+- query_id: D1_ZH
+  material_id: MATERIAL_SMIC_SMNC_49_TRANSACTION_SUMMARY_CNINFO
+  locator:
+    page_number: 15
+    paragraph_group: page_text
+  relevant: true
+- query_id: D1_ZH
+  material_id: MATERIAL_SMIC_SMNC_49_TRANSACTION_SUMMARY_CNINFO
+  locator:
+    page_number: 15
+    table_number: 1
+  relevant: true
+- query_id: D1_EN
+  material_id: MATERIAL_SMIC_2025_Q2_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+  locator:
+    paragraph_locator: paragraph:p[23]
+  relevant: true
+- query_id: D1_EN
+  material_id: MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+  locator:
+    paragraph_locator: paragraph:p[21]
+  relevant: true
+- query_id: D1_EN
+  material_id: MATERIAL_SMIC_2025_Q2_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+  locator:
+    paragraph_locator: paragraph:p[21]
+  relevant: true
+- query_id: D1_EN
+  material_id: MATERIAL_SMIC_2025_Q4_RESULTS
+  locator:
+    page_number: 2
+    paragraph_group: page_text
+  relevant: true
+- query_id: D1_EN
+  material_id: MATERIAL_SMIC_2025_Q3_RESULTS
+  locator:
+    page_number: 2
+    paragraph_group: page_text
+  relevant: true
+- query_id: D1_RESULTS_TABLE_EN
+  material_id: MATERIAL_SMIC_2025_Q2_RESULTS
+  locator:
+    page_number: 4
+    paragraph_group: page_text
+  relevant: true
+- query_id: D1_RESULTS_TABLE_EN
+  material_id: MATERIAL_SMIC_2026_Q1_RESULTS
+  locator:
+    page_number: 9
+    paragraph_group: page_text
+  relevant: true
+- query_id: D1_RESULTS_TABLE_EN
+  material_id: MATERIAL_SMIC_2025_Q2_RESULTS
+  locator:
+    page_number: 9
+    paragraph_group: page_text
+  relevant: true
+- query_id: D1_RESULTS_TABLE_EN
+  material_id: MATERIAL_SMIC_2025_Q3_RESULTS
+  locator:
+    page_number: 9
+    paragraph_group: page_text
+  relevant: true
+- query_id: D1_RESULTS_TABLE_EN
+  material_id: MATERIAL_SMIC_2025_Q4_RESULTS
+  locator:
+    page_number: 9
+    paragraph_group: page_text
+  relevant: true
+- query_id: D1_Q1_SUMMARY_TABLE_EN
+  material_id: MATERIAL_SMIC_2026_Q1_RESULTS
+  locator:
+    page_number: 4
+    paragraph_group: page_text
+  relevant: true
+- query_id: D1_Q1_SUMMARY_TABLE_EN
+  material_id: MATERIAL_SMIC_2025_Q3_RESULTS
+  locator:
+    page_number: 4
+    paragraph_group: page_text
+  relevant: true
+- query_id: D1_Q1_SUMMARY_TABLE_EN
+  material_id: MATERIAL_SMIC_2025_Q4_RESULTS
+  locator:
+    page_number: 4
+    paragraph_group: page_text
+  relevant: true
+- query_id: D1_Q1_SUMMARY_TABLE_EN
+  material_id: MATERIAL_SMIC_2025_Q2_RESULTS
+  locator:
+    page_number: 4
+    paragraph_group: page_text
+  relevant: true
+- query_id: D1_Q1_SUMMARY_TABLE_EN
+  material_id: MATERIAL_SMIC_2025_Q3_RESULTS
+  locator:
+    page_number: 4
+    table_number: 1
+  relevant: true
+- query_id: D2_ZH
+  material_id: MATERIAL_SMIC_SMNC_49_TRANSACTION_SUMMARY_CNINFO
+  locator:
+    page_number: 14
+    table_number: 1
+  relevant: true
+- query_id: D2_ZH
+  material_id: MATERIAL_SMIC_SMNC_49_TRANSACTION_SUMMARY_CNINFO
+  locator:
+    page_number: 15
+    table_number: 1
+  relevant: true
+- query_id: D2_ZH
+  material_id: MATERIAL_SMIC_2025_Q3_A_SHARE_REPORT_CNINFO
+  locator:
+    page_number: 5
+    table_number: 5
+  relevant: true
+- query_id: D2_ZH
+  material_id: MATERIAL_SMIC_SMNC_49_TRANSACTION_SUMMARY_CNINFO
+  locator:
+    page_number: 14
+    paragraph_group: page_text
+  relevant: true
+- query_id: D2_ZH
+  material_id: MATERIAL_SMIC_2025_Q3_A_SHARE_REPORT_CNINFO
+  locator:
+    page_number: 5
+    table_number: 2
+  relevant: true
+- query_id: D2_EN
+  material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+  locator:
+    page_number: 25
+    paragraph_group: page_text
+  relevant: true
+- query_id: D2_EN
+  material_id: MATERIAL_SMIC_2025_Q2_RESULTS
+  locator:
+    page_number: 5
+    paragraph_group: page_text
+  relevant: true
+- query_id: D2_EN
+  material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+  locator:
+    page_number: 29
+    paragraph_group: page_text
+  relevant: true
+- query_id: D2_EN
+  material_id: MATERIAL_SMIC_2025_Q3_RESULTS
+  locator:
+    page_number: 5
+    paragraph_group: page_text
+  relevant: true
+- query_id: D2_EN
+  material_id: MATERIAL_SMIC_2026_Q1_RESULTS
+  locator:
+    page_number: 5
+    paragraph_group: page_text
+  relevant: true
+- query_id: D3_ZH
+  material_id: MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+  locator:
+    page_number: 22
+    table_number: 1
+  relevant: true
+- query_id: D3_ZH
+  material_id: MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+  locator:
+    page_number: 22
+    paragraph_group: page_text
+  relevant: true
+- query_id: D3_ZH
+  material_id: MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+  locator:
+    page_number: 25
+    paragraph_group: page_text
+  relevant: true
+- query_id: D3_ZH
+  material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+  locator:
+    page_number: 25
+    paragraph_group: page_text
+  relevant: true
+- query_id: D3_ZH
+  material_id: MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+  locator:
+    page_number: 10
+    paragraph_group: page_text
+  relevant: true
+- query_id: D3_EN
+  material_id: MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+  locator:
+    paragraph_locator: paragraph:p[35]
+  relevant: true
+- query_id: D3_EN
+  material_id: MATERIAL_SMIC_2025_Q2_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+  locator:
+    paragraph_locator: paragraph:p[29]
+  relevant: true
+- query_id: D3_EN
+  material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+  locator:
+    page_number: 28
+    paragraph_group: page_text
+  relevant: true
+- query_id: D3_EN
+  material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+  locator:
+    page_number: 29
+    paragraph_group: page_text
+  relevant: true
+- query_id: D3_EN
+  material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+  locator:
+    page_number: 28
+    paragraph_group: page_text
+  relevant: true
+- query_id: D3_PRICING_MIX_EN
+  material_id: MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+  locator:
+    paragraph_locator: paragraph:p[34]
+  relevant: true
+- query_id: D3_PRICING_MIX_EN
+  material_id: MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+  locator:
+    paragraph_locator: paragraph:p[3]
+  relevant: true
+- query_id: D3_PRICING_MIX_EN
+  material_id: MATERIAL_SMIC_2025_Q2_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+  locator:
+    paragraph_locator: paragraph:p[29]
+  relevant: true
+- query_id: D3_PRICING_MIX_EN
+  material_id: MATERIAL_SMIC_2025_Q2_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+  locator:
+    paragraph_locator: paragraph:p[10]
+  relevant: true
+- query_id: D3_PRICING_MIX_EN
+  material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+  locator:
+    page_number: 28
+    paragraph_group: page_text
+  relevant: true
+- query_id: D4_ZH
+  material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+  locator:
+    page_number: 36
+    table_number: 3
+  relevant: true
+- query_id: D4_ZH
+  material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+  locator:
+    page_number: 22
+    paragraph_group: page_text
+  relevant: true
+- query_id: D4_ZH
+  material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+  locator:
+    page_number: 66
+    table_number: 2
+  relevant: true
+- query_id: D4_ZH
+  material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+  locator:
+    page_number: 29
+    paragraph_group: page_text
+  relevant: true
+- query_id: D4_ZH
+  material_id: MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+  locator:
+    page_number: 19
+    paragraph_group: page_text
+  relevant: true
+- query_id: D4_EN
+  material_id: MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+  locator:
+    paragraph_locator: paragraph:p[26]
+  relevant: true
+- query_id: D4_EN
+  material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+  locator:
+    page_number: 32
+    paragraph_group: page_text
+  relevant: true
+- query_id: D4_EN
+  material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+  locator:
+    page_number: 63
+    table_number: 1
+  relevant: true
+- query_id: D4_EN
+  material_id: MATERIAL_SMIC_2025_Q4_RESULTS
+  locator:
+    page_number: 5
+    paragraph_group: page_text
+  relevant: true
+- query_id: D4_EN
+  material_id: MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+  locator:
+    paragraph_locator: paragraph:p[6]
+  relevant: true
+- query_id: D4_TRANSCRIPT_CAPEX_EN
+  material_id: MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+  locator:
+    paragraph_locator: paragraph:p[26]
+  relevant: true
+- query_id: D4_TRANSCRIPT_CAPEX_EN
+  material_id: MATERIAL_SMIC_2025_Q2_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+  locator:
+    paragraph_locator: paragraph:p[30]
+  relevant: true
+- query_id: D4_TRANSCRIPT_CAPEX_EN
+  material_id: MATERIAL_SMIC_2025_Q2_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+  locator:
+    paragraph_locator: paragraph:p[15]
+  relevant: true
+- query_id: D4_TRANSCRIPT_CAPEX_EN
+  material_id: MATERIAL_SMIC_2025_Q4_RESULTS
+  locator:
+    page_number: 2
+    paragraph_group: page_text
+  relevant: true
+- query_id: D4_TRANSCRIPT_CAPEX_EN
+  material_id: MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+  locator:
+    paragraph_locator: paragraph:p[6]
+  relevant: true
+- query_id: D5_ZH
+  material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+  locator:
+    page_number: 14
+    paragraph_group: page_text
+  relevant: true
+- query_id: D5_ZH
+  material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+  locator:
+    page_number: 36
+    table_number: 3
+  relevant: true
+- query_id: D5_ZH
+  material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+  locator:
+    page_number: 36
+    table_number: 2
+  relevant: true
+- query_id: D5_ZH
+  material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+  locator:
+    page_number: 36
+    table_number: 1
+  relevant: true
+- query_id: D5_ZH
+  material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+  locator:
+    page_number: 15
+    paragraph_group: page_text
+  relevant: true
+- query_id: D5_EN
+  material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+  locator:
+    page_number: 21
+    paragraph_group: page_text
+  relevant: true
+- query_id: D5_EN
+  material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+  locator:
+    page_number: 20
+    paragraph_group: page_text
+  relevant: true
+- query_id: D5_EN
+  material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+  locator:
+    page_number: 20
+    paragraph_group: page_text
+  relevant: true
+- query_id: D5_EN
+  material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+  locator:
+    page_number: 20
+    paragraph_group: page_text
+  relevant: true
+- query_id: D5_EN
+  material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+  locator:
+    page_number: 21
+    paragraph_group: page_text
+  relevant: true
+- query_id: D6_ZH
+  material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+  locator:
+    page_number: 12
+    paragraph_group: page_text
+  relevant: true
+- query_id: D6_ZH
+  material_id: MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+  locator:
+    page_number: 231
+    paragraph_group: page_text
+  relevant: true
+- query_id: D6_ZH
+  material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+  locator:
+    page_number: 12
+    table_number: 1
+  relevant: true
+- query_id: D6_ZH
+  material_id: MATERIAL_SMIC_2025_Q3_A_SHARE_REPORT_CNINFO
+  locator:
+    page_number: 6
+    paragraph_group: page_text
+  relevant: true
+- query_id: D6_ZH
+  material_id: MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+  locator:
+    page_number: 9
+    paragraph_group: page_text
+  relevant: true
+- query_id: D6_EN
+  material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+  locator:
+    page_number: 110
+    paragraph_group: page_text
+  relevant: true
+- query_id: D6_EN
+  material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+  locator:
+    page_number: 17
+    paragraph_group: page_text
+  relevant: true
+- query_id: D6_EN
+  material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+  locator:
+    page_number: 17
+    paragraph_group: page_text
+  relevant: true
+- query_id: D6_EN
+  material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+  locator:
+    page_number: 17
+    paragraph_group: page_text
+  relevant: true
+- query_id: D6_EN
+  material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+  locator:
+    page_number: 17
+    table_number: 2
+  relevant: true
+- query_id: D6_DEFERRED_FUNDING_EN
+  material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+  locator:
+    page_number: 117
+    paragraph_group: page_text
+  relevant: true
+- query_id: D6_DEFERRED_FUNDING_EN
+  material_id: MATERIAL_SMIC_2025_Q2_RESULTS
+  locator:
+    page_number: 7
+    paragraph_group: page_text
+  relevant: true
+- query_id: D6_DEFERRED_FUNDING_EN
+  material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+  locator:
+    page_number: 107
+    paragraph_group: page_text
+  relevant: true
+- query_id: D6_DEFERRED_FUNDING_EN
+  material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+  locator:
+    page_number: 139
+    paragraph_group: page_text
+  relevant: true
+- query_id: D6_DEFERRED_FUNDING_EN
+  material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+  locator:
+    page_number: 146
+    paragraph_group: page_text
+  relevant: true
+- query_id: D7_ZH
+  material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+  locator:
+    page_number: 21
+    paragraph_group: page_text
+  relevant: true
+- query_id: D7_ZH
+  material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+  locator:
+    page_number: 15
+    paragraph_group: page_text
+  relevant: true
+- query_id: D7_ZH
+  material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+  locator:
+    page_number: 29
+    paragraph_group: page_text
+  relevant: true
+- query_id: D7_ZH
+  material_id: MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+  locator:
+    page_number: 14
+    paragraph_group: page_text
+  relevant: true
+- query_id: D7_ZH
+  material_id: MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+  locator:
+    page_number: 17
+    paragraph_group: page_text
+  relevant: true
+- query_id: D7_EN
+  material_id: MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+  locator:
+    paragraph_locator: paragraph:p[37]
+  relevant: true
+- query_id: D7_EN
+  material_id: MATERIAL_SMIC_2026_Q1_RESULTS
+  locator:
+    page_number: 2
+    paragraph_group: page_text
+  relevant: true
+- query_id: D7_EN
+  material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+  locator:
+    page_number: 21
+    paragraph_group: page_text
+  relevant: true
+- query_id: D7_EN
+  material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+  locator:
+    page_number: 74
+    paragraph_group: page_text
+  relevant: true
+- query_id: D7_EN
+  material_id: MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+  locator:
+    paragraph_locator: paragraph:p[9]
+  relevant: true
+- query_id: D7_ORDERS_GUIDANCE_EN
+  material_id: MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+  locator:
+    paragraph_locator: paragraph:p[35]
+  relevant: true
+- query_id: D7_ORDERS_GUIDANCE_EN
+  material_id: MATERIAL_SMIC_2025_Q2_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+  locator:
+    paragraph_locator: paragraph:p[31]
+  relevant: true
+- query_id: D7_ORDERS_GUIDANCE_EN
+  material_id: MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+  locator:
+    paragraph_locator: paragraph:p[12]
+  relevant: true
+- query_id: D7_ORDERS_GUIDANCE_EN
+  material_id: MATERIAL_SMIC_2026_Q1_RESULTS
+  locator:
+    page_number: 2
+    paragraph_group: page_text
+  relevant: true
+- query_id: D7_ORDERS_GUIDANCE_EN
+  material_id: MATERIAL_SMIC_2025_Q4_RESULTS
+  locator:
+    page_number: 2
+    paragraph_group: page_text
+  relevant: true
+- query_id: D7_RISKS_EN
+  material_id: MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+  locator:
+    paragraph_locator: paragraph:p[39]
+  relevant: true
+- query_id: D7_RISKS_EN
+  material_id: MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+  locator:
+    paragraph_locator: paragraph:p[14]
+  relevant: true
+- query_id: D7_RISKS_EN
+  material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+  locator:
+    page_number: 26
+    paragraph_group: page_text
+  relevant: true
+- query_id: D7_RISKS_EN
+  material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+  locator:
+    page_number: 20
+    paragraph_group: page_text
+  relevant: true
+- query_id: D7_RISKS_EN
+  material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+  locator:
+    page_number: 26
+    paragraph_group: page_text
+  relevant: true
+- query_id: G_ACCOUNTING_SCOPE_ZH
+  material_id: MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+  locator:
+    page_number: 9
+    table_number: 2
+  relevant: true
+- query_id: G_ACCOUNTING_SCOPE_ZH
+  material_id: MATERIAL_SMIC_2025_Q3_A_SHARE_REPORT_CNINFO
+  locator:
+    page_number: 6
+    table_number: 3
+  relevant: true
+- query_id: G_ACCOUNTING_SCOPE_ZH
+  material_id: MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+  locator:
+    page_number: 10
+    table_number: 2
+  relevant: true
+- query_id: G_ACCOUNTING_SCOPE_ZH
+  material_id: MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+  locator:
+    page_number: 8
+    table_number: 1
+  relevant: true
+- query_id: G_ACCOUNTING_SCOPE_ZH
+  material_id: MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+  locator:
+    page_number: 222
+    table_number: 3
+  relevant: true
+- query_id: G_ACCOUNTING_SCOPE_EN
+  material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+  locator:
+    page_number: 113
+    paragraph_group: page_text
+  relevant: true
+- query_id: G_ACCOUNTING_SCOPE_EN
+  material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+  locator:
+    page_number: 106
+    paragraph_group: page_text
+  relevant: true
+- query_id: G_ACCOUNTING_SCOPE_EN
+  material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+  locator:
+    page_number: 102
+    paragraph_group: page_text
+  relevant: true
+- query_id: G_ACCOUNTING_SCOPE_EN
+  material_id: MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+  locator:
+    paragraph_locator: paragraph:p[18]
+  relevant: true
+- query_id: G_ACCOUNTING_SCOPE_EN
+  material_id: MATERIAL_SMIC_2025_Q2_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+  locator:
+    paragraph_locator: paragraph:p[19]
+  relevant: true
+- query_id: G_PERIOD_UNIT_ZH
+  material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+  locator:
+    page_number: 11
+    table_number: 2
+  relevant: true
+- query_id: G_PERIOD_UNIT_ZH
+  material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+  locator:
+    page_number: 11
+    table_number: 1
+  relevant: true
+- query_id: G_PERIOD_UNIT_ZH
+  material_id: MATERIAL_SMIC_2025_Q3_A_SHARE_REPORT_CNINFO
+  locator:
+    page_number: 5
+    paragraph_group: page_text
+  relevant: true
+- query_id: G_PERIOD_UNIT_ZH
+  material_id: MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+  locator:
+    page_number: 10
+    table_number: 1
+  relevant: true
+- query_id: G_PERIOD_UNIT_ZH
+  material_id: MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+  locator:
+    page_number: 11
+    table_number: 1
+  relevant: true
+- query_id: G_PERIOD_UNIT_EN
+  material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+  locator:
+    page_number: 142
+    paragraph_group: page_text
+  relevant: true
+- query_id: G_PERIOD_UNIT_EN
+  material_id: MATERIAL_SMIC_2025_Q4_RESULTS
+  locator:
+    page_number: 2
+    paragraph_group: page_text
+  relevant: true
+- query_id: G_PERIOD_UNIT_EN
+  material_id: MATERIAL_SMIC_2025_Q2_RESULTS
+  locator:
+    page_number: 1
+    paragraph_group: page_text
+  relevant: true
+- query_id: G_PERIOD_UNIT_EN
+  material_id: MATERIAL_SMIC_2025_Q3_RESULTS
+  locator:
+    page_number: 1
+    paragraph_group: page_text
+  relevant: true
+- query_id: G_PERIOD_UNIT_EN
+  material_id: MATERIAL_SMIC_2026_Q1_RESULTS
+  locator:
+    page_number: 1
+    paragraph_group: page_text
+  relevant: true
+- query_id: G_ADJUSTMENT_BRIDGE_ZH
+  material_id: MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+  locator:
+    page_number: 152
+    table_number: 3
+  relevant: true
+- query_id: G_ADJUSTMENT_BRIDGE_ZH
+  material_id: MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+  locator:
+    page_number: 222
+    table_number: 3
+  relevant: true
+- query_id: G_ADJUSTMENT_BRIDGE_ZH
+  material_id: MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+  locator:
+    page_number: 232
+    paragraph_group: page_text
+  relevant: true
+- query_id: G_ADJUSTMENT_BRIDGE_ZH
+  material_id: MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+  locator:
+    page_number: 222
+    table_number: 1
+  relevant: true
+- query_id: G_ADJUSTMENT_BRIDGE_ZH
+  material_id: MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+  locator:
+    page_number: 222
+    table_number: 2
+  relevant: true
+- query_id: G_ADJUSTMENT_BRIDGE_EN
+  material_id: MATERIAL_SMIC_2025_Q4_RESULTS
+  locator:
+    page_number: 6
+    paragraph_group: page_text
+  relevant: true
+- query_id: G_ADJUSTMENT_BRIDGE_EN
+  material_id: MATERIAL_SMIC_2026_Q1_RESULTS
+  locator:
+    page_number: 6
+    paragraph_group: page_text
+  relevant: true
+- query_id: G_ADJUSTMENT_BRIDGE_EN
+  material_id: MATERIAL_SMIC_2025_Q2_RESULTS
+  locator:
+    page_number: 6
+    paragraph_group: page_text
+  relevant: true
+- query_id: G_ADJUSTMENT_BRIDGE_EN
+  material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+  locator:
+    page_number: 145
+    paragraph_group: page_text
+  relevant: true
+- query_id: G_ADJUSTMENT_BRIDGE_EN
+  material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+  locator:
+    page_number: 110
+    paragraph_group: page_text
+  relevant: true
+- query_id: G_GOVERNMENT_FUNDING_POLICY_EN
+  material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+  locator:
+    page_number: 117
+    paragraph_group: page_text
+  relevant: true
+- query_id: G_GOVERNMENT_FUNDING_POLICY_EN
+  material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+  locator:
+    page_number: 109
+    paragraph_group: page_text
+  relevant: true
+- query_id: G_GOVERNMENT_FUNDING_POLICY_EN
+  material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+  locator:
+    page_number: 117
+    paragraph_group: page_text
+  relevant: true
+- query_id: G_GOVERNMENT_FUNDING_POLICY_EN
+  material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+  locator:
+    page_number: 111
+    paragraph_group: page_text
+  relevant: true
+- query_id: G_GOVERNMENT_FUNDING_POLICY_EN
+  material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+  locator:
+    page_number: 118
+    paragraph_group: page_text
+  relevant: true

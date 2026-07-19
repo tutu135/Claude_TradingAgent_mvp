@@ -1,0 +1,240 @@
+rule_version: smic-v3-context-retrieval-v3
+snapshot_id: smic-a283e95e2c9e8068
+chunking_version: smic-structure-atoms-v1
+retrieval_parameters:
+  minimum_score: positive
+  top_k_per_query: 20
+  max_direct_hits_per_material: 5
+  include_boundary_ties: true
+  stable_order: score_desc_chunk_id_asc
+  adjacent_chunks_each_side: 1
+tokenizer:
+  version: smic-mixed-zh-en-tokenizer-v1
+  lexicon_version: smic-research-lexicon-v1
+  stopwords_version: smic-stopwords-v1
+  chinese_lexicon:
+    - 中芯国际
+    - 经常性经营盈利能力
+    - 可持续改善
+    - 毛利率
+    - 营业利润率
+    - 营业利润
+    - 毛利
+    - 产能利用率
+    - 产能
+    - 利用率
+    - 晶圆出货量
+    - 晶圆收入
+    - 晶圆代工
+    - 等值晶圆
+    - 平均售价
+    - 制程结构
+    - 应用结构
+    - 产品组合
+    - 资本开支
+    - 购建资产
+    - 折旧
+    - 研发
+    - 行业周期
+    - 库存
+    - 需求
+    - 政府补助
+    - 政府资金
+    - 其他营业收入
+    - 国际财务报告准则
+    - 企业会计准则
+    - 合并范围
+    - 合并报表
+    - 未经审计
+    - 经审计
+    - 重述
+    - 重新列报
+    - 人民币
+    - 美元
+    - 第一季度
+    - 第二季度
+    - 第三季度
+    - 第四季度
+  stopwords:
+    - a
+    - an
+    - and
+    - are
+    - as
+    - at
+    - be
+    - by
+    - for
+    - from
+    - in
+    - is
+    - of
+    - on
+    - or
+    - the
+    - to
+    - was
+    - were
+    - with
+    - 以及
+    - 是否
+    - 哪些
+    - 什么
+query_families:
+  - family_id: RQ_MAIN
+    responsibility: RESEARCH
+    queries:
+      - query_id: RQ_MAIN_ZH
+        language: zh
+        text: 中芯国际 经常性经营盈利能力 毛利率 营业利润率 可持续改善
+        anchor_tokens: [经常性经营盈利能力, 毛利率, 营业利润率, 可持续改善]
+      - query_id: RQ_MAIN_EN
+        language: en
+        text: SMIC recurring operating profitability gross margin profit from operations sustainable improvement
+        anchor_tokens: [profitability, margin, profit, sustainable]
+      - query_id: RQ_MAIN_RESULTS_EN
+        language: en
+        text: gross margin increase pricing improved product mix profit from operations
+        anchor_tokens: [margin, pricing, mix, profit]
+  - family_id: D1_PROFITABILITY_CHANGE
+    responsibility: RESEARCH
+    queries:
+      - query_id: D1_ZH
+        language: zh
+        text: 毛利 毛利率 营业利润 营业利润率 收入 同比 环比
+        anchor_tokens: [毛利, 毛利率, 营业利润, 营业利润率]
+      - query_id: D1_EN
+        language: en
+        text: revenue gross profit gross margin profit from operations operating margin year over year sequentially
+        anchor_tokens: [revenue, gross, margin, profit]
+      - query_id: D1_RESULTS_TABLE_EN
+        language: en
+        text: amounts US$ thousands revenue cost of sales gross profit profit from operations owners of the company
+        anchor_tokens: [revenue, gross, profit, owners]
+      - query_id: D1_Q1_SUMMARY_TABLE_EN
+        language: en
+        text: earnings per share basic diluted non-controlling interests QoQ YoY gross margin
+        anchor_tokens: [earnings, diluted, non-controlling, margin]
+  - family_id: D2_UTILIZATION_EFFECT
+    responsibility: RESEARCH
+    queries:
+      - query_id: D2_ZH
+        language: zh
+        text: 产能利用率 产能 稼动率 固定成本 吸收
+        anchor_tokens: [产能利用率, 产能, 利用率]
+      - query_id: D2_EN
+        language: en
+        text: capacity utilization fixed cost absorption wafer capacity
+        anchor_tokens: [capacity, utilization]
+  - family_id: D3_MIX_EFFECT
+    responsibility: RESEARCH
+    queries:
+      - query_id: D3_ZH
+        language: zh
+        text: 制程结构 应用结构 产品组合 晶圆收入 平均售价
+        anchor_tokens: [制程结构, 应用结构, 产品组合, 平均售价]
+      - query_id: D3_EN
+        language: en
+        text: product mix application mix wafer revenue blended ASP average selling price process node
+        anchor_tokens: [mix, asp, price, wafer]
+      - query_id: D3_PRICING_MIX_EN
+        language: en
+        text: gross margin increased due to increase in pricing improved product mix
+        anchor_tokens: [margin, pricing, mix]
+  - family_id: D4_CAPEX_CONVERSION
+    responsibility: RESEARCH
+    queries:
+      - query_id: D4_ZH
+        language: zh
+        text: 资本开支 购建资产 产能扩张 折旧 项目投资
+        anchor_tokens: [资本开支, 购建资产, 产能, 折旧]
+      - query_id: D4_EN
+        language: en
+        text: capital expenditure capex capacity expansion construction depreciation investment
+        anchor_tokens: [capex, expenditure, capacity, depreciation]
+      - query_id: D4_TRANSCRIPT_CAPEX_EN
+        language: en
+        text: total capital expenditure first half capacity expansion R&D activities
+        anchor_tokens: [expenditure, capacity, r&d]
+  - family_id: D5_CYCLE_EXPLANATION
+    responsibility: RESEARCH
+    queries:
+      - query_id: D5_ZH
+        language: zh
+        text: 半导体销售 晶圆代工 行业周期 需求 库存 价格
+        anchor_tokens: [晶圆代工, 行业周期, 需求, 库存]
+      - query_id: D5_EN
+        language: en
+        text: semiconductor sales foundry industry cycle demand inventory pricing
+        anchor_tokens: [semiconductor, foundry, demand, inventory]
+  - family_id: D6_NONCORE_EXPLANATION
+    responsibility: RESEARCH
+    queries:
+      - query_id: D6_ZH
+        language: zh
+        text: 政府补助 政府资金 其他营业收入 非经常性 营业利润
+        anchor_tokens: [政府补助, 政府资金, 其他营业收入, 营业利润]
+      - query_id: D6_EN
+        language: en
+        text: government grants government funding other operating income non recurring profit from operations
+        anchor_tokens: [government, grants, funding, income]
+      - query_id: D6_DEFERRED_FUNDING_EN
+        language: en
+        text: deferred government funding liquidity current liabilities other income
+        anchor_tokens: [government, funding, income]
+  - family_id: D7_SUSTAINABILITY_EVIDENCE
+    responsibility: RESEARCH
+    queries:
+      - query_id: D7_ZH
+        language: zh
+        text: 可持续改善 订单在手 客户需求 产能不足 经营指引 风险 不确定性
+        anchor_tokens: [可持续改善, 需求, 产能]
+      - query_id: D7_EN
+        language: en
+        text: sustainable improvement orders in hand customer demand capacity shortage guidance risks uncertainties
+        anchor_tokens: [sustainable, demand, capacity, guidance]
+      - query_id: D7_ORDERS_GUIDANCE_EN
+        language: en
+        text: sufficient order in hand price increase shipment blended ASP guidance gross margin
+        anchor_tokens: [order, price, shipment, guidance, margin]
+      - query_id: D7_RISKS_EN
+        language: en
+        text: global macro environment uncertainties supply chain costs stability customer demand
+        anchor_tokens: [uncertainties, supply, demand]
+  - family_id: G_ACCOUNTING_SCOPE
+    responsibility: NORMALIZATION_GUARD
+    queries:
+      - query_id: G_ACCOUNTING_SCOPE_ZH
+        language: zh
+        text: 国际财务报告准则 企业会计准则 合并报表 合并范围 经审计 未经审计 重述 重新列报
+        anchor_tokens: [国际财务报告准则, 企业会计准则, 合并报表, 合并范围, 经审计, 未经审计, 重述, 重新列报]
+      - query_id: G_ACCOUNTING_SCOPE_EN
+        language: en
+        text: IFRS CAS consolidated financial statements audited unaudited restated re-presented
+        anchor_tokens: [ifrs, cas, consolidated, audited, unaudited, restated]
+  - family_id: G_PERIOD_UNIT
+    responsibility: NORMALIZATION_GUARD
+    queries:
+      - query_id: G_PERIOD_UNIT_ZH
+        language: zh
+        text: 截至 三个月 六个月 九个月 年度 第一季度 第二季度 第三季度 第四季度 美元 人民币 百万 千
+        anchor_tokens: [第一季度, 第二季度, 第三季度, 第四季度, 美元, 人民币]
+      - query_id: G_PERIOD_UNIT_EN
+        language: en
+        text: three months six months nine months year ended quarter USD CNY RMB million thousand
+        anchor_tokens: [months, year, quarter, usd, cny, million]
+  - family_id: G_ADJUSTMENT_BRIDGE
+    responsibility: NORMALIZATION_GUARD
+    queries:
+      - query_id: G_ADJUSTMENT_BRIDGE_ZH
+        language: zh
+        text: 政府补助 政府资金 其他营业收入 折旧 研发 企业会计准则 国际财务报告准则 调节差异
+        anchor_tokens: [政府补助, 政府资金, 其他营业收入, 折旧, 研发, 企业会计准则, 国际财务报告准则]
+      - query_id: G_ADJUSTMENT_BRIDGE_EN
+        language: en
+        text: government grants other operating income depreciation R&D CAS IFRS reconciliation adjustment
+        anchor_tokens: [government, grants, income, depreciation, r&d, cas, ifrs]
+      - query_id: G_GOVERNMENT_FUNDING_POLICY_EN
+        language: en
+        text: government funding recognised fair value expense item income asset deferred income profit or loss useful life
+        anchor_tokens: [government, funding, income, asset, profit]
