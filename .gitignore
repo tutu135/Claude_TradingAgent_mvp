@@ -5,3 +5,6 @@ tmp/pdfs/
 single-stock-demo/raw/
 single-stock-demo/parsed/
 single-stock-demo/*.partial
+single-stock-demo-v2/raw/
+single-stock-demo-v2/parsed/
+single-stock-demo-v2/*.partial

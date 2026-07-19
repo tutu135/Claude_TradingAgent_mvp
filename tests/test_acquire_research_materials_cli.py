@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import functools
+import hashlib
 import http.server
 import subprocess
 import sys
@@ -9,10 +10,11 @@ import tempfile
 import threading
 import unittest
 from pathlib import Path
+from typing import Any
 
 import yaml
-from PIL import Image
 from openpyxl import Workbook
+from PIL import Image
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import letter
 from reportlab.lib.styles import getSampleStyleSheet
@@ -25,377 +27,307 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 CLI = REPO_ROOT / "scripts" / "acquire_research_materials.py"
 
 
+def write_yaml(path: Path, value: dict[str, Any]) -> None:
+    path.write_text(
+        yaml.safe_dump(value, allow_unicode=True, sort_keys=False),
+        encoding="utf-8",
+    )
+
+
+def read_single_jsonl(path: Path) -> dict[str, Any]:
+    lines = [line for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
+    if len(lines) != 1:
+        raise AssertionError(f"expected one JSONL line, got {len(lines)}")
+    return json.loads(lines[0])
+
+
+def run_cli(args: list[str]) -> subprocess.CompletedProcess[str]:
+    return subprocess.run(
+        [sys.executable, str(CLI), *args],
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+    )
+
+
+def write_case(path: Path, required_targets: list[str] | None = None) -> None:
+    write_yaml(
+        path,
+        {
+            "case_origin": "fixture",
+            "company": "Fixture Semiconductor",
+            "security": "FIXTURE.SH",
+            "as_of": "2026-05-15T23:59:59+08:00",
+            "timezone": "Asia/Shanghai",
+            "required_coverage": required_targets or ["company_security_master"],
+            "source_use_assumption": {
+                "purpose": "personal_non_commercial_local_demo",
+            },
+            "rule_versions": {"frozen_spec": "2026-07-19"},
+        },
+    )
+
+
+def base_material(material_id: str, local_path: str, targets: list[str] | None = None) -> dict[str, Any]:
+    return {
+        "material_id": material_id,
+        "source_id": f"SOURCE_{material_id}",
+        "title": f"Fixture material {material_id}",
+        "displayed_publisher": "Fixture Publisher",
+        "published_at": "2026-05-14T09:00:00+08:00",
+        "publication_precision": "MINUTE",
+        "source_class": "NAMED_INSTITUTION",
+        "acquisition_source": {
+            "type": "url",
+            "url": f"https://example.invalid/{material_id}",
+        },
+        "canonical_material_locator": {
+            "source_page": f"https://example.invalid/{material_id}",
+            "location": "full material",
+        },
+        "media_type": "text/plain",
+        "local_path": local_path,
+        "acquisition_targets": targets or ["company_security_master"],
+    }
+
+
+def build_snapshot(workspace: Path, intake: dict[str, Any]) -> tuple[subprocess.CompletedProcess[str], Path]:
+    case_path = workspace / "case.yaml"
+    intake_path = workspace / "snapshot-inputs.yaml"
+    write_case(case_path)
+    write_yaml(intake_path, intake)
+    output_dir = workspace / "snapshot"
+    result = run_cli(
+        [
+            "SNAPSHOT_BUILD",
+            "--case-file",
+            str(case_path),
+            "--intake-file",
+            str(intake_path),
+            "--output-dir",
+            str(output_dir),
+            "--created-at",
+            "2026-07-19T10:00:00+08:00",
+        ]
+    )
+    return result, output_dir
+
+
 class AcquireResearchMaterialsCliTests(unittest.TestCase):
-    def test_snapshot_build_freezes_an_eligible_located_material(self) -> None:
+    def test_snapshot_build_freezes_acquired_unassessed_without_source_use_gate(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             workspace = Path(temp_dir)
-            material_path = workspace / "issuer-report.txt"
-            material_path.write_bytes(b"Issuer report\n")
-            case_path = workspace / "case.yaml"
-            case_path.write_text(
-                """
-case_origin: fixture
-company: Fixture Semiconductor
-security: FIXTURE.SH
-as_of: '2026-05-15T23:59:59+08:00'
-required_coverage:
-  - company_security_master
-""".lstrip(),
-                encoding="utf-8",
-            )
-            intake_path = workspace / "snapshot-inputs.yaml"
-            intake_path.write_text(
-                """
-materials:
-  - material_id: MATERIAL_FIXTURE_001
-    source_id: SOURCE_FIXTURE_ISSUER
-    title: Fixture issuer report
-    publisher: Fixture Semiconductor
-    published_at: '2026-05-14T09:00:00+08:00'
-    locator:
-      source_url: https://example.invalid/issuer-report.txt
-      location: issuer-report.txt
-    source_url: https://example.invalid/issuer-report.txt
-    terms_url: https://example.invalid/terms
-    usage_basis: Test fixture for local non-commercial verification.
-    restriction_status: USABLE
-    media_type: text/plain
-    local_path: issuer-report.txt
-    coverage:
-      company_security_master: COVERED
-""".lstrip(),
-                encoding="utf-8",
-            )
-            output_dir = workspace / "output"
-
-            result = subprocess.run(
-                [
-                    sys.executable,
-                    str(CLI),
-                    "SNAPSHOT_BUILD",
-                    "--case-file",
-                    str(case_path),
-                    "--intake-file",
-                    str(intake_path),
-                    "--output-dir",
-                    str(output_dir),
-                    "--created-at",
-                    "2026-07-19T10:00:00+08:00",
+            (workspace / "issuer-report.txt").write_bytes(b"Issuer report\n")
+            intake = {
+                "search_saturation": {"status": "SATURATED"},
+                "acquisition_targets": [
+                    {
+                        "target_id": "company_security_master",
+                        "label": "Company and security master",
+                        "search_channels": ["issuer", "regulator_exchange", "extended_web"],
+                        "search_status": "SATURATED",
+                    }
                 ],
-                capture_output=True,
-                text=True,
-                encoding="utf-8",
-            )
+                "materials": [
+                    base_material("MATERIAL_FIXTURE_001", "issuer-report.txt"),
+                ],
+            }
+
+            result, output_dir = build_snapshot(workspace, intake)
 
             self.assertEqual(result.returncode, 0, result.stderr)
             manifest = yaml.safe_load(
                 (output_dir / "snapshot-manifest.yaml").read_text(encoding="utf-8")
             )
-            material = json.loads(
-                (output_dir / "materials.jsonl").read_text(encoding="utf-8")
-            )
-
-            self.assertTrue(manifest["snapshot_id"].startswith("fixture-"))
-            self.assertTrue(manifest["test_fixture"])
-            self.assertEqual(manifest["statistics"]["included"], 1)
+            material = read_single_jsonl(output_dir / "materials.jsonl")
+            self.assertTrue(result.stdout.strip().startswith("fixture-"))
+            self.assertEqual(manifest["statistics"]["unique_materials"], 1)
+            self.assertEqual(manifest["acquisition_status"], "ACQUIRED_UNASSESSED")
             self.assertEqual(material["material_id"], "MATERIAL_FIXTURE_001")
-            self.assertEqual(material["intake_status"], "INCLUDED")
-            self.assertEqual(
-                material["content_hash"],
-                "sha256:988d149fdd5d5b83d374015b6845e266dd3bc6ea0c201fbb12a2b31214c93016",
-            )
+            self.assertEqual(material["acquisition_status"], "ACQUIRED_UNASSESSED")
+            self.assertEqual(material["parse_status"], "PARSED")
+            self.assertEqual(material["acquisition_targets"], ["company_security_master"])
+            self.assertNotIn("coverage", manifest)
+            self.assertNotIn("intake_status", material)
+            self.assertEqual(material["source_use_note"], {})
 
     def test_snapshot_build_excludes_material_published_after_as_of(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             workspace = Path(temp_dir)
             (workspace / "future.txt").write_bytes(b"Future material\n")
-            (workspace / "case.yaml").write_text(
-                "case_origin: fixture\nas_of: '2026-05-15T23:59:59+08:00'\nrequired_coverage: []\n",
-                encoding="utf-8",
-            )
-            (workspace / "snapshot-inputs.yaml").write_text(
-                """
-materials:
-  - material_id: MATERIAL_FIXTURE_FUTURE
-    source_id: SOURCE_FIXTURE_ISSUER
-    title: Future fixture
-    publisher: Fixture Semiconductor
-    published_at: '2026-05-16T00:00:00+08:00'
-    locator:
-      source_url: https://example.invalid/future.txt
-      location: future.txt
-    source_url: https://example.invalid/future.txt
-    terms_url: https://example.invalid/terms
-    usage_basis: Test fixture.
-    restriction_status: USABLE
-    media_type: text/plain
-    local_path: future.txt
-""".lstrip(),
-                encoding="utf-8",
-            )
-            output_dir = workspace / "output"
+            future = base_material("MATERIAL_FIXTURE_FUTURE", "future.txt")
+            future["published_at"] = "2026-05-16T00:00:00+08:00"
+            intake = {"materials": [future]}
 
-            result = subprocess.run(
-                [
-                    sys.executable,
-                    str(CLI),
-                    "SNAPSHOT_BUILD",
-                    "--case-file",
-                    str(workspace / "case.yaml"),
-                    "--intake-file",
-                    str(workspace / "snapshot-inputs.yaml"),
-                    "--output-dir",
-                    str(output_dir),
-                    "--created-at",
-                    "2026-07-19T10:00:00+08:00",
-                ],
-                capture_output=True,
-                text=True,
-                encoding="utf-8",
-            )
+            result, output_dir = build_snapshot(workspace, intake)
 
             self.assertEqual(result.returncode, 0, result.stderr)
-            material = json.loads(
-                (output_dir / "materials.jsonl").read_text(encoding="utf-8")
-            )
             manifest = yaml.safe_load(
                 (output_dir / "snapshot-manifest.yaml").read_text(encoding="utf-8")
             )
-            self.assertFalse(material["as_of_eligible"])
-            self.assertEqual(material["intake_status"], "EXCLUDED")
-            self.assertEqual(material["parse_status"], "NOT_PARSED")
-            self.assertNotIn("frozen_path", material)
-            self.assertEqual(manifest["statistics"]["excluded"], 1)
-
-    def test_snapshot_build_does_not_fetch_or_parse_restricted_material(self) -> None:
-        with tempfile.TemporaryDirectory() as temp_dir:
-            workspace = Path(temp_dir)
-            (workspace / "case.yaml").write_text(
-                "case_origin: fixture\nas_of: '2026-05-15T23:59:59+08:00'\nrequired_coverage: []\n",
-                encoding="utf-8",
-            )
-            (workspace / "snapshot-inputs.yaml").write_text(
-                """
-materials:
-  - material_id: MATERIAL_FIXTURE_RESTRICTED
-    source_id: SOURCE_FIXTURE_RESTRICTED
-    title: Restricted fixture
-    publisher: Fixture Publisher
-    published_at: '2026-05-14T09:00:00+08:00'
-    locator:
-      source_url: https://example.invalid/restricted.pdf
-      location: restricted.pdf
-    source_url: https://example.invalid/restricted.pdf
-    terms_url: https://example.invalid/restrictive-terms
-    usage_basis: Terms prohibit the intended processing.
-    restriction_status: RESTRICTED
-    restriction_reason: AUTOMATED_PROCESSING_PROHIBITED
-    media_type: application/pdf
-""".lstrip(),
-                encoding="utf-8",
-            )
-            output_dir = workspace / "output"
-
-            result = subprocess.run(
-                [
-                    sys.executable,
-                    str(CLI),
-                    "SNAPSHOT_BUILD",
-                    "--case-file",
-                    str(workspace / "case.yaml"),
-                    "--intake-file",
-                    str(workspace / "snapshot-inputs.yaml"),
-                    "--output-dir",
-                    str(output_dir),
-                    "--created-at",
-                    "2026-07-19T10:00:00+08:00",
-                ],
-                capture_output=True,
-                text=True,
-                encoding="utf-8",
-            )
-
-            self.assertEqual(result.returncode, 0, result.stderr)
-            material = json.loads(
-                (output_dir / "materials.jsonl").read_text(encoding="utf-8")
-            )
-            manifest = yaml.safe_load(
-                (output_dir / "snapshot-manifest.yaml").read_text(encoding="utf-8")
-            )
-            self.assertEqual(material["restriction_status"], "RESTRICTED")
-            self.assertEqual(material["intake_status"], "RESTRICTED")
-            self.assertEqual(material["parse_status"], "NOT_PARSED")
+            self.assertEqual((output_dir / "materials.jsonl").read_text(encoding="utf-8"), "")
+            self.assertEqual(manifest["statistics"]["unique_materials"], 0)
+            self.assertEqual(manifest["statistics"]["excluded_after_as_of"], 1)
             self.assertEqual(
-                material["restriction_reason"], "AUTOMATED_PROCESSING_PROHIBITED"
+                manifest["excluded_materials"][0]["exclusion_reason"], "AS_OF_EXCEEDED"
             )
-            self.assertNotIn("frozen_path", material)
-            self.assertEqual(manifest["statistics"]["restricted"], 1)
+            self.assertFalse(any((output_dir / "raw").iterdir()))
 
-    def test_snapshot_build_rejects_nested_session_data(self) -> None:
+    def test_snapshot_build_accepts_date_precision_on_as_of_date(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             workspace = Path(temp_dir)
-            (workspace / "issuer.txt").write_bytes(b"Issuer material\n")
-            (workspace / "case.yaml").write_text(
-                "case_origin: fixture\nas_of: '2026-05-15T23:59:59+08:00'\nrequired_coverage: []\n",
-                encoding="utf-8",
-            )
-            (workspace / "snapshot-inputs.yaml").write_text(
-                """
-materials:
-  - material_id: MATERIAL_FIXTURE_SESSION
-    source_id: SOURCE_FIXTURE_ISSUER
-    title: Credential-bearing fixture
-    publisher: Fixture Publisher
-    published_at: '2026-05-14T09:00:00+08:00'
-    locator:
-      source_url: https://example.invalid/issuer.txt
-      location: full text
-    source_url: https://example.invalid/issuer.txt
-    terms_url: https://example.invalid/terms
-    usage_basis: Test fixture.
-    restriction_status: USABLE
-    media_type: text/plain
-    local_path: issuer.txt
-    request:
-      headers:
-        Cookie: session=must-not-be-stored
-""".lstrip(),
-                encoding="utf-8",
-            )
+            (workspace / "as-of-date.txt").write_bytes(b"As-of date material\n")
+            material = base_material("MATERIAL_FIXTURE_AS_OF_DATE", "as-of-date.txt")
+            material["published_at"] = "2026-05-15T00:00:00+08:00"
+            material["publication_precision"] = "DATE"
 
-            result = subprocess.run(
-                [
-                    sys.executable,
-                    str(CLI),
-                    "SNAPSHOT_BUILD",
-                    "--case-file",
-                    str(workspace / "case.yaml"),
-                    "--intake-file",
-                    str(workspace / "snapshot-inputs.yaml"),
-                    "--output-dir",
-                    str(workspace / "output"),
-                    "--created-at",
-                    "2026-07-19T10:00:00+08:00",
-                ],
-                capture_output=True,
-                text=True,
-                encoding="utf-8",
-            )
-
-            self.assertEqual(result.returncode, 2)
-            self.assertIn("credentials or session data", result.stderr)
-            self.assertFalse((workspace / "output" / "snapshot-manifest.yaml").exists())
-
-    def test_snapshot_build_rejects_material_id_path_traversal(self) -> None:
-        with tempfile.TemporaryDirectory() as temp_dir:
-            workspace = Path(temp_dir)
-            (workspace / "issuer.txt").write_bytes(b"Issuer material\n")
-            (workspace / "case.yaml").write_text(
-                "case_origin: fixture\nas_of: '2026-05-15T23:59:59+08:00'\nrequired_coverage: []\n",
-                encoding="utf-8",
-            )
-            (workspace / "snapshot-inputs.yaml").write_text(
-                """
-materials:
-  - material_id: ../../outside
-    source_id: SOURCE_FIXTURE_ISSUER
-    title: Unsafe material id fixture
-    publisher: Fixture Publisher
-    published_at: '2026-05-14T09:00:00+08:00'
-    locator:
-      source_url: https://example.invalid/issuer.txt
-      location: full text
-    source_url: https://example.invalid/issuer.txt
-    terms_url: https://example.invalid/terms
-    usage_basis: Test fixture.
-    restriction_status: USABLE
-    media_type: text/plain
-    local_path: issuer.txt
-""".lstrip(),
-                encoding="utf-8",
-            )
-
-            result = subprocess.run(
-                [
-                    sys.executable,
-                    str(CLI),
-                    "SNAPSHOT_BUILD",
-                    "--case-file",
-                    str(workspace / "case.yaml"),
-                    "--intake-file",
-                    str(workspace / "snapshot-inputs.yaml"),
-                    "--output-dir",
-                    str(workspace / "output"),
-                    "--created-at",
-                    "2026-07-19T10:00:00+08:00",
-                ],
-                capture_output=True,
-                text=True,
-                encoding="utf-8",
-            )
-
-            self.assertEqual(result.returncode, 2)
-            self.assertIn("material_id", result.stderr)
-            self.assertFalse((workspace / "outside.txt").exists())
-            self.assertFalse((workspace / "outside.json").exists())
-
-    def test_snapshot_build_rejects_material_without_an_original_locator(self) -> None:
-        with tempfile.TemporaryDirectory() as temp_dir:
-            workspace = Path(temp_dir)
-            (workspace / "case.yaml").write_text(
-                "case_origin: fixture\nas_of: '2026-05-15T23:59:59+08:00'\nrequired_coverage: []\n",
-                encoding="utf-8",
-            )
-            (workspace / "snapshot-inputs.yaml").write_text(
-                """
-materials:
-  - material_id: MATERIAL_FIXTURE_UNLOCATED
-    source_id: SOURCE_FIXTURE_ISSUER
-    title: Unlocated fixture
-    publisher: Fixture Publisher
-    published_at: '2026-05-14T09:00:00+08:00'
-    source_url: https://example.invalid/page
-    terms_url: https://example.invalid/terms
-    usage_basis: Test fixture.
-    restriction_status: USABLE
-    media_type: text/plain
-""".lstrip(),
-                encoding="utf-8",
-            )
-            output_dir = workspace / "output"
-
-            result = subprocess.run(
-                [
-                    sys.executable,
-                    str(CLI),
-                    "SNAPSHOT_BUILD",
-                    "--case-file",
-                    str(workspace / "case.yaml"),
-                    "--intake-file",
-                    str(workspace / "snapshot-inputs.yaml"),
-                    "--output-dir",
-                    str(output_dir),
-                    "--created-at",
-                    "2026-07-19T10:00:00+08:00",
-                ],
-                capture_output=True,
-                text=True,
-                encoding="utf-8",
-            )
+            result, output_dir = build_snapshot(workspace, {"materials": [material]})
 
             self.assertEqual(result.returncode, 0, result.stderr)
-            material = json.loads(
-                (output_dir / "materials.jsonl").read_text(encoding="utf-8")
+            material_record = read_single_jsonl(output_dir / "materials.jsonl")
+            self.assertTrue(material_record["as_of_eligible"])
+            self.assertEqual(
+                material_record["publication_time"]["latest"],
+                "2026-05-15T23:59:59+08:00",
             )
+
+    def test_cross_boundary_or_missing_metadata_goes_to_candidate_holding_area(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            workspace = Path(temp_dir)
+            (workspace / "crossing.txt").write_bytes(b"Crossing candidate\n")
+            crossing = base_material("MATERIAL_FIXTURE_CROSSING", "crossing.txt")
+            crossing["publication_time_window"] = {
+                "raw_text": "May 15-16, 2026",
+                "precision": "DATE_RANGE",
+                "earliest": "2026-05-15T00:00:00+08:00",
+                "latest": "2026-05-16T23:59:59+08:00",
+                "basis": "fixture page date range",
+            }
+            missing = base_material("MATERIAL_FIXTURE_MISSING", "crossing.txt")
+            del missing["displayed_publisher"]
+            intake = {"materials": [crossing, missing]}
+
+            result, output_dir = build_snapshot(workspace, intake)
+
+            self.assertEqual(result.returncode, 0, result.stderr)
             manifest = yaml.safe_load(
                 (output_dir / "snapshot-manifest.yaml").read_text(encoding="utf-8")
             )
-            self.assertEqual(material["intake_status"], "REJECTED")
-            self.assertEqual(material["rejection_reason"], "SOURCE_OR_LOCATOR_MISSING")
-            self.assertEqual(material["parse_status"], "NOT_PARSED")
-            self.assertNotEqual(material["restriction_status"], "USABLE")
-            self.assertEqual(manifest["statistics"]["rejected"], 1)
-            self.assertEqual(manifest["statistics"]["excluded"], 1)
+            self.assertEqual(manifest["statistics"]["candidate_holding"], 2)
+            holding_path = output_dir.parent / manifest["candidate_holding_area"]["path"]
+            holding = yaml.safe_load(holding_path.read_text(encoding="utf-8"))
+            self.assertEqual(holding["snapshot_membership"], "OUTSIDE_ALL_SNAPSHOTS")
+            self.assertEqual(len(holding["candidates"]), 2)
+            self.assertEqual((output_dir / "materials.jsonl").read_text(encoding="utf-8"), "")
+            gaps = yaml.safe_load((output_dir / "gaps.yaml").read_text(encoding="utf-8"))
+            self.assertEqual(
+                {gap["gap_kind"] for gap in gaps["gaps"]},
+                {"CANDIDATE_HOLDING_PENDING_METADATA"},
+            )
+
+    def test_declared_candidate_holding_area_records_acquisition_gap(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            workspace = Path(temp_dir)
+            intake = {
+                "candidate_holding_area": [
+                    {
+                        "candidate_key": "CANDIDATE_TRANSCRIPT",
+                        "title": "Transcript candidate",
+                        "displayed_publisher": "Fixture Publisher",
+                        "acquisition_source": {
+                            "type": "url",
+                            "url": "https://example.invalid/transcript",
+                        },
+                        "canonical_material_locator": {
+                            "source_page": "https://example.invalid/transcript",
+                            "location": "transcript page",
+                        },
+                        "acquisition_targets": ["quarterly_materials_2026_q1"],
+                    }
+                ]
+            }
+
+            result, output_dir = build_snapshot(workspace, intake)
+
+            self.assertEqual(result.returncode, 0, result.stderr)
+            manifest = yaml.safe_load(
+                (output_dir / "snapshot-manifest.yaml").read_text(encoding="utf-8")
+            )
+            gaps = yaml.safe_load((output_dir / "gaps.yaml").read_text(encoding="utf-8"))
+            holding_path = output_dir.parent / manifest["candidate_holding_area"]["path"]
+            holding = yaml.safe_load(holding_path.read_text(encoding="utf-8"))
+            self.assertEqual(manifest["statistics"]["candidate_holding"], 1)
+            self.assertEqual(holding["candidates"][0]["candidate_key"], "CANDIDATE_TRANSCRIPT")
+            self.assertEqual(
+                gaps["gaps"][0]["gap_kind"],
+                "CANDIDATE_HOLDING_PENDING_METADATA",
+            )
+
+    def test_snapshot_build_deduplicates_identical_content_and_keeps_better_canonical_locator(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            workspace = Path(temp_dir)
+            (workspace / "copy-a.txt").write_bytes(b"Same content\n")
+            (workspace / "copy-b.txt").write_bytes(b"Same content\n")
+            other = base_material("MATERIAL_WEB_COPY", "copy-a.txt", ["industry_cycle"])
+            other.update(
+                {
+                    "source_id": "SOURCE_STABLE_WEB",
+                    "displayed_publisher": "Stable Web Archive",
+                    "source_class": "STABLE_WEB",
+                    "canonical_material_locator": {
+                        "source_page": "https://mirror.example.invalid/material",
+                        "location": "reposted copy",
+                    },
+                }
+            )
+            issuer = base_material("MATERIAL_ISSUER_COPY", "copy-b.txt", ["capital_expenditure"])
+            issuer.update(
+                {
+                    "source_id": "SOURCE_ISSUER",
+                    "displayed_publisher": "Fixture Semiconductor",
+                    "source_class": "ISSUER",
+                    "canonical_material_locator": {
+                        "source_page": "https://issuer.example.invalid/material",
+                        "location": "issuer original",
+                    },
+                }
+            )
+            intake = {"materials": [other, issuer]}
+
+            result, output_dir = build_snapshot(workspace, intake)
+
+            self.assertEqual(result.returncode, 0, result.stderr)
+            material = read_single_jsonl(output_dir / "materials.jsonl")
+            raw_files = list((output_dir / "raw").iterdir())
+            self.assertEqual(len(raw_files), 1)
+            self.assertEqual(material["material_id"], "MATERIAL_WEB_COPY")
+            self.assertEqual(material["source_id"], "SOURCE_ISSUER")
+            self.assertEqual(
+                material["canonical_material_locator"]["source_page"],
+                "https://issuer.example.invalid/material",
+            )
+            self.assertEqual(
+                material["acquisition_targets"],
+                ["capital_expenditure", "industry_cycle"],
+            )
+            self.assertEqual(len(material["alternate_material_locators"]), 1)
+
+    def test_snapshot_build_preserves_unsupported_material_with_acquisition_gap(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            workspace = Path(temp_dir)
+            (workspace / "audio.bin").write_bytes(b"not parsed by this demo\n")
+            material = base_material("MATERIAL_FIXTURE_AUDIO", "audio.bin", ["industry_cycle"])
+            material["media_type"] = "audio/mpeg"
+            intake = {"materials": [material]}
+
+            result, output_dir = build_snapshot(workspace, intake)
+
+            self.assertEqual(result.returncode, 0, result.stderr)
+            material_record = read_single_jsonl(output_dir / "materials.jsonl")
+            gaps = yaml.safe_load((output_dir / "gaps.yaml").read_text(encoding="utf-8"))
+            self.assertEqual(material_record["parse_status"], "UNSUPPORTED")
+            self.assertNotIn("parsed_path", material_record)
+            self.assertEqual(gaps["gaps"][0]["gap_kind"], "MATERIAL_UNPARSEABLE")
 
     def test_snapshot_build_preserves_pdf_pages_tables_and_footnote_location(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
@@ -420,50 +352,11 @@ materials:
                     Paragraph("Utilization rate was reported.", styles["BodyText"]),
                 ]
             )
-            (workspace / "case.yaml").write_text(
-                "case_origin: fixture\nas_of: '2026-05-15T23:59:59+08:00'\nrequired_coverage: []\n",
-                encoding="utf-8",
-            )
-            (workspace / "snapshot-inputs.yaml").write_text(
-                """
-materials:
-  - material_id: MATERIAL_FIXTURE_PDF
-    source_id: SOURCE_FIXTURE_ISSUER
-    title: Text-layer PDF fixture
-    publisher: Fixture Publisher
-    published_at: '2026-05-14T09:00:00+08:00'
-    locator:
-      source_url: https://example.invalid/text-layer.pdf
-      location: pages 1-2
-    source_url: https://example.invalid/text-layer.pdf
-    terms_url: https://example.invalid/terms
-    usage_basis: Test fixture.
-    restriction_status: USABLE
-    media_type: application/pdf
-    local_path: text-layer.pdf
-""".lstrip(),
-                encoding="utf-8",
-            )
-            output_dir = workspace / "output"
+            material = base_material("MATERIAL_FIXTURE_PDF", "text-layer.pdf")
+            material["media_type"] = "application/pdf"
+            intake = {"materials": [material]}
 
-            result = subprocess.run(
-                [
-                    sys.executable,
-                    str(CLI),
-                    "SNAPSHOT_BUILD",
-                    "--case-file",
-                    str(workspace / "case.yaml"),
-                    "--intake-file",
-                    str(workspace / "snapshot-inputs.yaml"),
-                    "--output-dir",
-                    str(output_dir),
-                    "--created-at",
-                    "2026-07-19T10:00:00+08:00",
-                ],
-                capture_output=True,
-                text=True,
-                encoding="utf-8",
-            )
+            result, output_dir = build_snapshot(workspace, intake)
 
             self.assertEqual(result.returncode, 0, result.stderr)
             parsed = json.loads(
@@ -494,70 +387,24 @@ materials:
             image_pdf = canvas.Canvas(str(pdf_path), pagesize=letter)
             image_pdf.drawInlineImage(image, 72, 650, width=200, height=60)
             image_pdf.save()
-            (workspace / "case.yaml").write_text(
-                "case_origin: fixture\nas_of: '2026-05-15T23:59:59+08:00'\nrequired_coverage:\n  - capacity\n",
-                encoding="utf-8",
-            )
-            (workspace / "snapshot-inputs.yaml").write_text(
-                """
-materials:
-  - material_id: MATERIAL_FIXTURE_IMAGE_PDF
-    source_id: SOURCE_FIXTURE_ISSUER
-    title: Image-only PDF fixture
-    publisher: Fixture Publisher
-    published_at: '2026-05-14T09:00:00+08:00'
-    locator:
-      source_url: https://example.invalid/image-only.pdf
-      location: page 1
-    source_url: https://example.invalid/image-only.pdf
-    terms_url: https://example.invalid/terms
-    usage_basis: Test fixture.
-    restriction_status: USABLE
-    media_type: application/pdf
-    local_path: image-only.pdf
-    coverage:
-      capacity: COVERED
-""".lstrip(),
-                encoding="utf-8",
-            )
-            output_dir = workspace / "output"
+            material = base_material("MATERIAL_FIXTURE_IMAGE_PDF", "image-only.pdf", ["capacity"])
+            material["media_type"] = "application/pdf"
+            intake = {"materials": [material]}
 
-            result = subprocess.run(
-                [
-                    sys.executable,
-                    str(CLI),
-                    "SNAPSHOT_BUILD",
-                    "--case-file",
-                    str(workspace / "case.yaml"),
-                    "--intake-file",
-                    str(workspace / "snapshot-inputs.yaml"),
-                    "--output-dir",
-                    str(output_dir),
-                    "--created-at",
-                    "2026-07-19T10:00:00+08:00",
-                ],
-                capture_output=True,
-                text=True,
-                encoding="utf-8",
-            )
+            result, output_dir = build_snapshot(workspace, intake)
 
             self.assertEqual(result.returncode, 0, result.stderr)
-            material = json.loads(
-                (output_dir / "materials.jsonl").read_text(encoding="utf-8")
-            )
+            material_record = read_single_jsonl(output_dir / "materials.jsonl")
             parsed = json.loads(
                 (output_dir / "parsed" / "MATERIAL_FIXTURE_IMAGE_PDF.json").read_text(
                     encoding="utf-8"
                 )
             )
-            gaps = yaml.safe_load(
-                (output_dir / "gaps.yaml").read_text(encoding="utf-8")
-            )
-            self.assertEqual(material["parse_status"], "UNSUPPORTED_IMAGE_ONLY_PDF")
+            gaps = yaml.safe_load((output_dir / "gaps.yaml").read_text(encoding="utf-8"))
+            self.assertEqual(material_record["parse_status"], "UNSUPPORTED")
             self.assertFalse(parsed["reliable_text_layer"])
             self.assertNotIn("ocr", parsed)
-            self.assertEqual(gaps["gaps"][0]["gap_id"], "GAP_ACQUIRE_CAPACITY")
-            self.assertEqual(gaps["gaps"][0]["type"], "UNKNOWN")
+            self.assertEqual(gaps["gaps"][0]["gap_kind"], "MATERIAL_UNPARSEABLE")
 
     def test_snapshot_build_preserves_html_headings_paragraphs_and_tables(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
@@ -573,50 +420,11 @@ materials:
 """.lstrip(),
                 encoding="utf-8",
             )
-            (workspace / "case.yaml").write_text(
-                "case_origin: fixture\nas_of: '2026-05-15T23:59:59+08:00'\nrequired_coverage: []\n",
-                encoding="utf-8",
-            )
-            (workspace / "snapshot-inputs.yaml").write_text(
-                """
-materials:
-  - material_id: MATERIAL_FIXTURE_HTML
-    source_id: SOURCE_FIXTURE_INDUSTRY
-    title: HTML fixture
-    publisher: Fixture Association
-    published_at: '2026-05-14T09:00:00+08:00'
-    locator:
-      source_url: https://example.invalid/release
-      location: full HTML page
-    source_url: https://example.invalid/release
-    terms_url: https://example.invalid/terms
-    usage_basis: Test fixture.
-    restriction_status: USABLE
-    media_type: text/html
-    local_path: release.html
-""".lstrip(),
-                encoding="utf-8",
-            )
-            output_dir = workspace / "output"
+            material = base_material("MATERIAL_FIXTURE_HTML", "release.html")
+            material["media_type"] = "text/html"
+            intake = {"materials": [material]}
 
-            result = subprocess.run(
-                [
-                    sys.executable,
-                    str(CLI),
-                    "SNAPSHOT_BUILD",
-                    "--case-file",
-                    str(workspace / "case.yaml"),
-                    "--intake-file",
-                    str(workspace / "snapshot-inputs.yaml"),
-                    "--output-dir",
-                    str(output_dir),
-                    "--created-at",
-                    "2026-07-19T10:00:00+08:00",
-                ],
-                capture_output=True,
-                text=True,
-                encoding="utf-8",
-            )
+            result, output_dir = build_snapshot(workspace, intake)
 
             self.assertEqual(result.returncode, 0, result.stderr)
             parsed = json.loads(
@@ -650,50 +458,11 @@ materials:
             sheet.append(["Revenue", 100, 80])
             sheet.append(["Growth", "=(B2/C2)-1", None])
             workbook.save(workspace / "financials.xlsx")
-            (workspace / "case.yaml").write_text(
-                "case_origin: fixture\nas_of: '2026-05-15T23:59:59+08:00'\nrequired_coverage: []\n",
-                encoding="utf-8",
-            )
-            (workspace / "snapshot-inputs.yaml").write_text(
-                """
-materials:
-  - material_id: MATERIAL_FIXTURE_XLSX
-    source_id: SOURCE_FIXTURE_ISSUER
-    title: Spreadsheet fixture
-    publisher: Fixture Publisher
-    published_at: '2026-05-14T09:00:00+08:00'
-    locator:
-      source_url: https://example.invalid/financials.xlsx
-      location: workbook
-    source_url: https://example.invalid/financials.xlsx
-    terms_url: https://example.invalid/terms
-    usage_basis: Test fixture.
-    restriction_status: USABLE
-    media_type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
-    local_path: financials.xlsx
-""".lstrip(),
-                encoding="utf-8",
-            )
-            output_dir = workspace / "output"
+            material = base_material("MATERIAL_FIXTURE_XLSX", "financials.xlsx")
+            material["media_type"] = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            intake = {"materials": [material]}
 
-            result = subprocess.run(
-                [
-                    sys.executable,
-                    str(CLI),
-                    "SNAPSHOT_BUILD",
-                    "--case-file",
-                    str(workspace / "case.yaml"),
-                    "--intake-file",
-                    str(workspace / "snapshot-inputs.yaml"),
-                    "--output-dir",
-                    str(output_dir),
-                    "--created-at",
-                    "2026-07-19T10:00:00+08:00",
-                ],
-                capture_output=True,
-                text=True,
-                encoding="utf-8",
-            )
+            result, output_dir = build_snapshot(workspace, intake)
 
             self.assertEqual(result.returncode, 0, result.stderr)
             parsed = json.loads(
@@ -710,42 +479,72 @@ materials:
                 parsed["sheets"][0]["rows"][2]["values"][1], "=(B2/C2)-1"
             )
 
-    def test_demo_run_uses_only_the_frozen_snapshot(self) -> None:
+    def test_search_saturation_records_targets_without_coverage_status(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            workspace = Path(temp_dir)
+            (workspace / "issuer.txt").write_bytes(b"Issuer material\n")
+            material = base_material("MATERIAL_FIXTURE_TARGET", "issuer.txt", ["capacity", "utilization"])
+            intake = {
+                "search_saturation": {
+                    "status": "SATURATED",
+                    "target_list_processed": True,
+                    "official_round_completed": True,
+                    "extended_round_completed": True,
+                    "supplemental_round_no_new_unique_material": True,
+                },
+                "acquisition_targets": [
+                    {
+                        "target_id": "capacity",
+                        "label": "Capacity",
+                        "search_channels": ["issuer", "regulator_exchange"],
+                        "search_status": "SATURATED",
+                    },
+                    {
+                        "target_id": "utilization",
+                        "label": "Utilization",
+                        "search_channels": ["issuer", "extended_web"],
+                        "search_status": "SATURATED",
+                    },
+                ],
+                "materials": [material],
+            }
+
+            result, output_dir = build_snapshot(workspace, intake)
+
+            self.assertEqual(result.returncode, 0, result.stderr)
+            manifest = yaml.safe_load(
+                (output_dir / "snapshot-manifest.yaml").read_text(encoding="utf-8")
+            )
+            self.assertEqual(manifest["search_saturation"]["status"], "SATURATED")
+            self.assertNotIn("coverage", manifest)
+            target_summary = {target["target_id"]: target for target in manifest["acquisition_targets"]}
+            self.assertEqual(
+                target_summary["capacity"]["material_ids"], ["MATERIAL_FIXTURE_TARGET"]
+            )
+            self.assertEqual(target_summary["capacity"]["search_status"], "SATURATED")
+            self.assertNotIn("status", target_summary["capacity"])
+
+    def test_demo_run_accepts_acquired_unassessed_and_uses_only_the_frozen_snapshot(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             workspace = Path(temp_dir)
             material_path = workspace / "issuer.txt"
             material_path.write_bytes(b"Frozen issuer material\n")
             case_path = workspace / "case.yaml"
-            case_path.write_text(
-                "case_origin: fixture\nas_of: '2026-05-15T23:59:59+08:00'\nrequired_coverage: []\n",
-                encoding="utf-8",
-            )
             intake_path = workspace / "snapshot-inputs.yaml"
-            intake_path.write_text(
-                """
-materials:
-  - material_id: MATERIAL_FIXTURE_DEMO_RUN
-    source_id: SOURCE_FIXTURE_ISSUER
-    title: Frozen fixture
-    publisher: Fixture Publisher
-    published_at: '2026-05-14T09:00:00+08:00'
-    locator:
-      source_url: https://unreachable.invalid/issuer.txt
-      location: full text
-    source_url: https://unreachable.invalid/issuer.txt
-    terms_url: https://unreachable.invalid/terms
-    usage_basis: Test fixture.
-    restriction_status: USABLE
-    media_type: text/plain
-    local_path: issuer.txt
-""".lstrip(),
-                encoding="utf-8",
-            )
+            write_case(case_path)
+            material = base_material("MATERIAL_FIXTURE_DEMO_RUN", "issuer.txt")
+            material["acquisition_source"] = {
+                "type": "url",
+                "url": "https://unreachable.invalid/issuer.txt",
+            }
+            material["canonical_material_locator"] = {
+                "source_page": "https://unreachable.invalid/issuer.txt",
+                "location": "full text",
+            }
+            write_yaml(intake_path, {"materials": [material]})
             snapshot_dir = workspace / "snapshot"
-            build = subprocess.run(
+            build = run_cli(
                 [
-                    sys.executable,
-                    str(CLI),
                     "SNAPSHOT_BUILD",
                     "--case-file",
                     str(case_path),
@@ -755,33 +554,88 @@ materials:
                     str(snapshot_dir),
                     "--created-at",
                     "2026-07-19T10:00:00+08:00",
-                ],
-                capture_output=True,
-                text=True,
-                encoding="utf-8",
+                ]
             )
             self.assertEqual(build.returncode, 0, build.stderr)
             expected_snapshot_id = build.stdout.strip()
             material_path.unlink()
             intake_path.unlink()
 
-            demo = subprocess.run(
+            demo = run_cli(
                 [
-                    sys.executable,
-                    str(CLI),
                     "DEMO_RUN",
                     "--case-file",
                     str(case_path),
                     "--snapshot-dir",
                     str(snapshot_dir),
-                ],
-                capture_output=True,
-                text=True,
-                encoding="utf-8",
+                ]
             )
 
             self.assertEqual(demo.returncode, 0, demo.stderr)
             self.assertEqual(demo.stdout.strip(), expected_snapshot_id)
+
+    def test_demo_run_rejects_as_of_tampering(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            workspace = Path(temp_dir)
+            (workspace / "issuer.txt").write_bytes(b"Issuer material\n")
+            result, output_dir = build_snapshot(
+                workspace,
+                {"materials": [base_material("MATERIAL_FIXTURE_TAMPER", "issuer.txt")]},
+            )
+            self.assertEqual(result.returncode, 0, result.stderr)
+            materials_path = output_dir / "materials.jsonl"
+            material = read_single_jsonl(materials_path)
+            material["publication_time"]["latest"] = "2026-05-16T00:00:00+08:00"
+            materials_path.write_text(json.dumps(material, ensure_ascii=False) + "\n", encoding="utf-8")
+
+            demo = run_cli(
+                [
+                    "DEMO_RUN",
+                    "--case-file",
+                    str(output_dir / "case.yaml"),
+                    "--snapshot-dir",
+                    str(output_dir),
+                ]
+            )
+
+            self.assertEqual(demo.returncode, 2)
+            self.assertIn("hash mismatch", demo.stderr)
+
+    def test_demo_run_rejects_missing_publication_time_metadata(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            workspace = Path(temp_dir)
+            (workspace / "issuer.txt").write_bytes(b"Issuer material\n")
+            result, output_dir = build_snapshot(
+                workspace,
+                {"materials": [base_material("MATERIAL_FIXTURE_PUBLICATION_META", "issuer.txt")]},
+            )
+            self.assertEqual(result.returncode, 0, result.stderr)
+            materials_path = output_dir / "materials.jsonl"
+            material = read_single_jsonl(materials_path)
+            del material["publication_time"]["basis"]
+            materials_path.write_text(json.dumps(material, ensure_ascii=False) + "\n", encoding="utf-8")
+            manifest_path = output_dir / "snapshot-manifest.yaml"
+            manifest = yaml.safe_load(manifest_path.read_text(encoding="utf-8"))
+            for file_entry in manifest["files"]:
+                if file_entry["path"] == "materials.jsonl":
+                    file_entry["hash"] = "sha256:" + hashlib.sha256(materials_path.read_bytes()).hexdigest()
+            manifest_path.write_text(
+                yaml.safe_dump(manifest, allow_unicode=True, sort_keys=False),
+                encoding="utf-8",
+            )
+
+            demo = run_cli(
+                [
+                    "DEMO_RUN",
+                    "--case-file",
+                    str(output_dir / "case.yaml"),
+                    "--snapshot-dir",
+                    str(output_dir),
+                ]
+            )
+
+            self.assertEqual(demo.returncode, 2)
+            self.assertIn("publication_time", demo.stderr)
 
     def test_changed_material_requires_a_new_snapshot_directory_and_identity(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
@@ -789,37 +643,16 @@ materials:
             material_path = workspace / "issuer.txt"
             material_path.write_bytes(b"Version one\n")
             case_path = workspace / "case.yaml"
-            case_path.write_text(
-                "case_origin: fixture\nas_of: '2026-05-15T23:59:59+08:00'\nrequired_coverage: []\n",
-                encoding="utf-8",
-            )
             intake_path = workspace / "snapshot-inputs.yaml"
-            intake_path.write_text(
-                """
-materials:
-  - material_id: MATERIAL_FIXTURE_VERSIONED
-    source_id: SOURCE_FIXTURE_ISSUER
-    title: Versioned fixture
-    publisher: Fixture Publisher
-    published_at: '2026-05-14T09:00:00+08:00'
-    locator:
-      source_url: https://example.invalid/issuer.txt
-      location: full text
-    source_url: https://example.invalid/issuer.txt
-    terms_url: https://example.invalid/terms
-    usage_basis: Test fixture.
-    restriction_status: USABLE
-    media_type: text/plain
-    local_path: issuer.txt
-""".lstrip(),
-                encoding="utf-8",
+            write_case(case_path)
+            write_yaml(
+                intake_path,
+                {"materials": [base_material("MATERIAL_FIXTURE_VERSIONED", "issuer.txt")]},
             )
 
             def build(output_dir: Path) -> subprocess.CompletedProcess[str]:
-                return subprocess.run(
+                return run_cli(
                     [
-                        sys.executable,
-                        str(CLI),
                         "SNAPSHOT_BUILD",
                         "--case-file",
                         str(case_path),
@@ -829,10 +662,7 @@ materials:
                         str(output_dir),
                         "--created-at",
                         "2026-07-19T10:00:00+08:00",
-                    ],
-                    capture_output=True,
-                    text=True,
-                    encoding="utf-8",
+                    ]
                 )
 
             first_dir = workspace / "snapshot-v1"
@@ -857,39 +687,17 @@ materials:
             workspace = Path(temp_dir)
             (workspace / "issuer.txt").write_bytes(b"Stable content\n")
             case_path = workspace / "case.yaml"
-            case_path.write_text(
-                "case_origin: fixture\nas_of: '2026-05-15T23:59:59+08:00'\nrequired_coverage: []\n",
-                encoding="utf-8",
-            )
             intake_path = workspace / "snapshot-inputs.yaml"
+            write_case(case_path)
 
-            def write_intake(usage_basis: str) -> None:
-                intake_path.write_text(
-                    f"""
-materials:
-  - material_id: MATERIAL_FIXTURE_METADATA
-    source_id: SOURCE_FIXTURE_ISSUER
-    title: Metadata identity fixture
-    publisher: Fixture Publisher
-    published_at: '2026-05-14T09:00:00+08:00'
-    locator:
-      source_url: https://example.invalid/issuer.txt
-      location: full text
-    source_url: https://example.invalid/issuer.txt
-    terms_url: https://example.invalid/terms
-    usage_basis: {usage_basis}
-    restriction_status: USABLE
-    media_type: text/plain
-    local_path: issuer.txt
-""".lstrip(),
-                    encoding="utf-8",
-                )
+            def write_intake(title: str) -> None:
+                material = base_material("MATERIAL_FIXTURE_METADATA", "issuer.txt")
+                material["title"] = title
+                write_yaml(intake_path, {"materials": [material]})
 
             def build(output_dir: Path) -> subprocess.CompletedProcess[str]:
-                return subprocess.run(
+                return run_cli(
                     [
-                        sys.executable,
-                        str(CLI),
                         "SNAPSHOT_BUILD",
                         "--case-file",
                         str(case_path),
@@ -899,16 +707,13 @@ materials:
                         str(output_dir),
                         "--created-at",
                         "2026-07-19T10:00:00+08:00",
-                    ],
-                    capture_output=True,
-                    text=True,
-                    encoding="utf-8",
+                    ]
                 )
 
-            write_intake("Initial permitted use.")
+            write_intake("Initial metadata")
             first = build(workspace / "snapshot-v1")
             self.assertEqual(first.returncode, 0, first.stderr)
-            write_intake("Updated permitted use.")
+            write_intake("Updated metadata")
             second_dir = workspace / "snapshot-v2"
             second = build(second_dir)
             self.assertEqual(second.returncode, 0, second.stderr)
@@ -920,24 +725,45 @@ materials:
             manifest_path.write_text(
                 yaml.safe_dump(manifest, sort_keys=False), encoding="utf-8"
             )
-            demo = subprocess.run(
+            demo = run_cli(
                 [
-                    sys.executable,
-                    str(CLI),
                     "DEMO_RUN",
                     "--case-file",
                     str(case_path),
                     "--snapshot-dir",
                     str(second_dir),
-                ],
-                capture_output=True,
-                text=True,
-                encoding="utf-8",
+                ]
             )
             self.assertEqual(demo.returncode, 2)
             self.assertIn("snapshot_id", demo.stderr)
 
-    def test_snapshot_build_downloads_an_approved_public_material_without_auth(self) -> None:
+    def test_snapshot_build_rejects_nested_session_data(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            workspace = Path(temp_dir)
+            (workspace / "issuer.txt").write_bytes(b"Issuer material\n")
+            material = base_material("MATERIAL_FIXTURE_SESSION", "issuer.txt")
+            material["request"] = {"headers": {"Cookie": "session=must-not-be-stored"}}
+
+            result, output_dir = build_snapshot(workspace, {"materials": [material]})
+
+            self.assertEqual(result.returncode, 2)
+            self.assertIn("credentials or session data", result.stderr)
+            self.assertFalse((output_dir / "snapshot-manifest.yaml").exists())
+
+    def test_snapshot_build_rejects_material_id_path_traversal(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            workspace = Path(temp_dir)
+            (workspace / "issuer.txt").write_bytes(b"Issuer material\n")
+            material = base_material("../../outside", "issuer.txt")
+
+            result, _output_dir = build_snapshot(workspace, {"materials": [material]})
+
+            self.assertEqual(result.returncode, 2)
+            self.assertIn("material_id", result.stderr)
+            self.assertFalse((workspace / "outside.txt").exists())
+            self.assertFalse((workspace / "outside.json").exists())
+
+    def test_snapshot_build_downloads_public_material_without_auth(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             workspace = Path(temp_dir)
             served_dir = workspace / "served"
@@ -954,62 +780,25 @@ materials:
             thread.start()
             try:
                 download_url = f"http://127.0.0.1:{server.server_port}/release.txt"
-                (workspace / "case.yaml").write_text(
-                    "case_origin: fixture\nas_of: '2026-05-15T23:59:59+08:00'\nrequired_coverage: []\n",
-                    encoding="utf-8",
-                )
-                (workspace / "snapshot-inputs.yaml").write_text(
-                    f"""
-materials:
-  - material_id: MATERIAL_FIXTURE_DOWNLOAD
-    source_id: SOURCE_FIXTURE_ISSUER
-    title: Public download fixture
-    publisher: Fixture Publisher
-    published_at: '2026-05-14T09:00:00+08:00'
-    locator:
-      source_url: {download_url}
-      location: full text
-    source_url: {download_url}
-    download_url: {download_url}
-    terms_url: https://example.invalid/terms
-    usage_basis: Public download approved for this test fixture.
-    restriction_status: USABLE
-    media_type: text/plain
-""".lstrip(),
-                    encoding="utf-8",
-                )
-                output_dir = workspace / "output"
-
-                result = subprocess.run(
-                    [
-                        sys.executable,
-                        str(CLI),
-                        "SNAPSHOT_BUILD",
-                        "--case-file",
-                        str(workspace / "case.yaml"),
-                        "--intake-file",
-                        str(workspace / "snapshot-inputs.yaml"),
-                        "--output-dir",
-                        str(output_dir),
-                        "--created-at",
-                        "2026-07-19T10:00:00+08:00",
-                    ],
-                    capture_output=True,
-                    text=True,
-                    encoding="utf-8",
-                )
+                material = base_material("MATERIAL_FIXTURE_DOWNLOAD", "unused.txt")
+                del material["local_path"]
+                material["download_url"] = download_url
+                material["acquisition_source"] = {"type": "url", "url": download_url}
+                material["canonical_material_locator"] = {
+                    "source_page": download_url,
+                    "location": "full text",
+                }
+                result, output_dir = build_snapshot(workspace, {"materials": [material]})
             finally:
                 server.shutdown()
                 server.server_close()
                 thread.join(timeout=5)
 
             self.assertEqual(result.returncode, 0, result.stderr)
-            material = json.loads(
-                (output_dir / "materials.jsonl").read_text(encoding="utf-8")
-            )
-            self.assertEqual(material["acquisition_method"], "DIRECT_PUBLIC_DOWNLOAD")
+            material_record = read_single_jsonl(output_dir / "materials.jsonl")
+            self.assertEqual(material_record["acquisition_method"], "DIRECT_PUBLIC_DOWNLOAD")
             self.assertEqual(
-                (output_dir / material["frozen_path"]).read_bytes(), b"Public release\n"
+                (output_dir / material_record["frozen_path"]).read_bytes(), b"Public release\n"
             )
 
 

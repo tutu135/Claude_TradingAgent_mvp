@@ -1,0 +1,53 @@
+related_snapshot_build: smic-95dcd12eba2fe17c
+snapshot_membership: OUTSIDE_ALL_SNAPSHOTS
+candidates:
+- candidate_key: CANDIDATE_YAHOO_SMIC_Q2_2025_TRANSCRIPT
+  title: SMIC Q2 FY2025 earnings call transcript
+  discovered_at: '2026-07-19T22:25:00+08:00'
+  known_acquisition_source:
+    type: url
+    url: https://finance.yahoo.com/quote/0981.HK/earnings/0981.HK-Q2-2025-earnings_call-338806.html/
+  known_displayed_publisher: Yahoo Finance
+  known_publication_time_window:
+    raw_text: null
+    precision: null
+    earliest: null
+    latest: null
+    basis: null
+  known_material_locator:
+    source_page: https://finance.yahoo.com/quote/0981.HK/earnings/0981.HK-Q2-2025-earnings_call-338806.html/
+    location: earnings call transcript page
+  acquisition_targets:
+  - quarterly_materials_2025_q2
+  - utilization
+  - capital_expenditure
+  - process_application_mix
+  missing_metadata:
+  - publication_time_window
+  holding_reason: INTAKE_DECLARED_CANDIDATE
+  user_confirmation_status: PENDING_USER_CONFIRMATION
+- candidate_key: CANDIDATE_YAHOO_SMIC_Q1_2026_TRANSCRIPT
+  title: SMIC Q1 FY2026 earnings call transcript
+  discovered_at: '2026-07-19T22:25:00+08:00'
+  known_acquisition_source:
+    type: url
+    url: https://finance.yahoo.com/quote/0981.HK/earnings/0981.HK-Q1-2026-earnings_call-554758.html/
+  known_displayed_publisher: Yahoo Finance
+  known_publication_time_window:
+    raw_text: null
+    precision: null
+    earliest: null
+    latest: null
+    basis: null
+  known_material_locator:
+    source_page: https://finance.yahoo.com/quote/0981.HK/earnings/0981.HK-Q1-2026-earnings_call-554758.html/
+    location: earnings call transcript page
+  acquisition_targets:
+  - quarterly_materials_2026_q1
+  - utilization
+  - capital_expenditure
+  - process_application_mix
+  missing_metadata:
+  - publication_time_window
+  holding_reason: INTAKE_DECLARED_CANDIDATE
+  user_confirmation_status: PENDING_USER_CONFIRMATION

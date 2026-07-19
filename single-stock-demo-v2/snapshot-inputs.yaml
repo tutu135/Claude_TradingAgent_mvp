@@ -1,0 +1,654 @@
+parent_snapshot_id: smic-4c110e93f810aa8e
+search_saturation:
+  status: SATURATED
+  target_list_processed: true
+  official_round_completed: true
+  extended_round_completed: true
+  supplemental_round_no_new_unique_material: true
+  recorded_at: '2026-07-19T21:30:00+08:00'
+  notes: >-
+    Official issuer, HKEX/SSE/CNINFO, SIA industry releases, and extended web/media queries were searched
+    for the fixed v2 targets. Remaining items are recorded as acquisition gaps or candidate holding records;
+    saturation does not assert evidence completeness.
+acquisition_targets:
+  - target_id: company_security_master
+    label: Company and security master data
+    search_channels: [issuer, regulator_exchange, extended_web]
+    search_status: SATURATED
+  - target_id: annual_materials_fy2023
+    label: FY2023 annual material set
+    search_channels: [issuer, regulator_exchange]
+    search_status: SATURATED
+  - target_id: annual_materials_fy2024
+    label: FY2024 annual material set
+    search_channels: [issuer, regulator_exchange]
+    search_status: SATURATED
+  - target_id: annual_materials_fy2025
+    label: FY2025 annual material set
+    search_channels: [issuer, regulator_exchange]
+    search_status: SATURATED
+  - target_id: quarterly_materials_2025_q2
+    label: 2025 Q2 quarterly material set
+    search_channels: [issuer, regulator_exchange, extended_web]
+    search_status: SATURATED
+  - target_id: quarterly_materials_2025_q3
+    label: 2025 Q3 quarterly material set
+    search_channels: [issuer, regulator_exchange, extended_web]
+    search_status: SATURATED
+  - target_id: quarterly_materials_2025_q4
+    label: 2025 Q4 quarterly material set
+    search_channels: [issuer, regulator_exchange, extended_web]
+    search_status: SATURATED
+  - target_id: quarterly_materials_2026_q1
+    label: 2026 Q1 quarterly material set
+    search_channels: [issuer, regulator_exchange, extended_web]
+    search_status: SATURATED
+  - target_id: capacity
+    label: Capacity
+    search_channels: [issuer, regulator_exchange, named_institution, extended_web]
+    search_status: SATURATED
+  - target_id: utilization
+    label: Utilization
+    search_channels: [issuer, regulator_exchange, named_institution, extended_web]
+    search_status: SATURATED
+  - target_id: shipments
+    label: Shipments
+    search_channels: [issuer, regulator_exchange, named_institution, extended_web]
+    search_status: SATURATED
+  - target_id: average_selling_price
+    label: Average selling price
+    search_channels: [issuer, regulator_exchange, named_institution, extended_web]
+    search_status: SATURATED
+  - target_id: process_application_mix
+    label: Process and application mix
+    search_channels: [issuer, regulator_exchange, named_institution, extended_web]
+    search_status: SATURATED
+  - target_id: capital_expenditure
+    label: Capital expenditure
+    search_channels: [issuer, regulator_exchange, named_institution, extended_web]
+    search_status: SATURATED
+  - target_id: government_grants
+    label: Government grants
+    search_channels: [issuer, regulator_exchange]
+    search_status: SATURATED
+  - target_id: other_operating_income
+    label: Other operating income
+    search_channels: [issuer, regulator_exchange]
+    search_status: SATURATED
+  - target_id: ifrs_cas_reconciliation
+    label: IFRS/CAS reconciliation
+    search_channels: [issuer, regulator_exchange]
+    search_status: SATURATED
+  - target_id: industry_cycle
+    label: Wafer foundry, mature-node, and demand-cycle context
+    search_channels: [government_official_industry, named_institution, extended_web]
+    search_status: SATURATED
+  - target_id: comparability_events
+    label: Subsidiaries, consolidation scope, accounting policy, restatement, and comparability events
+    search_channels: [issuer, regulator_exchange, extended_web]
+    search_status: SATURATED
+  - target_id: smnc_49_transaction
+    label: SMNC 49% equity transaction
+    search_channels: [issuer, regulator_exchange, extended_web]
+    search_status: SATURATED
+  - target_id: nsi_transaction
+    label: NSI transaction
+    search_channels: [issuer, regulator_exchange, extended_web]
+    search_status: SATURATED
+
+materials:
+  - material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    source_id: SOURCE_HKEX_SMIC_FILINGS
+    title: SMIC 2023 Annual Report
+    displayed_publisher: HKEXnews
+    published_at: '2024-04-09T00:00:00+08:00'
+    publication_precision: DATE
+    source_class: REGULATOR_EXCHANGE
+    acquisition_source:
+      type: url
+      url: https://www.hkexnews.hk/listedco/listconews/sehk/2024/0409/2024040900356.pdf
+    canonical_material_locator:
+      source_page: https://www.hkexnews.hk/listedco/listconews/sehk/2024/0409/2024040900356.pdf
+      document_url: https://www.hkexnews.hk/listedco/listconews/sehk/2024/0409/2024040900356.pdf
+      location: full IFRS annual report; formal citations must use original PDF pages
+    download_url: https://www.hkexnews.hk/listedco/listconews/sehk/2024/0409/2024040900356.pdf
+    terms_url: https://www.hkex.com.hk/Global/Exchange/Terms-of-Use
+    usage_basis: Public regulatory filing frozen for personal, non-commercial local research; do not redistribute raw content.
+    claimed_original_source: Semiconductor Manufacturing International Corporation
+    media_type: application/pdf
+    acquisition_targets: &annual_2023_targets
+      - company_security_master
+      - annual_materials_fy2023
+      - government_grants
+      - other_operating_income
+      - ifrs_cas_reconciliation
+      - comparability_events
+      - capacity
+      - utilization
+      - shipments
+      - process_application_mix
+      - capital_expenditure
+
+  - material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    source_id: SOURCE_HKEX_SMIC_FILINGS
+    title: SMIC 2024 Annual Report
+    displayed_publisher: HKEXnews
+    published_at: '2025-04-09T00:00:00+08:00'
+    publication_precision: DATE
+    source_class: REGULATOR_EXCHANGE
+    acquisition_source:
+      type: url
+      url: https://www.hkexnews.hk/listedco/listconews/sehk/2025/0409/2025040900322.pdf
+    canonical_material_locator:
+      source_page: https://www.hkexnews.hk/listedco/listconews/sehk/2025/0409/2025040900322.pdf
+      document_url: https://www.hkexnews.hk/listedco/listconews/sehk/2025/0409/2025040900322.pdf
+      location: full IFRS annual report; formal citations must use original PDF pages
+    download_url: https://www.hkexnews.hk/listedco/listconews/sehk/2025/0409/2025040900322.pdf
+    terms_url: https://www.hkex.com.hk/Global/Exchange/Terms-of-Use
+    usage_basis: Public regulatory filing frozen for personal, non-commercial local research; do not redistribute raw content.
+    claimed_original_source: Semiconductor Manufacturing International Corporation
+    media_type: application/pdf
+    acquisition_targets:
+      - company_security_master
+      - annual_materials_fy2024
+      - government_grants
+      - other_operating_income
+      - ifrs_cas_reconciliation
+      - comparability_events
+      - capacity
+      - utilization
+      - shipments
+      - process_application_mix
+      - capital_expenditure
+
+  - material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    source_id: SOURCE_HKEX_SMIC_FILINGS
+    title: SMIC 2025 Annual Report
+    displayed_publisher: HKEXnews
+    published_at: '2026-04-08T00:00:00+08:00'
+    publication_precision: DATE
+    source_class: REGULATOR_EXCHANGE
+    acquisition_source:
+      type: url
+      url: https://www.hkexnews.hk/listedco/listconews/sehk/2026/0408/2026040801181.pdf
+    canonical_material_locator:
+      source_page: https://www.hkexnews.hk/listedco/listconews/sehk/2026/0408/2026040801181.pdf
+      document_url: https://www.hkexnews.hk/listedco/listconews/sehk/2026/0408/2026040801181.pdf
+      location: full IFRS annual report; formal citations must use original PDF pages
+    download_url: https://www.hkexnews.hk/listedco/listconews/sehk/2026/0408/2026040801181.pdf
+    terms_url: https://www.hkex.com.hk/Global/Exchange/Terms-of-Use
+    usage_basis: Public regulatory filing frozen for personal, non-commercial local research; do not redistribute raw content.
+    claimed_original_source: Semiconductor Manufacturing International Corporation
+    media_type: application/pdf
+    acquisition_targets:
+      - company_security_master
+      - annual_materials_fy2025
+      - quarterly_materials_2025_q4
+      - government_grants
+      - other_operating_income
+      - ifrs_cas_reconciliation
+      - comparability_events
+      - capacity
+      - utilization
+      - shipments
+      - process_application_mix
+      - capital_expenditure
+      - nsi_transaction
+
+  - material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    source_id: SOURCE_HKEX_SMIC_OVERSEAS_REGULATORY
+    title: SMIC 2023 A Share Annual Report
+    displayed_publisher: HKEXnews
+    published_at: '2024-03-28T00:00:00+08:00'
+    publication_precision: DATE
+    source_class: REGULATOR_EXCHANGE
+    acquisition_source:
+      type: url
+      url: https://www.hkexnews.hk/listedco/listconews/sehk/2024/0328/2024032802804_c.pdf
+    canonical_material_locator:
+      source_page: https://www.hkexnews.hk/listedco/listconews/sehk/2024/0328/2024032802804_c.pdf
+      document_url: https://www.hkexnews.hk/listedco/listconews/sehk/2024/0328/2024032802804_c.pdf
+      location: full A Share annual report; formal citations must use original PDF pages
+    download_url: https://www.hkexnews.hk/listedco/listconews/sehk/2024/0328/2024032802804_c.pdf
+    terms_url: https://www.hkex.com.hk/Global/Exchange/Terms-of-Use
+    usage_basis: Public overseas regulatory filing frozen for personal, non-commercial local research; do not redistribute raw content.
+    claimed_original_source: Shanghai Stock Exchange
+    media_type: application/pdf
+    acquisition_targets: *annual_2023_targets
+
+  - material_id: MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    source_id: SOURCE_HKEX_SMIC_OVERSEAS_REGULATORY
+    title: SMIC 2024 A Share Annual Report
+    displayed_publisher: HKEXnews
+    published_at: '2025-03-27T00:00:00+08:00'
+    publication_precision: DATE
+    source_class: REGULATOR_EXCHANGE
+    acquisition_source:
+      type: url
+      url: https://www.hkexnews.hk/listedco/listconews/sehk/2025/0327/2025032701591_c.pdf
+    canonical_material_locator:
+      source_page: https://www.hkexnews.hk/listedco/listconews/sehk/2025/0327/2025032701591_c.pdf
+      document_url: https://www.hkexnews.hk/listedco/listconews/sehk/2025/0327/2025032701591_c.pdf
+      location: full A Share annual report; formal citations must use original PDF pages
+    download_url: https://www.hkexnews.hk/listedco/listconews/sehk/2025/0327/2025032701591_c.pdf
+    terms_url: https://www.hkex.com.hk/Global/Exchange/Terms-of-Use
+    usage_basis: Public overseas regulatory filing frozen for personal, non-commercial local research; do not redistribute raw content.
+    claimed_original_source: Shanghai Stock Exchange
+    media_type: application/pdf
+    acquisition_targets:
+      - company_security_master
+      - annual_materials_fy2024
+      - government_grants
+      - other_operating_income
+      - ifrs_cas_reconciliation
+      - comparability_events
+      - capacity
+      - utilization
+      - shipments
+      - process_application_mix
+      - capital_expenditure
+
+  - material_id: MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+    source_id: SOURCE_CNINFO_SSE_DISCLOSURE
+    title: SMIC 2025 A Share Annual Report
+    displayed_publisher: CNINFO
+    published_at: '2026-03-27T00:00:00+08:00'
+    publication_precision: DATE
+    source_class: REGULATOR_EXCHANGE
+    acquisition_source:
+      type: url
+      url: https://static.cninfo.com.cn/finalpage/2026-03-27/1225037057.PDF
+    canonical_material_locator:
+      source_page: https://static.cninfo.com.cn/finalpage/2026-03-27/1225037057.PDF
+      document_url: https://static.cninfo.com.cn/finalpage/2026-03-27/1225037057.PDF
+      location: full A Share annual report; formal citations must use original PDF pages
+    download_url: https://static.cninfo.com.cn/finalpage/2026-03-27/1225037057.PDF
+    usage_basis: Public A-share disclosure frozen for personal, non-commercial local research; do not redistribute raw content.
+    claimed_original_source: Shanghai Stock Exchange
+    media_type: application/pdf
+    acquisition_targets:
+      - company_security_master
+      - annual_materials_fy2025
+      - quarterly_materials_2025_q4
+      - government_grants
+      - other_operating_income
+      - ifrs_cas_reconciliation
+      - comparability_events
+      - capacity
+      - utilization
+      - shipments
+      - process_application_mix
+      - capital_expenditure
+      - nsi_transaction
+
+  - material_id: MATERIAL_SMIC_2025_Q2_RESULTS
+    source_id: SOURCE_SMIC_INVESTOR_RELATIONS
+    title: SMIC Reports Unaudited Results for the Three Months Ended June 30, 2025
+    displayed_publisher: Semiconductor Manufacturing International Corporation
+    published_at: '2025-08-07T00:00:00+08:00'
+    publication_precision: DATE
+    source_class: ISSUER
+    acquisition_source:
+      type: url
+      url: https://www.smics.com/en/site/company_financialSummary?year=2025
+    canonical_material_locator:
+      source_page: https://www.smics.com/en/site/company_financialSummary?year=2025
+      document_url: https://smic.cdn.shwebspace.com/uploads/689f075f/ER_EN.pdf
+      location: full earnings release; formal citations must use original PDF pages
+    download_url: https://smic.cdn.shwebspace.com/uploads/689f075f/ER_EN.pdf
+    terms_url: https://www.smics.com/en/site/legal_declaration
+    usage_basis: Issuer public download frozen for personal, non-commercial local research; do not redistribute raw content.
+    media_type: application/pdf
+    acquisition_targets: &quarterly_operating_targets
+      - quarterly_materials_2025_q2
+      - capacity
+      - utilization
+      - shipments
+      - average_selling_price
+      - process_application_mix
+      - capital_expenditure
+      - government_grants
+      - other_operating_income
+
+  - material_id: MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+    source_id: SOURCE_CNINFO_SSE_DISCLOSURE
+    title: SMIC 2025 Semi-Annual A Share Report
+    displayed_publisher: CNINFO
+    published_at: '2025-08-29T00:00:00+08:00'
+    publication_precision: DATE
+    source_class: REGULATOR_EXCHANGE
+    acquisition_source:
+      type: url
+      url: https://static.cninfo.com.cn/finalpage/2025-08-29/1224608545.PDF
+    canonical_material_locator:
+      source_page: https://static.cninfo.com.cn/finalpage/2025-08-29/1224608545.PDF
+      document_url: https://static.cninfo.com.cn/finalpage/2025-08-29/1224608545.PDF
+      location: full A Share semi-annual report; formal citations must use original PDF pages
+    download_url: https://static.cninfo.com.cn/finalpage/2025-08-29/1224608545.PDF
+    usage_basis: Public A-share disclosure frozen for personal, non-commercial local research; do not redistribute raw content.
+    claimed_original_source: Shanghai Stock Exchange
+    media_type: application/pdf
+    acquisition_targets:
+      - quarterly_materials_2025_q2
+      - government_grants
+      - other_operating_income
+      - ifrs_cas_reconciliation
+      - comparability_events
+      - capacity
+      - utilization
+      - shipments
+      - process_application_mix
+      - capital_expenditure
+
+  - material_id: MATERIAL_SMIC_2025_Q3_RESULTS
+    source_id: SOURCE_SMIC_INVESTOR_RELATIONS
+    title: SMIC Reports Unaudited Results for the Three Months Ended September 30, 2025
+    displayed_publisher: Semiconductor Manufacturing International Corporation
+    published_at: '2025-11-13T17:49:00+08:00'
+    publication_precision: MINUTE
+    source_class: ISSUER
+    acquisition_source:
+      type: url
+      url: https://www.smics.com/en/site/company_financialSummary?year=2025
+    canonical_material_locator:
+      source_page: https://www.smics.com/en/site/company_financialSummary?year=2025
+      document_url: https://smic.cdn.shwebspace.com/uploads/6915b489/ER_EN.pdf
+      location: full earnings release; formal citations must use original PDF pages
+    download_url: https://smic.cdn.shwebspace.com/uploads/6915b489/ER_EN.pdf
+    terms_url: https://www.smics.com/en/site/legal_declaration
+    usage_basis: Issuer public download frozen for personal, non-commercial local research; do not redistribute raw content.
+    media_type: application/pdf
+    acquisition_targets:
+      - quarterly_materials_2025_q3
+      - capacity
+      - utilization
+      - shipments
+      - average_selling_price
+      - process_application_mix
+      - capital_expenditure
+      - government_grants
+      - other_operating_income
+
+  - material_id: MATERIAL_SMIC_2025_Q3_A_SHARE_REPORT_CNINFO
+    source_id: SOURCE_CNINFO_SSE_DISCLOSURE
+    title: SMIC 2025 Third Quarter A Share Report
+    displayed_publisher: CNINFO
+    published_at: '2025-11-14T00:00:00+08:00'
+    publication_precision: DATE
+    source_class: REGULATOR_EXCHANGE
+    acquisition_source:
+      type: url
+      url: https://static.cninfo.com.cn/finalpage/2025-11-14/1224804086.PDF
+    canonical_material_locator:
+      source_page: https://static.cninfo.com.cn/finalpage/2025-11-14/1224804086.PDF
+      document_url: https://static.cninfo.com.cn/finalpage/2025-11-14/1224804086.PDF
+      location: full A Share quarterly report; formal citations must use original PDF pages
+    download_url: https://static.cninfo.com.cn/finalpage/2025-11-14/1224804086.PDF
+    usage_basis: Public A-share disclosure frozen for personal, non-commercial local research; do not redistribute raw content.
+    claimed_original_source: Shanghai Stock Exchange
+    media_type: application/pdf
+    acquisition_targets:
+      - quarterly_materials_2025_q3
+      - government_grants
+      - other_operating_income
+      - ifrs_cas_reconciliation
+      - comparability_events
+
+  - material_id: MATERIAL_SMIC_2025_Q4_RESULTS
+    source_id: SOURCE_SMIC_INVESTOR_RELATIONS
+    title: SMIC Reports Unaudited Results for the Three Months Ended December 31, 2025
+    displayed_publisher: Semiconductor Manufacturing International Corporation
+    published_at: '2026-02-10T17:12:00+08:00'
+    publication_precision: MINUTE
+    source_class: ISSUER
+    acquisition_source:
+      type: url
+      url: https://www.smics.com/en/site/company_financialSummary?year=2025
+    canonical_material_locator:
+      source_page: https://www.smics.com/en/site/company_financialSummary?year=2025
+      document_url: https://smic.cdn.shwebspace.com/uploads/698ad7da/ER_EN.pdf
+      location: full earnings release; formal citations must use original PDF pages
+    download_url: https://smic.cdn.shwebspace.com/uploads/698ad7da/ER_EN.pdf
+    terms_url: https://www.smics.com/en/site/legal_declaration
+    usage_basis: Issuer public download frozen for personal, non-commercial local research; do not redistribute raw content.
+    media_type: application/pdf
+    acquisition_targets:
+      - quarterly_materials_2025_q4
+      - capacity
+      - utilization
+      - shipments
+      - average_selling_price
+      - process_application_mix
+      - capital_expenditure
+      - government_grants
+      - other_operating_income
+
+  - material_id: MATERIAL_SMIC_2026_Q1_RESULTS
+    source_id: SOURCE_SMIC_INVESTOR_RELATIONS
+    title: SMIC Reports Unaudited Results for the Three Months Ended March 31, 2026
+    displayed_publisher: Semiconductor Manufacturing International Corporation
+    published_at: '2026-05-14T18:17:00+08:00'
+    publication_precision: MINUTE
+    source_class: ISSUER
+    acquisition_source:
+      type: url
+      url: https://www.smics.com/en/site/company_financialSummary?year=2026
+    canonical_material_locator:
+      source_page: https://www.smics.com/en/site/company_financialSummary?year=2026
+      document_url: https://smic.cdn.shwebspace.com/uploads/6a057e3f/ER_EN.pdf
+      location: full earnings release; formal citations must use original PDF pages
+    download_url: https://smic.cdn.shwebspace.com/uploads/6a057e3f/ER_EN.pdf
+    terms_url: https://www.smics.com/en/site/legal_declaration
+    usage_basis: Issuer public download frozen for personal, non-commercial local research; do not redistribute raw content.
+    media_type: application/pdf
+    acquisition_targets:
+      - quarterly_materials_2026_q1
+      - capacity
+      - utilization
+      - shipments
+      - average_selling_price
+      - process_application_mix
+      - capital_expenditure
+      - government_grants
+      - other_operating_income
+
+  - material_id: MATERIAL_SMIC_2026_Q1_A_SHARE_REPORT_CNSTOCK
+    source_id: SOURCE_SHANGHAI_SECURITIES_NEWS_DISCLOSURE
+    title: SMIC 2026 First Quarter A Share Report
+    displayed_publisher: 上海证券报
+    publication_time_window:
+      raw_text: '2026-05-15'
+      precision: DATE
+      earliest: '2026-05-15T00:00:00+08:00'
+      latest: '2026-05-15T23:59:59+08:00'
+      basis: Shanghai Securities News disclosure page date.
+    source_class: NAMED_INSTITUTION
+    acquisition_source:
+      type: url
+      url: https://paper.cnstock.com/html/2026-05/15/content_2216871.htm
+    canonical_material_locator:
+      source_page: https://paper.cnstock.com/html/2026-05/15/content_2216871.htm
+      location: full HTML disclosure page
+    download_url: https://paper.cnstock.com/html/2026-05/15/content_2216871.htm
+    usage_basis: Appointed disclosure-media HTML page frozen for personal, non-commercial local research; do not redistribute raw content.
+    claimed_original_source: Shanghai Securities News / Shanghai Stock Exchange disclosure media
+    media_type: text/html
+    acquisition_targets:
+      - quarterly_materials_2026_q1
+      - government_grants
+      - other_operating_income
+      - ifrs_cas_reconciliation
+      - comparability_events
+
+  - material_id: MATERIAL_SIA_2023_ANNUAL_SALES
+    source_id: SOURCE_SIA_WSTS_MARKET_RELEASES
+    title: Global Semiconductor Sales Decrease 8.2% in 2023; Market Rebounds Late in Year
+    displayed_publisher: Semiconductor Industry Association
+    published_at: '2024-02-05T08:15:00-05:00'
+    publication_precision: MINUTE
+    source_class: NAMED_INSTITUTION
+    acquisition_source:
+      type: url
+      url: https://www.semiconductors.org/global-semiconductor-sales-decrease-8-2-in-2023-market-rebounds-late-in-year/
+    canonical_material_locator:
+      source_page: https://www.semiconductors.org/global-semiconductor-sales-decrease-8-2-in-2023-market-rebounds-late-in-year/
+      location: full official press release; public figures are attributed to WSTS
+    download_url: https://www.semiconductors.org/global-semiconductor-sales-decrease-8-2-in-2023-market-rebounds-late-in-year/
+    terms_url: https://www.semiconductors.org/terms-of-use/
+    usage_basis: Public association press release frozen for personal, non-commercial local research; use short attributed excerpts only.
+    media_type: text/html
+    acquisition_targets:
+      - industry_cycle
+
+  - material_id: MATERIAL_SIA_2024_ANNUAL_SALES
+    source_id: SOURCE_SIA_WSTS_MARKET_RELEASES
+    title: Global Semiconductor Sales Increase 19.1% in 2024; Double-Digit Growth Projected in 2025
+    displayed_publisher: Semiconductor Industry Association
+    published_at: '2025-02-07T08:00:00-05:00'
+    publication_precision: MINUTE
+    source_class: NAMED_INSTITUTION
+    acquisition_source:
+      type: url
+      url: https://www.semiconductors.org/global-semiconductor-sales-increase-19-1-in-2024-double-digit-growth-projected-in-2025/
+    canonical_material_locator:
+      source_page: https://www.semiconductors.org/global-semiconductor-sales-increase-19-1-in-2024-double-digit-growth-projected-in-2025/
+      location: full official press release; public figures are attributed to WSTS
+    download_url: https://www.semiconductors.org/global-semiconductor-sales-increase-19-1-in-2024-double-digit-growth-projected-in-2025/
+    terms_url: https://www.semiconductors.org/terms-of-use/
+    usage_basis: Public association press release frozen for personal, non-commercial local research; use short attributed excerpts only.
+    media_type: text/html
+    acquisition_targets:
+      - industry_cycle
+
+  - material_id: MATERIAL_SIA_2025_ANNUAL_SALES
+    source_id: SOURCE_SIA_WSTS_MARKET_RELEASES
+    title: Global Annual Semiconductor Sales Increase 25.6% to $791.7 Billion in 2025
+    displayed_publisher: Semiconductor Industry Association
+    published_at: '2026-02-06T08:00:00-05:00'
+    publication_precision: MINUTE
+    source_class: NAMED_INSTITUTION
+    acquisition_source:
+      type: url
+      url: https://www.semiconductors.org/global-annual-semiconductor-sales-increase-25-6-to-791-7-billion-in-2025/
+    canonical_material_locator:
+      source_page: https://www.semiconductors.org/global-annual-semiconductor-sales-increase-25-6-to-791-7-billion-in-2025/
+      location: full official press release; public figures are attributed to WSTS
+    download_url: https://www.semiconductors.org/global-annual-semiconductor-sales-increase-25-6-to-791-7-billion-in-2025/
+    terms_url: https://www.semiconductors.org/terms-of-use/
+    usage_basis: Public association press release frozen for personal, non-commercial local research; use short attributed excerpts only.
+    media_type: text/html
+    acquisition_targets:
+      - industry_cycle
+
+  - material_id: MATERIAL_SIA_2026_Q1_SALES
+    source_id: SOURCE_SIA_WSTS_MARKET_RELEASES
+    title: Global Semiconductor Sales Increase 25% from Q4 2025 to Q1 2026
+    displayed_publisher: Semiconductor Industry Association
+    published_at: '2026-05-04T08:00:00-04:00'
+    publication_precision: MINUTE
+    source_class: NAMED_INSTITUTION
+    acquisition_source:
+      type: url
+      url: https://www.semiconductors.org/global-semiconductor-sales-increase-25-from-q4-2025-to-q1-2026/
+    canonical_material_locator:
+      source_page: https://www.semiconductors.org/global-semiconductor-sales-increase-25-from-q4-2025-to-q1-2026/
+      location: full official press release; public figures are attributed to WSTS
+    download_url: https://www.semiconductors.org/global-semiconductor-sales-increase-25-from-q4-2025-to-q1-2026/
+    terms_url: https://www.semiconductors.org/terms-of-use/
+    usage_basis: Public association press release frozen for personal, non-commercial local research; use short attributed excerpts only.
+    media_type: text/html
+    acquisition_targets:
+      - industry_cycle
+      - quarterly_materials_2026_q1
+
+  - material_id: MATERIAL_SMIC_SMNC_49_TRANSACTION_SUMMARY_CNINFO
+    source_id: SOURCE_CNINFO_SSE_DISCLOSURE
+    title: SMIC Share Issuance Asset Purchase and Related-Party Transaction Report Summary Registration Draft
+    displayed_publisher: CNINFO
+    published_at: '2026-05-13T00:00:00+08:00'
+    publication_precision: DATE
+    source_class: REGULATOR_EXCHANGE
+    acquisition_source:
+      type: url
+      url: https://static.cninfo.com.cn/finalpage/2026-05-13/1225300705.PDF
+    canonical_material_locator:
+      source_page: https://static.cninfo.com.cn/finalpage/2026-05-13/1225300705.PDF
+      document_url: https://static.cninfo.com.cn/finalpage/2026-05-13/1225300705.PDF
+      location: full report summary; formal citations must use original PDF pages
+    download_url: https://static.cninfo.com.cn/finalpage/2026-05-13/1225300705.PDF
+    usage_basis: Public A-share disclosure frozen for personal, non-commercial local research; do not redistribute raw content.
+    claimed_original_source: Shanghai Stock Exchange
+    media_type: application/pdf
+    acquisition_targets:
+      - smnc_49_transaction
+      - comparability_events
+      - capacity
+      - capital_expenditure
+
+candidate_holding_area:
+  - candidate_key: CANDIDATE_YAHOO_SMIC_Q2_2025_TRANSCRIPT
+    title: SMIC Q2 FY2025 earnings call transcript
+    displayed_publisher: Yahoo Finance
+    acquisition_source:
+      type: url
+      url: https://finance.yahoo.com/quote/0981.HK/earnings/0981.HK-Q2-2025-earnings_call-338806.html/
+    canonical_material_locator:
+      source_page: https://finance.yahoo.com/quote/0981.HK/earnings/0981.HK-Q2-2025-earnings_call-338806.html/
+      location: earnings call transcript page
+    acquisition_targets:
+      - quarterly_materials_2025_q2
+      - utilization
+      - capital_expenditure
+      - process_application_mix
+    user_confirmation_status: PENDING_USER_CONFIRMATION
+  - candidate_key: CANDIDATE_YAHOO_SMIC_Q1_2026_TRANSCRIPT
+    title: SMIC Q1 FY2026 earnings call transcript
+    displayed_publisher: Yahoo Finance
+    acquisition_source:
+      type: url
+      url: https://finance.yahoo.com/quote/0981.HK/earnings/0981.HK-Q1-2026-earnings_call-554758.html/
+    canonical_material_locator:
+      source_page: https://finance.yahoo.com/quote/0981.HK/earnings/0981.HK-Q1-2026-earnings_call-554758.html/
+      location: earnings call transcript page
+    acquisition_targets:
+      - quarterly_materials_2026_q1
+      - utilization
+      - capital_expenditure
+      - process_application_mix
+    user_confirmation_status: PENDING_USER_CONFIRMATION
+acquisition_gaps:
+  - gap_kind: MATERIAL_UNAVAILABLE
+    question: Issuer presentation decks and official earnings-call transcripts for 2025 Q2, 2025 Q3, 2025 Q4, and 2026 Q1 were not located on SMIC IR or regulator channels during this build.
+    acquisition_targets:
+      - quarterly_materials_2025_q2
+      - quarterly_materials_2025_q3
+      - quarterly_materials_2025_q4
+      - quarterly_materials_2026_q1
+    current_handling: Freeze available issuer earnings releases and A-share periodic disclosures; do not infer management Q&A.
+    required_evidence: Traceable issuer/regulator transcript, presentation, or user-provided legally obtained transcript with publication metadata.
+    priority: P1
+  - gap_kind: SEARCH_NOT_FOUND
+    question: A directly reported numeric ASP series and process-node revenue mix were not found in official issuer/regulator materials or the completed extended search round.
+    acquisition_targets:
+      - average_selling_price
+      - process_application_mix
+    current_handling: Preserve available operating disclosures only; downstream stages must decide whether facts remain UNKNOWN.
+    required_evidence: As_of-eligible source with direct ASP or process-node revenue mix disclosure and content locator.
+    priority: P1
+  - gap_kind: MATERIAL_UNAVAILABLE
+    question: A standalone 2025 Q4 A-share quarterly report was not found; Q4 A-share information is available through the 2025 annual report.
+    acquisition_targets:
+      - quarterly_materials_2025_q4
+    current_handling: Use the annual report as annual material and Q4-related source only; do not treat this as evidence completeness.
+    required_evidence: If a separate Q4 A-share filing exists, provide its regulator locator and publication metadata.
+    priority: P2
+  - gap_kind: SEARCH_NOT_FOUND
+    question: A 2026 Q1 investor relations activity record was found only with a displayed publication date after the case as_of and was therefore excluded from Snapshot v2.
+    acquisition_targets:
+      - quarterly_materials_2026_q1
+      - utilization
+      - capital_expenditure
+      - process_application_mix
+    current_handling: Do not freeze or use the post-as_of record in this snapshot.
+    required_evidence: An as_of-eligible transcript, Q&A, or investor-relations record with traceable publication metadata.
+    priority: P1

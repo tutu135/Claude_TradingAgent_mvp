@@ -1,0 +1,101 @@
+snapshot_id: smic-95dcd12eba2fe17c
+gaps:
+- gap_id: GAP_ACQUIRE_001
+  origin_stage: acquire-research-materials
+  gap_kind: CANDIDATE_HOLDING_PENDING_METADATA
+  question: Candidate CANDIDATE_YAHOO_SMIC_Q2_2025_TRANSCRIPT remains outside every
+    snapshot pending metadata or user confirmation.
+  impact_objects:
+  - quarterly_materials_2025_q2
+  - utilization
+  - capital_expenditure
+  - process_application_mix
+  current_handling: Do not assign a material_id or use the candidate for RAG, facts,
+    analysis, or report output.
+  confirmation_owner: user/data_preparer
+  required_evidence: Complete acquisition minimum metadata and user confirmation before
+    a future snapshot build.
+  priority: P1
+  status: OPEN
+- gap_id: GAP_ACQUIRE_002
+  origin_stage: acquire-research-materials
+  gap_kind: CANDIDATE_HOLDING_PENDING_METADATA
+  question: Candidate CANDIDATE_YAHOO_SMIC_Q1_2026_TRANSCRIPT remains outside every
+    snapshot pending metadata or user confirmation.
+  impact_objects:
+  - quarterly_materials_2026_q1
+  - utilization
+  - capital_expenditure
+  - process_application_mix
+  current_handling: Do not assign a material_id or use the candidate for RAG, facts,
+    analysis, or report output.
+  confirmation_owner: user/data_preparer
+  required_evidence: Complete acquisition minimum metadata and user confirmation before
+    a future snapshot build.
+  priority: P1
+  status: OPEN
+- gap_id: GAP_ACQUIRE_003
+  origin_stage: acquire-research-materials
+  gap_kind: MATERIAL_UNAVAILABLE
+  question: Issuer presentation decks and official earnings-call transcripts for 2025
+    Q2, 2025 Q3, 2025 Q4, and 2026 Q1 were not located on SMIC IR or regulator channels
+    during this build.
+  impact_objects:
+  - quarterly_materials_2025_q2
+  - quarterly_materials_2025_q3
+  - quarterly_materials_2025_q4
+  - quarterly_materials_2026_q1
+  current_handling: Freeze available issuer earnings releases and A-share periodic
+    disclosures; do not infer management Q&A.
+  confirmation_owner: user/data_preparer
+  required_evidence: Traceable issuer/regulator transcript, presentation, or user-provided
+    legally obtained transcript with publication metadata.
+  priority: P1
+  status: OPEN
+- gap_id: GAP_ACQUIRE_004
+  origin_stage: acquire-research-materials
+  gap_kind: SEARCH_NOT_FOUND
+  question: A directly reported numeric ASP series and process-node revenue mix were
+    not found in official issuer/regulator materials or the completed extended search
+    round.
+  impact_objects:
+  - average_selling_price
+  - process_application_mix
+  current_handling: Preserve available operating disclosures only; downstream stages
+    must decide whether facts remain UNKNOWN.
+  confirmation_owner: user/data_preparer
+  required_evidence: As_of-eligible source with direct ASP or process-node revenue
+    mix disclosure and content locator.
+  priority: P1
+  status: OPEN
+- gap_id: GAP_ACQUIRE_005
+  origin_stage: acquire-research-materials
+  gap_kind: MATERIAL_UNAVAILABLE
+  question: A standalone 2025 Q4 A-share quarterly report was not found; Q4 A-share
+    information is available through the 2025 annual report.
+  impact_objects:
+  - quarterly_materials_2025_q4
+  current_handling: Use the annual report as annual material and Q4-related source
+    only; do not treat this as evidence completeness.
+  confirmation_owner: user/data_preparer
+  required_evidence: If a separate Q4 A-share filing exists, provide its regulator
+    locator and publication metadata.
+  priority: P2
+  status: OPEN
+- gap_id: GAP_ACQUIRE_006
+  origin_stage: acquire-research-materials
+  gap_kind: SEARCH_NOT_FOUND
+  question: A 2026 Q1 investor relations activity record was found only with a displayed
+    publication date after the case as_of and was therefore excluded from Snapshot
+    v2.
+  impact_objects:
+  - quarterly_materials_2026_q1
+  - utilization
+  - capital_expenditure
+  - process_application_mix
+  current_handling: Do not freeze or use the post-as_of record in this snapshot.
+  confirmation_owner: user/data_preparer
+  required_evidence: An as_of-eligible transcript, Q&A, or investor-relations record
+    with traceable publication metadata.
+  priority: P1
+  status: OPEN
