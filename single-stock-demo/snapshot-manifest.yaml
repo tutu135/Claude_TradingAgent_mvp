@@ -1,0 +1,134 @@
+snapshot_id: smic-cf28d329097cc762
+created_at: '2026-07-19T19:42:19+08:00'
+as_of: '2026-05-15T23:59:59+08:00'
+build_mode: SNAPSHOT_BUILD
+test_fixture: false
+usage_assumption: personal, non-commercial, local, not for redistribution or model
+  training
+statistics:
+  total: 7
+  included: 7
+  excluded: 0
+  rejected: 0
+  restricted: 0
+  unsupported: 0
+coverage:
+- category: company_security_master
+  status: COVERED
+  material_ids:
+  - MATERIAL_SMIC_2025_ANNUAL_REPORT
+- category: annual_financials_3y
+  status: COVERED
+  material_ids:
+  - MATERIAL_SMIC_2025_ANNUAL_REPORT
+- category: quarterly_financials_4q
+  status: COVERED
+  material_ids:
+  - MATERIAL_SMIC_2025_Q2_RESULTS
+  - MATERIAL_SMIC_2025_Q3_RESULTS
+  - MATERIAL_SMIC_2025_Q4_RESULTS
+  - MATERIAL_SMIC_2026_Q1_RESULTS
+- category: capacity
+  status: COVERED
+  material_ids:
+  - MATERIAL_SMIC_2025_Q2_RESULTS
+  - MATERIAL_SMIC_2025_Q3_RESULTS
+  - MATERIAL_SMIC_2025_Q4_RESULTS
+  - MATERIAL_SMIC_2026_Q1_RESULTS
+- category: utilization
+  status: COVERED
+  material_ids:
+  - MATERIAL_SMIC_2025_Q2_RESULTS
+  - MATERIAL_SMIC_2025_Q3_RESULTS
+  - MATERIAL_SMIC_2025_Q4_RESULTS
+  - MATERIAL_SMIC_2026_Q1_RESULTS
+- category: shipments
+  status: COVERED
+  material_ids:
+  - MATERIAL_SMIC_2025_Q2_RESULTS
+  - MATERIAL_SMIC_2025_Q3_RESULTS
+  - MATERIAL_SMIC_2025_Q4_RESULTS
+  - MATERIAL_SMIC_2026_Q1_RESULTS
+- category: average_selling_price
+  status: PARTIAL
+  material_ids:
+  - MATERIAL_SMIC_2025_Q2_RESULTS
+  - MATERIAL_SMIC_2025_Q3_RESULTS
+  - MATERIAL_SMIC_2025_Q4_RESULTS
+  - MATERIAL_SMIC_2026_Q1_RESULTS
+- category: process_application_mix
+  status: PARTIAL
+  material_ids:
+  - MATERIAL_SMIC_2025_Q2_RESULTS
+  - MATERIAL_SMIC_2025_Q3_RESULTS
+  - MATERIAL_SMIC_2025_Q4_RESULTS
+  - MATERIAL_SMIC_2026_Q1_RESULTS
+- category: capital_expenditure
+  status: COVERED
+  material_ids:
+  - MATERIAL_SMIC_2025_Q2_RESULTS
+  - MATERIAL_SMIC_2025_Q3_RESULTS
+  - MATERIAL_SMIC_2025_Q4_RESULTS
+  - MATERIAL_SMIC_2026_Q1_RESULTS
+- category: government_grants
+  status: COVERED
+  material_ids:
+  - MATERIAL_SMIC_2025_ANNUAL_REPORT
+  - MATERIAL_SMIC_2025_Q2_RESULTS
+  - MATERIAL_SMIC_2025_Q3_RESULTS
+  - MATERIAL_SMIC_2025_Q4_RESULTS
+  - MATERIAL_SMIC_2026_Q1_RESULTS
+- category: other_operating_income
+  status: COVERED
+  material_ids:
+  - MATERIAL_SMIC_2025_ANNUAL_REPORT
+  - MATERIAL_SMIC_2025_Q2_RESULTS
+  - MATERIAL_SMIC_2025_Q3_RESULTS
+  - MATERIAL_SMIC_2025_Q4_RESULTS
+  - MATERIAL_SMIC_2026_Q1_RESULTS
+- category: ifrs_cas_reconciliation
+  status: COVERED
+  material_ids:
+  - MATERIAL_SMIC_2025_ANNUAL_REPORT
+- category: industry_cycle
+  status: PARTIAL
+  material_ids:
+  - MATERIAL_SIA_2025_ANNUAL_SALES
+  - MATERIAL_SIA_2026_Q1_SALES
+- category: comparability_events
+  status: COVERED
+  material_ids:
+  - MATERIAL_SMIC_2025_ANNUAL_REPORT
+files:
+- path: materials.jsonl
+  hash: sha256:8350f0c59c11dd28512793594455f4803c857af28a11519b819623fed593f6bd
+- path: gaps.yaml
+  hash: sha256:6913a88843286b05de9eeae7ad8650e0298e4cabf1785db8c9c9075eabc989bc
+- path: raw/MATERIAL_SMIC_2025_ANNUAL_REPORT.pdf
+  hash: sha256:4ce8f7a22e09f5322a3b03621e596b42f941d43f12a58e303183209c279e3111
+- path: raw/MATERIAL_SMIC_2025_Q2_RESULTS.pdf
+  hash: sha256:234f4e517bf54734a39d5c61e1987bf5b9e0a6afea7c8cf2c6b676bf2e9693a2
+- path: raw/MATERIAL_SMIC_2025_Q3_RESULTS.pdf
+  hash: sha256:cb942330012a8dc4bb4aef8c189ef687a41c0809fea6be56d99e64474b3d2784
+- path: raw/MATERIAL_SMIC_2025_Q4_RESULTS.pdf
+  hash: sha256:a7049ce9968c9783f55e24889fd3802e80936338b42d99dd2f2b08cf8c42a194
+- path: raw/MATERIAL_SMIC_2026_Q1_RESULTS.pdf
+  hash: sha256:64901d4c50f4dabbc120a6b6ced4da73eafc0472821dca6ed3623c0b773a4854
+- path: raw/MATERIAL_SIA_2025_ANNUAL_SALES.html
+  hash: sha256:0e3efd10cbe2018802858cecb6715a68faf65042540ce10269eb0ed0cb307c16
+- path: raw/MATERIAL_SIA_2026_Q1_SALES.html
+  hash: sha256:b9d9fc428037edc05273723213338efc250911b68a5b43393a7767160ca4c0ad
+- path: parsed/MATERIAL_SMIC_2025_ANNUAL_REPORT.json
+  hash: sha256:a8612c41fbe6bcaa74c9651922547e0f06f5abf92e07ccac0b06de8570821c34
+- path: parsed/MATERIAL_SMIC_2025_Q2_RESULTS.json
+  hash: sha256:bc9e4c92dee39fd852bd3b12db36bc93bf6619ebf017765fcfc221c6ea5b8dad
+- path: parsed/MATERIAL_SMIC_2025_Q3_RESULTS.json
+  hash: sha256:ce8110123688b8e385bbd2f02e4b957aa84cd26730a544ef3e3434d68905c521
+- path: parsed/MATERIAL_SMIC_2025_Q4_RESULTS.json
+  hash: sha256:0b1d9fd73f95451f8da53e2eff3374ea2dd6d23ad2f8c33e00f2397a2f499351
+- path: parsed/MATERIAL_SMIC_2026_Q1_RESULTS.json
+  hash: sha256:bf391bcf728f9468d2aace0b13764c0f62043940868407ffc18c76f562100a6a
+- path: parsed/MATERIAL_SIA_2025_ANNUAL_SALES.json
+  hash: sha256:590c210006dc861fe167dc27c6e197fd8d7aeb6b6d6b4b5ed743c3913cadc5ec
+- path: parsed/MATERIAL_SIA_2026_Q1_SALES.json
+  hash: sha256:e7f1a39db06cadd7919d8d9ca5fb06813476dfa41dd83f4b864912fc56b57935

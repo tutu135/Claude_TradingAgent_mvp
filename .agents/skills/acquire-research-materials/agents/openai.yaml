@@ -1,0 +1,4 @@
+interface:
+  display_name: "Acquire Research Materials"
+  short_description: "Freeze permitted single-stock research materials"
+  default_prompt: "Use $acquire-research-materials to build or verify the frozen SMIC research snapshot."

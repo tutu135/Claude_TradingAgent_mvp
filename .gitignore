@@ -1,0 +1,7 @@
+__pycache__/
+*.py[cod]
+.mypy_cache/
+tmp/pdfs/
+single-stock-demo/raw/
+single-stock-demo/parsed/
+single-stock-demo/*.partial

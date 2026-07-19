@@ -1,0 +1,167 @@
+materials:
+  - material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT
+    source_id: SOURCE_SMIC_INVESTOR_RELATIONS
+    title: SMIC 2025 Annual Report
+    publisher: Semiconductor Manufacturing International Corporation
+    published_at: '2026-04-08T17:01:00+08:00'
+    publication_precision: MINUTE
+    locator:
+      source_page: https://www.smics.com/en/site/company_financialSummary?year=2026
+      document_url: https://smic.cdn.shwebspace.com/uploads/AR_EN.pdf
+      location: full annual report; formal citations must use original PDF pages
+    source_url: https://www.smics.com/en/site/company_financialSummary?year=2026
+    download_url: https://smic.cdn.shwebspace.com/uploads/AR_EN.pdf
+    terms_url: https://www.smics.com/en/site/legal_declaration
+    usage_basis: >-
+      Issuer-provided public download used only for personal, non-commercial local research under
+      SMIC's personal non-commercial access grant; retain source locator and do not redistribute raw content.
+    restriction_status: USABLE
+    media_type: application/pdf
+    coverage:
+      company_security_master: COVERED
+      annual_financials_3y: COVERED
+      government_grants: COVERED
+      other_operating_income: COVERED
+      ifrs_cas_reconciliation: COVERED
+      comparability_events: COVERED
+    coverage_notes:
+      annual_financials_3y: Five-year summary includes 2025, 2024, and 2023; audited statements cover 2025 and 2024.
+      ifrs_cas_reconciliation: Annual report section VII discloses IFRS/CAS discrepancies.
+
+  - material_id: MATERIAL_SMIC_2025_Q2_RESULTS
+    source_id: SOURCE_SMIC_INVESTOR_RELATIONS
+    title: SMIC Reports Unaudited Results for the Three Months Ended June 30, 2025
+    publisher: Semiconductor Manufacturing International Corporation
+    published_at: '2025-08-07T00:00:00+08:00'
+    publication_precision: DATE
+    locator:
+      source_page: https://www.smics.com/en/site/company_financialSummary?year=2025
+      document_url: https://smic.cdn.shwebspace.com/uploads/689f075f/ER_EN.pdf
+      location: full earnings release; formal citations must use original PDF pages
+    source_url: https://www.smics.com/en/site/company_financialSummary?year=2025
+    download_url: https://smic.cdn.shwebspace.com/uploads/689f075f/ER_EN.pdf
+    terms_url: https://www.smics.com/en/site/legal_declaration
+    usage_basis: >-
+      Issuer-provided public download used only for personal, non-commercial local research under
+      SMIC's personal non-commercial access grant; retain source locator and do not redistribute raw content.
+    restriction_status: USABLE
+    media_type: application/pdf
+    coverage: &quarterly_coverage
+      quarterly_financials_4q: COVERED
+      capacity: COVERED
+      utilization: COVERED
+      shipments: COVERED
+      average_selling_price: PARTIAL
+      process_application_mix: PARTIAL
+      capital_expenditure: COVERED
+      government_grants: PARTIAL
+      other_operating_income: COVERED
+    coverage_notes: &quarterly_notes
+      average_selling_price: Directional or derivable inputs are present, but no directly reported numeric ASP series is identified.
+      process_application_mix: Application and wafer-size mix are present; process-node revenue mix is not disclosed.
+
+  - material_id: MATERIAL_SMIC_2025_Q3_RESULTS
+    source_id: SOURCE_SMIC_INVESTOR_RELATIONS
+    title: SMIC Reports Unaudited Results for the Three Months Ended September 30, 2025
+    publisher: Semiconductor Manufacturing International Corporation
+    published_at: '2025-11-13T17:49:00+08:00'
+    publication_precision: MINUTE
+    locator:
+      source_page: https://www.smics.com/en/site/company_financialSummary?year=2025
+      document_url: https://smic.cdn.shwebspace.com/uploads/6915b489/ER_EN.pdf
+      location: full earnings release; formal citations must use original PDF pages
+    source_url: https://www.smics.com/en/site/company_financialSummary?year=2025
+    download_url: https://smic.cdn.shwebspace.com/uploads/6915b489/ER_EN.pdf
+    terms_url: https://www.smics.com/en/site/legal_declaration
+    usage_basis: >-
+      Issuer-provided public download used only for personal, non-commercial local research under
+      SMIC's personal non-commercial access grant; retain source locator and do not redistribute raw content.
+    restriction_status: USABLE
+    media_type: application/pdf
+    coverage: *quarterly_coverage
+    coverage_notes: *quarterly_notes
+
+  - material_id: MATERIAL_SMIC_2025_Q4_RESULTS
+    source_id: SOURCE_SMIC_INVESTOR_RELATIONS
+    title: SMIC Reports Unaudited Results for the Three Months Ended December 31, 2025
+    publisher: Semiconductor Manufacturing International Corporation
+    published_at: '2026-02-10T17:12:00+08:00'
+    publication_precision: MINUTE
+    locator:
+      source_page: https://www.smics.com/en/site/company_financialSummary?year=2025
+      document_url: https://smic.cdn.shwebspace.com/uploads/698ad7da/ER_EN.pdf
+      location: full earnings release; formal citations must use original PDF pages
+    source_url: https://www.smics.com/en/site/company_financialSummary?year=2025
+    download_url: https://smic.cdn.shwebspace.com/uploads/698ad7da/ER_EN.pdf
+    terms_url: https://www.smics.com/en/site/legal_declaration
+    usage_basis: >-
+      Issuer-provided public download used only for personal, non-commercial local research under
+      SMIC's personal non-commercial access grant; retain source locator and do not redistribute raw content.
+    restriction_status: USABLE
+    media_type: application/pdf
+    coverage: *quarterly_coverage
+    coverage_notes: *quarterly_notes
+
+  - material_id: MATERIAL_SMIC_2026_Q1_RESULTS
+    source_id: SOURCE_SMIC_INVESTOR_RELATIONS
+    title: SMIC Reports Unaudited Results for the Three Months Ended March 31, 2026
+    publisher: Semiconductor Manufacturing International Corporation
+    published_at: '2026-05-14T18:17:00+08:00'
+    publication_precision: MINUTE
+    locator:
+      source_page: https://www.smics.com/en/site/company_financialSummary?year=2026
+      document_url: https://smic.cdn.shwebspace.com/uploads/6a057e3f/ER_EN.pdf
+      location: full earnings release; formal citations must use original PDF pages
+    source_url: https://www.smics.com/en/site/company_financialSummary?year=2026
+    download_url: https://smic.cdn.shwebspace.com/uploads/6a057e3f/ER_EN.pdf
+    terms_url: https://www.smics.com/en/site/legal_declaration
+    usage_basis: >-
+      Issuer-provided public download used only for personal, non-commercial local research under
+      SMIC's personal non-commercial access grant; retain source locator and do not redistribute raw content.
+    restriction_status: USABLE
+    media_type: application/pdf
+    coverage: *quarterly_coverage
+    coverage_notes: *quarterly_notes
+
+  - material_id: MATERIAL_SIA_2025_ANNUAL_SALES
+    source_id: SOURCE_SIA_WSTS_MARKET_RELEASES
+    title: Global Annual Semiconductor Sales Increase 25.6% to $791.7 Billion in 2025
+    publisher: Semiconductor Industry Association
+    published_at: '2026-02-06T08:00:00-05:00'
+    publication_precision: MINUTE
+    locator:
+      source_page: https://www.semiconductors.org/global-annual-semiconductor-sales-increase-25-6-to-791-7-billion-in-2025/
+      location: full official press release; public figures are attributed to WSTS
+    source_url: https://www.semiconductors.org/global-annual-semiconductor-sales-increase-25-6-to-791-7-billion-in-2025/
+    download_url: https://www.semiconductors.org/global-annual-semiconductor-sales-increase-25-6-to-791-7-billion-in-2025/
+    terms_url: https://www.semiconductors.org/terms-of-use/
+    usage_basis: >-
+      Public association press release frozen for personal, non-commercial local research; use short attributed excerpts only,
+      retain the original URL, and do not substitute paid WSTS detail that is not publicly provided.
+    restriction_status: USABLE
+    media_type: text/html
+    coverage:
+      industry_cycle: PARTIAL
+    coverage_notes: &industry_note
+      industry_cycle: Independent official global/region sales context is available, but it is not foundry- or node-specific.
+
+  - material_id: MATERIAL_SIA_2026_Q1_SALES
+    source_id: SOURCE_SIA_WSTS_MARKET_RELEASES
+    title: Global Semiconductor Sales Increase 25% from Q4 2025 to Q1 2026
+    publisher: Semiconductor Industry Association
+    published_at: '2026-05-04T08:00:00-04:00'
+    publication_precision: MINUTE
+    locator:
+      source_page: https://www.semiconductors.org/global-semiconductor-sales-increase-25-from-q4-2025-to-q1-2026/
+      location: full official press release; public figures are attributed to WSTS
+    source_url: https://www.semiconductors.org/global-semiconductor-sales-increase-25-from-q4-2025-to-q1-2026/
+    download_url: https://www.semiconductors.org/global-semiconductor-sales-increase-25-from-q4-2025-to-q1-2026/
+    terms_url: https://www.semiconductors.org/terms-of-use/
+    usage_basis: >-
+      Public association press release frozen for personal, non-commercial local research; use short attributed excerpts only,
+      retain the original URL, and do not substitute paid WSTS detail that is not publicly provided.
+    restriction_status: USABLE
+    media_type: text/html
+    coverage:
+      industry_cycle: PARTIAL
+    coverage_notes: *industry_note
