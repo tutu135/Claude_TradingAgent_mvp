@@ -19,6 +19,7 @@ from openpyxl import load_workbook
 
 
 MAX_DOWNLOAD_BYTES = 100 * 1024 * 1024
+MATERIAL_ID_PATTERN = re.compile(r"^[A-Za-z0-9][A-Za-z0-9_-]{0,127}$")
 PROHIBITED_SESSION_FIELDS = {
     "account",
     "authorization",
@@ -70,6 +71,17 @@ def require_fields(item: dict[str, Any], fields: tuple[str, ...]) -> None:
         raise ValueError(f"material is missing required fields: {', '.join(missing)}")
 
 
+def validate_material_id(material_id: str, seen_material_ids: set[str]) -> None:
+    if not MATERIAL_ID_PATTERN.fullmatch(material_id):
+        raise ValueError(
+            "material_id must contain only letters, digits, underscores, or hyphens "
+            "and must not exceed 128 characters"
+        )
+    if material_id in seen_material_ids:
+        raise ValueError(f"duplicate material_id: {material_id}")
+    seen_material_ids.add(material_id)
+
+
 def find_session_fields(value: Any) -> set[str]:
     prohibited: set[str] = set()
     if isinstance(value, dict):
@@ -91,6 +103,49 @@ def reject_session_fields(source: dict[str, Any]) -> None:
             "snapshot intake must not contain credentials or session data: "
             + ", ".join(prohibited)
         )
+
+
+def material_base_record(
+    source: dict[str, Any],
+    material_id: str,
+    published_at: datetime,
+    as_of: datetime,
+    created_at: datetime,
+    intake_file: Path,
+) -> dict[str, Any]:
+    local_value = source.get("local_path")
+    local_path = (
+        (intake_file.parent / str(local_value)).resolve() if local_value else None
+    )
+    as_of_eligible = published_at <= as_of
+    return {
+        "material_id": material_id,
+        "source_id": source["source_id"],
+        "title": source["title"],
+        "publisher": source["publisher"],
+        "published_at": source["published_at"],
+        "publication_precision": source.get("publication_precision", "SECOND"),
+        "acquired_at": created_at.isoformat(),
+        "locator": source.get("locator"),
+        "media_type": source["media_type"],
+        "content_hash": (
+            sha256_file(local_path)
+            if local_path is not None and local_path.is_file()
+            else None
+        ),
+        "source_url": source.get("source_url"),
+        "terms_url": source["terms_url"],
+        "usage_basis": source["usage_basis"],
+        "restriction_status": source["restriction_status"],
+        "as_of_eligible": as_of_eligible,
+        "as_of_reason": (
+            "published_at is not later than case as_of"
+            if as_of_eligible
+            else "published_at is later than case as_of"
+        ),
+        "coverage": source.get("coverage", {}),
+        "coverage_notes": source.get("coverage_notes", {}),
+    }
 
 
 def suffix_for_material(source: dict[str, Any]) -> str:
@@ -346,16 +401,27 @@ def extract_material(path: Path, material_id: str, media_type: str) -> dict[str,
 def canonical_snapshot_id(
     case: dict[str, Any], materials: list[dict[str, Any]], test_fixture: bool
 ) -> str:
+    volatile_material_fields = {"acquired_at", "frozen_path", "parsed_path"}
     identity = {
-        "as_of": case["as_of"],
-        "case_origin": case.get("case_origin"),
+        "case": {
+            field: case.get(field)
+            for field in (
+                "case_origin",
+                "company",
+                "security",
+                "as_of",
+                "timezone",
+                "required_coverage",
+                "source_use_assumption",
+            )
+        },
         "materials": [
             {
-                "material_id": material["material_id"],
-                "content_hash": material.get("content_hash"),
-                "intake_status": material["intake_status"],
+                key: value
+                for key, value in material.items()
+                if key not in volatile_material_fields
             }
-            for material in materials
+            for material in sorted(materials, key=lambda item: item["material_id"])
         ],
     }
     digest = hashlib.sha256(
@@ -443,6 +509,7 @@ def snapshot_build(args: argparse.Namespace) -> int:
     parsed_dir.mkdir(exist_ok=True)
 
     material_records: list[dict[str, Any]] = []
+    seen_material_ids: set[str] = set()
     for source in intake.get("materials", []):
         if not isinstance(source, dict):
             raise ValueError("each material entry must be a YAML mapping")
@@ -461,75 +528,30 @@ def snapshot_build(args: argparse.Namespace) -> int:
                 "media_type",
             ),
         )
-        published_at = parse_timestamp(str(source["published_at"]), "published_at")
         material_id = str(source["material_id"])
+        validate_material_id(material_id, seen_material_ids)
+        published_at = parse_timestamp(str(source["published_at"]), "published_at")
+        base_record = material_base_record(
+            source, material_id, published_at, as_of, created_at, intake_file
+        )
         if not source.get("locator") or not source.get("source_url"):
-            local_value = source.get("local_path")
-            local_path = (
-                (intake_file.parent / str(local_value)).resolve() if local_value else None
-            )
             material_records.append(
                 {
-                    "material_id": material_id,
-                    "source_id": source["source_id"],
-                    "title": source["title"],
-                    "publisher": source["publisher"],
-                    "published_at": source["published_at"],
-                    "acquired_at": created_at.isoformat(),
-                    "locator": source.get("locator"),
-                    "media_type": source["media_type"],
-                    "content_hash": (
-                        sha256_file(local_path)
-                        if local_path is not None and local_path.is_file()
-                        else None
-                    ),
-                    "source_url": source.get("source_url"),
-                    "terms_url": source["terms_url"],
-                    "usage_basis": source["usage_basis"],
+                    **base_record,
                     "restriction_status": "EXCLUDED",
-                    "as_of_eligible": published_at <= as_of,
-                    "as_of_reason": (
-                        "published_at is not later than case as_of"
-                        if published_at <= as_of
-                        else "published_at is later than case as_of"
-                    ),
                     "intake_status": "REJECTED",
                     "rejection_reason": "SOURCE_OR_LOCATOR_MISSING",
                     "parse_status": "NOT_PARSED",
-                    "coverage": source.get("coverage", {}),
                 }
             )
             continue
         if published_at > as_of:
-            local_value = source.get("local_path")
-            local_path = (
-                (intake_file.parent / str(local_value)).resolve() if local_value else None
-            )
             material_records.append(
                 {
-                    "material_id": material_id,
-                    "source_id": source["source_id"],
-                    "title": source["title"],
-                    "publisher": source["publisher"],
-                    "published_at": source["published_at"],
-                    "acquired_at": created_at.isoformat(),
-                    "locator": source["locator"],
-                    "media_type": source["media_type"],
-                    "content_hash": (
-                        sha256_file(local_path)
-                        if local_path is not None and local_path.is_file()
-                        else None
-                    ),
-                    "source_url": source["source_url"],
-                    "terms_url": source["terms_url"],
-                    "usage_basis": source["usage_basis"],
-                    "restriction_status": source["restriction_status"],
-                    "as_of_eligible": False,
-                    "as_of_reason": "published_at is later than case as_of",
+                    **base_record,
                     "intake_status": "EXCLUDED",
                     "exclusion_reason": "AS_OF_EXCEEDED",
                     "parse_status": "NOT_PARSED",
-                    "coverage": source.get("coverage", {}),
                 }
             )
             continue
@@ -541,39 +563,17 @@ def snapshot_build(args: argparse.Namespace) -> int:
                 f"material {material_id} has invalid restriction_status: {restriction_status}"
             )
         if restriction_status != "USABLE":
-            local_value = source.get("local_path")
-            local_path = (
-                (intake_file.parent / str(local_value)).resolve() if local_value else None
-            )
             material_records.append(
                 {
-                    "material_id": material_id,
-                    "source_id": source["source_id"],
-                    "title": source["title"],
-                    "publisher": source["publisher"],
-                    "published_at": source["published_at"],
-                    "acquired_at": created_at.isoformat(),
-                    "locator": source["locator"],
-                    "media_type": source["media_type"],
-                    "content_hash": (
-                        sha256_file(local_path)
-                        if local_path is not None and local_path.is_file()
-                        else None
-                    ),
-                    "source_url": source["source_url"],
-                    "terms_url": source["terms_url"],
-                    "usage_basis": source["usage_basis"],
+                    **base_record,
                     "restriction_status": restriction_status,
                     "restriction_reason": source.get(
                         "restriction_reason", "SOURCE_USE_NOT_CONFIRMED"
                     ),
-                    "as_of_eligible": True,
-                    "as_of_reason": "published_at is not later than case as_of",
                     "intake_status": (
                         "EXCLUDED" if restriction_status == "EXCLUDED" else "RESTRICTED"
                     ),
                     "parse_status": "NOT_PARSED",
-                    "coverage": source.get("coverage", {}),
                 }
             )
             continue
@@ -606,29 +606,13 @@ def snapshot_build(args: argparse.Namespace) -> int:
         ):
             parse_status = "UNSUPPORTED_IMAGE_ONLY_PDF"
         record = {
-            "material_id": material_id,
-            "source_id": source["source_id"],
-            "title": source["title"],
-            "publisher": source["publisher"],
-            "published_at": source["published_at"],
-            "publication_precision": source.get("publication_precision", "SECOND"),
-            "acquired_at": created_at.isoformat(),
-            "locator": source["locator"],
-            "media_type": source["media_type"],
+            **base_record,
             "content_hash": sha256_file(frozen_path),
-            "source_url": source["source_url"],
-            "terms_url": source["terms_url"],
-            "usage_basis": source["usage_basis"],
-            "restriction_status": source["restriction_status"],
-            "as_of_eligible": published_at <= as_of,
-            "as_of_reason": "published_at is not later than case as_of",
             "intake_status": "INCLUDED",
             "parse_status": parse_status,
             "acquisition_method": acquisition_method,
             "frozen_path": frozen_path.relative_to(output_dir).as_posix(),
             "parsed_path": parsed_path.relative_to(output_dir).as_posix(),
-            "coverage": source.get("coverage", {}),
-            "coverage_notes": source.get("coverage_notes", {}),
         }
         material_records.append(record)
 
@@ -729,12 +713,16 @@ def demo_run(args: argparse.Namespace) -> int:
             raise ValueError(f"snapshot file hash mismatch: {relative_path.as_posix()}")
 
     materials_path = snapshot_dir / "materials.jsonl"
+    material_records: list[dict[str, Any]] = []
     for line_number, line in enumerate(
         materials_path.read_text(encoding="utf-8").splitlines(), start=1
     ):
         if not line.strip():
             continue
         material = json.loads(line)
+        if not isinstance(material, dict):
+            raise ValueError(f"snapshot material is not an object at line {line_number}")
+        material_records.append(material)
         if material["intake_status"] != "INCLUDED":
             continue
         published_at = parse_timestamp(material["published_at"], "published_at")
@@ -742,6 +730,12 @@ def demo_run(args: argparse.Namespace) -> int:
             raise ValueError(f"included material exceeds as_of at line {line_number}")
         if material["restriction_status"] != "USABLE":
             raise ValueError(f"included material is not usable at line {line_number}")
+
+    expected_snapshot_id = canonical_snapshot_id(
+        case, material_records, case.get("case_origin") == "fixture"
+    )
+    if manifest.get("snapshot_id") != expected_snapshot_id:
+        raise ValueError("snapshot_id does not match the frozen case and material identity")
 
     print(manifest["snapshot_id"])
     return 0

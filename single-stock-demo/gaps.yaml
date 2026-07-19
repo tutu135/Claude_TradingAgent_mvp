@@ -1,11 +1,11 @@
-snapshot_id: smic-cf28d329097cc762
+snapshot_id: smic-4c110e93f810aa8e
 gaps:
 - gap_id: GAP_ACQUIRE_AVERAGE_SELLING_PRICE
   type: UNKNOWN
   question: 'Required snapshot coverage is partial: average_selling_price'
   impact_objects:
   - average_selling_price
-  - smic-cf28d329097cc762
+  - smic-4c110e93f810aa8e
   current_handling: Do not estimate or infer missing facts.
   confirmation_owner: user/manual_reviewer
   required_evidence: An as_of-eligible, precisely located, permitted source with a
@@ -17,7 +17,7 @@ gaps:
   question: 'Required snapshot coverage is partial: process_application_mix'
   impact_objects:
   - process_application_mix
-  - smic-cf28d329097cc762
+  - smic-4c110e93f810aa8e
   current_handling: Do not estimate or infer missing facts.
   confirmation_owner: user/manual_reviewer
   required_evidence: An as_of-eligible, precisely located, permitted source with a
@@ -29,7 +29,7 @@ gaps:
   question: 'Required snapshot coverage is partial: industry_cycle'
   impact_objects:
   - industry_cycle
-  - smic-cf28d329097cc762
+  - smic-4c110e93f810aa8e
   current_handling: Do not estimate or infer missing facts.
   confirmation_owner: user/manual_reviewer
   required_evidence: An as_of-eligible, precisely located, permitted source with a

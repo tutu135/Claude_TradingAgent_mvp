@@ -1,0 +1,4 @@
+-r requirements.txt
+mypy==2.3.0
+Pillow==11.2.1
+reportlab==4.4.9

@@ -286,6 +286,59 @@ materials:
             self.assertIn("credentials or session data", result.stderr)
             self.assertFalse((workspace / "output" / "snapshot-manifest.yaml").exists())
 
+    def test_snapshot_build_rejects_material_id_path_traversal(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            workspace = Path(temp_dir)
+            (workspace / "issuer.txt").write_bytes(b"Issuer material\n")
+            (workspace / "case.yaml").write_text(
+                "case_origin: fixture\nas_of: '2026-05-15T23:59:59+08:00'\nrequired_coverage: []\n",
+                encoding="utf-8",
+            )
+            (workspace / "snapshot-inputs.yaml").write_text(
+                """
+materials:
+  - material_id: ../../outside
+    source_id: SOURCE_FIXTURE_ISSUER
+    title: Unsafe material id fixture
+    publisher: Fixture Publisher
+    published_at: '2026-05-14T09:00:00+08:00'
+    locator:
+      source_url: https://example.invalid/issuer.txt
+      location: full text
+    source_url: https://example.invalid/issuer.txt
+    terms_url: https://example.invalid/terms
+    usage_basis: Test fixture.
+    restriction_status: USABLE
+    media_type: text/plain
+    local_path: issuer.txt
+""".lstrip(),
+                encoding="utf-8",
+            )
+
+            result = subprocess.run(
+                [
+                    sys.executable,
+                    str(CLI),
+                    "SNAPSHOT_BUILD",
+                    "--case-file",
+                    str(workspace / "case.yaml"),
+                    "--intake-file",
+                    str(workspace / "snapshot-inputs.yaml"),
+                    "--output-dir",
+                    str(workspace / "output"),
+                    "--created-at",
+                    "2026-07-19T10:00:00+08:00",
+                ],
+                capture_output=True,
+                text=True,
+                encoding="utf-8",
+            )
+
+            self.assertEqual(result.returncode, 2)
+            self.assertIn("material_id", result.stderr)
+            self.assertFalse((workspace / "outside.txt").exists())
+            self.assertFalse((workspace / "outside.json").exists())
+
     def test_snapshot_build_rejects_material_without_an_original_locator(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             workspace = Path(temp_dir)
@@ -798,6 +851,91 @@ materials:
             second = build(workspace / "snapshot-v2")
             self.assertEqual(second.returncode, 0, second.stderr)
             self.assertNotEqual(second.stdout.strip(), first_id)
+
+    def test_changed_source_metadata_changes_identity_and_demo_verifies_it(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            workspace = Path(temp_dir)
+            (workspace / "issuer.txt").write_bytes(b"Stable content\n")
+            case_path = workspace / "case.yaml"
+            case_path.write_text(
+                "case_origin: fixture\nas_of: '2026-05-15T23:59:59+08:00'\nrequired_coverage: []\n",
+                encoding="utf-8",
+            )
+            intake_path = workspace / "snapshot-inputs.yaml"
+
+            def write_intake(usage_basis: str) -> None:
+                intake_path.write_text(
+                    f"""
+materials:
+  - material_id: MATERIAL_FIXTURE_METADATA
+    source_id: SOURCE_FIXTURE_ISSUER
+    title: Metadata identity fixture
+    publisher: Fixture Publisher
+    published_at: '2026-05-14T09:00:00+08:00'
+    locator:
+      source_url: https://example.invalid/issuer.txt
+      location: full text
+    source_url: https://example.invalid/issuer.txt
+    terms_url: https://example.invalid/terms
+    usage_basis: {usage_basis}
+    restriction_status: USABLE
+    media_type: text/plain
+    local_path: issuer.txt
+""".lstrip(),
+                    encoding="utf-8",
+                )
+
+            def build(output_dir: Path) -> subprocess.CompletedProcess[str]:
+                return subprocess.run(
+                    [
+                        sys.executable,
+                        str(CLI),
+                        "SNAPSHOT_BUILD",
+                        "--case-file",
+                        str(case_path),
+                        "--intake-file",
+                        str(intake_path),
+                        "--output-dir",
+                        str(output_dir),
+                        "--created-at",
+                        "2026-07-19T10:00:00+08:00",
+                    ],
+                    capture_output=True,
+                    text=True,
+                    encoding="utf-8",
+                )
+
+            write_intake("Initial permitted use.")
+            first = build(workspace / "snapshot-v1")
+            self.assertEqual(first.returncode, 0, first.stderr)
+            write_intake("Updated permitted use.")
+            second_dir = workspace / "snapshot-v2"
+            second = build(second_dir)
+            self.assertEqual(second.returncode, 0, second.stderr)
+            self.assertNotEqual(second.stdout.strip(), first.stdout.strip())
+
+            manifest_path = second_dir / "snapshot-manifest.yaml"
+            manifest = yaml.safe_load(manifest_path.read_text(encoding="utf-8"))
+            manifest["snapshot_id"] = first.stdout.strip()
+            manifest_path.write_text(
+                yaml.safe_dump(manifest, sort_keys=False), encoding="utf-8"
+            )
+            demo = subprocess.run(
+                [
+                    sys.executable,
+                    str(CLI),
+                    "DEMO_RUN",
+                    "--case-file",
+                    str(case_path),
+                    "--snapshot-dir",
+                    str(second_dir),
+                ],
+                capture_output=True,
+                text=True,
+                encoding="utf-8",
+            )
+            self.assertEqual(demo.returncode, 2)
+            self.assertIn("snapshot_id", demo.stderr)
 
     def test_snapshot_build_downloads_an_approved_public_material_without_auth(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:

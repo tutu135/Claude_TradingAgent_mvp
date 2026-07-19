@@ -14,7 +14,7 @@ Use the fixed contracts in `contracts/contract-map.md`, the accepted requirement
 
 ## Build a snapshot
 
-1. Read `single-stock-demo/case.yaml` and `single-stock-demo/snapshot-inputs.yaml`.
+1. Use the pinned runtime packages in `requirements.txt`, then read `single-stock-demo/case.yaml` and `single-stock-demo/snapshot-inputs.yaml`.
 2. Check source terms and `usage_basis` before acquisition. Accept only `USABLE` entries whose publisher, publication time, source entrance, precise locator, and terms entrance are present.
 3. Apply the personal, non-commercial, local, non-distributed assumption. If free material requires registration, login, a CAPTCHA, or an authenticated export, stop and ask the user to obtain it manually. Never request or save an account, password, Cookie, Token, header, or session identifier.
 4. Reject or restrict disallowed sources before download. Exclude anything published after the case `as_of`.

@@ -1,4 +1,4 @@
-snapshot_id: smic-cf28d329097cc762
+snapshot_id: smic-4c110e93f810aa8e
 created_at: '2026-07-19T19:42:19+08:00'
 as_of: '2026-05-15T23:59:59+08:00'
 build_mode: SNAPSHOT_BUILD
@@ -103,7 +103,7 @@ files:
 - path: materials.jsonl
   hash: sha256:8350f0c59c11dd28512793594455f4803c857af28a11519b819623fed593f6bd
 - path: gaps.yaml
-  hash: sha256:6913a88843286b05de9eeae7ad8650e0298e4cabf1785db8c9c9075eabc989bc
+  hash: sha256:5a167ae660ed6585d82b68565cc0ee43e8eeb8b0a296e0b0d1ac378b5a8142b7
 - path: raw/MATERIAL_SMIC_2025_ANNUAL_REPORT.pdf
   hash: sha256:4ce8f7a22e09f5322a3b03621e596b42f941d43f12a58e303183209c279e3111
 - path: raw/MATERIAL_SMIC_2025_Q2_RESULTS.pdf
