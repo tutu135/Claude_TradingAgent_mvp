@@ -1,0 +1,4 @@
+interface:
+  display_name: "Govern Research Context"
+  short_description: "Build and validate fixed SMIC v3 research context"
+  default_prompt: "Use $govern-research-context to build and validate the fixed Snapshot v3 context."
