@@ -8,3 +8,8 @@ single-stock-demo/*.partial
 single-stock-demo-v2/raw/
 single-stock-demo-v2/parsed/
 single-stock-demo-v2/*.partial
+single-stock-demo-v3/raw/
+single-stock-demo-v3/parsed/
+single-stock-demo-v3/*.partial
+
+tmp/

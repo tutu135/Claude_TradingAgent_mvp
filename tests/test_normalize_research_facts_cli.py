@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import hashlib
 import subprocess
 import sys
 import tempfile
@@ -15,7 +16,51 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 CLI = REPO_ROOT / "scripts" / "normalize_research_facts.py"
 
 
-def run_cli(args: list[str]) -> subprocess.CompletedProcess[str]:
+def run_cli(
+    args: list[str], *, bind_upstream_fixture: bool = True
+) -> subprocess.CompletedProcess[str]:
+    if (
+        bind_upstream_fixture
+        and "--context-file" in args
+        and "--retrieval-file" in args
+    ):
+        context_file = Path(args[args.index("--context-file") + 1])
+        retrieval_file = Path(args[args.index("--retrieval-file") + 1])
+        retrieval = yaml.safe_load(retrieval_file.read_text(encoding="utf-8"))
+        query_rule_version = retrieval.setdefault(
+            "query_rule_version", "context-fixture-v1"
+        )
+        rows = [
+            json.loads(line)
+            for line in context_file.read_text(encoding="utf-8").splitlines()
+            if line.strip()
+        ]
+        for row in rows:
+            row.setdefault("query_rule_version", query_rule_version)
+        context_file.write_text(
+            "".join(json.dumps(row) + "\n" for row in rows), encoding="utf-8"
+        )
+        canonical = "".join(
+            json.dumps(
+                row,
+                ensure_ascii=False,
+                sort_keys=True,
+                separators=(",", ":"),
+            )
+            + "\n"
+            for row in rows
+        )
+        context_hash = "sha256:" + hashlib.sha256(canonical.encode("utf-8")).hexdigest()
+        retrieval.setdefault(
+            "clean_rebuild",
+            {
+                "first": {"context_hash": context_hash},
+                "second": {"context_hash": context_hash},
+            },
+        )
+        retrieval_file.write_text(
+            yaml.safe_dump(retrieval, sort_keys=False), encoding="utf-8"
+        )
     return subprocess.run(
         [sys.executable, str(CLI), *args],
         capture_output=True,
@@ -25,6 +70,83 @@ def run_cli(args: list[str]) -> subprocess.CompletedProcess[str]:
 
 
 class NormalizeResearchFactsCliTests(unittest.TestCase):
+    def test_rejects_retrieval_without_required_context_binding_metadata(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            workspace = Path(temp_dir)
+            snapshot_dir = workspace / "snapshot"
+            snapshot_dir.mkdir()
+            (snapshot_dir / "snapshot-manifest.yaml").write_text(
+                yaml.safe_dump({"snapshot_id": "smic-a283e95e2c9e8068", "files": []}),
+                encoding="utf-8",
+            )
+            context_file = workspace / "context.jsonl"
+            context_file.write_text("", encoding="utf-8")
+            retrieval_file = workspace / "retrieval-validation.yaml"
+            retrieval_file.write_text(
+                yaml.safe_dump(
+                    {"snapshot_id": "smic-a283e95e2c9e8068", "retrieval_status": "PASS"}
+                ),
+                encoding="utf-8",
+            )
+            rules_file = workspace / "accounting.yaml"
+            rules_file.write_text(
+                yaml.safe_dump(
+                    {
+                        "snapshot_id": "smic-a283e95e2c9e8068",
+                        "rule_version": "normalization-binding-required-v1",
+                        "mapping_version": "mapping-binding-required-v1",
+                    }
+                ),
+                encoding="utf-8",
+            )
+            gaps_file = workspace / "gaps.yaml"
+            gaps_file.write_text(
+                yaml.safe_dump({"snapshot_id": "smic-a283e95e2c9e8068", "gaps": []}),
+                encoding="utf-8",
+            )
+
+            result = run_cli(
+                [
+                    "--snapshot-dir",
+                    str(snapshot_dir),
+                    "--context-file",
+                    str(context_file),
+                    "--retrieval-file",
+                    str(retrieval_file),
+                    "--rules-file",
+                    str(rules_file),
+                    "--existing-gaps-file",
+                    str(gaps_file),
+                    "--output-dir",
+                    str(workspace / "output"),
+                ],
+                bind_upstream_fixture=False,
+            )
+
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn("required context binding metadata", result.stderr)
+
+    def test_multiple_unbound_context_periods_remain_ambiguous(self) -> None:
+        scripts_dir = str(REPO_ROOT / "scripts")
+        if scripts_dir not in sys.path:
+            sys.path.insert(0, scripts_dir)
+        from normalize_research_facts import period_for_position, periods_from_chunk_context
+
+        periods = periods_from_chunk_context(
+            {
+                "numeric_context": {
+                    "periods": ["2025 Q1", "2026 Q1"],
+                    "column_periods": [],
+                }
+            }
+        )
+
+        period = period_for_position(periods, 0)
+
+        self.assertEqual(period["period_mapping_status"], "AMBIGUOUS")
+        self.assertIsNone(period["period_start"])
+        self.assertIsNone(period["period_end"])
+
     def test_reads_only_candidate_context_and_emits_atomic_decimal_records(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             workspace = Path(temp_dir)
@@ -37,6 +159,7 @@ class NormalizeResearchFactsCliTests(unittest.TestCase):
             context_file = workspace / "context.jsonl"
             candidate = {
                 "snapshot_id": "smic-a283e95e2c9e8068",
+                "query_rule_version": "context-fixture-v1",
                 "chunk_id": "CHUNK_CANDIDATE",
                 "material_id": "MATERIAL_SMIC_FIXTURE",
                 "structure_type": "TRANSCRIPT_SPEAKER_TURN",
@@ -175,13 +298,21 @@ class NormalizeResearchFactsCliTests(unittest.TestCase):
                         "material_id": "MATERIAL_SMIC_FIXTURE",
                         "structure_type": "PDF_TABLE",
                         "content_locator": {"page_number": 10, "table_number": 1},
-                        "text": "Government grants\t(12.0)\t0\tN/A\t—",
+                        "text": "Reported values\t(12.0)\t0\tN/A\t—",
                         "text_hash": "sha256:fixture-table",
                         "candidate_context": True,
                         "matched_query_ids": ["G_ADJUSTMENT_BRIDGE_EN"],
                         "selection_reasons": ["DIRECT_HIT"],
                         "numeric_context": {
                             "headers": ["USD million", "2025"],
+                            "column_headers": [
+                                "Reported values",
+                                "Government grants | 2025",
+                                "Government grants | 2025",
+                                "Government grants | 2025",
+                                "Government grants | 2025",
+                            ],
+                            "column_periods": [[], ["2025"], ["2025"], ["2025"], ["2025"]],
                             "units": ["USD million"],
                             "periods": ["2025"],
                             "footnotes": [],
@@ -261,6 +392,12 @@ class NormalizeResearchFactsCliTests(unittest.TestCase):
             self.assertEqual(by_raw["(12.0)"]["raw_currency"], "USD")
             self.assertEqual(by_raw["(12.0)"]["raw_scale_factor"], "1000000")
             self.assertEqual(by_raw["(12.0)"]["base_unit_value"], "-12000000.0")
+            self.assertTrue(
+                all(
+                    fact["metric_id"] == "GOVERNMENT_GRANTS_RECOGNIZED_IN_PNL"
+                    for fact in numeric
+                )
+            )
             self.assertEqual(by_raw["0"]["value_status"], "EXPLICIT_ZERO")
             self.assertEqual(by_raw["N/A"]["value_status"], "NOT_APPLICABLE")
             self.assertIsNone(by_raw["N/A"]["raw_numeric_value"])
@@ -631,13 +768,21 @@ class NormalizeResearchFactsCliTests(unittest.TestCase):
                 encoding="utf-8",
             )
             rows = [
-                ("CHUNK_BASE", "CAS base profit attributable to owners was CNY 100.0 million in Q1 2026."),
-                ("CHUNK_DETAIL", "Adjustment detail for profit attributable to owners was CNY 20.0 million in Q1 2026."),
-                ("CHUNK_SUBTOTAL", "Bridge subtotal for profit attributable to owners was CNY 999.0 million in Q1 2026."),
-                ("CHUNK_TARGET", "IFRS target profit attributable to owners was CNY 120.0 million in Q1 2026."),
+                (1, "CHUNK_BASE", "CAS base profit attributable to owners was CNY 100.0 million in Q1 2026."),
+                (1, "CHUNK_DETAIL", "Adjustment detail for profit attributable to owners was CNY -20.0 million in Q1 2026."),
+                (1, "CHUNK_SUBTOTAL", "Bridge subtotal for profit attributable to owners was CNY 999.0 million in Q1 2026."),
+                (1, "CHUNK_TARGET", "Target profit attributable to owners was CNY 80.0 million in Q1 2026."),
+                (2, "CHUNK_BASE_2", "CAS base profit attributable to owners was CNY 50.0 million in Q1 2026."),
+                (2, "CHUNK_DETAIL_2", "Adjustment detail for profit attributable to owners was CNY -10.0 million in Q1 2026."),
+                (2, "CHUNK_SUBTOTAL_2", "Bridge subtotal for profit attributable to owners was CNY 999.0 million in Q1 2026."),
+                (2, "CHUNK_TARGET_2", "Target profit attributable to owners was CNY 40.0 million in Q1 2026."),
+                (3, "CHUNK_BASE_3", "CAS base profit attributable to owners was CNY 10.0 million."),
+                (3, "CHUNK_DETAIL_3", "Adjustment detail for profit attributable to owners was CNY -2.0 million."),
+                (3, "CHUNK_SUBTOTAL_3", "Bridge subtotal for profit attributable to owners was CNY 999.0 million."),
+                (3, "CHUNK_TARGET_3", "Target profit attributable to owners was CNY 8.0 million."),
             ]
             context_rows = []
-            for page, (chunk_id, text_value) in enumerate(rows, start=1):
+            for page, chunk_id, text_value in rows:
                 context_rows.append(
                     {
                         "snapshot_id": "smic-a283e95e2c9e8068",
@@ -712,7 +857,7 @@ class NormalizeResearchFactsCliTests(unittest.TestCase):
                             },
                             {
                                 "rule_id": "BRIDGE_TARGET_FIXTURE",
-                                "match_text": "ifrs target",
+                                "match_text": "target",
                                 "row_role": "TARGET",
                                 "accounting_role": "IFRS",
                                 "equity_attribution": "OWNERS_OF_PARENT",
@@ -753,14 +898,51 @@ class NormalizeResearchFactsCliTests(unittest.TestCase):
                 for line in (output_dir / "normalized-facts.jsonl").read_text(encoding="utf-8").splitlines()
             ]
             numeric = [fact for fact in facts if fact["record_kind"] == "NUMERIC_OBSERVATION"]
-            target = next(fact for fact in numeric if fact.get("bridge_row_role") == "TARGET")
+            targets = [fact for fact in numeric if fact.get("bridge_row_role") == "TARGET"]
+            self.assertEqual(len(targets), 3)
+            mapped_targets = [
+                target for target in targets if target["period_mapping_status"] == "MAPPED"
+            ]
+            self.assertTrue(
+                all(
+                    target["reconciliation_check"]["reconciliation_status"] == "PASS"
+                    for target in mapped_targets
+                )
+            )
+            target = next(fact for fact in targets if fact["raw_numeric_value"] == "80.0")
             subtotal = next(fact for fact in numeric if fact.get("bridge_row_role") == "SUBTOTAL")
             check = target["reconciliation_check"]
             self.assertEqual(check["direction"], "CAS_TO_IFRS")
             self.assertEqual(check["reconciliation_status"], "PASS")
-            self.assertEqual(check["recomputed_ifrs_target"], "120000000.0")
-            self.assertEqual(check["source_reported_ifrs_target"], "120000000.0")
+            self.assertEqual(check["recomputed_ifrs_target"], "80000000.0")
+            self.assertEqual(check["source_reported_ifrs_target"], "80000000.0")
             self.assertEqual(check["difference"], "0.0")
+            self.assertTrue(
+                all(target["accounting_standard"] == "IFRS" for target in targets)
+            )
+            self.assertTrue(
+                all(
+                    fact["accounting_standard"] == "CAS"
+                    for fact in numeric
+                    if fact.get("bridge_row_role") == "BASE"
+                )
+            )
+            detail = next(
+                fact for fact in numeric if fact.get("bridge_row_role") == "ADJUSTMENT_DETAIL"
+            )
+            self.assertEqual(detail["source_display_sign"], "NEGATIVE")
+            self.assertEqual(detail["normalized_signed_amount"], "-20000000.0")
+            unknown_target = next(
+                fact for fact in targets if fact["raw_numeric_value"] == "8.0"
+            )
+            self.assertEqual(
+                unknown_target["reconciliation_check"]["reconciliation_status"],
+                "UNKNOWN",
+            )
+            self.assertIn(
+                "period_start",
+                unknown_target["reconciliation_check"]["mismatch_fields"],
+            )
             self.assertEqual(check["tolerance"], "150000.00")
             self.assertNotIn(subtotal["fact_id"], check["input_fact_ids"])
             subtotal_row = next(row for row in check["rows"] if row["row_role"] == "SUBTOTAL")
@@ -1033,7 +1215,7 @@ class NormalizeResearchFactsCliTests(unittest.TestCase):
             self.assertNotEqual(result.returncode, 0)
             self.assertIn("exact Snapshot v3 identity", result.stderr)
 
-    def test_fixed_ttm_margin_and_positive_base_period_change_derivations(self) -> None:
+    def test_fixed_derivations_block_non_positive_and_sign_change_rates(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             workspace = Path(temp_dir)
             snapshot_dir = workspace / "snapshot"
@@ -1050,6 +1232,10 @@ class NormalizeResearchFactsCliTests(unittest.TestCase):
                 ("CHUNK_Q2", "Unaudited consolidated IFRS revenue was USD 200.0 million in Q2 2025."),
                 ("CHUNK_Q3", "Unaudited consolidated IFRS revenue was USD 400.0 million in Q3 2025."),
                 ("CHUNK_Q4", "Unaudited consolidated IFRS revenue was USD 800.0 million in Q4 2025."),
+                ("CHUNK_Q5", "Unaudited consolidated IFRS revenue was USD 0.0 million in Q1 2026."),
+                ("CHUNK_Q6", "Unaudited consolidated IFRS revenue was USD -10.0 million in Q2 2026."),
+                ("CHUNK_Q7", "Unaudited consolidated IFRS revenue was USD -5.0 million in Q3 2026."),
+                ("CHUNK_Q8", "Unaudited consolidated IFRS revenue was USD 10.0 million in Q4 2026."),
             ]
             context_rows = []
             for page, (chunk_id, text_value) in enumerate(quarter_rows, start=1):
@@ -1158,7 +1344,12 @@ class NormalizeResearchFactsCliTests(unittest.TestCase):
                 .splitlines()
             ]
             derived = [fact for fact in facts if fact["record_kind"] == "DERIVATION"]
-            ttm = next(fact for fact in derived if fact["derivation_type"] == "TTM_SUM")
+            ttm = next(
+                fact
+                for fact in derived
+                if fact["derivation_type"] == "TTM_SUM"
+                and fact["period_end"] == "2025-12-31"
+            )
             margin = next(
                 fact for fact in derived if fact["derivation_type"] == "GROSS_MARGIN"
             )
@@ -1173,8 +1364,35 @@ class NormalizeResearchFactsCliTests(unittest.TestCase):
             self.assertEqual(len(ttm["input_fact_ids"]), 4)
             self.assertEqual(margin["normalized_value"], "20.0")
             self.assertEqual(margin["target_unit"], "PERCENT")
-            self.assertEqual(len(changes), 3)
-            self.assertEqual({change["normalized_value"] for change in changes}, {"100"})
+            passing_changes = [
+                change for change in changes if change["derivation_status"] == "PASS"
+            ]
+            blocked_changes = [
+                change for change in changes if change["derivation_status"] == "BLOCKED"
+            ]
+            self.assertEqual(
+                {change["normalized_value"] for change in passing_changes},
+                {"100", "-100"},
+            )
+            self.assertEqual(
+                {
+                    change["comparability_reason_codes"][0]
+                    for change in blocked_changes
+                },
+                {
+                    "BLOCKED_ZERO_DENOMINATOR",
+                    "BLOCKED_NON_POSITIVE_BASE",
+                    "BLOCKED_SIGN_CHANGE",
+                },
+            )
+            self.assertTrue(
+                all(
+                    change["normalized_value"] is None
+                    and change["absolute_change_base_unit_value"] is not None
+                    and change["gap_ids"]
+                    for change in blocked_changes
+                )
+            )
             self.assertTrue(all(fact["claim_type"] == "UNASSESSED" for fact in derived))
             self.assertTrue(all(fact["value_origin"] == "SYSTEM_DERIVED" for fact in derived))
 
@@ -1435,15 +1653,280 @@ class NormalizeResearchFactsCliTests(unittest.TestCase):
                 .read_text(encoding="utf-8")
                 .splitlines()
             ]
-            capacity = next(
+            capacity_values = [
                 fact for fact in facts if fact["record_kind"] == "NUMERIC_OBSERVATION"
-            )
+            ]
+            self.assertEqual(len(capacity_values), 1)
+            capacity = capacity_values[0]
             self.assertEqual(capacity["raw_numeric_value"], "910000")
             self.assertEqual(capacity["raw_unit"], "COUNT")
             self.assertEqual(capacity["base_unit_value"], "910000")
             self.assertEqual(capacity["wafer_basis"], "EIGHT_INCH_EQUIVALENT")
             self.assertEqual(capacity["measurement_basis"], "MONTHLY_CAPACITY")
             self.assertEqual(capacity["period_type"], "SINGLE_QUARTER")
+
+    def test_local_retrieval_fail_blocks_only_the_failed_query_family(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            workspace = Path(temp_dir)
+            snapshot_dir = workspace / "snapshot"
+            snapshot_dir.mkdir()
+            (snapshot_dir / "snapshot-manifest.yaml").write_text(
+                yaml.safe_dump({"snapshot_id": "smic-a283e95e2c9e8068", "files": []}),
+                encoding="utf-8",
+            )
+            context_rows = []
+            for chunk_id, material_id, query_id, amount in (
+                ("CHUNK_FAILED", "MATERIAL_SMIC_FAILED", "D2_FAILED", "1.0"),
+                ("CHUNK_GOOD", "MATERIAL_SMIC_GOOD", "D1_GOOD", "2.0"),
+            ):
+                context_rows.append(
+                    {
+                        "snapshot_id": "smic-a283e95e2c9e8068",
+                        "chunk_id": chunk_id,
+                        "material_id": material_id,
+                        "structure_type": "PDF_PARAGRAPH_GROUP",
+                        "content_locator": {
+                            "section": "Condensed consolidated financial statements",
+                            "page_number": 1,
+                            "paragraph_group": "page_text",
+                        },
+                        "text": (
+                            "Unaudited consolidated IFRS revenue was USD "
+                            f"{amount} million in Q1 2026."
+                        ),
+                        "text_hash": "sha256:" + chunk_id,
+                        "candidate_context": True,
+                        "matched_query_ids": [query_id],
+                        "selection_reasons": ["DIRECT_HIT"],
+                        "numeric_context": {
+                            "headers": [],
+                            "units": [],
+                            "periods": [],
+                            "footnotes": [],
+                        },
+                    }
+                )
+            context_file = workspace / "context.jsonl"
+            context_file.write_text(
+                "".join(json.dumps(row) + "\n" for row in context_rows),
+                encoding="utf-8",
+            )
+            retrieval_file = workspace / "retrieval-validation.yaml"
+            retrieval_file.write_text(
+                yaml.safe_dump(
+                    {
+                        "snapshot_id": "smic-a283e95e2c9e8068",
+                        "retrieval_status": "FAIL",
+                        "diagnostics": {
+                            "failure_scope": "LOCAL",
+                            "failed_query_family_ids": ["D2"],
+                        },
+                        "queries": [
+                            {"query_id": "D1_GOOD", "query_family_id": "D1"},
+                            {"query_id": "D2_FAILED", "query_family_id": "D2"},
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            rules_file = workspace / "accounting.yaml"
+            rules_file.write_text(
+                yaml.safe_dump(
+                    {
+                        "snapshot_id": "smic-a283e95e2c9e8068",
+                        "rule_version": "normalization-local-retrieval-v1",
+                        "mapping_version": "mapping-local-retrieval-v1",
+                        "entity_mappings": [
+                            {
+                                "rule_id": "ENTITY_SMIC_FIXTURE",
+                                "material_prefix": "MATERIAL_SMIC_",
+                                "source_label": "SMIC",
+                                "entity_id": "SMIC_GROUP",
+                            }
+                        ],
+                        "metric_mappings": [
+                            {
+                                "rule_id": "METRIC_REVENUE_FIXTURE",
+                                "metric_id": "REVENUE",
+                                "aliases": ["revenue"],
+                            }
+                        ],
+                    },
+                    sort_keys=False,
+                ),
+                encoding="utf-8",
+            )
+            gaps_file = workspace / "gaps.yaml"
+            gaps_file.write_text(
+                yaml.safe_dump({"snapshot_id": "smic-a283e95e2c9e8068", "gaps": []}),
+                encoding="utf-8",
+            )
+            output_dir = workspace / "output"
+
+            result = run_cli(
+                [
+                    "--snapshot-dir",
+                    str(snapshot_dir),
+                    "--context-file",
+                    str(context_file),
+                    "--retrieval-file",
+                    str(retrieval_file),
+                    "--rules-file",
+                    str(rules_file),
+                    "--existing-gaps-file",
+                    str(gaps_file),
+                    "--output-dir",
+                    str(output_dir),
+                ]
+            )
+
+            self.assertEqual(result.returncode, 0, result.stderr)
+            facts = [
+                json.loads(line)
+                for line in (output_dir / "normalized-facts.jsonl")
+                .read_text(encoding="utf-8")
+                .splitlines()
+            ]
+            self.assertEqual({fact["chunk_id"] for fact in facts}, {"CHUNK_GOOD"})
+            gaps = yaml.safe_load((output_dir / "gaps.yaml").read_text(encoding="utf-8"))
+            self.assertTrue(
+                any(gap["gap_kind"] == "RETRIEVAL_QUALITY_FAIL" for gap in gaps["gaps"])
+            )
+            validation = yaml.safe_load(
+                (output_dir / "normalization-validation.yaml").read_text(encoding="utf-8")
+            )
+            self.assertEqual(validation["normalization_run_status"], "WARN")
+
+    def test_rejects_context_not_bound_to_retrieval_clean_rebuild_hash(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            workspace = Path(temp_dir)
+            snapshot_dir = workspace / "snapshot"
+            snapshot_dir.mkdir()
+            (snapshot_dir / "snapshot-manifest.yaml").write_text(
+                yaml.safe_dump({"snapshot_id": "smic-a283e95e2c9e8068", "files": []}),
+                encoding="utf-8",
+            )
+            context_file = workspace / "context.jsonl"
+            context_file.write_text(
+                json.dumps(
+                    {
+                        "snapshot_id": "smic-a283e95e2c9e8068",
+                        "query_rule_version": "context-binding-v1",
+                        "chunk_id": "CHUNK_HASH_BINDING",
+                        "material_id": "MATERIAL_SMIC_FIXTURE",
+                        "candidate_context": False,
+                    }
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            retrieval_file = workspace / "retrieval-validation.yaml"
+            retrieval_file.write_text(
+                yaml.safe_dump(
+                    {
+                        "snapshot_id": "smic-a283e95e2c9e8068",
+                        "query_rule_version": "context-binding-v1",
+                        "retrieval_status": "PASS",
+                        "clean_rebuild": {
+                            "first": {"context_hash": "sha256:not-the-context"},
+                            "second": {"context_hash": "sha256:not-the-context"},
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            rules_file = workspace / "accounting.yaml"
+            rules_file.write_text(
+                yaml.safe_dump(
+                    {
+                        "snapshot_id": "smic-a283e95e2c9e8068",
+                        "rule_version": "normalization-binding-v1",
+                        "mapping_version": "mapping-binding-v1",
+                    }
+                ),
+                encoding="utf-8",
+            )
+            gaps_file = workspace / "gaps.yaml"
+            gaps_file.write_text(
+                yaml.safe_dump({"snapshot_id": "smic-a283e95e2c9e8068", "gaps": []}),
+                encoding="utf-8",
+            )
+
+            result = run_cli(
+                [
+                    "--snapshot-dir",
+                    str(snapshot_dir),
+                    "--context-file",
+                    str(context_file),
+                    "--retrieval-file",
+                    str(retrieval_file),
+                    "--rules-file",
+                    str(rules_file),
+                    "--existing-gaps-file",
+                    str(gaps_file),
+                    "--output-dir",
+                    str(workspace / "output"),
+                ]
+            )
+
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn("context hash is not bound", result.stderr)
+
+    def test_rejects_normalization_output_inside_frozen_snapshot(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            workspace = Path(temp_dir)
+            snapshot_dir = workspace / "snapshot"
+            snapshot_dir.mkdir()
+            (snapshot_dir / "snapshot-manifest.yaml").write_text(
+                yaml.safe_dump({"snapshot_id": "smic-a283e95e2c9e8068", "files": []}),
+                encoding="utf-8",
+            )
+            context_file = workspace / "context.jsonl"
+            context_file.write_text("", encoding="utf-8")
+            retrieval_file = workspace / "retrieval-validation.yaml"
+            retrieval_file.write_text(
+                yaml.safe_dump(
+                    {"snapshot_id": "smic-a283e95e2c9e8068", "retrieval_status": "PASS"}
+                ),
+                encoding="utf-8",
+            )
+            rules_file = workspace / "accounting.yaml"
+            rules_file.write_text(
+                yaml.safe_dump(
+                    {
+                        "snapshot_id": "smic-a283e95e2c9e8068",
+                        "rule_version": "normalization-output-boundary-v1",
+                        "mapping_version": "mapping-output-boundary-v1",
+                    }
+                ),
+                encoding="utf-8",
+            )
+            gaps_file = snapshot_dir / "gaps.yaml"
+            gaps_file.write_text(
+                yaml.safe_dump({"snapshot_id": "smic-a283e95e2c9e8068", "gaps": []}),
+                encoding="utf-8",
+            )
+
+            result = run_cli(
+                [
+                    "--snapshot-dir",
+                    str(snapshot_dir),
+                    "--context-file",
+                    str(context_file),
+                    "--retrieval-file",
+                    str(retrieval_file),
+                    "--rules-file",
+                    str(rules_file),
+                    "--existing-gaps-file",
+                    str(gaps_file),
+                    "--output-dir",
+                    str(snapshot_dir),
+                ]
+            )
+
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn("outside the frozen snapshot", result.stderr)
+            self.assertFalse((snapshot_dir / "normalized-facts.jsonl").exists())
 
 
 if __name__ == "__main__":

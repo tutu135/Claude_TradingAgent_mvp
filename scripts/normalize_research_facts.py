@@ -16,7 +16,9 @@ import yaml
 
 SNAPSHOT_ID = "smic-a283e95e2c9e8068"
 NUMBER_PATTERN = re.compile(
+    r"(?P<sign>[+-])?\s*"
     r"(?P<currency>US\$|\$|USD|RMB|CNY)?\s*"
+    r"(?P<sign_after_currency>[+-])?\s*"
     r"(?P<open>\()?"
     r"(?P<number>\d[\d,]*(?:\.\d+)?)"
     r"(?P<close>\))?\s*"
@@ -59,6 +61,16 @@ def resolve_snapshot_path(snapshot_dir: Path, relative_path: str) -> Path:
     except ValueError as error:
         raise ValueError(f"snapshot path escapes input directory: {relative_path}") from error
     return candidate
+
+
+def require_output_outside_snapshot(snapshot_dir: Path, output_dir: Path) -> None:
+    snapshot_root = snapshot_dir.resolve()
+    output_root = output_dir.resolve()
+    try:
+        output_root.relative_to(snapshot_root)
+    except ValueError:
+        return
+    raise ValueError("output directory must remain outside the frozen snapshot")
 
 
 def verify_snapshot(snapshot_dir: Path) -> None:
@@ -181,6 +193,7 @@ def periods_in_text(text: str) -> list[dict[str, Any]]:
                 "ytd_through_quarter": quarter,
                 "duration_days": (end_date - date(year, 1, 1)).days + 1 if quarter else None,
                 "stated_duration_months": months,
+                "position_source": "TEXT",
             }
         )
     patterns = (
@@ -206,6 +219,7 @@ def periods_in_text(text: str) -> list[dict[str, Any]]:
                     "fiscal_quarter": quarter,
                     "ytd_through_quarter": None,
                     "duration_days": (date.fromisoformat(end) - date.fromisoformat(start)).days + 1,
+                    "position_source": "TEXT",
                 }
             )
     unique: dict[tuple[int, int], dict[str, Any]] = {}
@@ -220,6 +234,8 @@ def periods_from_chunk_context(chunk: dict[str, Any]) -> list[dict[str, Any]]:
         text = str(value).strip()
         parsed = periods_in_text(text)
         if parsed:
+            for period in parsed:
+                period["position_source"] = "CONTEXT"
             periods.extend(parsed)
             continue
         if re.fullmatch(r"20\d{2}", text):
@@ -238,6 +254,7 @@ def periods_from_chunk_context(chunk: dict[str, Any]) -> list[dict[str, Any]]:
                     "fiscal_quarter": None,
                     "ytd_through_quarter": None,
                     "duration_days": (date(year, 12, 31) - date(year, 1, 1)).days + 1,
+                    "position_source": "CONTEXT",
                 }
             )
     return periods
@@ -248,6 +265,28 @@ def period_for_position(periods: list[dict[str, Any]], position: int) -> dict[st
         return {
             "source_period_text": None,
             "period_mapping_status": "UNKNOWN",
+            "period_nature": None,
+            "period_type": None,
+            "period_start": None,
+            "period_end": None,
+            "as_of_date": None,
+            "fiscal_quarter": None,
+            "ytd_through_quarter": None,
+            "duration_days": None,
+        }
+    context_periods = [
+        period for period in periods if period.get("position_source") == "CONTEXT"
+    ]
+    distinct_context_periods = {
+        (period.get("period_type"), period.get("period_start"), period.get("period_end"))
+        for period in context_periods
+    }
+    if len(context_periods) == len(periods) and len(distinct_context_periods) > 1:
+        return {
+            "source_period_text": " | ".join(
+                sorted({str(period["source_text"]) for period in context_periods})
+            ),
+            "period_mapping_status": "AMBIGUOUS",
             "period_nature": None,
             "period_type": None,
             "period_start": None,
@@ -280,6 +319,61 @@ def period_for_position(periods: list[dict[str, Any]], position: int) -> dict[st
             )
         },
     }
+
+
+def table_column_index(sentence: str, position: int) -> int | None:
+    if "\t" not in sentence:
+        return None
+    return sentence[:position].count("\t")
+
+
+def period_for_numeric_position(
+    chunk: dict[str, Any],
+    sentence: str,
+    position: int,
+    periods: list[dict[str, Any]],
+) -> dict[str, Any]:
+    column_index = table_column_index(sentence, position)
+    context = chunk.get("numeric_context") or {}
+    column_periods = context.get("column_periods") or []
+    if column_index is not None and column_index < len(column_periods):
+        values = [str(value) for value in column_periods[column_index]]
+        if len(values) == 1:
+            parsed = periods_in_text(values[0])
+            if parsed:
+                return period_for_position(parsed, 0)
+        elif len(values) > 1:
+            return {
+                "source_period_text": " | ".join(values),
+                "period_mapping_status": "AMBIGUOUS",
+                "period_nature": None,
+                "period_type": None,
+                "period_start": None,
+                "period_end": None,
+                "as_of_date": None,
+                "fiscal_quarter": None,
+                "ytd_through_quarter": None,
+                "duration_days": None,
+            }
+    return period_for_position(periods, position)
+
+
+def metric_for_numeric_position(
+    chunk: dict[str, Any],
+    sentence: str,
+    position: int,
+    rules: dict[str, Any],
+) -> dict[str, Any]:
+    metric = metric_mapping(sentence, position, rules)
+    column_index = table_column_index(sentence, position)
+    column_headers = (chunk.get("numeric_context") or {}).get("column_headers") or []
+    if column_index is None or column_index >= len(column_headers):
+        return metric
+    header = str(column_headers[column_index])
+    header_metric = metric_mapping(header, len(header), rules)
+    if header_metric.get("metric_mapping_status") == "MAPPED":
+        return header_metric
+    return metric
 
 
 def entity_mapping(material_id: str, rules: dict[str, Any]) -> dict[str, Any]:
@@ -560,7 +654,7 @@ def text_record(
         **period,
         "speaker_or_publisher": chunk.get("speaker_label"),
         "section": chunk["content_locator"].get("section"),
-        "statement_at": None,
+        "statement_at": chunk.get("statement_at"),
         "target_period": period.get("source_period_text"),
         "polarity": "NEGATED" if negated else "AFFIRMATIVE",
         "condition_text": condition_match.group(0) if condition_match else None,
@@ -591,17 +685,21 @@ def numeric_context_defaults(chunk: dict[str, Any]) -> dict[str, Any]:
     text = " ".join(str(value) for value in context.get("units", []))
     normalized = matching_key(text)
     currency = None
-    if re.search(r"\b(?:usd|us\$)\b", normalized):
+    if re.search(r"\b(?:usd|us\$)\b", normalized) or "美元" in normalized:
         currency = "USD"
-    elif re.search(r"\b(?:cny|rmb)\b", normalized):
+    elif re.search(r"\b(?:cny|rmb)\b", normalized) or "人民币" in normalized:
         currency = "CNY"
     scale_factor = Decimal("1")
-    if "billion" in normalized:
-        scale_factor = Decimal("1000000000")
-    elif "million" in normalized:
+    if "亿元" in normalized:
+        scale_factor = Decimal("100000000")
+    elif "百万元" in normalized or "million" in normalized:
         scale_factor = Decimal("1000000")
-    elif "thousand" in normalized:
+    elif "万元" in normalized:
+        scale_factor = Decimal("10000")
+    elif "千元" in normalized or "thousand" in normalized:
         scale_factor = Decimal("1000")
+    elif "billion" in normalized:
+        scale_factor = Decimal("1000000000")
     unit = None
     if "percentage point" in normalized or re.search(r"\bpp\b", normalized):
         unit = "PERCENTAGE_POINT"
@@ -632,7 +730,11 @@ def parse_numeric_match(
         numeric = Decimal(raw_number)
     except InvalidOperation:
         return None
-    if match.group("open") and match.group("close"):
+    if (
+        match.group("sign") == "-"
+        or match.group("sign_after_currency") == "-"
+        or (match.group("open") and match.group("close"))
+    ):
         numeric = -numeric
     scale_factors = {
         None: Decimal("1"),
@@ -778,11 +880,15 @@ def missing_value_records(
     for index, match in enumerate(pattern.finditer(sentence)):
         raw = match.group(0)
         status = "NOT_APPLICABLE" if raw.casefold() in {"n/a", "na"} else "UNKNOWN"
-        metric = metric_mapping(sentence, match.start(), rules)
+        metric = metric_for_numeric_position(
+            chunk, sentence, match.start(), rules
+        )
         technical_metadata = technical_measurement_metadata(
             sentence, chunk, metric, rules
         )
-        period = period_for_position(periods, match.start())
+        period = period_for_numeric_position(
+            chunk, sentence, match.start(), periods
+        )
         record = {
             **common_record(
                 chunk,
@@ -853,14 +959,26 @@ def numeric_records(
     context_defaults = numeric_context_defaults(chunk)
     bridge_metadata = bridge_row_metadata(sentence, rules)
     for index, match in enumerate(NUMBER_PATTERN.finditer(sentence)):
+        if any(
+            period.get("position_source") == "TEXT"
+            and match.start() >= int(period["start_index"])
+            and match.end() <= int(period["end_index"])
+            for period in periods
+        ):
+            continue
         number = parse_numeric_match(match, context_defaults)
         if number is None:
             continue
-        metric = metric_mapping(sentence, match.start(), rules)
+        numeric_position = match.start("number")
+        metric = metric_for_numeric_position(
+            chunk, sentence, numeric_position, rules
+        )
         technical_metadata = technical_measurement_metadata(
             sentence, chunk, metric, rules
         )
-        period = period_for_position(periods, match.start())
+        period = period_for_numeric_position(
+            chunk, sentence, numeric_position, periods
+        )
         if number["raw_currency"] is None and material_fields.get("currency") not in {
             None,
             "UNKNOWN",
@@ -903,15 +1021,27 @@ def numeric_records(
             "normalization_status": "PASS",
             "gap_ids": [],
         }
+        bridge_standard = {
+            "BASE": "CAS",
+            "TARGET": "IFRS",
+        }.get(bridge_metadata["bridge_row_role"])
+        if bridge_standard is not None:
+            record["accounting_standard"] = bridge_standard
+            record["accounting_standard_source"] = {
+                "chunk_id": chunk["chunk_id"],
+                "content_locator": chunk["content_locator"],
+                "rule_id": bridge_metadata["bridge_row_rule_id"],
+                "source_level": "LOCAL",
+            }
         if bridge_metadata["bridge_row_role"] == "ADJUSTMENT_DETAIL":
             source_amount = Decimal(str(record["base_unit_value"]))
             record["source_display_sign"] = (
                 "NEGATIVE" if source_amount < 0 else "POSITIVE"
             )
             record["normalized_signed_amount"] = format(
-                abs(source_amount)
+                source_amount
                 if bridge_metadata["bridge_operation"] == "ADD"
-                else -abs(source_amount),
+                else -source_amount,
                 "f",
             )
         else:
@@ -999,6 +1129,14 @@ def normalize_chunks(
                         missing_fields.append("period")
                     if record.get("raw_unit") == "MONEY" and not record.get("raw_currency"):
                         missing_fields.append("currency")
+                if (
+                    record["record_kind"] == "TEXT_PROPOSITION"
+                    and record.get("report_type") == "TRANSCRIPT"
+                ):
+                    if not record.get("speaker_or_publisher"):
+                        missing_fields.append("speaker")
+                    if not record.get("statement_at"):
+                        missing_fields.append("statement_at")
                 for field in ("accounting_standard", "consolidation_scope", "audit_status"):
                     if record.get(field) == "UNKNOWN":
                         missing_fields.append(field)
@@ -1011,7 +1149,7 @@ def normalize_chunks(
     ytd_records, ytd_gaps = derive_ytd_differences(records, rules)
     ttm_records = derive_ttm_sums(records, rules)
     ratio_records = derive_fixed_margins(records, rules)
-    change_records = derive_period_changes(records, rules)
+    change_records, change_gaps = derive_period_changes(records, rules)
     sensitivity_records = derive_government_funding_sensitivity(records, rules)
     records.extend(
         [
@@ -1023,6 +1161,7 @@ def normalize_chunks(
         ]
     )
     gaps.extend(ytd_gaps)
+    gaps.extend(change_gaps)
     gaps.extend(reconcile_cas_to_ifrs(records))
     return records, gaps
 
@@ -1295,13 +1434,14 @@ def derive_fixed_margins(
 
 def derive_period_changes(
     records: list[dict[str, Any]], rules: dict[str, Any]
-) -> list[dict[str, Any]]:
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
     if "PERIOD_CHANGE_PERCENT" not in (rules.get("allowed_derivations") or []):
-        return []
+        return [], []
     groups: dict[tuple[Any, ...], list[dict[str, Any]]] = {}
     for record in comparable_quarter_observations(records):
         groups.setdefault(quarter_group_key(record), []).append(record)
     derived: list[dict[str, Any]] = []
+    gaps: list[dict[str, Any]] = []
     for rows in groups.values():
         by_period: dict[str, list[dict[str, Any]]] = {}
         for row in rows:
@@ -1314,7 +1454,68 @@ def derive_period_changes(
                 continue
             previous_value = Decimal(str(previous["base_unit_value"]))
             current_value = Decimal(str(current["base_unit_value"]))
-            if previous_value <= 0 or current_value < 0:
+            blocked_reason = None
+            if previous_value * current_value < 0:
+                blocked_reason = "BLOCKED_SIGN_CHANGE"
+            elif previous_value == 0:
+                blocked_reason = "BLOCKED_ZERO_DENOMINATOR"
+            elif previous_value < 0:
+                blocked_reason = "BLOCKED_NON_POSITIVE_BASE"
+            if blocked_reason is not None:
+                blocked = fixed_derivation_record(
+                    derivation_type="PERIOD_CHANGE_PERCENT",
+                    derivation_rule_id="DERIVE_PERIOD_CHANGE_PERCENT_POSITIVE_BASE_V1",
+                    inputs=[previous, current],
+                    metric_id=str(current["metric_id"]),
+                    formula="(current_base_unit_value - previous_base_unit_value) / previous_base_unit_value * 100",
+                    normalized_value=Decimal("0"),
+                    base_unit_value=None,
+                    target_unit="PERCENT",
+                    target_currency=None,
+                    target_scale_factor=Decimal("1"),
+                    period_type="PERIOD_CHANGE",
+                    period_start=str(previous["period_start"]),
+                    period_end=str(current["period_end"]),
+                )
+                gap_id = "GAP_NORMALIZE_" + hashlib.sha256(
+                    f"{blocked['fact_id']}|{blocked_reason}".encode("utf-8")
+                ).hexdigest()[:16]
+                blocked.update(
+                    {
+                        "derivation_status": "BLOCKED",
+                        "derived_value": None,
+                        "normalized_value": None,
+                        "value_status": "UNKNOWN",
+                        "technical_conversion_trace": [],
+                        "comparability_status": "COMPARABILITY_BREAK",
+                        "comparability_reason_codes": [blocked_reason],
+                        "absolute_change_base_unit_value": format(
+                            current_value - previous_value, "f"
+                        ),
+                        "normalization_status": "BLOCKED",
+                        "gap_ids": [gap_id],
+                    }
+                )
+                derived.append(blocked)
+                gaps.append(
+                    {
+                        "gap_id": gap_id,
+                        "origin_stage": "normalize-research-facts",
+                        "gap_kind": "COMPARABILITY_BREAK",
+                        "question": "Relative period change is blocked by "
+                        + blocked_reason,
+                        "impact_objects": [
+                            blocked["fact_id"],
+                            previous["fact_id"],
+                            current["fact_id"],
+                        ],
+                        "current_handling": "Preserve the absolute change and do not emit a relative rate.",
+                        "confirmation_owner": "user/data_preparer",
+                        "required_evidence": "A strictly positive comparable base without a sign change.",
+                        "priority": "P1",
+                        "status": "OPEN",
+                    }
+                )
                 continue
             change = (current_value - previous_value) / previous_value * Decimal("100")
             derived.append(
@@ -1334,7 +1535,7 @@ def derive_period_changes(
                     period_end=str(current["period_end"]),
                 )
             )
-    return derived
+    return derived, gaps
 
 
 def derive_government_funding_sensitivity(
@@ -1465,8 +1666,12 @@ def reconcile_cas_to_ifrs(records: list[dict[str, Any]]) -> list[dict[str, Any]]
     ]
     groups: dict[tuple[Any, ...], list[dict[str, Any]]] = {}
     for row in bridge_rows:
+        locator = row.get("content_locator") or {}
         key = (
             row.get("material_id"),
+            locator.get("page_number"),
+            locator.get("table_number"),
+            locator.get("section"),
             row.get("metric_id"),
             row.get("entity_id"),
             row.get("period_type"),
@@ -1507,6 +1712,20 @@ def reconcile_cas_to_ifrs(records: list[dict[str, Any]]) -> list[dict[str, Any]]
             for field in comparability_fields
             if any(row.get(field) != base.get(field) for row in required[1:])
         ]
+        required_known_fields = [
+            field for field in comparability_fields if field != "as_of_date"
+        ]
+        if base.get("period_nature") == "INSTANT":
+            required_known_fields.append("as_of_date")
+        mismatch_fields.extend(
+            field
+            for field in required_known_fields
+            if any(
+                row.get(field) in {None, "UNKNOWN", "AMBIGUOUS"}
+                for row in required
+            )
+        )
+        mismatch_fields = sorted(set(mismatch_fields))
         accounting_roles_valid = (
             base.get("bridge_accounting_role") == "CAS"
             and target.get("bridge_accounting_role") == "IFRS"
@@ -1909,11 +2128,17 @@ def derive_ytd_differences(
 def main() -> int:
     args = parse_args()
     try:
+        require_output_outside_snapshot(args.snapshot_dir, args.output_dir)
         verify_snapshot(args.snapshot_dir)
         retrieval = yaml.safe_load(args.retrieval_file.read_text(encoding="utf-8"))
         if retrieval.get("snapshot_id") != SNAPSHOT_ID:
             raise ValueError("retrieval result is not bound to Snapshot v3")
-        if retrieval.get("retrieval_status") == "FAIL":
+        retrieval_status = retrieval.get("retrieval_status")
+        if retrieval_status not in {"PASS", "WARN", "FAIL"}:
+            raise ValueError("retrieval result has an invalid status")
+        retrieval_diagnostics = retrieval.get("diagnostics") or {}
+        failure_scope = retrieval_diagnostics.get("failure_scope", "GLOBAL")
+        if retrieval_status == "FAIL" and failure_scope != "LOCAL":
             raise ValueError("global retrieval FAIL blocks normalization")
         rules = yaml.safe_load(args.rules_file.read_text(encoding="utf-8"))
         if rules.get("snapshot_id") not in {None, SNAPSHOT_ID}:
@@ -1921,8 +2146,88 @@ def main() -> int:
         chunks = read_jsonl(args.context_file)
         if any(chunk.get("snapshot_id") != SNAPSHOT_ID for chunk in chunks):
             raise ValueError("every context record must carry the exact Snapshot v3 identity")
+        query_rule_version = retrieval.get("query_rule_version")
+        clean_rebuild = retrieval.get("clean_rebuild") or {}
+        first_context_hash = (clean_rebuild.get("first") or {}).get("context_hash")
+        second_context_hash = (clean_rebuild.get("second") or {}).get("context_hash")
+        if (
+            not isinstance(query_rule_version, str)
+            or not query_rule_version.strip()
+            or not isinstance(first_context_hash, str)
+            or not first_context_hash.strip()
+            or not isinstance(second_context_hash, str)
+            or not second_context_hash.strip()
+        ):
+            raise ValueError("retrieval is missing required context binding metadata")
+        if any(
+            chunk.get("query_rule_version") != query_rule_version for chunk in chunks
+        ):
+            raise ValueError("context query-rule version does not match retrieval validation")
+        actual_context_hash = canonical_jsonl_hash(chunks)
+        if (
+            first_context_hash != actual_context_hash
+            or second_context_hash != actual_context_hash
+        ):
+            raise ValueError("context hash is not bound to retrieval clean rebuild")
+        retrieval_gaps: list[dict[str, Any]] = []
+        if retrieval_status in {"WARN", "FAIL"}:
+            failed_families = sorted(
+                str(value)
+                for value in retrieval_diagnostics.get(
+                    "failed_query_family_ids", []
+                )
+            )
+            if retrieval_status == "FAIL":
+                query_family_by_id = {
+                    str(query["query_id"]): str(query["query_family_id"])
+                    for query in retrieval.get("queries", [])
+                }
+                blocked_query_ids = {
+                    query_id
+                    for query_id, family_id in query_family_by_id.items()
+                    if family_id in failed_families
+                }
+                for chunk in chunks:
+                    matched_query_ids = {
+                        str(value) for value in chunk.get("matched_query_ids", [])
+                    }
+                    if (
+                        chunk.get("candidate_context")
+                        and matched_query_ids
+                        and not (matched_query_ids - blocked_query_ids)
+                    ):
+                        chunk["candidate_context"] = False
+                        chunk["normalization_block_reason"] = (
+                            "LOCAL_RETRIEVAL_FAMILY_FAIL"
+                        )
+            gap_identity = "|".join(
+                [str(retrieval_status), str(failure_scope), *failed_families]
+            )
+            gap_id = "GAP_RETRIEVAL_" + hashlib.sha256(
+                gap_identity.encode("utf-8")
+            ).hexdigest()[:16]
+            retrieval_gaps.append(
+                {
+                    "gap_id": gap_id,
+                    "origin_stage": "govern-research-context",
+                    "gap_kind": "RETRIEVAL_QUALITY_" + str(retrieval_status),
+                    "question": "The fixed retrieval validation did not fully pass.",
+                    "impact_objects": failed_families,
+                    "current_handling": (
+                        "Block only candidate context supported solely by failed query families."
+                        if retrieval_status == "FAIL"
+                        else "Continue normalization and preserve the retrieval warning."
+                    ),
+                    "confirmation_owner": "user/data_preparer",
+                    "required_evidence": "A passing fixed locator-level retrieval validation.",
+                    "priority": "P1",
+                    "status": "OPEN",
+                }
+            )
         records, new_gaps = normalize_chunks(chunks, rules)
+        new_gaps = [*retrieval_gaps, *new_gaps]
         rebuilt_records, rebuilt_gaps = normalize_chunks(chunks, rules)
+        rebuilt_gaps = [*retrieval_gaps, *rebuilt_gaps]
         first_records_hash = canonical_jsonl_hash(records)
         rebuilt_records_hash = canonical_jsonl_hash(rebuilt_records)
         first_gaps_hash = sha256_text(
@@ -1958,7 +2263,9 @@ def main() -> int:
         )
         if duplicate_fact_ids or not clean_rebuild_hashes_match:
             status = "FAIL"
-        elif any(record["normalization_status"] != "PASS" for record in records):
+        elif new_gaps or any(
+            record["normalization_status"] != "PASS" for record in records
+        ):
             status = "WARN"
         else:
             status = "PASS"

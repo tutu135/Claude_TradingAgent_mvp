@@ -6,6 +6,7 @@ import tempfile
 import unittest
 import json
 from pathlib import Path
+from typing import Any
 
 import yaml
 
@@ -15,6 +16,23 @@ CLI = REPO_ROOT / "scripts" / "govern_research_context.py"
 
 
 def run_cli(args: list[str]) -> subprocess.CompletedProcess[str]:
+    if "--rules-file" in args:
+        rules_file = Path(args[args.index("--rules-file") + 1])
+        if rules_file.exists():
+            rules = yaml.safe_load(rules_file.read_text(encoding="utf-8"))
+            parameters = rules.setdefault("retrieval_parameters", {})
+            for key, value in {
+                "minimum_score": "positive",
+                "top_k_per_query": 20,
+                "max_direct_hits_per_material": 5,
+                "include_boundary_ties": True,
+                "stable_order": "score_desc_chunk_id_asc",
+                "adjacent_chunks_each_side": 1,
+            }.items():
+                parameters.setdefault(key, value)
+            rules_file.write_text(
+                yaml.safe_dump(rules, sort_keys=False), encoding="utf-8"
+            )
     return subprocess.run(
         [sys.executable, str(CLI), *args],
         capture_output=True,
@@ -241,8 +259,8 @@ class GovernResearchContextCliTests(unittest.TestCase):
                                 "table_number": 1,
                                 "bbox": [10, 20, 30, 40],
                                 "rows": [
-                                    ["USD million", "2026 Q1"],
-                                    ["Revenue", "2,505.5"],
+                                    ["USD million", "2026 Q1", "2025 Q1"],
+                                    ["Revenue", "2,505.5", "2,237.8"],
                                 ],
                             }
                         ],
@@ -301,8 +319,17 @@ class GovernResearchContextCliTests(unittest.TestCase):
             )
             self.assertEqual(chunks[0]["content_locator"]["page_number"], 4)
             self.assertEqual(chunks[0]["content_locator"]["section"], "Quarterly results")
-            self.assertEqual(chunks[1]["numeric_context"]["headers"], ["USD million", "2026 Q1"])
-            self.assertEqual(chunks[1]["numeric_context"]["periods"], ["2026 Q1"])
+            self.assertEqual(
+                chunks[1]["numeric_context"]["headers"],
+                ["USD million", "2026 Q1", "2025 Q1"],
+            )
+            self.assertEqual(
+                chunks[1]["numeric_context"]["column_periods"],
+                [[], ["2026 Q1"], ["2025 Q1"]],
+            )
+            self.assertEqual(
+                chunks[1]["numeric_context"]["periods"], ["2025 Q1", "2026 Q1"]
+            )
             self.assertEqual(chunks[1]["numeric_context"]["footnotes"], ["* Amounts are unaudited."])
 
     def test_transcript_keeps_ai_summary_separate_and_chunks_each_speaker_turn(self) -> None:
@@ -320,6 +347,10 @@ class GovernResearchContextCliTests(unittest.TestCase):
                 "material_id": material_id,
                 "acquisition_status": "ACQUIRED_UNASSESSED",
                 "acquisition_targets": ["quarterly_materials_2026_q1"],
+                "publication_time": {
+                    "value": "2026-05-15T00:00:00+00:00",
+                    "precision": "DATE",
+                },
                 "parse_status": "PARSED",
                 "parsed_path": f"parsed/{material_id}.json",
             }
@@ -399,7 +430,12 @@ class GovernResearchContextCliTests(unittest.TestCase):
             )
             self.assertEqual(chunks[1]["structure_type"], "HTML_SECTION_ENTRY")
             self.assertEqual(chunks[2]["structure_type"], "TRANSCRIPT_SPEAKER_TURN")
-            self.assertEqual(chunks[2]["speaker_mapping_status"], "UNKNOWN")
+            self.assertEqual(chunks[2]["speaker_label"], "OPERATOR")
+            self.assertEqual(chunks[2]["speaker_mapping_status"], "MAPPED")
+            self.assertEqual(
+                chunks[2]["statement_at"],
+                {"value": "2026-05-15T00:00:00+00:00", "precision": "DATE"},
+            )
             self.assertEqual(chunks[2]["content_locator"]["paragraph_locator"], "paragraph:p[3]")
 
     def test_bm25_records_query_tokens_and_selects_direct_plus_same_section_adjacent_context(self) -> None:
@@ -696,6 +732,151 @@ class GovernResearchContextCliTests(unittest.TestCase):
             )
             self.assertEqual(negative["filter_reason"], "STRUCTURAL_BOILERPLATE")
             self.assertFalse(negative["candidate_context"])
+
+    def test_rejects_output_directory_inside_frozen_snapshot(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            workspace = Path(temp_dir)
+            snapshot_dir = workspace / "snapshot"
+            snapshot_dir.mkdir()
+            (snapshot_dir / "snapshot-manifest.yaml").write_text(
+                yaml.safe_dump({"snapshot_id": "smic-a283e95e2c9e8068", "files": []}),
+                encoding="utf-8",
+            )
+            (snapshot_dir / "materials.jsonl").write_text("", encoding="utf-8")
+            rules_file = workspace / "rules.yaml"
+            rules_file.write_text(
+                yaml.safe_dump(
+                    {
+                        "snapshot_id": "smic-a283e95e2c9e8068",
+                        "rule_version": "context-output-boundary-v1",
+                        "chunking_version": "smic-structure-atoms-v1",
+                        "tokenizer": {},
+                        "query_families": [],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            acceptance_file = workspace / "acceptance.yaml"
+            acceptance_file.write_text(
+                yaml.safe_dump(
+                    {
+                        "snapshot_id": "smic-a283e95e2c9e8068",
+                        "query_rule_version": "context-output-boundary-v1",
+                        "acceptance_version": "context-output-boundary-v1",
+                        "labels": [],
+                        "precision_judgments": [],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            result = run_cli(
+                [
+                    "--snapshot-dir",
+                    str(snapshot_dir),
+                    "--rules-file",
+                    str(rules_file),
+                    "--acceptance-file",
+                    str(acceptance_file),
+                    "--output-dir",
+                    str(snapshot_dir / "derived"),
+                ]
+            )
+
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn("outside the frozen snapshot", result.stderr)
+            self.assertFalse((snapshot_dir / "derived").exists())
+
+    def test_retrieval_parameters_from_rules_control_top_k_cap_and_adjacency(self) -> None:
+        scripts_dir = str(REPO_ROOT / "scripts")
+        if scripts_dir not in sys.path:
+            sys.path.insert(0, scripts_dir)
+        from govern_research_context import apply_retrieval
+
+        chunks: list[dict[str, Any]] = []
+        for index, text_value in enumerate(
+            (
+                "Gross margin improved most.",
+                "Gross margin improved.",
+                "Unrelated context.",
+            ),
+            start=1,
+        ):
+            chunks.append(
+                {
+                    "snapshot_id": "smic-a283e95e2c9e8068",
+                    "chunk_id": f"CHUNK_{index}",
+                    "material_id": "MATERIAL_SMIC_PARAMETER_FIXTURE",
+                    "structure_type": "TRANSCRIPT_SPEAKER_TURN",
+                    "content_locator": {
+                        "section": "Earnings Call Transcript",
+                        "paragraph_locator": f"paragraph:p[{index}]",
+                    },
+                    "text": text_value,
+                    "candidate_context": False,
+                    "retrieval_keywords": [],
+                    "matched_query_ids": [],
+                    "selection_reasons": [],
+                    "retrieval_hits": [],
+                    "filter_reason": None,
+                }
+            )
+        rules: dict[str, Any] = {
+            "retrieval_parameters": {
+                "minimum_score": "positive",
+                "top_k_per_query": 1,
+                "max_direct_hits_per_material": 1,
+                "include_boundary_ties": False,
+                "stable_order": "score_desc_chunk_id_asc",
+                "adjacent_chunks_each_side": 0,
+            },
+            "tokenizer": {"stopwords": [], "chinese_lexicon": []},
+            "query_families": [
+                {
+                    "family_id": "D1_PROFITABILITY_CHANGE",
+                    "responsibility": "RESEARCH",
+                    "queries": [
+                        {
+                            "query_id": "D1_PARAMETERS",
+                            "language": "en",
+                            "text": "gross margin improved",
+                            "anchor_tokens": ["gross", "margin"],
+                        }
+                    ],
+                }
+            ],
+        }
+
+        query_results = apply_retrieval(chunks, rules)
+
+        self.assertEqual(len(query_results[0]["hits"]), 1)
+        self.assertEqual(
+            sum("DIRECT_HIT" in chunk["selection_reasons"] for chunk in chunks), 1
+        )
+        self.assertFalse(
+            any("ADJACENT_CONTEXT" in chunk["selection_reasons"] for chunk in chunks)
+        )
+
+    def test_retrieval_parameters_are_required_and_stable_order_is_fixed(self) -> None:
+        scripts_dir = str(REPO_ROOT / "scripts")
+        if scripts_dir not in sys.path:
+            sys.path.insert(0, scripts_dir)
+        from govern_research_context import apply_retrieval
+
+        rules: dict[str, Any] = {
+            "retrieval_parameters": {
+                "minimum_score": "positive",
+                "top_k_per_query": 20,
+                "max_direct_hits_per_material": 5,
+                "include_boundary_ties": True,
+                "adjacent_chunks_each_side": 1,
+            },
+            "tokenizer": {"stopwords": [], "chinese_lexicon": []},
+            "query_families": [],
+        }
+
+        with self.assertRaisesRegex(ValueError, "missing required fields"):
+            apply_retrieval([], rules)
 
 
 if __name__ == "__main__":

@@ -1,0 +1,52 @@
+case_origin: model_generated
+company:
+  legal_name_zh: 中芯国际集成电路制造有限公司
+  legal_name_en: Semiconductor Manufacturing International Corporation
+security:
+  code: 688981.SH
+  exchange: Shanghai Stock Exchange
+  board: SSE STAR Market
+  research_market: A_SHARE
+as_of: '2026-05-15T23:59:59+08:00'
+timezone: Asia/Shanghai
+research_question: >-
+  截至 {as_of}，中芯国际的经常性经营盈利能力发生了哪些可验证的变化，现有证据在多大程度上支持其已进入可持续改善阶段？
+required_coverage:
+  - company_security_master
+  - annual_materials_fy2023
+  - annual_materials_fy2024
+  - annual_materials_fy2025
+  - quarterly_materials_2025_q2
+  - quarterly_materials_2025_q3
+  - quarterly_materials_2025_q4
+  - quarterly_materials_2026_q1
+  - capacity
+  - utilization
+  - shipments
+  - average_selling_price
+  - process_application_mix
+  - capital_expenditure
+  - government_grants
+  - other_operating_income
+  - ifrs_cas_reconciliation
+  - industry_cycle
+  - comparability_events
+  - smnc_49_transaction
+  - nsi_transaction
+distribution_status: INTERNAL_DEMO_ONLY
+source_use_assumption:
+  purpose: personal_non_commercial_local_demo
+  redistribution: prohibited
+  model_training: prohibited
+  authenticated_access: user_managed_outside_demo
+prohibited_outputs:
+  - trading_instruction
+  - position_advice
+  - target_price
+  - valuation_anchor
+  - investment_attractiveness
+  - system_forecast
+rule_versions:
+  frozen_spec: '2026-07-19'
+  snapshot_policy: ADR-0001
+  acquisition_evidence_boundary: ADR-0002

@@ -1,0 +1,490 @@
+snapshot_id: smic-a283e95e2c9e8068
+parent_snapshot_id: smic-95dcd12eba2fe17c
+created_at: '2026-07-20T10:00:00+08:00'
+as_of: '2026-05-15T23:59:59+08:00'
+build_mode: SNAPSHOT_BUILD
+test_fixture: false
+usage_assumption: personal, non-commercial, local, not for redistribution or model
+  training
+statistics:
+  unique_materials: 20
+  material_locators: 20
+  excluded_after_as_of: 0
+  candidate_holding: 0
+  parse_unsupported: 0
+  parse_partial: 0
+  acquisition_gaps: 3
+acquisition_status: ACQUIRED_UNASSESSED
+candidate_holding_area:
+  count: 0
+excluded_materials: []
+search_saturation:
+  status: SATURATED
+  target_list_processed: true
+  official_round_completed: true
+  extended_round_completed: true
+  supplemental_round_no_new_unique_material: true
+  recorded_at: '2026-07-19T21:30:00+08:00'
+  notes: Official issuer, HKEX/SSE/CNINFO, SIA industry releases, and extended web/media
+    queries were searched for the fixed v2 targets. The user/data_preparer later manually
+    confirmed publication timing for the Q2 2025 and Q1 2026 third-party transcript
+    candidates; those transcript pages are added in this v3 intake as ACQUIRED_UNASSESSED
+    materials. Remaining items are recorded as acquisition gaps; saturation does not
+    assert evidence completeness.
+acquisition_targets:
+- target_id: company_security_master
+  label: Company and security master data
+  search_channels:
+  - issuer
+  - regulator_exchange
+  - extended_web
+  material_ids:
+  - MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+  - MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+  - MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+  - MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+  - MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+  - MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+  candidate_holding_count: 0
+  gap_ids: []
+  search_status: SATURATED
+- target_id: annual_materials_fy2023
+  label: FY2023 annual material set
+  search_channels:
+  - issuer
+  - regulator_exchange
+  material_ids:
+  - MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+  - MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+  candidate_holding_count: 0
+  gap_ids: []
+  search_status: SATURATED
+- target_id: annual_materials_fy2024
+  label: FY2024 annual material set
+  search_channels:
+  - issuer
+  - regulator_exchange
+  material_ids:
+  - MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+  - MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+  candidate_holding_count: 0
+  gap_ids: []
+  search_status: SATURATED
+- target_id: annual_materials_fy2025
+  label: FY2025 annual material set
+  search_channels:
+  - issuer
+  - regulator_exchange
+  material_ids:
+  - MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+  - MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+  candidate_holding_count: 0
+  gap_ids: []
+  search_status: SATURATED
+- target_id: quarterly_materials_2025_q2
+  label: 2025 Q2 quarterly material set
+  search_channels:
+  - issuer
+  - regulator_exchange
+  - extended_web
+  material_ids:
+  - MATERIAL_SMIC_2025_Q2_RESULTS
+  - MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+  - MATERIAL_SMIC_2025_Q2_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+  candidate_holding_count: 0
+  gap_ids:
+  - GAP_ACQUIRE_001
+  search_status: SATURATED
+- target_id: quarterly_materials_2025_q3
+  label: 2025 Q3 quarterly material set
+  search_channels:
+  - issuer
+  - regulator_exchange
+  - extended_web
+  material_ids:
+  - MATERIAL_SMIC_2025_Q3_RESULTS
+  - MATERIAL_SMIC_2025_Q3_A_SHARE_REPORT_CNINFO
+  candidate_holding_count: 0
+  gap_ids:
+  - GAP_ACQUIRE_001
+  search_status: SATURATED
+- target_id: quarterly_materials_2025_q4
+  label: 2025 Q4 quarterly material set
+  search_channels:
+  - issuer
+  - regulator_exchange
+  - extended_web
+  material_ids:
+  - MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+  - MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+  - MATERIAL_SMIC_2025_Q4_RESULTS
+  candidate_holding_count: 0
+  gap_ids:
+  - GAP_ACQUIRE_001
+  - GAP_ACQUIRE_003
+  search_status: SATURATED
+- target_id: quarterly_materials_2026_q1
+  label: 2026 Q1 quarterly material set
+  search_channels:
+  - issuer
+  - regulator_exchange
+  - extended_web
+  material_ids:
+  - MATERIAL_SMIC_2026_Q1_RESULTS
+  - MATERIAL_SMIC_2026_Q1_A_SHARE_REPORT_CNSTOCK
+  - MATERIAL_SIA_2026_Q1_SALES
+  - MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+  candidate_holding_count: 0
+  gap_ids:
+  - GAP_ACQUIRE_001
+  search_status: SATURATED
+- target_id: capacity
+  label: Capacity
+  search_channels:
+  - issuer
+  - regulator_exchange
+  - named_institution
+  - extended_web
+  material_ids:
+  - MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+  - MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+  - MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+  - MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+  - MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+  - MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+  - MATERIAL_SMIC_2025_Q2_RESULTS
+  - MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+  - MATERIAL_SMIC_2025_Q3_RESULTS
+  - MATERIAL_SMIC_2025_Q4_RESULTS
+  - MATERIAL_SMIC_2026_Q1_RESULTS
+  - MATERIAL_SMIC_SMNC_49_TRANSACTION_SUMMARY_CNINFO
+  - MATERIAL_SMIC_2025_Q2_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+  - MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+  candidate_holding_count: 0
+  gap_ids: []
+  search_status: SATURATED
+- target_id: utilization
+  label: Utilization
+  search_channels:
+  - issuer
+  - regulator_exchange
+  - named_institution
+  - extended_web
+  material_ids:
+  - MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+  - MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+  - MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+  - MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+  - MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+  - MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+  - MATERIAL_SMIC_2025_Q2_RESULTS
+  - MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+  - MATERIAL_SMIC_2025_Q3_RESULTS
+  - MATERIAL_SMIC_2025_Q4_RESULTS
+  - MATERIAL_SMIC_2026_Q1_RESULTS
+  - MATERIAL_SMIC_2025_Q2_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+  - MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+  candidate_holding_count: 0
+  gap_ids: []
+  search_status: SATURATED
+- target_id: shipments
+  label: Shipments
+  search_channels:
+  - issuer
+  - regulator_exchange
+  - named_institution
+  - extended_web
+  material_ids:
+  - MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+  - MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+  - MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+  - MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+  - MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+  - MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+  - MATERIAL_SMIC_2025_Q2_RESULTS
+  - MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+  - MATERIAL_SMIC_2025_Q3_RESULTS
+  - MATERIAL_SMIC_2025_Q4_RESULTS
+  - MATERIAL_SMIC_2026_Q1_RESULTS
+  - MATERIAL_SMIC_2025_Q2_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+  - MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+  candidate_holding_count: 0
+  gap_ids: []
+  search_status: SATURATED
+- target_id: average_selling_price
+  label: Average selling price
+  search_channels:
+  - issuer
+  - regulator_exchange
+  - named_institution
+  - extended_web
+  material_ids:
+  - MATERIAL_SMIC_2025_Q2_RESULTS
+  - MATERIAL_SMIC_2025_Q3_RESULTS
+  - MATERIAL_SMIC_2025_Q4_RESULTS
+  - MATERIAL_SMIC_2026_Q1_RESULTS
+  - MATERIAL_SMIC_2025_Q2_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+  - MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+  candidate_holding_count: 0
+  gap_ids:
+  - GAP_ACQUIRE_002
+  search_status: SATURATED
+- target_id: process_application_mix
+  label: Process and application mix
+  search_channels:
+  - issuer
+  - regulator_exchange
+  - named_institution
+  - extended_web
+  material_ids:
+  - MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+  - MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+  - MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+  - MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+  - MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+  - MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+  - MATERIAL_SMIC_2025_Q2_RESULTS
+  - MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+  - MATERIAL_SMIC_2025_Q3_RESULTS
+  - MATERIAL_SMIC_2025_Q4_RESULTS
+  - MATERIAL_SMIC_2026_Q1_RESULTS
+  - MATERIAL_SMIC_2025_Q2_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+  - MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+  candidate_holding_count: 0
+  gap_ids:
+  - GAP_ACQUIRE_002
+  search_status: SATURATED
+- target_id: capital_expenditure
+  label: Capital expenditure
+  search_channels:
+  - issuer
+  - regulator_exchange
+  - named_institution
+  - extended_web
+  material_ids:
+  - MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+  - MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+  - MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+  - MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+  - MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+  - MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+  - MATERIAL_SMIC_2025_Q2_RESULTS
+  - MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+  - MATERIAL_SMIC_2025_Q3_RESULTS
+  - MATERIAL_SMIC_2025_Q4_RESULTS
+  - MATERIAL_SMIC_2026_Q1_RESULTS
+  - MATERIAL_SMIC_SMNC_49_TRANSACTION_SUMMARY_CNINFO
+  - MATERIAL_SMIC_2025_Q2_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+  - MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+  candidate_holding_count: 0
+  gap_ids: []
+  search_status: SATURATED
+- target_id: government_grants
+  label: Government grants
+  search_channels:
+  - issuer
+  - regulator_exchange
+  material_ids:
+  - MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+  - MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+  - MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+  - MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+  - MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+  - MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+  - MATERIAL_SMIC_2025_Q2_RESULTS
+  - MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+  - MATERIAL_SMIC_2025_Q3_RESULTS
+  - MATERIAL_SMIC_2025_Q3_A_SHARE_REPORT_CNINFO
+  - MATERIAL_SMIC_2025_Q4_RESULTS
+  - MATERIAL_SMIC_2026_Q1_RESULTS
+  - MATERIAL_SMIC_2026_Q1_A_SHARE_REPORT_CNSTOCK
+  candidate_holding_count: 0
+  gap_ids: []
+  search_status: SATURATED
+- target_id: other_operating_income
+  label: Other operating income
+  search_channels:
+  - issuer
+  - regulator_exchange
+  material_ids:
+  - MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+  - MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+  - MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+  - MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+  - MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+  - MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+  - MATERIAL_SMIC_2025_Q2_RESULTS
+  - MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+  - MATERIAL_SMIC_2025_Q3_RESULTS
+  - MATERIAL_SMIC_2025_Q3_A_SHARE_REPORT_CNINFO
+  - MATERIAL_SMIC_2025_Q4_RESULTS
+  - MATERIAL_SMIC_2026_Q1_RESULTS
+  - MATERIAL_SMIC_2026_Q1_A_SHARE_REPORT_CNSTOCK
+  candidate_holding_count: 0
+  gap_ids: []
+  search_status: SATURATED
+- target_id: ifrs_cas_reconciliation
+  label: IFRS/CAS reconciliation
+  search_channels:
+  - issuer
+  - regulator_exchange
+  material_ids:
+  - MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+  - MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+  - MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+  - MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+  - MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+  - MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+  - MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+  - MATERIAL_SMIC_2025_Q3_A_SHARE_REPORT_CNINFO
+  - MATERIAL_SMIC_2026_Q1_A_SHARE_REPORT_CNSTOCK
+  candidate_holding_count: 0
+  gap_ids: []
+  search_status: SATURATED
+- target_id: industry_cycle
+  label: Wafer foundry, mature-node, and demand-cycle context
+  search_channels:
+  - government_official_industry
+  - named_institution
+  - extended_web
+  material_ids:
+  - MATERIAL_SIA_2023_ANNUAL_SALES
+  - MATERIAL_SIA_2024_ANNUAL_SALES
+  - MATERIAL_SIA_2025_ANNUAL_SALES
+  - MATERIAL_SIA_2026_Q1_SALES
+  candidate_holding_count: 0
+  gap_ids: []
+  search_status: SATURATED
+- target_id: comparability_events
+  label: Subsidiaries, consolidation scope, accounting policy, restatement, and comparability
+    events
+  search_channels:
+  - issuer
+  - regulator_exchange
+  - extended_web
+  material_ids:
+  - MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+  - MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+  - MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+  - MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+  - MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+  - MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+  - MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+  - MATERIAL_SMIC_2025_Q3_A_SHARE_REPORT_CNINFO
+  - MATERIAL_SMIC_2026_Q1_A_SHARE_REPORT_CNSTOCK
+  - MATERIAL_SMIC_SMNC_49_TRANSACTION_SUMMARY_CNINFO
+  candidate_holding_count: 0
+  gap_ids: []
+  search_status: SATURATED
+- target_id: smnc_49_transaction
+  label: SMNC 49% equity transaction
+  search_channels:
+  - issuer
+  - regulator_exchange
+  - extended_web
+  material_ids:
+  - MATERIAL_SMIC_SMNC_49_TRANSACTION_SUMMARY_CNINFO
+  candidate_holding_count: 0
+  gap_ids: []
+  search_status: SATURATED
+- target_id: nsi_transaction
+  label: NSI transaction
+  search_channels:
+  - issuer
+  - regulator_exchange
+  - extended_web
+  material_ids:
+  - MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+  - MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+  candidate_holding_count: 0
+  gap_ids: []
+  search_status: SATURATED
+files:
+- path: case.yaml
+  hash: sha256:8d80331a031e65490ebbf2342385c2d1957b455a7118d6ec76bf288e6b1fe4d6
+- path: snapshot-inputs.yaml
+  hash: sha256:764d987057c0d044a1ef361690256422aad83222619707cbb361c47bb1f49bc1
+- path: materials.jsonl
+  hash: sha256:1c8d57223895bffc797c7a7028ad62506cdf67c3b10cde7bc57534d1d49d080a
+- path: gaps.yaml
+  hash: sha256:4b7d03ea9f6bda24968380086f6b5a390d22a092f6767b2b7c2f7d7cff1ed03b
+- path: raw/MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX.pdf
+  hash: sha256:b2f7bbde6dd59456b7fd5d8a6336298086c9ac3d59c8028ed034844f0050c8ac
+- path: raw/MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX.pdf
+  hash: sha256:b184a848a948b236497cabddc4d3c8bf943abeeaeccd2bb4e8dd4a2785213eca
+- path: raw/MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX.pdf
+  hash: sha256:4ce8f7a22e09f5322a3b03621e596b42f941d43f12a58e303183209c279e3111
+- path: raw/MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS.pdf
+  hash: sha256:1f4501ead23db9e467ef58630b10b951332c6bd30010538522863ff405d5c2cd
+- path: raw/MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS.pdf
+  hash: sha256:656f3da392c799e479ca6334b7693d45662fc3c7fab2372787340ebef463f7fe
+- path: raw/MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO.pdf
+  hash: sha256:c022cf9323967f66a239ce4f60b30507bc341db6e660a53db9c2966a9ef35531
+- path: raw/MATERIAL_SMIC_2025_Q2_RESULTS.pdf
+  hash: sha256:234f4e517bf54734a39d5c61e1987bf5b9e0a6afea7c8cf2c6b676bf2e9693a2
+- path: raw/MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO.pdf
+  hash: sha256:b54b9a3cd5dada1ff007b88404cf04409962f0c678847adc356984746392ff50
+- path: raw/MATERIAL_SMIC_2025_Q3_RESULTS.pdf
+  hash: sha256:cb942330012a8dc4bb4aef8c189ef687a41c0809fea6be56d99e64474b3d2784
+- path: raw/MATERIAL_SMIC_2025_Q3_A_SHARE_REPORT_CNINFO.pdf
+  hash: sha256:1ca057ba3f8b7c289493d0f4e4c55c6b73b4a82fc33dc88e2022163213bc52c8
+- path: raw/MATERIAL_SMIC_2025_Q4_RESULTS.pdf
+  hash: sha256:a7049ce9968c9783f55e24889fd3802e80936338b42d99dd2f2b08cf8c42a194
+- path: raw/MATERIAL_SMIC_2026_Q1_RESULTS.pdf
+  hash: sha256:64901d4c50f4dabbc120a6b6ced4da73eafc0472821dca6ed3623c0b773a4854
+- path: raw/MATERIAL_SMIC_2026_Q1_A_SHARE_REPORT_CNSTOCK.htm
+  hash: sha256:53c667cb95323b2fd867f03f67e92ade48c46cc8123a56be5fdfbe35c6111c2a
+- path: raw/MATERIAL_SIA_2023_ANNUAL_SALES.html
+  hash: sha256:4bcb371e46427ab57ebdaa84d7c6cc080ff406b020b0bda82f0bbcf0bc56dbfc
+- path: raw/MATERIAL_SIA_2024_ANNUAL_SALES.html
+  hash: sha256:8320e571f93f2abcd307764b2f8010a20c86ddb94df6de061dc44422787d29e4
+- path: raw/MATERIAL_SIA_2025_ANNUAL_SALES.html
+  hash: sha256:7620467d1030f6d051c6cfceae8a712da98cf47cbec99ba25040040473a5f77d
+- path: raw/MATERIAL_SIA_2026_Q1_SALES.html
+  hash: sha256:0890f2e0e9f7ca34f7c6fb8c3b9f940bfc68c169caad51d31045c15a4f7c7ca9
+- path: raw/MATERIAL_SMIC_SMNC_49_TRANSACTION_SUMMARY_CNINFO.pdf
+  hash: sha256:e4cc435ef91ad268288b9d172397a6284ed0f704dbd8d291acd3a6877320772b
+- path: raw/MATERIAL_SMIC_2025_Q2_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD.html
+  hash: sha256:f1f19d3bb78db0cf0415f9ecd263320376e9f7aef9dd1c28bcb2ce98c9027fc7
+- path: raw/MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD.html
+  hash: sha256:bb5aacc3c8f152d30dc9a8daf7eac66e816239db6ce0ce10aff9e73864153131
+- path: parsed/MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX.json
+  hash: sha256:2f4f1694129c1ededf4490d1969c99e9c78cc8ddfcfe32a27942325f56ce90a6
+- path: parsed/MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX.json
+  hash: sha256:98ef15844894e659f3c48ae94b77e7edf604327678e6edd4e36774384cf1b9a6
+- path: parsed/MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX.json
+  hash: sha256:193a9dbe9e23c05e3b7b4f51975d38405e2b9c52a504d2c2fda773477f4bb9c0
+- path: parsed/MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS.json
+  hash: sha256:0dddb71561a52d10b3b2bd509e355c38d97acad682d601e1e42a9482e7df4c0c
+- path: parsed/MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS.json
+  hash: sha256:5bb30484d8386f497ab409bf0dfda8027e8862c88ec14e5b0d6fefa68c05b866
+- path: parsed/MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO.json
+  hash: sha256:126d3d786d7e76143ef8d60aad813ea4d508bec8bc9ee8f2fbcd74511d78aab4
+- path: parsed/MATERIAL_SMIC_2025_Q2_RESULTS.json
+  hash: sha256:b4a1566eb4a1e4b7d8709e48c5601c97a5c508f3b886419283c6ec1fcf4ed94c
+- path: parsed/MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO.json
+  hash: sha256:e5051fa60eb8270a1abf30cd5755af901711689aaf8adc3ec318b27a59f8cea6
+- path: parsed/MATERIAL_SMIC_2025_Q3_RESULTS.json
+  hash: sha256:2666b88b908d981d51a30f7c457e96956fc9347d3e0493498a8e67e764f765eb
+- path: parsed/MATERIAL_SMIC_2025_Q3_A_SHARE_REPORT_CNINFO.json
+  hash: sha256:b40ec8ab100ace269c35f07c7a6bedd8a3ccd0aa600a4e9e908fb8e48ee09f64
+- path: parsed/MATERIAL_SMIC_2025_Q4_RESULTS.json
+  hash: sha256:b60147af7cde85b3a0603e09f0f37774bf3557168d52123cead3cf229cf96952
+- path: parsed/MATERIAL_SMIC_2026_Q1_RESULTS.json
+  hash: sha256:d807326386121eec881aa45b72a0cbf5c4905d9cd081cbfa6f2db46b463ab100
+- path: parsed/MATERIAL_SMIC_2026_Q1_A_SHARE_REPORT_CNSTOCK.json
+  hash: sha256:f880bf58e2ffa297a7fed28fb94ecc3430cdf2cd1e363fb4cda0b081a5e03d3c
+- path: parsed/MATERIAL_SIA_2023_ANNUAL_SALES.json
+  hash: sha256:890b6d3749a471300a6db3b84c57d84b9d1badd760e0a79db1087b46dca7a1f0
+- path: parsed/MATERIAL_SIA_2024_ANNUAL_SALES.json
+  hash: sha256:027b3133a28d7703018f0b8e8c2edb248b12511fc0484e57eb62f739436ba8dc
+- path: parsed/MATERIAL_SIA_2025_ANNUAL_SALES.json
+  hash: sha256:590c210006dc861fe167dc27c6e197fd8d7aeb6b6d6b4b5ed743c3913cadc5ec
+- path: parsed/MATERIAL_SIA_2026_Q1_SALES.json
+  hash: sha256:e7f1a39db06cadd7919d8d9ca5fb06813476dfa41dd83f4b864912fc56b57935
+- path: parsed/MATERIAL_SMIC_SMNC_49_TRANSACTION_SUMMARY_CNINFO.json
+  hash: sha256:2ca2ef1ba15bbfae0bb1ae02629b2778be7d2527da1b1a3d909485d26c792b18
+- path: parsed/MATERIAL_SMIC_2025_Q2_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD.json
+  hash: sha256:def1971ba9c21474fb5226931c49fb711cf8f1ee022fd9c027bf541960b27635
+- path: parsed/MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD.json
+  hash: sha256:76de9574601b81fbce296d93e5b59d1ae2a41ab03296bdf2a5ed5753ccf3e68b

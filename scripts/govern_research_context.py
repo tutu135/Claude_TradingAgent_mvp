@@ -48,6 +48,16 @@ def resolve_snapshot_path(snapshot_dir: Path, relative_path: str) -> Path:
     return candidate
 
 
+def require_output_outside_snapshot(snapshot_dir: Path, output_dir: Path) -> None:
+    snapshot_root = snapshot_dir.resolve()
+    output_root = output_dir.resolve()
+    try:
+        output_root.relative_to(snapshot_root)
+    except ValueError:
+        return
+    raise ValueError("output directory must remain outside the frozen snapshot")
+
+
 def verify_manifest_files(snapshot_dir: Path, manifest: dict[str, Any]) -> None:
     for item in manifest.get("files", []):
         relative_path = str(item["path"])
@@ -75,22 +85,40 @@ def table_text(section: str, rows: list[list[Any]]) -> str:
     return "\n".join([section, *rendered_rows]).strip()
 
 
+def period_labels(text: str) -> list[str]:
+    labels = []
+    for match in re.finditer(
+        r"(?<!\d)(?:20\d{2}\s*Q[1-4]|Q[1-4]\s*20\d{2}|[1-4]Q\d{2}|20\d{2})(?:年末|年)?(?!\d)",
+        text,
+        flags=re.IGNORECASE,
+    ):
+        labels.append(match.group(0).replace("年末", "").replace("年", ""))
+    return sorted(set(labels))
+
+
 def numeric_context(rows: list[list[Any]]) -> dict[str, Any]:
-    headers: list[str] = []
-    if rows:
-        headers = [str(cell) for cell in rows[0] if cell not in (None, "")]
+    header_rows: list[list[Any]] = []
+    for row in rows:
+        first_cell = str(row[0] or "").strip() if row else ""
+        if first_cell:
+            break
+        header_rows.append(row)
+    if not header_rows and rows:
+        header_rows = [rows[0]]
+    column_count = max((len(row) for row in rows), default=0)
+    column_headers = [
+        " | ".join(
+            str(row[index]).strip()
+            for row in header_rows
+            if index < len(row) and row[index] not in (None, "")
+        )
+        for index in range(column_count)
+    ]
+    headers = [header for header in column_headers if header]
     flattened = " ".join(
         str(cell) for row in rows for cell in row if cell not in (None, "")
     )
-    periods = sorted(
-        set(
-            re.findall(
-                r"\b(?:20\d{2}\s*Q[1-4]|Q[1-4]\s*20\d{2}|[1-4]Q\d{2}|20\d{2})\b",
-                flattened,
-                flags=re.IGNORECASE,
-            )
-        )
-    )
+    periods = period_labels(flattened)
     units = sorted(
         set(
             match.group(0)
@@ -101,7 +129,24 @@ def numeric_context(rows: list[list[Any]]) -> dict[str, Any]:
             )
         )
     )
-    return {"headers": headers, "units": units, "periods": periods, "footnotes": []}
+    years = sorted(set(re.findall(r"\b20\d{2}\b", flattened)))
+    column_periods: list[list[str]] = []
+    for header in column_headers:
+        values = period_labels(header)
+        if not values and years:
+            if any(marker in header for marker in ("本期", "期末")):
+                values = [years[-1]]
+            elif any(marker in header for marker in ("上期", "期初")):
+                values = [years[0]]
+        column_periods.append(sorted(set(values)))
+    return {
+        "headers": headers,
+        "column_headers": column_headers,
+        "column_periods": column_periods,
+        "units": units,
+        "periods": periods,
+        "footnotes": [],
+    }
 
 
 def base_chunk(
@@ -179,7 +224,11 @@ def chunks_from_html(material_id: str, parsed: dict[str, Any]) -> list[dict[str,
     return chunks
 
 
-def chunks_from_transcript(material_id: str, parsed: dict[str, Any]) -> list[dict[str, Any]]:
+def chunks_from_transcript(
+    material_id: str,
+    parsed: dict[str, Any],
+    publication_time: dict[str, Any] | None,
+) -> list[dict[str, Any]]:
     headings = parsed.get("headings", [])
     ai_summary_heading = next(
         (
@@ -199,6 +248,8 @@ def chunks_from_transcript(material_id: str, parsed: dict[str, Any]) -> list[dic
     )
     transcript_started = False
     footer_started = False
+    current_speaker: str | None = None
+    pending_speaker: str | None = None
     chunks: list[dict[str, Any]] = []
     for paragraph in parsed.get("paragraphs", []):
         text = str(paragraph.get("text") or "").strip()
@@ -212,6 +263,7 @@ def chunks_from_transcript(material_id: str, parsed: dict[str, Any]) -> list[dic
             flags=re.IGNORECASE,
         ):
             transcript_started = True
+            current_speaker = "OPERATOR"
         if footer_started:
             section = "SITE_FOOTER"
             structure_type = "HTML_STRUCTURAL_BLOCK"
@@ -229,14 +281,35 @@ def chunks_from_transcript(material_id: str, parsed: dict[str, Any]) -> list[dic
             "paragraph_locator": paragraph.get("locator"),
         }
         chunk = base_chunk(material_id, structure_type, locator, text)
+        chunk["statement_at"] = publication_time
         if structure_type == "TRANSCRIPT_SPEAKER_TURN":
             if "operator instructions" in text.casefold():
                 chunk["speaker_label"] = "OPERATOR"
                 chunk["speaker_mapping_status"] = "MAPPED"
+            elif current_speaker is not None:
+                chunk["speaker_label"] = current_speaker
+                chunk["speaker_mapping_status"] = "MAPPED"
             else:
                 chunk["speaker_label"] = None
                 chunk["speaker_mapping_status"] = "UNKNOWN"
+            handoff = re.search(
+                r"(?:hand the call to|hand the call back to|introduce)\s+"
+                r"((?:Dr\.|Ms\.|Miss)\s+[A-Z][A-Za-z]+(?:\s+[A-Z][A-Za-z]+)?)",
+                text,
+                flags=re.IGNORECASE,
+            )
+            if handoff:
+                pending_speaker = handoff.group(1)
+            if "q&a session" in text.casefold():
+                pending_speaker = None
+                current_speaker = None
+        else:
+            chunk["speaker_label"] = "ALPHASPREAD_AI_SUMMARY"
+            chunk["speaker_mapping_status"] = "PUBLISHER_MAPPED"
         chunks.append(chunk)
+        if pending_speaker is not None:
+            current_speaker = pending_speaker
+            pending_speaker = None
     return chunks
 
 
@@ -288,17 +361,34 @@ def chunks_from_pdf(material_id: str, parsed: dict[str, Any]) -> list[dict[str, 
                 page_text,
                 flags=re.IGNORECASE,
             )
-            page_periods = re.findall(
-                r"\b(?:20\d{2}\s*Q[1-4]|Q[1-4]\s*20\d{2}|[1-4]Q\d{2}|20\d{2})\b",
-                page_text,
-                flags=re.IGNORECASE,
+            page_units.extend(
+                re.findall(
+                    r"单位[:：]\s*(?:千元|万元|百万元|亿元)|币种[:：]\s*(?:人民币|美元)",
+                    page_text,
+                )
             )
+            page_periods = period_labels(page_text)
             number_context["units"] = sorted(
                 {*number_context["units"], *page_units}
             )
             number_context["periods"] = sorted(
                 {*number_context["periods"], *page_periods}
             )
+            page_years = sorted(
+                set(
+                    value
+                    for value in number_context["periods"]
+                    if re.fullmatch(r"20\d{2}", value)
+                )
+            )
+            if page_years:
+                for index, header in enumerate(number_context["column_headers"]):
+                    if number_context["column_periods"][index]:
+                        continue
+                    if any(marker in header for marker in ("本期", "期末")):
+                        number_context["column_periods"][index] = [page_years[-1]]
+                    elif any(marker in header for marker in ("上期", "期初")):
+                        number_context["column_periods"][index] = [page_years[0]]
             number_context["footnotes"] = footnotes
             text = table_text(current_section, rows)
             if footnotes:
@@ -335,7 +425,13 @@ def build_chunks(snapshot_dir: Path) -> list[dict[str, Any]]:
         parser_name = str(parsed.get("parser") or "")
         if parser_name.startswith("html-parser"):
             if "EARNINGS_CALL_TRANSCRIPT" in material_id:
-                chunks.extend(chunks_from_transcript(material_id, parsed))
+                chunks.extend(
+                    chunks_from_transcript(
+                        material_id,
+                        parsed,
+                        material.get("publication_time"),
+                    )
+                )
             else:
                 chunks.extend(chunks_from_html(material_id, parsed))
         elif parser_name.startswith("pdfplumber"):
@@ -463,18 +559,26 @@ def is_structural_boilerplate(chunk: dict[str, Any]) -> bool:
     return any(pattern in text for pattern in boilerplate_patterns)
 
 
-def capped_top_hits(scored: list[tuple[float, dict[str, Any]]]) -> list[tuple[float, dict[str, Any]]]:
+def capped_top_hits(
+    scored: list[tuple[float, dict[str, Any]]],
+    *,
+    top_k: int,
+    max_per_material: int,
+    include_boundary_ties: bool,
+) -> list[tuple[float, dict[str, Any]]]:
     material_counts: Counter[str] = Counter()
     capped: list[tuple[float, dict[str, Any]]] = []
     for score, chunk in scored:
         material_id = str(chunk["material_id"])
-        if material_counts[material_id] >= 5:
+        if material_counts[material_id] >= max_per_material:
             continue
         material_counts[material_id] += 1
         capped.append((score, chunk))
-    if len(capped) <= 20:
+    if len(capped) <= top_k:
         return capped
-    boundary_score = capped[19][0]
+    if not include_boundary_ties:
+        return capped[:top_k]
+    boundary_score = capped[top_k - 1][0]
     return [item for item in capped if item[0] >= boundary_score]
 
 
@@ -486,7 +590,38 @@ def append_once(values: list[str], value: str) -> None:
 def apply_retrieval(
     chunks: list[dict[str, Any]], rules: dict[str, Any]
 ) -> list[dict[str, Any]]:
+    parameters = rules.get("retrieval_parameters")
+    required_parameters = {
+        "minimum_score",
+        "top_k_per_query",
+        "max_direct_hits_per_material",
+        "include_boundary_ties",
+        "stable_order",
+        "adjacent_chunks_each_side",
+    }
+    if not isinstance(parameters, dict):
+        raise ValueError("retrieval parameters are missing required fields")
+    missing_parameters = sorted(required_parameters - parameters.keys())
+    if missing_parameters:
+        raise ValueError(
+            "retrieval parameters are missing required fields: "
+            + ", ".join(missing_parameters)
+        )
+    if parameters["minimum_score"] != "positive":
+        raise ValueError("the fixed retrieval minimum_score must be positive")
+    if parameters["stable_order"] != "score_desc_chunk_id_asc":
+        raise ValueError("the fixed retrieval stable_order must be score_desc_chunk_id_asc")
+    if not isinstance(parameters["include_boundary_ties"], bool):
+        raise ValueError("include_boundary_ties must be a fixed boolean")
+    top_k = int(parameters["top_k_per_query"])
+    max_per_material = int(parameters["max_direct_hits_per_material"])
+    include_boundary_ties = parameters["include_boundary_ties"]
+    adjacent_each_side = int(parameters["adjacent_chunks_each_side"])
+    if top_k <= 0 or max_per_material <= 0 or adjacent_each_side < 0:
+        raise ValueError("retrieval parameters must be positive fixed bounds")
     tokenizer_rules = rules.get("tokenizer") or {}
+    for chunk in chunks:
+        chunk["query_rule_version"] = rules.get("rule_version")
     document_tokens = [tokenize(str(chunk["text"]), tokenizer_rules) for chunk in chunks]
     for chunk in chunks:
         if is_structural_boilerplate(chunk):
@@ -509,7 +644,12 @@ def apply_retrieval(
                 if score > 0 and anchor_tokens.intersection(tokens)
             ]
             scored.sort(key=lambda item: (-item[0], str(item[1]["chunk_id"])))
-            selected = capped_top_hits(scored)
+            selected = capped_top_hits(
+                scored,
+                top_k=top_k,
+                max_per_material=max_per_material,
+                include_boundary_ties=include_boundary_ties,
+            )
             hits: list[dict[str, Any]] = []
             direct_chunk_ids: list[str] = []
             for rank, (score, chunk) in enumerate(selected, start=1):
@@ -549,7 +689,12 @@ def apply_retrieval(
                 if direct_chunk["structure_type"] in {"PDF_TABLE", "HTML_TABLE"}:
                     continue
                 direct_locator = direct_chunk["content_locator"]
-                for adjacent_index in (direct_index - 1, direct_index + 1):
+                adjacent_indexes = [
+                    direct_index + offset
+                    for offset in range(-adjacent_each_side, adjacent_each_side + 1)
+                    if offset != 0
+                ]
+                for adjacent_index in adjacent_indexes:
                     if adjacent_index < 0 or adjacent_index >= len(chunks):
                         continue
                     adjacent = chunks[adjacent_index]
@@ -790,9 +935,39 @@ def evaluate_acceptance(
     if any(value < 0.6 for value in precision_by_query.values()):
         warnings.append("PRECISION_BY_QUERY")
     status = "FAIL" if hard_failures else "WARN" if warnings else "PASS"
+    failed_query_family_ids = sorted(
+        {
+            str(result["query_family_id"])
+            for result in label_results
+            if (
+                (result["level"] == "MUST_HIT" and not result["direct_hit"])
+                or (
+                    result["level"] == "MUST_HIT"
+                    and len(result["resolved_chunk_ids"]) != 1
+                )
+                or not result["numeric_context_complete"]
+                or (
+                    result["level"] == "NEGATIVE_CONTROL"
+                    and result["candidate_context"]
+                )
+            )
+        }
+    )
+    global_failure_codes = {
+        "PRECISION_ANNOTATION_INCOMPLETE",
+        "CLEAN_REBUILD_MISMATCH",
+    }
+    if not hard_failures:
+        failure_scope = "NONE"
+    elif failed_query_family_ids and not global_failure_codes.intersection(hard_failures):
+        failure_scope = "LOCAL"
+    else:
+        failure_scope = "GLOBAL"
     diagnostics = {
         "hard_failures": hard_failures,
         "warnings": warnings,
+        "failure_scope": failure_scope,
+        "failed_query_family_ids": failed_query_family_ids,
         "precision_details": precision_details,
     }
     clean_rebuild = {
@@ -822,12 +997,17 @@ def parse_args() -> argparse.Namespace:
 def main() -> int:
     args = parse_args()
     try:
+        require_output_outside_snapshot(args.snapshot_dir, args.output_dir)
         manifest_path = args.snapshot_dir / "snapshot-manifest.yaml"
         manifest = yaml.safe_load(manifest_path.read_text(encoding="utf-8"))
         if manifest.get("snapshot_id") != SNAPSHOT_ID:
             raise ValueError(f"{SNAPSHOT_ID} is the only accepted input")
         verify_manifest_files(args.snapshot_dir, manifest)
         rules = yaml.safe_load(args.rules_file.read_text(encoding="utf-8"))
+        if rules.get("snapshot_id") not in {None, SNAPSHOT_ID}:
+            raise ValueError("retrieval rules are not bound to Snapshot v3")
+        if rules.get("chunking_version") not in {None, CHUNKING_VERSION}:
+            raise ValueError("retrieval rules use a different chunking version")
         acceptance = yaml.safe_load(args.acceptance_file.read_text(encoding="utf-8"))
         if acceptance.get("snapshot_id") != SNAPSHOT_ID:
             raise ValueError("retrieval acceptance set is not bound to Snapshot v3")
@@ -862,6 +1042,10 @@ def main() -> int:
                 "diagnostics": {
                     "hard_failures": diagnostics["hard_failures"],
                     "warnings": diagnostics["warnings"],
+                    "failure_scope": diagnostics["failure_scope"],
+                    "failed_query_family_ids": diagnostics[
+                        "failed_query_family_ids"
+                    ],
                     "precision_details": diagnostics["precision_details"],
                 },
                 "clean_rebuild": diagnostics["clean_rebuild"],

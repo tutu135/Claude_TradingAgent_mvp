@@ -137,12 +137,12 @@ wafer_basis_rules:
     wafer_basis: PHYSICAL_8_INCH
 bridge_row_rules:
   - rule_id: BRIDGE_CAS_BASE_PROFIT_OWNERS_V1
-    match_text: 归属于母公司所有者的净利润
+    match_text: 按中国企业会计准则
     row_role: BASE
     accounting_role: CAS
     equity_attribution: OWNERS_OF_PARENT
   - rule_id: BRIDGE_ADJUSTMENT_DETAIL_V1
-    match_text: 境内外会计准则差异
+    match_text: 联营企业股权被动稀释
     row_role: ADJUSTMENT_DETAIL
     bridge_operation: ADD
     accounting_role: BRIDGE_ADJUSTMENT
