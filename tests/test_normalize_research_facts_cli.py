@@ -1665,6 +1665,404 @@ class NormalizeResearchFactsCliTests(unittest.TestCase):
             self.assertEqual(capacity["measurement_basis"], "MONTHLY_CAPACITY")
             self.assertEqual(capacity["period_type"], "SINGLE_QUARTER")
 
+    def test_composition_share_records_not_applicable_total_check(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            workspace = Path(temp_dir)
+            snapshot_dir = workspace / "snapshot"
+            snapshot_dir.mkdir()
+            (snapshot_dir / "snapshot-manifest.yaml").write_text(
+                yaml.safe_dump({"snapshot_id": "smic-a283e95e2c9e8068", "files": []}),
+                encoding="utf-8",
+            )
+            context_file = workspace / "context.jsonl"
+            context_file.write_text(
+                json.dumps(
+                    {
+                        "snapshot_id": "smic-a283e95e2c9e8068",
+                        "chunk_id": "CHUNK_APPLICATION_MIX",
+                        "material_id": "MATERIAL_SMIC_APPLICATION_FIXTURE",
+                        "structure_type": "PDF_TABLE",
+                        "content_locator": {"page_number": 1, "table_number": 1},
+                        "text": "By application, smartphone accounted for 30.0% in Q1 2026.",
+                        "text_hash": "sha256:application",
+                        "candidate_context": True,
+                        "matched_query_ids": ["D3_EN"],
+                        "selection_reasons": ["DIRECT_HIT"],
+                        "numeric_context": {
+                            "headers": [],
+                            "units": [],
+                            "periods": ["Q1 2026"],
+                            "footnotes": [],
+                        },
+                    }
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            retrieval_file = workspace / "retrieval-validation.yaml"
+            retrieval_file.write_text(
+                yaml.safe_dump(
+                    {"snapshot_id": "smic-a283e95e2c9e8068", "retrieval_status": "PASS"}
+                ),
+                encoding="utf-8",
+            )
+            rules_file = workspace / "accounting.yaml"
+            rules_file.write_text(
+                yaml.safe_dump(
+                    {
+                        "snapshot_id": "smic-a283e95e2c9e8068",
+                        "rule_version": "normalization-fixture-composition-v1",
+                        "mapping_version": "mapping-fixture-composition-v1",
+                        "entity_mappings": [
+                            {
+                                "rule_id": "ENTITY_SMIC_FIXTURE",
+                                "material_prefix": "MATERIAL_SMIC_",
+                                "source_label": "SMIC",
+                                "entity_id": "SMIC_GROUP",
+                            }
+                        ],
+                        "metric_mappings": [
+                            {
+                                "rule_id": "METRIC_APPLICATION_MIX_FIXTURE",
+                                "metric_id": "APPLICATION_REVENUE_SHARE",
+                                "aliases": ["by application"],
+                            }
+                        ],
+                    },
+                    sort_keys=False,
+                ),
+                encoding="utf-8",
+            )
+            gaps_file = workspace / "gaps.yaml"
+            gaps_file.write_text(
+                yaml.safe_dump({"snapshot_id": "smic-a283e95e2c9e8068", "gaps": []}),
+                encoding="utf-8",
+            )
+            output_dir = workspace / "output"
+
+            result = run_cli(
+                [
+                    "--snapshot-dir",
+                    str(snapshot_dir),
+                    "--context-file",
+                    str(context_file),
+                    "--retrieval-file",
+                    str(retrieval_file),
+                    "--rules-file",
+                    str(rules_file),
+                    "--existing-gaps-file",
+                    str(gaps_file),
+                    "--output-dir",
+                    str(output_dir),
+                ]
+            )
+
+            self.assertEqual(result.returncode, 0, result.stderr)
+            facts = [
+                json.loads(line)
+                for line in (output_dir / "normalized-facts.jsonl")
+                .read_text(encoding="utf-8")
+                .splitlines()
+            ]
+            shares = [
+                fact
+                for fact in facts
+                if fact.get("metric_id") == "APPLICATION_REVENUE_SHARE"
+            ]
+            self.assertEqual(len(shares), 1)
+            share = shares[0]
+            self.assertEqual(share["composition_set_id"], "SMIC_APPLICATION_REVENUE_MIX")
+            check = share["composition_check"]
+            self.assertEqual(check["status"], "CHECK_NOT_APPLICABLE")
+            self.assertEqual(
+                check["reason_code"],
+                "SET_NOT_CONFIRMED_COMPLETE_EXCLUSIVE_SAME_DENOMINATOR",
+            )
+            self.assertEqual(check["rule_id"], "COMPOSITION_TOTAL_CHECK_V1")
+            # No category total is derived from a lone share observation.
+            self.assertFalse(
+                any(
+                    fact["record_kind"] == "DERIVATION"
+                    and fact.get("metric_id") == "APPLICATION_REVENUE_SHARE"
+                    for fact in facts
+                )
+            )
+
+    def test_capex_metrics_stay_distinct_without_substitution(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            workspace = Path(temp_dir)
+            snapshot_dir = workspace / "snapshot"
+            snapshot_dir.mkdir()
+            (snapshot_dir / "snapshot-manifest.yaml").write_text(
+                yaml.safe_dump({"snapshot_id": "smic-a283e95e2c9e8068", "files": []}),
+                encoding="utf-8",
+            )
+            context_file = workspace / "context.jsonl"
+            context_file.write_text(
+                json.dumps(
+                    {
+                        "snapshot_id": "smic-a283e95e2c9e8068",
+                        "chunk_id": "CHUNK_CAPEX",
+                        "material_id": "MATERIAL_SMIC_CAPEX_FIXTURE",
+                        "structure_type": "PDF_PARAGRAPH_GROUP",
+                        "content_locator": {
+                            "section": "Liquidity",
+                            "page_number": 1,
+                            "paragraph_group": "page_text",
+                        },
+                        "text": "Capital expenditure was USD 2,000.0 million and capital commitments were USD 500.0 million in Q1 2026.",
+                        "text_hash": "sha256:capex",
+                        "candidate_context": True,
+                        "matched_query_ids": ["D5_EN"],
+                        "selection_reasons": ["DIRECT_HIT"],
+                        "numeric_context": {
+                            "headers": [],
+                            "units": [],
+                            "periods": [],
+                            "footnotes": [],
+                        },
+                    }
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            retrieval_file = workspace / "retrieval-validation.yaml"
+            retrieval_file.write_text(
+                yaml.safe_dump(
+                    {"snapshot_id": "smic-a283e95e2c9e8068", "retrieval_status": "PASS"}
+                ),
+                encoding="utf-8",
+            )
+            rules_file = workspace / "accounting.yaml"
+            rules_file.write_text(
+                yaml.safe_dump(
+                    {
+                        "snapshot_id": "smic-a283e95e2c9e8068",
+                        "rule_version": "normalization-fixture-capex-v1",
+                        "mapping_version": "mapping-fixture-capex-v1",
+                        "allowed_derivations": [
+                            "YTD_DIFFERENCE",
+                            "TTM_SUM",
+                            "PERIOD_CHANGE_PERCENT",
+                        ],
+                        "entity_mappings": [
+                            {
+                                "rule_id": "ENTITY_SMIC_FIXTURE",
+                                "material_prefix": "MATERIAL_SMIC_",
+                                "source_label": "SMIC",
+                                "entity_id": "SMIC_GROUP",
+                            }
+                        ],
+                        "metric_mappings": [
+                            {
+                                "rule_id": "METRIC_CAPEX_INCURRED_FIXTURE",
+                                "metric_id": "CAPITAL_EXPENDITURE_INCURRED",
+                                "aliases": ["capital expenditure"],
+                            },
+                            {
+                                "rule_id": "METRIC_CAPEX_COMMITTED_FIXTURE",
+                                "metric_id": "CAPITAL_COMMITMENTS_UNPAID",
+                                "aliases": ["capital commitments"],
+                            },
+                        ],
+                    },
+                    sort_keys=False,
+                ),
+                encoding="utf-8",
+            )
+            gaps_file = workspace / "gaps.yaml"
+            gaps_file.write_text(
+                yaml.safe_dump({"snapshot_id": "smic-a283e95e2c9e8068", "gaps": []}),
+                encoding="utf-8",
+            )
+            output_dir = workspace / "output"
+
+            result = run_cli(
+                [
+                    "--snapshot-dir",
+                    str(snapshot_dir),
+                    "--context-file",
+                    str(context_file),
+                    "--retrieval-file",
+                    str(retrieval_file),
+                    "--rules-file",
+                    str(rules_file),
+                    "--existing-gaps-file",
+                    str(gaps_file),
+                    "--output-dir",
+                    str(output_dir),
+                ]
+            )
+
+            self.assertEqual(result.returncode, 0, result.stderr)
+            facts = [
+                json.loads(line)
+                for line in (output_dir / "normalized-facts.jsonl")
+                .read_text(encoding="utf-8")
+                .splitlines()
+            ]
+            capex = {
+                fact["metric_id"]: fact
+                for fact in facts
+                if fact["record_kind"] == "NUMERIC_OBSERVATION"
+                and fact.get("metric_id")
+                in {"CAPITAL_EXPENDITURE_INCURRED", "CAPITAL_COMMITMENTS_UNPAID"}
+            }
+            self.assertEqual(
+                set(capex),
+                {"CAPITAL_EXPENDITURE_INCURRED", "CAPITAL_COMMITMENTS_UNPAID"},
+            )
+            self.assertEqual(
+                capex["CAPITAL_EXPENDITURE_INCURRED"]["base_unit_value"],
+                "2000000000.0",
+            )
+            self.assertEqual(
+                capex["CAPITAL_COMMITMENTS_UNPAID"]["base_unit_value"], "500000000.0"
+            )
+            # The two capex calibers are never combined into a derived record.
+            self.assertFalse(
+                any(fact["record_kind"] == "DERIVATION" for fact in facts)
+            )
+
+    def test_non_whitelist_government_funding_is_adjustment_tbd(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            workspace = Path(temp_dir)
+            snapshot_dir = workspace / "snapshot"
+            snapshot_dir.mkdir()
+            (snapshot_dir / "snapshot-manifest.yaml").write_text(
+                yaml.safe_dump({"snapshot_id": "smic-a283e95e2c9e8068", "files": []}),
+                encoding="utf-8",
+            )
+            context_file = workspace / "context.jsonl"
+            context_file.write_text(
+                json.dumps(
+                    {
+                        "snapshot_id": "smic-a283e95e2c9e8068",
+                        "chunk_id": "CHUNK_GOVERNMENT_TBD",
+                        "material_id": "MATERIAL_SMIC_GOVERNMENT_TBD_FIXTURE",
+                        "structure_type": "PDF_PARAGRAPH_GROUP",
+                        "content_locator": {
+                            "section": "Other income",
+                            "page_number": 1,
+                            "paragraph_group": "page_text",
+                        },
+                        "text": "Government grants recognized were USD 5.0 million in Q1 2026.",
+                        "text_hash": "sha256:government-tbd",
+                        "candidate_context": True,
+                        "matched_query_ids": ["G_ADJUSTMENT_BRIDGE_EN"],
+                        "selection_reasons": ["DIRECT_HIT"],
+                        "numeric_context": {
+                            "headers": [],
+                            "units": [],
+                            "periods": [],
+                            "footnotes": [],
+                        },
+                    }
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            retrieval_file = workspace / "retrieval-validation.yaml"
+            retrieval_file.write_text(
+                yaml.safe_dump(
+                    {"snapshot_id": "smic-a283e95e2c9e8068", "retrieval_status": "PASS"}
+                ),
+                encoding="utf-8",
+            )
+            rules_file = workspace / "accounting.yaml"
+            rules_file.write_text(
+                yaml.safe_dump(
+                    {
+                        "snapshot_id": "smic-a283e95e2c9e8068",
+                        "rule_version": "normalization-fixture-govtbd-v1",
+                        "mapping_version": "mapping-fixture-govtbd-v1",
+                        "allowed_derivations": ["SENSITIVITY_EX_GOVERNMENT_FUNDING"],
+                        "adjustment_whitelist": [
+                            {
+                                "adjustment_id": "GOVERNMENT_FUNDING_RECOGNIZED_IN_OPERATING_PROFIT",
+                                "formula_id": "SENSITIVITY_EX_GOVERNMENT_FUNDING",
+                            }
+                        ],
+                        "adjustment_tbd_reason_codes": [
+                            "NOT_PROVEN_IN_BASE_METRIC",
+                            "AWAITING_USER_CONFIRMATION",
+                        ],
+                        "entity_mappings": [
+                            {
+                                "rule_id": "ENTITY_SMIC_FIXTURE",
+                                "material_prefix": "MATERIAL_SMIC_",
+                                "source_label": "SMIC",
+                                "entity_id": "SMIC_GROUP",
+                            }
+                        ],
+                        "metric_mappings": [
+                            {
+                                "rule_id": "METRIC_GOVERNMENT_FIXTURE",
+                                "metric_id": "GOVERNMENT_FUNDING_RECOGNIZED_IN_PNL",
+                                "aliases": ["government grants recognized"],
+                            }
+                        ],
+                    },
+                    sort_keys=False,
+                ),
+                encoding="utf-8",
+            )
+            gaps_file = workspace / "gaps.yaml"
+            gaps_file.write_text(
+                yaml.safe_dump({"snapshot_id": "smic-a283e95e2c9e8068", "gaps": []}),
+                encoding="utf-8",
+            )
+            output_dir = workspace / "output"
+
+            result = run_cli(
+                [
+                    "--snapshot-dir",
+                    str(snapshot_dir),
+                    "--context-file",
+                    str(context_file),
+                    "--retrieval-file",
+                    str(retrieval_file),
+                    "--rules-file",
+                    str(rules_file),
+                    "--existing-gaps-file",
+                    str(gaps_file),
+                    "--output-dir",
+                    str(output_dir),
+                ]
+            )
+
+            self.assertEqual(result.returncode, 0, result.stderr)
+            facts = [
+                json.loads(line)
+                for line in (output_dir / "normalized-facts.jsonl")
+                .read_text(encoding="utf-8")
+                .splitlines()
+            ]
+            funding = [
+                fact
+                for fact in facts
+                if fact.get("metric_id") == "GOVERNMENT_FUNDING_RECOGNIZED_IN_PNL"
+            ]
+            self.assertEqual(len(funding), 1)
+            candidate = funding[0]
+            self.assertEqual(
+                candidate["adjustment_candidate_status"], "ADJUSTMENT_TBD"
+            )
+            self.assertEqual(
+                candidate["adjustment_tbd_reason_code"], "NOT_PROVEN_IN_BASE_METRIC"
+            )
+            self.assertIsNone(candidate["adjustment_id"])
+            # The candidate is preserved, not silently used as an adjustment.
+            self.assertEqual(candidate["value_origin"], "SOURCE_REPORTED")
+            self.assertFalse(
+                any(
+                    fact["record_kind"] == "DERIVATION"
+                    and fact.get("derivation_type")
+                    == "SENSITIVITY_EX_GOVERNMENT_FUNDING"
+                    for fact in facts
+                )
+            )
+
     def test_local_retrieval_fail_blocks_only_the_failed_query_family(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             workspace = Path(temp_dir)

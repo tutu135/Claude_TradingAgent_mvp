@@ -845,6 +845,7 @@ def technical_measurement_metadata(
     composition_set_id = None
     composition_denominator_id = None
     composition_taxonomy_version = None
+    composition_check = None
     if metric_id == "APPLICATION_REVENUE_SHARE":
         composition_set_id = "SMIC_APPLICATION_REVENUE_MIX"
         composition_denominator_id = "WAFER_REVENUE"
@@ -853,6 +854,21 @@ def technical_measurement_metadata(
         composition_set_id = "SMIC_WAFER_SIZE_REVENUE_MIX"
         composition_denominator_id = "WAFER_REVENUE"
         composition_taxonomy_version = "SOURCE_REPORTED_WAFER_SIZE_TAXONOMY_V1"
+    if composition_set_id is not None:
+        # A category total is only computed over a set pre-confirmed as
+        # same-denominator, mutually exclusive and complete. No v3 composition
+        # set carries that confirmation, so the total check is not applicable;
+        # we never infer eligibility from a near-100% sum. TAXONOMY_CHANGE is a
+        # defined status reserved for a future taxonomy-version break, which the
+        # single fixed v3 taxonomy per set does not exercise.
+        composition_check = {
+            "status": "CHECK_NOT_APPLICABLE",
+            "reason_code": "SET_NOT_CONFIRMED_COMPLETE_EXCLUSIVE_SAME_DENOMINATOR",
+            "rule_id": "COMPOSITION_TOTAL_CHECK_V1",
+            "composition_set_id": composition_set_id,
+            "composition_denominator_id": composition_denominator_id,
+            "composition_taxonomy_version": composition_taxonomy_version,
+        }
     return {
         "wafer_basis": wafer_basis,
         "wafer_basis_rule_id": wafer_basis_rule_id,
@@ -862,6 +878,7 @@ def technical_measurement_metadata(
         "composition_set_id": composition_set_id,
         "composition_denominator_id": composition_denominator_id,
         "composition_taxonomy_version": composition_taxonomy_version,
+        "composition_check": composition_check,
     }
 
 
@@ -1151,6 +1168,7 @@ def normalize_chunks(
     ratio_records = derive_fixed_margins(records, rules)
     change_records, change_gaps = derive_period_changes(records, rules)
     sensitivity_records = derive_government_funding_sensitivity(records, rules)
+    tag_government_funding_candidates(records, sensitivity_records, rules)
     records.extend(
         [
             *ytd_records,
@@ -1654,6 +1672,52 @@ def derive_government_funding_sensitivity(
         ]
         derived.append(margin_record)
     return derived
+
+
+def tag_government_funding_candidates(
+    records: list[dict[str, Any]],
+    sensitivity_records: list[dict[str, Any]],
+    rules: dict[str, Any],
+) -> None:
+    """Mark government-funding observations as adjustment candidates.
+
+    Only the separable amount confirmed in operating profit (the single
+    whitelist adjustment that actually fed a sensitivity) is CONFIRMED. Every
+    other government-funding candidate is preserved as ADJUSTMENT_TBD with a
+    fixed reason code — never dropped, never silently used as an adjustment.
+    """
+    allowed_reason_codes = set(rules.get("adjustment_tbd_reason_codes") or [])
+    whitelist_id = next(
+        (
+            item.get("adjustment_id")
+            for item in (rules.get("adjustment_whitelist") or [])
+            if item.get("formula_id") == "SENSITIVITY_EX_GOVERNMENT_FUNDING"
+        ),
+        None,
+    )
+    confirmed_fact_ids: set[str] = set()
+    for derived in sensitivity_records:
+        for row in derived.get("adjustment_bridge") or []:
+            if row.get("role") == "ADJUSTMENT_SUBTRACT":
+                confirmed_fact_ids.add(str(row.get("fact_id")))
+    for record in records:
+        if record.get("record_kind") != "NUMERIC_OBSERVATION":
+            continue
+        if record.get("metric_id") != "GOVERNMENT_FUNDING_RECOGNIZED_IN_PNL":
+            continue
+        if record["fact_id"] in confirmed_fact_ids:
+            record["adjustment_candidate_status"] = "ADJUSTMENT_CONFIRMED"
+            record["adjustment_id"] = whitelist_id
+            record["adjustment_tbd_reason_code"] = None
+            continue
+        reason_code = "NOT_PROVEN_IN_BASE_METRIC"
+        if reason_code not in allowed_reason_codes:
+            reason_code = "AWAITING_USER_CONFIRMATION"
+        record["adjustment_candidate_status"] = "ADJUSTMENT_TBD"
+        record["adjustment_id"] = None
+        record["adjustment_tbd_reason_code"] = (
+            reason_code if reason_code in allowed_reason_codes else None
+        )
 
 
 def reconcile_cas_to_ifrs(records: list[dict[str, Any]]) -> list[dict[str, Any]]:

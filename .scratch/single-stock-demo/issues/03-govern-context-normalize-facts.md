@@ -24,8 +24,8 @@
 - [x] 文本命题保留完整原文跨度、说话人/发布主体、栏目、时点和目标期间；拆分必须保留否定、条件、不确定性及适用范围，共同限定条件随每项保存，不能无损拆分时保持一条，且不得把定性或条件陈述改成确定数值/事实。
 - [x] 数值同时保留原文和 Decimal 字符串，单位/币种/缩放分离，百分比与百分点分开，括号负数可追溯且不增加显示精度；`value_status` 明确区分存在、显式零、不适用、未报告、不可解析和 UNKNOWN，空白/破折号/N/A 不自动转零。
 - [x] 产能、出货、利用率和 ASP 保留晶圆口径及测量基准；不同实体/等值晶圆、月产能/期末/季度平均不得自动换算或比较，利用率不反推，来源 ASP 与满足全口径一致条件的隐含 ASP 派生分别保存，不建设通用单位转换器。
-- [ ] 制程/应用结构保留原始分类、分母及体系版本，不同分母不得混用，仅按固定映射归组；分类合计只在计算前已确认同分母、互斥且完整的集合执行，不能由接近 100% 反推资格，不合格时 `CHECK_NOT_APPLICABLE`，分类变化标记 `TAXONOMY_CHANGE`。
-- [ ] 已发生资本开支、购建资产现金流支出、承诺金额、计划/指引和项目投资使用不同指标并分别保留；规整阶段不互相替代，也不推断资本开支已经转化为产能、收入或利润。
+- [x] 制程/应用结构保留原始分类、分母及体系版本，不同分母不得混用，仅按固定映射归组；分类合计只在计算前已确认同分母、互斥且完整的集合执行，不能由接近 100% 反推资格，不合格时 `CHECK_NOT_APPLICABLE`，分类变化标记 `TAXONOMY_CHANGE`。
+- [x] 已发生资本开支、购建资产现金流支出、承诺金额、计划/指引和项目投资使用不同指标并分别保留；规整阶段不互相替代，也不推断资本开支已经转化为产能、收入或利润。
 - [x] 货币金额精确缩放为原币 `base_unit_value`，但持续携带原表精度且不得解释为更精确的真实值；非整除或需舍入的转换必须作为独立派生/转换保存完整 Decimal、公式和舍入轨迹，无获批舍入规则时为 UNKNOWN/TBD。
 - [x] 指标和主体仅通过版本化固定映射表及不改变语义的确定性标签规整映射，保留原始标签、映射状态、规则 ID、版本和哈希；禁止模糊/语义归并。映射与可比性分离，可比状态必须绑定比较基准或输入事实并记录固定断裂原因。
 - [x] 期间以解析状态、性质、类型和准确日期边界表达；未知/歧义用状态、null 和 gap，不参与比较。单季度与累计至季度字段分离，月份数可选、天数确定性计算；披露 TTM 是原始观察，四个可比单季度构成的 TTM 是独立派生记录，两者不覆盖。
@@ -39,7 +39,7 @@
 - [ ] 同期间同口径的重述关系只依据 `as_of` 前发行人的明确说明建立；原值与各次重述值全部保留，最新明确重述仅作为会计比较优先版本而不提前获得证据资格。差异但未明确重述时标记 `VERSION_CONFLICT` 和 gap，不自动选值，也不建设通用版本图。
 - [x] 经常性经营盈利能力按确认的指标组处理，所有规整结果展示“报告值 -> 调整项 -> 规整值”桥接；政府补助同时呈现报告与剔除敏感性口径，折旧和研发不被自动剔除。
 - [x] 政府资金剔除只生成并列敏感性，不覆盖报告 IFRS 主口径；只有可分离、可追溯且确认计入同口径营业利润的金额可调整，不以全部其他营业收入或 CAS 扣非表替代，并展示完整 fact 桥接。
-- [ ] 可调整政府资金只含当期已确认进基础营业利润的可分离金额，排除现金收款、资本投入、资产补助/递延收益余额、税项和重复调整；初始调整白名单仅此一项，其他候选只保留事实/命题及固定原因的 `ADJUSTMENT_TBD`，不建设动态审批框架。
+- [x] 可调整政府资金只含当期已确认进基础营业利润的可分离金额，排除现金收款、资本投入、资产补助/递延收益余额、税项和重复调整；初始调整白名单仅此一项，其他候选只保留事实/命题及固定原因的 `ADJUSTMENT_TBD`，不建设动态审批框架。
 - [x] 年度、累计期、单季度、TTM、期间数和时点数不会混用；百分点与百分比变化得到区分，不做机械年化或无来源转换。
 - [x] 缺失单位、期间、币种、范围或调整依据不会被默认值和模型常识补齐；相关 UNKNOWN/TBD 均进入唯一 gap 登记册。
 - [x] 规整产物的最终 `claim_type` 保持 `UNASSESSED`；如保存内容类型提示，必须明确为非权威提示，最终类型和证据资格留给 Ticket 04。
@@ -82,3 +82,9 @@
   3. 重述/版本冲突处理——`restatement_status` 目前硬编码为 `ORIGINAL`，没有检测发行人明确重述声明或标记 `VERSION_CONFLICT` 的逻辑。
   4. 政府资金调整白名单之外候选的 `ADJUSTMENT_TBD` 记录——代码里没有生成该状态，白名单外的候选目前没有被显式登记。
   另外，Embedding 实验（`ADOPTED`/`IMPROVED_NOT_ADOPTED`/`REJECTED`）本次未触发也未实现，因为当前 `retrieval_status` 已是 PASS，按规则不需要该实验；暂标记为不适用，不阻塞本 ticket。
+- 2026-07-21：对上一条 4 项缺口做了排查与收尾（走 A：把 ticket 做扎实再进 04）。以真实 v3 候选事实（20114 条）为依据判定与实现：
+  1. 制程/应用分类合计（#1）：**已实现**。对 `APPLICATION_REVENUE_SHARE`/`WAFER_SIZE_REVENUE_SHARE` 事实新增 `composition_check`；v3 无任何“事前确认同分母、互斥且完整”的分类集合，故固定输出 `CHECK_NOT_APPLICABLE`（reason `SET_NOT_CONFIRMED_COMPLETE_EXCLUSIVE_SAME_DENOMINATOR`），绝不由接近 100% 反推资格。`TAXONOMY_CHANGE` 作为保留状态：v3 每个集合只有单一固定 taxonomy 版本，无跨期分类变化可触发，故不建跨期 taxonomy diff（架构克制）。新增 fixture `test_composition_share_records_not_applicable_total_check`。
+  2. 资本开支区分（#2）：**核实后确认已满足**。5 类 capex（实际/现金流/承诺/指引/项目投资）在 `rules/accounting.yaml` 已各自映射到不同 `metric_id`，规整阶段无任何跨 capex 派生或替代；v3 候选中实际只出现 `CAPITAL_EXPENDITURE_INCURRED`（22 条）。新增 fixture `test_capex_metrics_stay_distinct_without_substitution` 锁定“不同指标、不合并、不替代”。
+  3. 重述/`VERSION_CONFLICT`（#3）：**登记为限制，不实现检测**。v3 的 20 份材料中不存在“发行人在 `as_of` 前明确声明、同期间同口径原值与重述值并存”的场景；出现的“revised/restated/retrospective”均为 CSRC 非经常性损益规则修订、公司章程修订、或新准则追溯性*采用*，非财务数值重述。跨报表出现的数值差异全部来自表格解析（本期/上期列、同比列共享一个 span 被归到同一期间）的口径噪声——若据此建 naive 数值差检测会大量误报 `VERSION_CONFLICT`，反而破坏正确性。故按“黄金案例优先 + 架构克制”保持 `restatement_status=ORIGINAL`，不建通用版本图；该路径为未触发路径，待真出现明确重述材料时再实现。
+  4. 政府资金 `ADJUSTMENT_TBD`（#4）：**已实现**。新增 `tag_government_funding_candidates`：只有真正喂入确认敏感性的“可分离、已确认进营业利润”金额记 `ADJUSTMENT_CONFIRMED`；其余 `GOVERNMENT_FUNDING_RECOGNIZED_IN_PNL` 候选全部保留并标 `adjustment_candidate_status=ADJUSTMENT_TBD` + 固定原因码 `NOT_PROVEN_IN_BASE_METRIC`（取自 `rules.adjustment_tbd_reason_codes`），不丢弃、不静默调整、不建审批框架。v3 中 15 条政府资金候选全部落入 TBD。新增 fixture `test_non_whitelist_government_funding_is_adjustment_tbd`。
+  收尾验证：`retrieval_status=PASS`、`normalization_run_status=WARN`（PARTIAL 均登记 gap）、两次干净重建哈希一致、全量 `pytest tests/` 50 passed。
