@@ -1,0 +1,327 @@
+# Source, conflict, and validation rules for govern-and-validate-research-evidence.
+# This is the single authoritative definition. The Skill and the script both read
+# this one file and this one rule_version; neither copies these rules nor adds a
+# rule DSL/plugin mechanism. Tables are fixed and case-specific to Snapshot v3.
+rule_version: smic-v3-source-governance-v1
+snapshot_id: smic-a283e95e2c9e8068
+
+# ---------------------------------------------------------------------------
+# 20-row fixed material governance table (one row per frozen v3 material).
+# source_tier reflects only originality and traceability, not truth. material_category
+# drives claim_type ahead of record_kind. source_group_id groups materials that carry
+# the SAME original disclosure (not by URL, domain, or platform).
+# ---------------------------------------------------------------------------
+material_governance:
+  - material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    source_tier: T1
+    material_category: ISSUER_STATUTORY_DISCLOSURE
+    source_group_id: SG_SMIC_2023_ANNUAL_IFRS
+  - material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    source_tier: T1
+    material_category: ISSUER_STATUTORY_DISCLOSURE
+    source_group_id: SG_SMIC_2023_ANNUAL_CAS
+  - material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    source_tier: T1
+    material_category: ISSUER_STATUTORY_DISCLOSURE
+    source_group_id: SG_SMIC_2024_ANNUAL_IFRS
+  - material_id: MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    source_tier: T1
+    material_category: ISSUER_STATUTORY_DISCLOSURE
+    source_group_id: SG_SMIC_2024_ANNUAL_CAS
+  - material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    source_tier: T1
+    material_category: ISSUER_STATUTORY_DISCLOSURE
+    source_group_id: SG_SMIC_2025_ANNUAL_IFRS
+  - material_id: MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+    source_tier: T1
+    material_category: ISSUER_STATUTORY_DISCLOSURE
+    source_group_id: SG_SMIC_2025_ANNUAL_CAS
+  - material_id: MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+    source_tier: T1
+    material_category: ISSUER_STATUTORY_DISCLOSURE
+    source_group_id: SG_SMIC_2025_H1
+  - material_id: MATERIAL_SMIC_2025_Q3_A_SHARE_REPORT_CNINFO
+    source_tier: T1
+    material_category: ISSUER_STATUTORY_DISCLOSURE
+    source_group_id: SG_SMIC_2025_Q3_A_SHARE
+  - material_id: MATERIAL_SMIC_SMNC_49_TRANSACTION_SUMMARY_CNINFO
+    source_tier: T1
+    material_category: ISSUER_STATUTORY_DISCLOSURE
+    source_group_id: SG_SMIC_SMNC_49_TRANSACTION
+  - material_id: MATERIAL_SMIC_2025_Q2_RESULTS
+    source_tier: T1
+    material_category: ISSUER_STATUTORY_DISCLOSURE
+    source_group_id: SG_SMIC_2025_Q2_RESULTS
+  - material_id: MATERIAL_SMIC_2025_Q3_RESULTS
+    source_tier: T1
+    material_category: ISSUER_STATUTORY_DISCLOSURE
+    source_group_id: SG_SMIC_2025_Q3_RESULTS
+  - material_id: MATERIAL_SMIC_2025_Q4_RESULTS
+    source_tier: T1
+    material_category: ISSUER_STATUTORY_DISCLOSURE
+    source_group_id: SG_SMIC_2025_Q4_RESULTS
+  - material_id: MATERIAL_SMIC_2026_Q1_RESULTS
+    source_tier: T1
+    material_category: ISSUER_STATUTORY_DISCLOSURE
+    # Grouped with the Shanghai Securities News full-text reproduction of the same
+    # 2026 Q1 issuer disclosure. Reprints do not add an independent source.
+    source_group_id: SG_SMIC_2026_Q1_DISCLOSURE
+  - material_id: MATERIAL_SIA_2023_ANNUAL_SALES
+    source_tier: T2
+    material_category: INDUSTRY_ASSOCIATION
+    source_group_id: SG_SIA_2023_ANNUAL
+  - material_id: MATERIAL_SIA_2024_ANNUAL_SALES
+    source_tier: T2
+    material_category: INDUSTRY_ASSOCIATION
+    source_group_id: SG_SIA_2024_ANNUAL
+  - material_id: MATERIAL_SIA_2025_ANNUAL_SALES
+    source_tier: T2
+    material_category: INDUSTRY_ASSOCIATION
+    source_group_id: SG_SIA_2025_ANNUAL
+  - material_id: MATERIAL_SIA_2026_Q1_SALES
+    source_tier: T2
+    material_category: INDUSTRY_ASSOCIATION
+    source_group_id: SG_SIA_2026_Q1
+  - material_id: MATERIAL_SMIC_2026_Q1_A_SHARE_REPORT_CNSTOCK
+    source_tier: T2
+    # Narrow exception: designated-disclosure media carrying the issuer's full,
+    # unedited 2026 Q1 statutory text. T2 (not T1) because it is not the issuer's
+    # own primary channel, but it is not downgraded to third-party either.
+    tier_rationale: DESIGNATED_DISCLOSURE_MEDIA_FULL_TEXT_UNEDITED
+    material_category: DESIGNATED_MEDIA_FULL_TEXT
+    source_group_id: SG_SMIC_2026_Q1_DISCLOSURE
+  - material_id: MATERIAL_SMIC_2025_Q2_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    source_tier: T3
+    material_category: THIRD_PARTY_TRANSCRIPT
+    source_group_id: SG_ALPHASPREAD_2025_Q2_TRANSCRIPT
+  - material_id: MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    source_tier: T3
+    material_category: THIRD_PARTY_TRANSCRIPT
+    source_group_id: SG_ALPHASPREAD_2026_Q1_TRANSCRIPT
+
+# Record-level tier override inside T3 transcripts: the AlphaSpread AI summary block
+# is a machine-generated third-party rewrite, downgraded to T4.
+record_tier_overrides:
+  ai_summary_downgrade:
+    to_tier: T4
+    applies_when_speaker_in:
+      - ALPHASPREAD_AI_SUMMARY
+    applies_when_section_startswith: "AI Summary"
+
+# ---------------------------------------------------------------------------
+# claim_type rules. material_category is evaluated BEFORE record_kind so that numeric
+# records inside a transcript still receive management/third-party judgement instead of
+# being read as REPORTED_FACT. ANALYTIC_INFERENCE is not produced in this stage (count 0).
+# ---------------------------------------------------------------------------
+claim_type_rules:
+  transcript:
+    ai_summary: THIRD_PARTY_VIEW      # speaker ALPHASPREAD_AI_SUMMARY / "AI Summary" section
+    host_operator: THIRD_PARTY_VIEW   # speaker OPERATOR
+    management_forward_looking: MANAGEMENT_GUIDANCE
+    management_other: MANAGEMENT_ASSERTION
+    host_operator_speakers:
+      - OPERATOR
+  industry_association: THIRD_PARTY_VIEW
+  designated_media_full_text: REPORTED_FACT
+  issuer_statutory_disclosure:
+    numeric: REPORTED_FACT
+    derived: DERIVED_METRIC   # value_origin other than SOURCE_REPORTED (none in v3)
+    text: REPORTED_FACT
+  # Forward-looking / uncertainty markers that split management speech into
+  # GUIDANCE vs ASSERTION. Structural signals (non-null target_period, period_nature
+  # FUTURE, or non-null uncertainty_text) also mark GUIDANCE.
+  forward_looking_markers:
+    - expect
+    - anticipate
+    - outlook
+    - guidance
+    - forecast
+    - "next quarter"
+    - "coming quarter"
+    - "full year"
+    - "full-year"
+    - "second half"
+    - "going forward"
+    - 预计
+    - 预期
+    - 指引
+    - 展望
+    - 有望
+    - 目标
+    - 计划
+    - 将会
+    - 未来
+
+# ---------------------------------------------------------------------------
+# Evidence status. Three-value enum decided by short-circuit priority
+# QUARANTINED > RESTRICTED > USABLE. There is no separate can_support_bearing_finding
+# boolean (that is exactly the USABLE meaning). permitted_use is derived from status.
+# ---------------------------------------------------------------------------
+evidence_status:
+  priority: [QUARANTINED, RESTRICTED, USABLE]
+  quarantined_when:
+    material_as_of_ineligible: true
+    content_locator_unresolvable: true      # empty locator or material not parsed/missing
+    normalization_status_blocked: true      # normalization_status == BLOCKED
+  restricted_when:
+    normalization_status_partial: true      # normalization_status == PARTIAL
+    tier_in: [T3, T4]
+    conflict_unresolved: true               # conflicting parties stay presentable, not isolated
+  permitted_use:
+    USABLE: CITE_AND_BEAR
+    RESTRICTED: CITE_ONLY
+    QUARANTINED: NOT_USABLE
+
+# source_use_note_status only records whether the frozen material carried known
+# limitations. It is recorded for the FR-043 check and never changes evidence_status;
+# there is no PROHIBITED status.
+source_use_note:
+  status_values: [RECORDED, RECORDED_WITH_LIMITATIONS]
+  limitation_note_keys: [known_limitations, limitations, limitation]
+
+# ---------------------------------------------------------------------------
+# Conflict detection. Restricted to a manually verified record-level fact_id whitelist
+# (see docs/adr/0003). Comparable key must match on every field below; only groups whose
+# members carry differing numeric values are conflicts. Metric class decides which
+# comparability fields are required vs NOT_APPLICABLE.
+# ---------------------------------------------------------------------------
+conflict:
+  comparable_key_fields:
+    - entity_id
+    - metric_id
+    - period_start
+    - period_end
+    - period_type
+    - accounting_standard
+    - consolidation_scope
+    - target_currency
+    - target_unit
+    - claim_type
+  metric_class:
+    REVENUE: AMOUNT
+    GROSS_PROFIT: AMOUNT
+    PROFIT_FROM_OPERATIONS: AMOUNT
+    PROFIT_ATTRIBUTABLE_TO_OWNERS: AMOUNT
+    GROSS_MARGIN: RATIO
+  metric_class_required_fields:
+    AMOUNT: [target_currency, target_unit]   # both PRESENT
+    RATIO: []                                # currency + unit are NOT_APPLICABLE
+    PHYSICAL_COUNT: [target_unit]            # unit PRESENT
+  # audit_status is NOT part of the comparable key; it only feeds resolution priority.
+  # AMBIGUOUS is treated as UNKNOWN (no "audited-preferred" boost, no isolation).
+  audit_priority: [AUDITED, REVIEWED, UNAUDITED, UNKNOWN]
+  # FR-042 resolution order applied within a conflict group. Values are never averaged
+  # or silently chosen; if no single winner survives, the group is CONFLICT_UNRESOLVED.
+  resolution_order:
+    - COMPARABILITY          # already enforced by the comparable key
+    - ELIGIBILITY            # only whitelisted eligible records enter a group
+    - SAME_SOURCE_DEDUP      # collapse one source_group to one representative; no reprint voting
+    - RESTATEMENT            # restated preferred over original (no restatements detected in v3)
+    - AUDIT_STATUS           # audit_priority order
+    - STATUTORY_DISCLOSURE   # issuer statutory disclosure preferred
+    - SOURCE_TIER            # T1 > T2 > T3 > T4
+  resolution_rule_id: RESOLVE_METRIC_CONFLICT_FR042_V1
+  # Coarse exclusion reason codes frozen into every non-evaluated record. Fine-grained
+  # worksheet labels (noise/wrong-period) are NOT frozen into evidence or rules.
+  exclusion_reason_codes:
+    text_proposition: TEXT_CONFLICT_OUT_OF_SCOPE           # conflict_status NOT_APPLICABLE
+    not_in_whitelist: NOT_IN_CONFLICT_WHITELIST            # numeric, NOT_EVALUATED
+    missing_metric_id: MISSING_METRIC_ID                   # numeric, NOT_EVALUATED
+    missing_comparability_key: MISSING_COMPARABILITY_KEY   # numeric, NOT_EVALUATED
+
+# ---------------------------------------------------------------------------
+# Snapshot-scoped temporary override: the manually verified record-level conflict
+# eligibility whitelist. This lists ONLY the INCLUDE records; everything else is
+# ineligible by default. It is bound to this snapshot and rationale and is NOT mixed
+# into the tier table or metric rules. Validation compares the FULL signature of each
+# listed record and fails closed on any mismatch (see docs/adr/0003).
+# ---------------------------------------------------------------------------
+snapshot_conflict_eligibility_overrides:
+  snapshot_id: smic-a283e95e2c9e8068
+  rationale: UPSTREAM_PERIOD_CLASSIFICATION_UNRELIABLE
+  verified_facts:
+    - fact_id: FACT_114d9918fd74ebc063fd6fa8
+      eligibility: INCLUDE
+      review_reason: MANUALLY_VERIFIED_FISCAL_YEAR
+      signature:
+        material_id: MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+        metric_id: PROFIT_ATTRIBUTABLE_TO_OWNERS
+        period_start: "2024-01-01"
+        period_end: "2024-12-31"
+        period_type: FISCAL_YEAR
+        accounting_standard: CAS
+        target_currency: CNY
+        target_unit: MONEY
+        normalized_value: "3698665"
+        span_hash: sha256:119d00c53022c59aa486fb73a248b2573cb8936b3f46e8fe170c9f22ffa8116b
+    - fact_id: FACT_857121d6745122841bdbf89b
+      eligibility: INCLUDE
+      review_reason: MANUALLY_VERIFIED_FISCAL_YEAR
+      signature:
+        material_id: MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+        metric_id: PROFIT_ATTRIBUTABLE_TO_OWNERS
+        period_start: "2024-01-01"
+        period_end: "2024-12-31"
+        period_type: FISCAL_YEAR
+        accounting_standard: IFRS
+        target_currency: CNY
+        target_unit: MONEY
+        normalized_value: "3517877"
+        span_hash: sha256:c14c95d366bf8cb23fc731c7247eb2aa56003cbbb246caf89160fd65ab5fafc4
+
+# ---------------------------------------------------------------------------
+# Legal state combinations frozen as assertions. Any evidence record violating one of
+# these is an integrity FAIL (state_combination_legality check).
+# ---------------------------------------------------------------------------
+legal_state_combinations:
+  quarantined_requires_reason: true          # QUARANTINED must carry >=1 quarantine reason code
+  quarantined_permitted_use: NOT_USABLE
+  conflict_unresolved_not_usable: true       # CONFLICT_UNRESOLVED => not USABLE
+  tier_t3_t4_not_usable: true                # T3/T4 => not USABLE
+  t4_only_for_ai_summary: true               # record tier T4 only on AI-summary claim
+  included_requires_whitelist: true          # conflict_eligibility INCLUDED only for whitelisted numeric
+  text_conflict_status: NOT_APPLICABLE       # TEXT_PROPOSITION => conflict_status NOT_APPLICABLE
+  analytic_inference_forbidden: true         # claim_type ANALYTIC_INFERENCE never produced
+
+# ---------------------------------------------------------------------------
+# FR-043 deterministic validation: the 13 named checks. Each emits a per-check status
+# and reason. The RAG check (locator_chain_consistency) verifies ID-reference
+# integrity and source_chunk_text_hash only; it does NOT re-verify locator accuracy,
+# which is inherited from the Ticket 03 retrieval acceptance.
+# ---------------------------------------------------------------------------
+validation_checks:
+  - hash_integrity
+  - as_of_eligibility
+  - content_locator_resolvable
+  - required_fields
+  - unit_currency_period
+  - formula_recomputation
+  - source_group_consistency
+  - conflict_detection
+  - isolation_quarantine
+  - id_reference_integrity
+  - locator_chain_consistency
+  - state_combination_legality
+  - whitelist_signature
+required_evidence_fields:
+  - evidence_id
+  - fact_id
+  - chunk_id
+  - material_id
+  - snapshot_id
+  - record_kind
+  - source_tier
+  - source_group_id
+  - claim_type
+  - evidence_status
+  - permitted_use
+  - conflict_status
+  - conflict_eligibility
+  - source_use_note_status
+# Recompute only reconciliations Ticket 03 already asserted as determinate; 04 adds no
+# new formulas. UNKNOWN reconciliations carry through as NOT_RECOMPUTABLE.
+formula_recomputation:
+  reconciliation_recomputable_statuses: [PASS]
+  amount_tolerance: "0"
+inherited_guarantees:
+  locator_accuracy: "Content-locator accuracy is inherited from the Ticket 03 retrieval acceptance; this stage re-checks only reference integrity and chunk-text hashes."
