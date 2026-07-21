@@ -4,7 +4,7 @@
 
 **Blocked by:** 03 — 治理上下文并生成规整事实。
 
-**Status:** ready-for-agent
+**Status:** done
 
 - [ ] 对 `ACQUIRED_UNASSESSED` 材料及候选事实最终确定 T1–T4、六类 `claim_type`、同源/转载关系、冲突、隔离、允许用途和是否可支撑发现；采集状态本身不被回写。
 - [ ] 信源等级只表示原始程度和可追溯性，管理层/第三方观点不会被改写为报告事实；来源使用说明和已知限制在此阶段评估，而不是用 `restriction_status=USABLE` 作为采集前提。

@@ -4,7 +4,7 @@
 
 **Blocked by:** 02 — 已完成；Snapshot v2 构建后，两份经用户确认的 transcript 通过新身份晋升为当前 Snapshot v3。
 
-**Status:** ready-for-agent
+**Status:** done
 
 - [x] 上下文片段均有 `chunk_id`，可回溯 `material_id`，并保留页码、章节、表格/数据行、文本哈希及数字所需的表头、单位、期间和脚注；`context.jsonl` 保存全部合格片段并独立记录 `candidate_context`、命中查询和选择原因，规整阶段只处理候选上下文。
 - [x] 权威片段采用结构原子而非固定长度重叠窗口：PDF 正文按章节内段落组、表格按携带表头/单位/期间/脚注的表或行组、HTML 按标题栏目、transcript 按带所属栏目的 speaker turn 切分；命中可关联相邻片段但不生成新 chunk，`chunk_id` 不受查询和排名变化影响。
