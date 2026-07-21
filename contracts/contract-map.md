@@ -236,11 +236,23 @@ Ticket 03 初始调整白名单只包含上述政府资金敏感性。资产处�
 
 按 D1-D7 保存发现。每项至少包含：`finding_id`、维度、命题、`finding`、`evidence_score`、支持/反驳 `evidence_id`、推理说明、替代解释、限制、gap 引用和修订版本。
 
-允许的 `finding`：`SUPPORTED`、`MIXED`、`NOT_SUPPORTED`、`UNKNOWN`。允许的 `evidence_score`：`0`（UNSCORABLE）、`1`（LIMITED）、`2`（ADEQUATE）、`3`（STRONG）。分数表示证据强度，不表示公司质量或投资吸引力；分数 0 必须对应 UNKNOWN。
+本 Demo 每个维度恰有一项发现，因此 `finding_id` 即 `dimension_id`，不另设重复标识；修订版本另存 `findings-revised.yaml`，原始 `findings.yaml` 保持不变。
+
+允许的 `finding`：`SUPPORTED`、`MIXED`、`NOT_SUPPORTED`、`UNKNOWN`。允许的 `evidence_score`：`0`（UNSCORABLE）、`1`（LIMITED）、`2`（ADEQUATE）、`3`（STRONG）。分数表示证据强度，不表示公司质量或投资吸引力；分数 0 必须对应 UNKNOWN，反向不成立。分数由脚本从被选中的证据反算，模型不产出分数；`overall_score` 是脚本写入的常量 `NOT_APPLICABLE`。
+
+### `analysis-inputs.jsonl`
+
+分析阶段的确定性产物：首条 `SELECTION_SUMMARY` 记录每维的候选/选中 chunk 数、字符数、同源组数、最低选中分和因预算停止的 chunk；其后是逐条 `CANDIDATE_CHUNK` 与 `CANDIDATE_EVIDENCE`。它是该维分析的封闭证据集，模型 prompt 由脚本从中拼装，发现不得引用其外的任何 `evidence_id`。
+
+### `analysis-attempts.jsonl` 与 `analysis-validation.yaml`
+
+`analysis-attempts.jsonl` 保存每个维度每次模型输出的全文与校验错误（每维最多两次）。`analysis-validation.yaml` 给出 12 项具名校验的 PASS/WARN/FAIL、被拒绝尝试摘要和 `analysis_run_status`。由于判断层是模型调用，本阶段不承诺逐字重建；保证来自校验通过与全过程留痕。
 
 ### `challenges.yaml`
 
 保存最多两轮质询。每项至少包含：`challenge_id`、轮次、质询类型、目标 `finding_id`/`evidence_id`、问题、允许复核范围、答复、处置、修订前后引用和未解决影响。处置只能是 `RESOLVED_NO_CHANGE`、`RESOLVED_WITH_REVISION`、`UNRESOLVED_DOWNGRADED`、`BLOCKING`。
+
+每项由脚本写入 `review_count: 1`（每个问题只做一次定向复核），并在两轮后按固定触发清单决定降级还是 `BLOCKING`；不设与 `BLOCKING` 语义重叠的 `severity` 轴。该文件同时保存对修订后发现重跑的全部分析校验。
 
 ### `gaps.yaml`
 
@@ -262,8 +274,8 @@ Ticket 03 初始调整白名单只包含上述政府资金敏感性。资产处�
 | 2 | `govern-research-context` | `case.yaml`、快照与可提取待治理材料 | `context.jsonl`、RAG 检索核验结果、缺口 |
 | 3 | `normalize-research-facts` | 上下文、会计规则 | `normalized-facts.jsonl`、缺口 |
 | 4 | `govern-and-validate-research-evidence` | 材料、规整事实、信源与冲突规则 | `governed-evidence.jsonl`、`validation.yaml`、缺口 |
-| 5 | `analyze-and-score-research-findings` | 可用治理证据、评分规则 | `findings.yaml`、缺口 |
-| 6 | `challenge-research-findings` | 证据、发现、质询规则 | `challenges.yaml`，向编排器返回需复核目标 |
+| 5 | `analyze-and-score-research-findings` | 可用治理证据、上下文、分析规则 | `analysis-inputs.jsonl`、`findings.yaml`、`analysis-attempts.jsonl`、`analysis-validation.yaml`、缺口 |
+| 6 | `challenge-research-findings` | 证据、发现、分析规则 | `challenges.yaml`、`findings-revised.yaml`、缺口，向编排器返回需复核目标 |
 | 7 | `generate-research-report` | 所有权威产物、报告规则 | `report.md`、`manifest.yaml` |
 | 编排 | `single-stock-research-orchestrator` | `case.yaml` 和阶段状态 | 固定顺序、停止/降级决策、最多两轮定向回路 |
 
@@ -274,11 +286,13 @@ Ticket 03 初始调整白名单只包含上述政府资金敏感性。资产处�
 ```text
 rules/
   accounting.yaml
+  context-retrieval.yaml
   source-governance.yaml
-  scoring.yaml
-  challenge.yaml
+  analysis.yaml
   report.yaml
 ```
+
+`analysis.yaml` 同时承载评分、承重指标白名单、禁止输出词表和质询回路参数：本 Demo 的分析与质询共用一套冻结常量，拆成两份规则文件只会制造需要同步的两处真相。
 
 Skills 只引用规则版本和解释执行职责，不复制完整规则正文。配套脚本集中放在项目级 `scripts/`，不随各 Skill 复制，也不建设 SDK、插件接口或动态规则引擎。
 

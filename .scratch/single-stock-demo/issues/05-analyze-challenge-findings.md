@@ -4,16 +4,16 @@
 
 **Blocked by:** 04 — 治理并核验证据。
 
-**Status:** ready-for-agent
+**Status:** done
 
-- [ ] D1–D7 每个维度输出合法的 `finding`、`evidence_score`、支持证据、反证、替代解释、限制和 gap；证据分 0 必须对应 UNKNOWN。
-- [ ] 证据分只表示当前发现的证据强度，高分可以对应 `NOT_SUPPORTED`；不生成加权总分、星级、投资评级，汇总固定为 `overall_score: NOT_APPLICABLE`。
-- [ ] 发现只能引用状态允许且未隔离的 `evidence_id`；管理层解释在没有独立证据时仍是 `MANAGEMENT_ASSERTION`，相关性不会被自动表述为因果，也不会静默重复归因。
-- [ ] D7 列出可追溯的后续观察指标和明确判定逻辑；只有冻结数据、确认规则或可复算公式支持时才给数值阈值，否则为 UNKNOWN/TBD。
-- [ ] 质询覆盖来源与溯源、会计与可比性、归因与因果、证伪与缺证四类，并明确指向 `finding_id` 或 `evidence_id`，不进行泛化的看多/看空辩论。
-- [ ] 质询只能使用当前冻结快照和 `as_of` 之前材料；每个问题只有一次定向复核，全流程最多两轮，质询不能直接修改发现。
-- [ ] 每项质询使用四种允许处置之一，保留修订前后与理由；两轮后未解决的问题被降级、标记 BLOCKING 或写入 gap，不无限循环。
-- [ ] 分析和质询输出不包含买入/卖出/持有、仓位、目标价、估值锚、投资吸引力判断或系统预测，并有正反 fixtures 验证边界。
+- [x] D1–D7 每个维度输出合法的 `finding`、`evidence_score`、支持证据、反证、替代解释、限制和 gap；证据分 0 必须对应 UNKNOWN。
+- [x] 证据分只表示当前发现的证据强度，高分可以对应 `NOT_SUPPORTED`；不生成加权总分、星级、投资评级，汇总固定为 `overall_score: NOT_APPLICABLE`。
+- [x] 发现只能引用状态允许且未隔离的 `evidence_id`；管理层解释在没有独立证据时仍是 `MANAGEMENT_ASSERTION`，相关性不会被自动表述为因果，也不会静默重复归因。
+- [x] D7 列出可追溯的后续观察指标和明确判定逻辑；只有冻结数据、确认规则或可复算公式支持时才给数值阈值，否则为 UNKNOWN/TBD。
+- [x] 质询覆盖来源与溯源、会计与可比性、归因与因果、证伪与缺证四类，并明确指向 `finding_id` 或 `evidence_id`，不进行泛化的看多/看空辩论。
+- [x] 质询只能使用当前冻结快照和 `as_of` 之前材料；每个问题只有一次定向复核，全流程最多两轮，质询不能直接修改发现。
+- [x] 每项质询使用四种允许处置之一，保留修订前后与理由；两轮后未解决的问题被降级、标记 BLOCKING 或写入 gap，不无限循环。
+- [x] 分析和质询输出不包含买入/卖出/持有、仓位、目标价、估值锚、投资吸引力判断或系统预测，并有正反 fixtures 验证边界。
 
 ## Comments
 
@@ -142,3 +142,26 @@
 #### 实现前待办
 
 无。规划已逐项确认冻结，含承重指标白名单。实现时把白名单写入规则文件（与 04 同样放在冻结规则文件里，绑定 `snapshot_id`，不新建规则解释器）。
+
+### 实现结果（2026-07-22）
+
+三层实现：`scripts/analyze_and_score_research_findings.py`（`select` / `prompt` / `finalize`）、逐维模型判断冻结成文件、`scripts/challenge_research_findings.py`。冻结常量集中在 `rules/analysis.yaml`（`smic-v3-analysis-v1`），承重指标白名单同时硬编码在脚本里由 `frozen_rule_binding` 逐项比对。Skills：`analyze-and-score-research-findings`、`challenge-research-findings`。
+
+真实 v3 运行（`tmp/ticket05-inputs` / `-model` / `-final` / `-challenge`）：
+
+- 选取层与 04 实测承载力一致：各维可承重数值 D1 74 / D2 10 / D3 60 / D4 42 / D5 0 / D6 58 / D7 18；白名单内数值 D1 55、D3 1、D4 42、D6 20，D2/D5/D7 为 0。各维选中字符 62k–66k（预算 60k + 10% 上限内），同源组 3–12 个。
+- **有界重生成在真实数据上跑通**：D1/D2/D3 第一次输出因未归因因果连接词被拒，第二次通过；D4–D7 一次通过。最终 12 项校验全 PASS，`analysis_run_status: PASS`，两次输出与两次错误全部留在 `analysis-attempts.jsonl`。
+- 分数：D1 3、D2 2、D3 2、D4 3、D5 2、D6 3、D7 2。D5 为 `UNKNOWN` 且分数 2（证据存在但方向不明），验证了「0 必须 UNKNOWN、反向不成立」。
+- D7 五条 `watch_indicators` 中四条阈值为 `UNKNOWN`，唯一带数字的一条依据是来源原文 "gross margin is expected to be in the range of 18% to 20%."，属 `SOURCE_DISCLOSED_THRESHOLD`。
+- 质询五条覆盖四类：伪多源（D1 `RESOLVED_NO_CHANGE`、D2 `RESOLVED_WITH_REVISION` 使方向 SUPPORTED→MIXED）、归因（D3 把公司 "product mix change" 原因语句移入 `management_assertions`）、会计可比性（D4 折旧记录未承重，`RESOLVED_NO_CHANGE`）、证伪缺证（D7 第二轮 `UNRESOLVED_DOWNGRADED`，MIXED→UNKNOWN 并记 gap）。`challenge_run_status: WARN`，修订后 12 项校验全 PASS。
+
+与冻结规划的偏差，均为审查中发现并已修正或如实记录：
+
+1. **§5 因果词表补 `因而`/`从而`**。原表列了 `因此` 却漏掉同义连接词，实测 D1/D2/D3 首版全部用 `因而` 绕过了这道闸——闸门形同虚设。补齐后三维重生成，这也是上面那次真实重生成的来源。同时补 `使得`/`造成`/`caused`/`resulted in`。
+2. **§3 空白名单的后果改为结构化 gap**。原实现只写在规则文件注释里，违反 FR-080「不得用自由文本代替结构化 gap」。现每个空白名单维度产出 `GAP_ANALYSIS_NO_BEARING_METRIC_<dim>`，其中 D7 条目载明「OCF 记录存在但未被冻结 D7 查询族命中」。
+3. **§9 `frozen_rule_binding` 的上下文断言原本恒真**（拿规则文件的值和它自己比）。现把 `context_rule_version` 写进 `SELECTION_SUMMARY`，finalize 拿冻结记录里的值去比，并补了漂移测试。
+4. **§3 分数绑定移入逐次校验闸**。原来分数在采纳后才反算，`score==0 必须 UNKNOWN` 只能事后 FAIL，§8 的重生成永远触发不了。现进入 `validate_finding`。（`overlap_note` 跨维规则做不到这一点——单维判断看不见其他维度——仍只作全局校验。）
+5. **§6 升级判定改为只在最终轮评估**（schema/修订失败仍立即 BLOCKING）。原实现任何一轮的未决处置都升级，与「两轮未决时」不符。
+6. **删掉 `selection-summary.yaml`**。§2 明写「不另开审计文件」，该文件是重复产物；`SELECTION_SUMMARY` 记录是唯一来源，`skipped_due_budget[]` 也改为完整列表不再抽样。
+7. 校验逐项状态描述的是**被采纳**的发现；被拒绝的模型输出不进入 `findings.yaml`，其命中词与错误码写入 `analysis-validation.yaml` 的 `rejected_attempts` 与 `analysis-attempts.jsonl`。强制归零的记录不携带 `validation_errors`，避免把被禁词表命中的原文复制进主产物。
+8. 词表把「持有」限定为「建议持有 / 继续持有 / 持有评级」，避免「公司持有的现金」这类误报；`management_assertion_claim_types` 含 `MANAGEMENT_FORWARD_LOOKING`；`blocking_triggers` 增补 `CHALLENGE_SCHEMA_INVALID` 与 `REVISION_VALIDATION_FAILED`，使脚本实际能发出的触发码全部在规则文件中声明；`downgrade_ladder` 是 `UNRESOLVED_DOWNGRADED` 的确定性实现。

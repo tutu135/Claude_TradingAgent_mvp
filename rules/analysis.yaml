@@ -1,0 +1,284 @@
+# Analysis and challenge rules for Ticket 05 (analyze-and-score-research-findings,
+# challenge-research-findings). This is the single authoritative definition; the two
+# Skills and the two scripts read this one file and this one rule_version. Tables are
+# fixed and case-specific to Snapshot v3 -- there is no rule DSL and no plugin point.
+rule_version: smic-v3-analysis-v1
+snapshot_id: smic-a283e95e2c9e8068
+
+# The analysis layer only accepts context governed by this frozen retrieval rule
+# version. Changing Ticket 03 query families would silently change what each
+# dimension can bear, so the binding is asserted, not assumed.
+required_context_rule_version: smic-v3-context-retrieval-v3
+
+# ---------------------------------------------------------------------------
+# FR-050 dimensions. dimension_id doubles as the Ticket 03 retrieval query_family_id.
+# ---------------------------------------------------------------------------
+dimensions:
+  - D1_PROFITABILITY_CHANGE
+  - D2_UTILIZATION_EFFECT
+  - D3_MIX_EFFECT
+  - D4_CAPEX_CONVERSION
+  - D5_CYCLE_EXPLANATION
+  - D6_NONCORE_EXPLANATION
+  - D7_SUSTAINABILITY_EVIDENCE
+
+# FR-051 report summary vector. overall_score is a written constant, never a model output.
+summary_vector:
+  profitability_change: D1_PROFITABILITY_CHANGE
+  sustainability_support: D7_SUSTAINABILITY_EVIDENCE
+  driver_attribution:
+    - D2_UTILIZATION_EFFECT
+    - D3_MIX_EFFECT
+    - D4_CAPEX_CONVERSION
+  alternative_explanations:
+    - D5_CYCLE_EXPLANATION
+    - D6_NONCORE_EXPLANATION
+  overall_score: NOT_APPLICABLE
+
+# ---------------------------------------------------------------------------
+# Deterministic candidate-set selection (ADR 0004 selection layer).
+# The selection unit is the chunk, not the proposition: retrieval scores live on
+# chunks, so a plain top-N over propositions collapses into a single chunk and a
+# single source group.
+# ---------------------------------------------------------------------------
+selection:
+  text_budget_chars: 60000
+  budget_overshoot_ratio: 1.10
+  max_selected_chunks: 64
+  seed_source_groups: 3
+
+# ---------------------------------------------------------------------------
+# Bearing metric whitelist (frozen; see ticket 05 comment section 3 and ADR 0004).
+# A metric enters a dimension iff it is a legitimate bearing metric for that
+# dimension AND has at least one USABLE record in that dimension's candidate set.
+# Metrics outside the list may still appear as background or as a limitation; they
+# never carry the dimension's direction or its evidence score. There is deliberately
+# no second "background metric" list -- omission is the statement.
+# ---------------------------------------------------------------------------
+bearing_metric_whitelist:
+  D1_PROFITABILITY_CHANGE:
+    - GROSS_MARGIN
+    - GROSS_PROFIT
+    - PROFIT_FROM_OPERATIONS
+    - PROFIT_ATTRIBUTABLE_TO_OWNERS
+    - REVENUE
+    - COST_OF_SALES
+  # Empty: this dimension's 10 USABLE numerics are capex/revenue/operating profit,
+  # none of them a utilization or capacity metric.
+  D2_UTILIZATION_EFFECT: []
+  D3_MIX_EFFECT:
+    - ASP_SOURCE_REPORTED
+  D4_CAPEX_CONVERSION:
+    - CAPITAL_EXPENDITURE_INCURRED
+    - DEPRECIATION_EXPENSE
+  # Empty: this dimension has zero USABLE numeric observations in v3.
+  D5_CYCLE_EXPLANATION: []
+  D6_NONCORE_EXPLANATION:
+    - GOVERNMENT_FUNDING_RECOGNIZED_IN_PNL
+    - OTHER_OPERATING_INCOME
+  # Empty: the only legitimate bearing metric (NET_CASH_FROM_OPERATING_ACTIVITIES) has
+  # six USABLE records, none of which the frozen D7 query family retrieves. The 18
+  # numerics this dimension does hold are outcome metrics; using them to prove
+  # sustainability is circular. Recorded as a gap instead.
+  D7_SUSTAINABILITY_EVIDENCE: []
+
+# Why each empty dimension is empty, emitted as one structured gap per dimension so the
+# consequence is registered rather than left in a comment. Keyed by dimension; a key is
+# required for, and only for, a dimension whose whitelist above is empty.
+bearing_metric_gap_notes:
+  D2_UTILIZATION_EFFECT:
+    question: >-
+      D2 的 10 条可承重数值是资本开支、收入和经营利润，快照内没有任何利用率或产能指标，
+      该维度无法由数值证据承重。
+    required_evidence: 以 as_of 前材料补充产能利用率或产能口径的可追溯数值披露。
+  D5_CYCLE_EXPLANATION:
+    question: >-
+      D5 候选集内没有任何可承重数值观察，周期解释只能建立在文本命题之上。
+    required_evidence: 以 as_of 前材料补充行业供需、价格或库存的可追溯数值披露。
+  D7_SUSTAINABILITY_EVIDENCE:
+    question: >-
+      D7 唯一正当的承重指标 NET_CASH_FROM_OPERATING_ACTIVITIES 在快照内有 6 条 USABLE 记录，
+      但全部落在 RQ_MAIN/D1/D3 查询族，无一被冻结的 D7 查询族命中；该维现有的 18 条数值是
+      结果指标，用它们证明可持续性属循环论证。
+    required_evidence: >-
+      修订 03 的 D7 查询族使经营现金流记录进入该维候选集（03 查询族已冻结，本阶段不得改动）。
+
+# ---------------------------------------------------------------------------
+# FR-051 evidence score. Recomputed by the script from the selected evidence;
+# the model never emits a score. Listed here as documentation of the derivation.
+# ---------------------------------------------------------------------------
+evidence_score_levels:
+  0: UNSCORABLE
+  1: LIMITED
+  2: ADEQUATE
+  3: STRONG
+evidence_score_rules:
+  "0": no bearing evidence selected
+  "1": single source group, single period, or a single data point
+  "2": two or more independent source groups, or a comparable cross-period numeric
+  "3": comparable cross-period numeric on a whitelisted bearing metric, two or more
+       independent source groups, and no CONFLICT_UNRESOLVED among the supports
+# score 0 forces UNKNOWN. The reverse does NOT hold: UNKNOWN is legal at 0-2 because
+# conflicting or directionless evidence still leaves the direction unknown.
+score_status_binding:
+  zero_requires_unknown: true
+
+# ---------------------------------------------------------------------------
+# FR-073 forbidden output. High precision on purpose: only explicit investment
+# actions and investment judgments. Ordinary words (建议/预计/有望/估值) stay legal
+# because "management expects capacity to expand" is a legitimate sourced statement.
+# 持有 is listed only in its rating forms so that "公司持有的现金" is not a false hit.
+# ---------------------------------------------------------------------------
+forbidden_investment_terms:
+  - 买入
+  - 卖出
+  - 增持
+  - 减持
+  - 目标价
+  - 仓位
+  - 低估
+  - 高估
+  - 估值具吸引力
+  - 估值有吸引力
+  - 投资价值
+  - 投资评级
+  - 建议持有
+  - 继续持有
+  - 持有评级
+  - buy rating
+  - sell rating
+  - hold rating
+  - price target
+  - target price
+  - overweight
+  - underweight
+  - undervalued
+  - overvalued
+  - attractive valuation
+  - position sizing
+
+# ---------------------------------------------------------------------------
+# FR-052 correlation vs causation. The system never asserts causation on its own.
+# A sentence containing a causal marker must also carry an explicit source
+# attribution; otherwise the finding fails. Numbers prove correlation, not cause,
+# so numeric support is not an escape hatch.
+# ---------------------------------------------------------------------------
+causal_markers:
+  - 导致
+  - 推动
+  - 带动
+  - 因此
+  # 因而 / 从而 are synonyms of 因此; leaving them out left the gate trivially avoidable.
+  - 因而
+  - 从而
+  - 使得
+  - 造成
+  - drove
+  - led to
+  - caused
+  - resulted in
+attribution_markers:
+  - 公司称
+  - 公司表示
+  - 公司披露
+  - 管理层称
+  - 管理层表示
+  - 年报称
+  - 年报披露
+  - 公告称
+  - 据公司
+  - 根据公司
+  - 据管理层
+  - according to the company
+  - the company said
+  - the company stated
+  - management said
+  - management stated
+
+# Management explanations without independent evidence stay assertions: a
+# MANAGEMENT_ASSERTION claim type may only appear under management_assertions.
+management_assertion_claim_types:
+  - MANAGEMENT_ASSERTION
+  - MANAGEMENT_FORWARD_LOOKING
+
+# Cross-dimension double attribution: the same fact carrying PRIMARY_SUPPORT in more
+# than one dimension must say so. Background/limitation citations are exempt, or the
+# output fills with boilerplate.
+cross_attribution:
+  primary_support_role: PRIMARY_SUPPORT
+  overlap_note_required: true
+
+# ---------------------------------------------------------------------------
+# FR-052 D7 watch indicators. A numeric threshold needs a real basis; citing an
+# evidence_id that merely contains a number is not one.
+# ---------------------------------------------------------------------------
+threshold_basis_values:
+  - SOURCE_DISCLOSED_THRESHOLD
+  - FROZEN_RECOMPUTABLE_FORMULA
+  - REJECTED_NO_BASIS
+  - UNKNOWN
+
+# ---------------------------------------------------------------------------
+# FR-060 / FR-061 challenge loop. All loop control is deterministic script logic.
+# ---------------------------------------------------------------------------
+challenge:
+  categories:
+    - SOURCE_TRACEABILITY
+    - ACCOUNTING_COMPARABILITY
+    - ATTRIBUTION_CAUSALITY
+    - FALSIFICATION_MISSING_EVIDENCE
+  dispositions:
+    - RESOLVED_NO_CHANGE
+    - RESOLVED_WITH_REVISION
+    - UNRESOLVED_DOWNGRADED
+    - BLOCKING
+  max_rounds: 2
+  max_reviews_per_challenge: 1
+  # After round 2, an unresolved challenge is BLOCKING when it hits any of these;
+  # otherwise it is downgraded. No separate severity axis -- BLOCKING is already a
+  # disposition, and a second overlapping axis would need its own tie-break rules.
+  blocking_triggers:
+    - EVIDENCE_OUTSIDE_CANDIDATE_SET
+    - EVIDENCE_NOT_USABLE
+    - FORBIDDEN_INVESTMENT_TERM
+    - CONFLICT_UNRESOLVED
+    - NO_BEARING_EVIDENCE_AFTER_REVISION
+    - CHALLENGE_SCHEMA_INVALID
+    - REVISION_VALIDATION_FAILED
+  # Deterministic downgrade ladder applied by the script to UNRESOLVED_DOWNGRADED.
+  downgrade_ladder:
+    SUPPORTED: MIXED
+    NOT_SUPPORTED: MIXED
+    MIXED: UNKNOWN
+    UNKNOWN: UNKNOWN
+
+# ---------------------------------------------------------------------------
+# Bounded failure handling (ADR 0004). Regenerate only the failing dimension, once.
+# ---------------------------------------------------------------------------
+generation:
+  max_attempts_per_dimension: 2
+finding_reason_codes:
+  - NO_BEARING_EVIDENCE
+  - ANALYSIS_VALIDATION_FAILED
+  - MODEL_JUDGMENT
+
+# FR-072: this Demo is never publishable, so distribution_status is a constant.
+distribution_status: INTERNAL_DEMO_ONLY
+human_review_status: PENDING_HUMAN_REVIEW
+
+# ---------------------------------------------------------------------------
+# Declared validation checks. The script fails closed if the emitted list drifts.
+# ---------------------------------------------------------------------------
+validation_checks:
+  - dimension_coverage
+  - schema_conformance
+  - evidence_reference_legality
+  - candidate_set_closure
+  - score_status_binding
+  - forbidden_output_terms
+  - causal_attribution
+  - management_assertion_placement
+  - cross_dimension_attribution
+  - d7_threshold_basis
+  - generation_attempts_bounded
+  - frozen_rule_binding
