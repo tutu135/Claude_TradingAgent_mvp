@@ -124,7 +124,18 @@
 - `finding_reason_code` 区分 `NO_BEARING_EVIDENCE`（真无证据）与 `ANALYSIS_VALIDATION_FAILED`（被强制归零），防止下游误读。
 - **不新增 `publishable` / `report_status` 字段**：本 Demo 恒不可发布，FR-072 的固定 `distribution_status` 已表达；把恒定值做成字段会暗示它可能变。
 
-#### 9. 产物清单
+#### 9. 冻结规则绑定检查
+
+`analysis-validation.yaml` 增加一项 `frozen_rule_binding`，不一致即 `FAIL`：
+
+```
+- 承重指标白名单与本票 §3 冻结列表逐项一致（绑定 snapshot_id）
+- 输入 context.jsonl 的 query_rule_version == smic-v3-context-retrieval-v3
+```
+
+理由：第 3 节的白名单和"D2/D5/D7 数值承重为空"目前只有文字约束。放宽白名单或改动 03 固定查询族，都能让空维度"变得有内容"而无人察觉——那是最坏的失败模式（用规则变更伪造承载力）。这条把它变成硬闸。不新增结构，只是一次逐项比对加一次版本断言。
+
+#### 10. 产物清单
 
 `analysis-inputs.jsonl`（含 SELECTION_SUMMARY）、`findings.yaml`、`analysis-attempts.jsonl`、`analysis-validation.yaml`、`challenges.yaml`、`findings-revised.yaml`、追加的 `gaps.yaml`。
 
