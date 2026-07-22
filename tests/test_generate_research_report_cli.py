@@ -205,6 +205,7 @@ def build_workspace(**options: Any) -> Path:
                 "acquisition_targets": ["capacity"],
                 "as_of_eligible": True,
                 "media_type": "application/pdf",
+                "frozen_path": "raw/MATERIAL_ANNUAL.pdf",
                 "publication_time": {"latest": "2026-03-30T00:00:00+08:00",
                                      "raw_text": "2026-03-30"},
                 "canonical_material_locator": {"source_page": "https://example.invalid/ar2025"},
