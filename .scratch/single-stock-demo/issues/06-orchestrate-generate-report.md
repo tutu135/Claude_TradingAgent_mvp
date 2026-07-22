@@ -4,18 +4,18 @@
 
 **Blocked by:** 05 — 形成并质询 D1–D7 发现。
 
-**Status:** ready-for-agent
+**Status:** done
 
-- [ ] 编排器按固定七阶段顺序调用八个 Skills，只负责输入检查、阶段结果、停止/降级和最多两轮质询回路；阶段 Skill 不直接互调。
-- [ ] 编排器使用至少 3 个应触发问题和 3 个不应触发问题验证范围识别，不引入通用 DAG、队列、调度器、数据库、模型路由或插件系统。
-- [ ] 报告按确认的十个章节输出，清楚分开研究问题、分析框架和流程状态；D1–D7、质询修订、冲突、UNKNOWN/TBD、隔离和数据限制均可见。
-- [ ] 报告中的每个数字均显示或可直接追溯来源、发布时间、报告期间/时点、单位、币种、缩放、口径和 `evidence_id`；派生值还展示公式与输入。
-- [ ] 固定 `distribution_status=INTERNAL_DEMO_ONLY`，独立显示 `governance_status=PASS/WARN/FAIL` 和 `PENDING_HUMAN_REVIEW`；即使 FAIL 也生成显著标警的内部诊断报告，隔离数据不支撑发现。
-- [ ] 报告不生成 PDF、网页、Dashboard、API 或外部分发物，也不包含交易指令、仓位建议、目标价锚、投资吸引力判断和系统预测。
-- [ ] 端到端运行证明 `DEMO_RUN` 不实时联网、拒绝 `as_of` 越界材料，任一报告数字可沿 `evidence_id -> fact_id -> chunk_id -> material_id` 回溯，派生公式可复算，同源转载不会增加独立证据。
-- [ ] 端到端运行证明冲突会被隔离并使发现降级，缺数产生 UNKNOWN/gap，政府补助保持双口径，D1–D7 状态合法，质询不超过两轮，FAIL 仍有诊断报告且没有禁止输出。
-- [ ] 最终产物清单记录 `snapshot_id`、规则版本、权威文件哈希、生成时间、治理/分发/人工复核状态；固定案例文件完整且 CSV 如存在只作为派生视图。
-- [ ] 实现只包含确认的八个 Skills、集中脚本、单一规则来源和固定案例文件；每个组件都能对应 Spec 验收条件，没有为未来产品预建基础设施。
+- [x] 编排器按固定七阶段顺序调用八个 Skills，只负责输入检查、阶段结果、停止/降级和最多两轮质询回路；阶段 Skill 不直接互调。
+- [x] 编排器使用至少 3 个应触发问题和 3 个不应触发问题验证范围识别，不引入通用 DAG、队列、调度器、数据库、模型路由或插件系统。
+- [x] 报告按确认的十个章节输出，清楚分开研究问题、分析框架和流程状态；D1–D7、质询修订、冲突、UNKNOWN/TBD、隔离和数据限制均可见。
+- [x] 报告中的每个数字均显示或可直接追溯来源、发布时间、报告期间/时点、单位、币种、缩放、口径和 `evidence_id`；派生值还展示公式与输入。
+- [x] 固定 `distribution_status=INTERNAL_DEMO_ONLY`，独立显示 `governance_status=PASS/WARN/FAIL` 和 `PENDING_HUMAN_REVIEW`；即使 FAIL 也生成显著标警的内部诊断报告，隔离数据不支撑发现。
+- [x] 报告不生成 PDF、网页、Dashboard、API 或外部分发物，也不包含交易指令、仓位建议、目标价锚、投资吸引力判断和系统预测。
+- [x] 端到端运行证明 `DEMO_RUN` 不实时联网、拒绝 `as_of` 越界材料，任一报告数字可沿 `evidence_id -> fact_id -> chunk_id -> material_id` 回溯，**调节桥接公式可复算**，同源转载不会增加独立证据。
+- [x] 冲突隔离与发现降级、政府补助敏感性、`FAIL` 仍有诊断报告三项**机制由 fixtures 覆盖，真实运行结果如实披露**（v3 实测冲突 0、隔离 0、敏感性 0 条、五个状态无一 FAIL）；缺数产生 UNKNOWN/gap，政府补助保持双口径，D1–D7 状态合法，质询不超过两轮，没有禁止输出。
+- [x] 最终产物清单记录 `snapshot_id`、规则版本、权威文件哈希、生成时间、治理/分发/人工复核状态；固定案例文件完整且 CSV 如存在只作为派生视图。
+- [x] 实现只包含确认的八个 Skills、集中脚本、单一规则来源和固定案例文件；每个组件都能对应 Spec 验收条件，没有为未来产品预建基础设施。
 
 ## Comments
 
@@ -239,3 +239,18 @@ narrative_numeric_sanitization:
 3. 更正 `contracts/contract-map.md`：目录布局改为"快照目录（只读）+ 运行目录（产物）"，权威文件清单照实际文件名，补 `report-validation.yaml`。
 4. 票面第 7 条措辞改为"调节桥接公式可复算"；第 8 条改为"机制由 fixtures 覆盖 + 真实运行结果如实披露"。
 5. `DEMO-KNOWN-ISSUES.md` 增记"gap 优先级失真（P1 4,915/4,921）"。
+
+### 实现记录（2026-07-22）
+
+七阶段跑通，两次连续重放的 `report.md`、`report-validation.yaml`、`run-integrity.yaml` 字节一致，`manifest.yaml` 除 `generated_at` 外一致（`generated_at` 是唯一按设计随时钟变化的字段——票面第 9 条要求记录生成时间，删掉它才是造假）。注意 `run-integrity.yaml` 的 `removed_files` 如实记录本次清空删掉了哪些文件，因此从空目录起跑与从满目录起跑会不同；这是状态而非不确定性，"两次干净重放"指的是连续两次完整运行。实测结果与冻结规划的事实基线逐项吻合：`governance_status=WARN`、五个阶段状态 PASS/WARN/WARN/PASS/WARN、冲突 0、隔离 0、政府补助敏感性 0 条、桥接复算 4 PASS / 3 UNKNOWN、gap 4,922（含报告阶段新增 1 条）、P1 4,915 / P2 7。冻结重放的 `selection_hash` 与冻结判断输入一致，即重放确实重建出了模型当时看到的那个候选集。
+
+实现期做的四处具体化，均不改变已冻结的决定：
+
+1. **`frozen-analysis-inputs/frozen-inventory.yaml`**（第 6 个文件）。哈希与绑定期望需要一个可比对的声明；写成入库的清单文件而不是脚本里的字面量，使哈希闸门本身可被测试（fixture 工作区可以造自己的冻结输入）。清单是版本控制下的信任根，改一个冻结输入而不改清单会被 `preflight` 拦住。
+2. **`run-integrity.yaml` 与 `run-gate.yaml`** 进入运行目录固定清单。三个子命令之间必须以文件传递判定结果——否则 `gate` 只能重算完整性、或 `preflight` 只能把结论塞进 stdout 让调用方解析，两条路都会把控制流引回脚本。两份文件与其余阶段的 `*-validation.yaml` 同构。
+3. **散文扫描字段从 7 个扩到 14 个**。冻结的 7 个是当时量过的字段；质询问答、D7 观察指标、模型 gap 文本和逐条 `overlap_note` 同样渲染进报告，不扫它们就等于给闸门留了后门。实测新增字段确实携带数字（质询 5 条里 3 条问题、4 条理由含数字）。最终泄漏数仍为 0。
+4. **固定说明文字与模型散文分开计**。`rules/report.yaml` 里的固定解释文字含 `FR-073`、`T1`、`P1`、`D3`、`v3` 这类标识符数字，它们不是研究数值也无法绑定证据。做法是：固定文字里所有真实统计量改为运行期计算并落到数据表（抽取错误率、gap 优先级分布都是这样得来的），剩下的标识符数字留在固定文字中，`report-validation.yaml` 单独计数并注明。受闸门约束的仍是模型自由叙述，与冻结定义一致。
+
+`single-stock-demo-run/` 中只保留 `report.md`、`report-validation.yaml`、`run-gate.yaml` 入库，其余 gitignore：95MB 是可重建产物，而 `manifest.yaml` 按设计带 `generated_at` 与工具版本哈希，每次运行必然不同，入库只会制造无意义的 diff（两次重放的 manifest 一致性靠直接读文件比对，不靠 git）。留下的三个文件字节稳定，使"重放后 git diff 干净"本身成为可复现性证据。
+
+另有一处实现期发现的真实缺陷：新增 `.gitattributes` 把工作区固定为 LF，并对 `frozen-analysis-inputs/**` 关闭一切换行转换。Windows 下默认 CRLF 检出会改变冻结判断输入的字节，导致新克隆的仓库 `preflight` 直接哈希不符——行尾在这里是内容的一部分。

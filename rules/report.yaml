@@ -1,0 +1,392 @@
+# Report rendering rules for Ticket 06 (generate-research-report). This is the single
+# place the report presentation lives: the seven upstream stages never read this file,
+# so changing how the report looks can never reach back into retrieval, normalization,
+# governance, analysis or the challenge loop. Everything here is a fixed table for the
+# one SMIC golden case -- there is no template engine and no plugin point.
+rule_version: smic-v3-report-v1
+snapshot_id: smic-a283e95e2c9e8068
+
+# The report only renders findings produced by this analysis rule version. A drifted
+# analysis layer would silently repaint the same section headings over different rules.
+required_analysis_rule_version: smic-v3-analysis-v1
+
+# FR-072 constants. The Demo is never publishable, so these are written, not computed.
+execution_mode: FROZEN_REPLAY
+distribution_status: INTERNAL_DEMO_ONLY
+human_review_status: PENDING_HUMAN_REVIEW
+
+# ---------------------------------------------------------------------------
+# ADR 0005 decision three: exactly two report forms, same name, same path.
+# ---------------------------------------------------------------------------
+report_forms:
+  - FULL_REPORT
+  - DIAGNOSTIC_ONLY
+
+# The three frozen integrity reason codes. SCHEMA_INCOMPATIBLE is absent because the
+# Ticket 05 per-attempt gate already rejects non-conforming model output; SNAPSHOT_MISMATCH
+# is absent because it is a subset of BINDING_MISMATCH.
+integrity_reason_codes:
+  - FROZEN_ANALYSIS_INPUT_MISSING
+  - FROZEN_ANALYSIS_HASH_MISMATCH
+  - FROZEN_ANALYSIS_BINDING_MISMATCH
+
+# governance_status is the worst of retrieval, normalization and evidence governance.
+# Analysis and challenge status are NOT folded in: ADR 0004 moved the analysis-layer
+# guarantee off hashes and onto validation, so it sits on a different axis. They are
+# displayed side by side instead.
+governance_status_inputs:
+  - retrieval_status
+  - normalization_run_status
+  - validation_status
+status_severity:
+  PASS: 0
+  WARN: 1
+  FAIL: 2
+
+# ---------------------------------------------------------------------------
+# FR-070 fixed section order. Only FULL_REPORT renders these; DIAGNOSTIC_ONLY carries
+# the failure banner, the failed checks and the gap references, and nothing else.
+# ---------------------------------------------------------------------------
+sections:
+  - id: S1
+    title: 案例、as_of、快照、治理状态与分发状态
+  - id: S2
+    title: 数据覆盖与来源覆盖
+  - id: S3
+    title: 报告口径与规整口径下的盈利能力变化（D1）
+  - id: S4
+    title: D2–D4：利用率、结构和资本开支驱动
+  - id: S5
+    title: D5–D6：行业周期、政府补助和其他替代解释
+  - id: S6
+    title: D7：可持续性支持、降级与证伪条件
+  - id: S7
+    title: D1–D7 发现和证据分向量
+  - id: S8
+    title: 反方质询与修订
+  - id: S9
+    title: 冲突、UNKNOWN、TBD、隔离项和数据限制
+  - id: S10
+    title: 来源、公式、会计口径和溯源附录
+
+# Ticket 06 acceptance item 3 asks that research question, analysis framework and process
+# status be clearly separated. That is done with three fixed metadata blocks at the very
+# top rather than by rearranging the ten frozen sections.
+metadata_blocks:
+  - id: RESEARCH_QUESTION
+    title: 研究问题
+    source: single-stock-demo-v3/case.yaml
+  - id: ANALYSIS_FRAMEWORK
+    title: 分析框架
+    source: rules/analysis.yaml
+  - id: PROCESS_STATUS
+    title: 流程状态
+    source: 五个阶段 run status 与 governance_status
+
+section_dimensions:
+  S3: [D1_PROFITABILITY_CHANGE]
+  S4: [D2_UTILIZATION_EFFECT, D3_MIX_EFFECT, D4_CAPEX_CONVERSION]
+  S5: [D5_CYCLE_EXPLANATION, D6_NONCORE_EXPLANATION]
+  S6: [D7_SUSTAINABILITY_EVIDENCE]
+
+# ---------------------------------------------------------------------------
+# FR-071. Numbers live in the evidence table and nowhere else. Each row carries its own
+# period, basis, unit, currency, scale and source, so one blurred footnote can never
+# cover several numbers of different vintage.
+# ---------------------------------------------------------------------------
+evidence_table_columns:
+  - fact_id
+  - evidence_id
+  - metric_id
+  - display_value
+  - base_unit_value
+  - raw_value_text
+  - unit
+  - currency
+  - scale_factor
+  - accounting_basis
+  - period
+  - source
+  - published_at
+  - locator
+  # Beyond the frozen fourteen: claim_type because a sourced view must show what kind of
+  # claim it is, and gap_ids because a row whose period is known to be mislabelled has to
+  # carry that label rather than look clean.
+  - claim_type
+  - gap_ids
+
+# Text propositions get their own table. They hold no normalized value, so the value columns
+# stay empty; unit/currency/scale/period are still shown, because a quoted span often
+# contains the source's own numbers and the reader needs the row's basis to read them.
+text_evidence_table_columns:
+  - fact_id
+  - evidence_id
+  - claim_type
+  - source_tier
+  - unit
+  - currency
+  - scale_factor
+  - accounting_basis
+  - period
+  - source
+  - published_at
+  - locator
+  - source_span_text
+  - gap_ids
+
+# Every model-authored free-narrative field that renders into the report. Scanning is
+# limited by field path, not by a token whitelist: each machine identifier lives in its
+# own field, so path limiting has no false positives by construction.
+#
+# The first seven are the fields measured when this gate was designed (about 417 unbound
+# numeric mentions). The remaining six render into the report just the same -- challenge
+# prose into section 8, watch indicators and model gap prose into sections 6 and 9,
+# per-item overlap notes into every dimension -- so leaving them unscanned would leak
+# exactly what the gate exists to stop.
+narrative_scan_field_paths:
+  - findings[].finding_statement
+  - findings[].supporting_evidence[].note
+  - findings[].counter_evidence[].note
+  - findings[].limitations[]
+  - findings[].alternative_explanations[]
+  - findings[].management_assertions[].statement
+  - cross_attribution[].entries[].overlap_note
+  - findings[].supporting_evidence[].overlap_note
+  - findings[].counter_evidence[].overlap_note
+  - findings[].gaps[]
+  - findings[].watch_indicators[].indicator
+  - findings[].watch_indicators[].judgment_logic
+  - challenges[].question
+  - challenges[].reason
+
+# Whole sentences are excluded, never individual characters: deleting the digits out of
+# "毛利率由 20.5% 上升到 22.6%" leaves "毛利率由上升到", which is garbage that still
+# claims something. The frozen model output on disk is not modified; only the rendered
+# report drops the sentence.
+narrative_sentence_terminators: "。！？；;!?"
+narrative_numeric_pattern: "[0-9]"
+omission_notice: 具体数值及其期间、口径和来源见本维度证据表。
+
+# ---------------------------------------------------------------------------
+# Scope recognition (ticket item 2). Deterministic: the orchestrator makes no model call.
+# R1 refuses outright -- it is the FR-073 hard line. R2 and R3 only add a disclaimer.
+# ---------------------------------------------------------------------------
+scope_recognition:
+  in_scope_label: IN_SCOPE
+  rules:
+    - id: R1
+      label: OUT_OF_SCOPE_FORBIDDEN_OUTPUT
+      basis: rules/analysis.yaml forbidden_investment_terms
+      action: REFUSE
+    - id: R2
+      label: OUT_OF_SCOPE_OTHER_SUBJECT
+      basis: peer_entities
+      action: DISCLAIM
+    - id: R3
+      label: OUT_OF_SCOPE_BEYOND_AS_OF
+      basis: beyond_as_of_markers
+      action: DISCLAIM
+  # A deliberately small, case-specific peer list. It exists only to recognise questions
+  # about the golden case's obvious comparators; it is not a company directory and not a
+  # general entity resolver. A "must mention SMIC" whitelist does not work -- "compare
+  # SMIC with Hua Hong" mentions SMIC and is still out of scope.
+  peer_entities:
+    - 华虹
+    - 华虹半导体
+    - 华虹公司
+    - Hua Hong
+    - '688347'
+    - '1347.HK'
+    - 台积电
+    - TSMC
+    - '2330.TW'
+    - 联电
+    - 联华电子
+    - UMC
+    - '2303.TW'
+    - 格芯
+    - 格罗方德
+    - GlobalFoundries
+    - GFS
+  beyond_as_of_markers:
+    - '2026 下半年'
+    - '2026下半年'
+    - '2026 年下半年'
+    - '2026H2'
+    - '2026 Q3'
+    - '2026Q3'
+    - '2026 Q4'
+    - '2026Q4'
+    - '2027'
+    - '2028'
+  refusal_notice: >-
+    该问题要求的是投资动作或投资吸引力判断。本 Demo 按 FR-073 不输出此类内容，此处不作回答，
+    也不以任何形式暗示；问题原文因命中禁止输出词表，不在报告中复述。
+  out_of_scope_notice: >-
+    本 Demo 只研究〔主研究问题〕；对超出范围的问题（投资建议 / 其他标的 / as_of 之后）
+    不作回答，亦不作任何推荐。
+  # Six frozen example questions: three that must be recognised as in scope and three that
+  # must not. They are classified at render time, so the classifier is exercised by the
+  # golden run itself rather than only by tests. A refused question is never reproduced.
+  examples:
+    - id: Q1
+      question: case.yaml 主研究问题原文
+      use_case_research_question: true
+    - id: Q2
+      question: 中芯国际 2025 年毛利率改善主要来自利用率还是产品结构？
+    - id: Q3
+      question: 中芯国际的盈利改善有多少来自政府补助等非经常项目？
+    - id: Q4
+      question: 中芯国际现在值得买入吗？目标价多少？
+    - id: Q5
+      question: 把中芯国际和华虹半导体做个对比
+    - id: Q6
+      question: 中芯国际 2026 下半年业绩会怎样？
+
+# ---------------------------------------------------------------------------
+# Section 9 gap aggregation. NORMALIZATION_UNKNOWN is the normalization stage's mechanical
+# register of missing fields, not a per-item to-do list, so it gets one aggregate row and
+# a caption instead of 4,912 bullet points.
+# ---------------------------------------------------------------------------
+gap_aggregation:
+  aggregate_only_gap_kinds:
+    - NORMALIZATION_UNKNOWN
+  aggregate_caption: >-
+    该类 gap 是规整阶段对缺失字段的机械登记，逐条展开没有信息量，此处只给聚合计数与口径说明。
+  # Priority is deliberately not used as a filter: 4,915 of 4,921 gaps are P1, so the axis
+  # has lost all discriminating power in this repository. Saying so is more useful than
+  # filtering on it.
+  priority_filter: NONE
+  priority_filter_note: >-
+    本报告不按 gap 优先级筛选。实测绝大多数 gap 都是 P1，优先级在本仓库已失去区分度；
+    按 P1 筛等于不筛，只会给出一种做过分级的错觉。逐档计数见上表，由本次运行的
+    gaps.yaml 直接汇总。
+
+# ---------------------------------------------------------------------------
+# Fixed disclosures. Ticket 06 does not repair any of these; it is required to show them.
+# ---------------------------------------------------------------------------
+disclosures:
+  - id: EXTRACTION_SEMANTIC_ERROR
+    title: 已知抽取语义错误（DEMO-KNOWN-ISSUES A1）
+    text: >-
+      规整阶段存在数值抽取语义错误：抽样发现以「个百分点」表述的比率变化被抽成金额型折旧
+      记录，且该记录 normalization_status=PASS，因而在治理阶段获得 T1 / REPORTED_FACT /
+      USABLE 并可承重。下表是本次运行按同一启发式条件（金额单位且原文含「个百分点」）
+      重新粗筛的规模，未经人工逐条核对，只作量级参考。本报告的证据表会忠实渲染其中一部分
+      错抽记录，它们在表中看起来与正确记录无异。Ticket 06 不修复该缺陷（Ticket 03 已冻结），
+      只披露。
+  - id: D3_PERIOD_MISLABEL
+    title: D3 唯一承重数值的期间标注缺陷
+    text: >-
+      D3 的唯一承重数值（来源披露平均销售单价）在链路上被标注为财政年度期间，但其来源材料是
+      半年度报告，即 Ticket 04 登记的 GAP_EVIDENCE_UPSTREAM_PERIOD_MISLABEL。D3 的整个数值
+      骨架架在这一条记录上。证据表按原样展示该标注并附带其 gap 标记，不改写为看起来正确的
+      期间。受影响记录见下表。该 gap 登记在阶段层面，并未写进这条证据记录自身的 gap_ids，
+      因此下表由本规则文件显式把两者接上，而不是假装记录里本来就有。
+    related_gap_id: GAP_EVIDENCE_UPSTREAM_PERIOD_MISLABEL
+  - id: CROSS_DIMENSION_OVERLAP_SCOPE
+    title: 跨维承重重叠只做全局校验
+    text: >-
+      overlap_note 只能在全部七个维度形成之后做全局校验，进不了逐维度的重生成闸——单维度的
+      模型判断看不见其他维度选了什么。因此交叉承重的标注是事后核对结果，不是生成期约束。
+  - id: FROZEN_REPLAY_SCOPE
+    title: 冻结重放的覆盖边界
+    text: >-
+      本次运行的执行模式是 FROZEN_REPLAY：模型判断产物作为冻结判断输入参与，运行期间不发生
+      任何模型调用。因此端到端可重跑证明的对象是「从冻结输入到最终产物的确定性重放」，判断层
+      本身没有在本次运行中被执行。判断层的保证来自 analysis-validation.yaml 的逐项校验与
+      analysis-attempts.jsonl 的全过程留痕（ADR 0004、ADR 0005）。
+
+# ---------------------------------------------------------------------------
+# Section 10 glossary. Machine identifiers and English source spans are NEVER translated:
+# evidence_id / fact_id / metric_id must grep straight back into the JSONL, and translating
+# a source span manufactures new text with no provenance. Only the explanation is Chinese.
+# ---------------------------------------------------------------------------
+glossary:
+  metric_id:
+    REVENUE: 收入
+    WAFER_REVENUE: 晶圆收入
+    COST_OF_SALES: 销售成本
+    GROSS_PROFIT: 毛利
+    GROSS_MARGIN: 毛利率
+    PROFIT_FROM_OPERATIONS: 经营利润
+    OPERATING_MARGIN: 经营利润率
+    EBITDA: 息税折旧摊销前利润
+    EBITDA_MARGIN: 息税折旧摊销前利润率
+    PROFIT_ATTRIBUTABLE_TO_OWNERS: 归属于母公司股东的利润
+    NET_CASH_FROM_OPERATING_ACTIVITIES: 经营活动产生的现金流量净额
+    MONTHLY_CAPACITY_EIGHT_INCH_EQUIVALENT: 月产能（8 英寸等值）
+    PERIOD_END_CAPACITY: 期末产能
+    CAPACITY_UTILIZATION_RATE_SOURCE_REPORTED: 来源披露的产能利用率
+    WAFER_SHIPMENTS: 晶圆出货量
+    ASP_SOURCE_REPORTED: 来源披露的平均销售单价
+    CAPITAL_EXPENDITURE_INCURRED: 已发生资本开支
+    CASH_PAID_FOR_PROPERTY_PLANT_EQUIPMENT: 购建固定资产支付的现金
+    CAPITAL_COMMITMENTS_UNPAID: 已承诺未支付的资本承诺
+    CAPITAL_EXPENDITURE_GUIDANCE: 管理层资本开支指引
+    PROJECT_INVESTMENT_AMOUNT: 具体产能项目投资额
+    GOVERNMENT_FUNDING_RECOGNIZED_IN_PNL: 已计入损益的政府资金
+    OTHER_OPERATING_INCOME: 其他经营收入
+    DEPRECIATION_EXPENSE: 折旧费用
+    RESEARCH_AND_DEVELOPMENT_EXPENSE: 研发费用
+    GLOBAL_SEMICONDUCTOR_SALES: 全球半导体销售额
+    APPLICATION_REVENUE_SHARE: 应用分类收入占比
+    WAFER_SIZE_REVENUE_SHARE: 晶圆尺寸收入占比
+  claim_type:
+    REPORTED_FACT: 来源直接披露的事实
+    DERIVED_METRIC: 由披露值派生的指标
+    MANAGEMENT_ASSERTION: 管理层陈述（非前瞻）
+    MANAGEMENT_GUIDANCE: 管理层指引（前瞻）
+    THIRD_PARTY_VIEW: 第三方观点
+    ANALYTIC_INFERENCE: 分析性推断（本 Demo 不产生）
+    UNASSESSED: 尚未判定（规整阶段的固定取值）
+  source_tier:
+    T1: 发行人法定披露或监管渠道
+    T2: 具名机构或行业协会
+    T3: 指定媒体或转载全文
+    T4: 自动摘要等最低可信层
+  evidence_status:
+    USABLE: 可引用且可承重
+    RESTRICTED: 仅可引用，不可承重
+    QUARANTINED: 已隔离，不得支撑任何发现
+  permitted_use:
+    CITE_AND_BEAR: 可引用并可作为承重证据
+    CITE_ONLY: 只可引用
+    NOT_USABLE: 不可使用
+  audit_status:
+    AUDITED: 已审计
+    REVIEWED: 已审阅
+    UNAUDITED: 未经审计
+    OUTSIDE_AUDIT_SCOPE: 位于审计范围之外
+    UNKNOWN: 无法确认审计覆盖范围
+  period_type:
+    FISCAL_YEAR: 财政年度
+    SINGLE_QUARTER: 单一季度
+    YEAR_TO_DATE: 年初至今累计
+    TTM: 滚动十二个月
+    CUSTOM_DURATION: 其他自定义期间
+    INSTANT: 时点
+  finding:
+    SUPPORTED: 证据支持该命题
+    MIXED: 证据方向不一致
+    NOT_SUPPORTED: 证据不支持该命题
+    UNKNOWN: 现有证据无法判断方向
+  evidence_score:
+    '0': UNSCORABLE — 无承重证据
+    '1': LIMITED — 单一来源组、单一期间或单点数据
+    '2': ADEQUATE — 两个以上独立来源组，或可比的跨期数值
+    '3': STRONG — 承重指标上的可比跨期数值、两个以上独立来源组，且承重证据无未决冲突
+  disposition:
+    RESOLVED_NO_CHANGE: 复核后维持原发现
+    RESOLVED_WITH_REVISION: 复核后修订发现
+    UNRESOLVED_DOWNGRADED: 未解决，按固定阶梯降级
+    BLOCKING: 未解决且命中固定阻断触发项
+  reconciliation_status:
+    PASS: 复算差异为零
+    WARN: 差异在容差内（ROUNDING_DIFFERENCE）
+    FAIL: 差异超出容差（FORMULA_MISMATCH）
+    UNKNOWN: 输入口径不匹配或披露精度缺失，不猜测容差
+  run_status:
+    PASS: 该阶段全部硬条件达标
+    WARN: 硬条件通过但存在未解决项
+    FAIL: 存在硬条件失败

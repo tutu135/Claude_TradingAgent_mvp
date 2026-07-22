@@ -1,0 +1,44 @@
+snapshot_id: smic-a283e95e2c9e8068
+execution_mode: FROZEN_REPLAY
+integrity_status: PASS
+stage_statuses:
+  retrieval_status: PASS
+  normalization_run_status: WARN
+  validation_status: WARN
+  analysis_run_status: PASS
+  challenge_run_status: WARN
+governance_status_inputs:
+- retrieval_status
+- normalization_run_status
+- validation_status
+governance_status: WARN
+report_form: FULL_REPORT
+distribution_status: INTERNAL_DEMO_ONLY
+human_review_status: PENDING_HUMAN_REVIEW
+reason_codes: []
+checks:
+- name: stage_status_present
+  status: PASS
+  detail: retrieval-validation.yaml:retrieval_status
+  reason_code: null
+- name: stage_status_present
+  status: PASS
+  detail: normalization-validation.yaml:normalization_run_status
+  reason_code: null
+- name: stage_status_present
+  status: PASS
+  detail: evidence-validation.yaml:validation_status
+  reason_code: null
+- name: stage_status_present
+  status: PASS
+  detail: analysis-validation.yaml:analysis_run_status
+  reason_code: null
+- name: stage_status_present
+  status: PASS
+  detail: challenges.yaml:challenge_run_status
+  reason_code: null
+- name: frozen_replay_selection_binding
+  status: PASS
+  detail: frozen sha256:a0cd803ce8301b611542b376c8a1913cb97487b0a6ef145d84d247a46781ff94
+    vs replayed sha256:a0cd803ce8301b611542b376c8a1913cb97487b0a6ef145d84d247a46781ff94
+  reason_code: null

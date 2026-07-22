@@ -8,23 +8,45 @@ Demo 不定义 `ResearchCase`、`ResearchRun`、`StageArtifact`、通用消息�
 
 ## 固定案例产物
 
+产物分两块：只读输入与可重建输出。往快照目录写下游产物会破坏其自包含冻结身份，因此快照只含采集产物。
+
 ```text
-<snapshot-dir>/
-  case.yaml
-  snapshot-manifest.yaml
-  materials.jsonl
-  raw/
-  parsed/
-  context.jsonl
-  normalized-facts.jsonl
-  governed-evidence.jsonl
-  validation.yaml
-  findings.yaml
-  challenges.yaml
-  gaps.yaml
-  report.md
-  manifest.yaml
+只读输入
+├── single-stock-demo-v3/          冻结快照（采集产物）
+│     case.yaml
+│     snapshot-manifest.yaml
+│     snapshot-inputs.yaml
+│     materials.jsonl
+│     gaps.yaml
+│     raw/
+│     parsed/
+└── frozen-analysis-inputs/        冻结判断输入（模型判断产物，只读、带哈希与绑定）
+      frozen-inventory.yaml
+      findings-attempt-1.yaml
+      findings-attempt-2.yaml
+      challenges-model.yaml
+      analysis-validation.yaml
+      analysis-attempts.jsonl
+
+可重建输出
+└── single-stock-demo-run/         运行目录，每次由固定文件名清单清空后重建
+      context.jsonl                retrieval-validation.yaml
+      normalized-facts.jsonl       normalization-validation.yaml
+      governed-evidence.jsonl      evidence-validation.yaml
+      analysis-inputs.jsonl        analysis-validation.yaml
+      findings.yaml                analysis-attempts.jsonl
+      challenges.yaml              findings-revised.yaml
+      gaps.yaml
+      run-integrity.yaml           run-gate.yaml
+      report.md                    report-validation.yaml
+      manifest.yaml
 ```
+
+权威文件按实际文件名冻结：证据治理阶段的核验结果是 `evidence-validation.yaml`，另有
+`retrieval-validation.yaml`、`normalization-validation.yaml`、`analysis-validation.yaml`
+与报告阶段的 `report-validation.yaml`。运行目录不接受路径参数，是脚本内的硬编码常量；
+清空只删上述固定文件名，不做递归删除；出现清单以外的 `.yaml`/`.jsonl`/`.md` 时在消费任何
+输入之前停止并记 gap，不静默删除。
 
 Snapshot v1 `smic-4c110e93f810aa8e` 保持不可变；Snapshot v2 `smic-95dcd12eba2fe17c` 是 Ticket 02 的自包含历史结果；当前 Ticket 03 唯一输入为 Snapshot v3 `smic-a283e95e2c9e8068`，其 `parent_snapshot_id` 指向 v2，但运行时不依赖 v1/v2。v3 完整携带 20 份 `ACQUIRED_UNASSESSED` 材料及冻结产物。高相关但未满足采集准入的内容只进入 Snapshot 之外的候选材料暂存区，不属于上述权威产物。
 
@@ -228,7 +250,7 @@ Ticket 03 初始调整白名单只包含上述政府资金敏感性。资产处�
 
 一行一项治理证据。至少包含：`evidence_id`、`fact_id`、最终 `source_tier`、最终 `claim_type`、使用状态、材料与内容定位、同源组、冲突组、冲突处置、可支持用途、隔离原因和 gap 引用。该阶段统一拥有真实性/可信度核验、T1–T4、内容类型、同源、冲突、隔离和证据资格判断。原始材料缺失或无法建立内容定位的记录不能成为可用证据，也不能以 T4 代替。
 
-### `validation.yaml`
+### `evidence-validation.yaml`
 
 确定性核验汇总。至少包含：契约完整性、哈希、`as_of`、定位、单位/币种/期间、派生公式、冲突、隔离、RAG 定位检查的通过/警告/失败明细，以及总状态 `PASS`、`WARN` 或 `FAIL`。FAIL 不阻止内部诊断报告生成，但失败数据不能支撑发现。
 
@@ -262,9 +284,17 @@ Ticket 03 初始调整白名单只包含上述政府资金敏感性。资产处�
 
 内部 Demo 报告。固定章节、数字引用和禁止输出见冻结 Spec。每个数值必须能反查至 `evidence_id` 或明确标记为被隔离/UNKNOWN；来源观点必须显示 `claim_type`。
 
+### `report-validation.yaml`
+
+报告阶段的确定性核验记录。至少包含：报告形态、被扫描的散文字段路径、被整句排除的句子明细、最终报告自由叙述区域中的未绑定数字数量（必须为 0）、证据表行数与溯源链未解析项、禁止输出词扫描结果、政府补助双口径记录数、冲突与隔离计数、gap 汇总，以及调节桥接公式的复算结果。
+
 ### `manifest.yaml`
 
-本次黄金案例产物清单。至少包含：使用的 `snapshot_id`、规则版本、每个权威文件的路径与哈希、生成时间、`governance_status`、`distribution_status: INTERNAL_DEMO_ONLY`、人工复核状态和工具版本摘要。它不是通用 Run 对象。
+本次黄金案例产物清单，按审计语义分区：`frozen_inputs`（快照文件、冻结判断输入、规则文件）与 `generated_outputs`（运行目录产物）不混。至少包含：使用的 `snapshot_id`、执行模式 `FROZEN_REPLAY`、规则版本、每个权威文件的路径与哈希、生成时间、五个阶段状态、`governance_status`、`report_form`、`distribution_status: INTERNAL_DEMO_ONLY`、人工复核状态和工具版本摘要。模型标识只登记不设闸。它只列其他文件的哈希，**不记录自身哈希**——两次运行的一致性由外部计算本文件哈希比较。它不是通用 Run 对象。
+
+### `run-integrity.yaml` 与 `run-gate.yaml`
+
+编排裁判的两份判定记录。`run-integrity.yaml` 记录运行目录清空结果、冻结判断输入的存在性/哈希/绑定、快照身份、`as_of` 准入，以及 `integrity_status` 与三个固定 reason code；`run-gate.yaml` 记录五个阶段状态、`governance_status`（只由检索/规整/证据治理三者按最坏值合成）、冻结重放的 `selection_hash` 比对与 `report_form`。两者都不决定"下一步做什么"。
 
 ## Skill 输入输出
 
@@ -273,11 +303,11 @@ Ticket 03 初始调整白名单只包含上述政府资金敏感性。资产处�
 | 1 | `acquire-research-materials` | `case.yaml`、来源、人工材料和候选线索 | 自包含快照、`snapshot-manifest.yaml`、`materials.jsonl`、采集缺口；候选暂存记录留在快照外 |
 | 2 | `govern-research-context` | `case.yaml`、快照与可提取待治理材料 | `context.jsonl`、RAG 检索核验结果、缺口 |
 | 3 | `normalize-research-facts` | 上下文、会计规则 | `normalized-facts.jsonl`、缺口 |
-| 4 | `govern-and-validate-research-evidence` | 材料、规整事实、信源与冲突规则 | `governed-evidence.jsonl`、`validation.yaml`、缺口 |
+| 4 | `govern-and-validate-research-evidence` | 材料、规整事实、信源与冲突规则 | `governed-evidence.jsonl`、`evidence-validation.yaml`、缺口 |
 | 5 | `analyze-and-score-research-findings` | 可用治理证据、上下文、分析规则 | `analysis-inputs.jsonl`、`findings.yaml`、`analysis-attempts.jsonl`、`analysis-validation.yaml`、缺口 |
 | 6 | `challenge-research-findings` | 证据、发现、分析规则 | `challenges.yaml`、`findings-revised.yaml`、缺口，向编排器返回需复核目标 |
-| 7 | `generate-research-report` | 所有权威产物、报告规则 | `report.md`、`manifest.yaml` |
-| 编排 | `single-stock-research-orchestrator` | `case.yaml` 和阶段状态 | 固定顺序、停止/降级决策、最多两轮定向回路 |
+| 7 | `generate-research-report` | 运行目录内全部权威产物、`rules/report.yaml` | `report.md`、`report-validation.yaml`、敏感性缺口 |
+| 编排 | `single-stock-research-orchestrator` | `case.yaml`、冻结判断输入和阶段状态 | 固定七阶段顺序、停止/降级决策、`run-integrity.yaml`、`run-gate.yaml`、`manifest.yaml` |
 
 ## 单一规则来源
 
@@ -291,6 +321,8 @@ rules/
   analysis.yaml
   report.yaml
 ```
+
+`report.yaml` 是报告呈现规则的唯一来源：章节顺序、证据表列、散文扫描字段路径、范围识别常量、术语对照表和固定披露都在其中，上游七个阶段一律不读它。
 
 `analysis.yaml` 同时承载评分、承重指标白名单、禁止输出词表和质询回路参数：本 Demo 的分析与质询共用一套冻结常量，拆成两份规则文件只会制造需要同步的两处真相。
 

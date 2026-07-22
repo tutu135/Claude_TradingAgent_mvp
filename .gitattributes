@@ -1,0 +1,10 @@
+# Line endings are part of a content hash here. `validate_demo_run.py preflight` compares
+# every frozen analysis input against the sha256 recorded in frozen-inventory.yaml, and
+# `manifest.yaml` hashes every consumed and produced file. A CRLF checkout on Windows would
+# change those bytes and fail the integrity gate on a fresh clone, so the working tree is
+# pinned to LF everywhere.
+* text=auto eol=lf
+
+# The frozen judgment inputs are never converted at all: they are hash-protected read-only
+# inputs, and a conversion of any kind is exactly what the hash exists to detect.
+frozen-analysis-inputs/** -text

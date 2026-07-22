@@ -13,3 +13,17 @@ single-stock-demo-v3/parsed/
 single-stock-demo-v3/*.partial
 
 tmp/
+
+# The run directory is rebuildable output: `validate_demo_run.py preflight` empties it and
+# the seven stages regenerate it. The bulk artefacts (95 MB of context, facts and evidence)
+# stay out of version control; the three small byte-stable files that are the ticket's
+# deliverable and its audit record are kept, so a clean `git diff` after a replay is itself
+# the reproducibility evidence.
+#
+# manifest.yaml is deliberately NOT kept: it records `generated_at` and the tool-version
+# hashes, so it differs on every run by design and would show a diff that means nothing.
+# Its byte-for-byte comparison across two replays is done by reading it directly, not by git.
+single-stock-demo-run/*
+!single-stock-demo-run/report.md
+!single-stock-demo-run/report-validation.yaml
+!single-stock-demo-run/run-gate.yaml

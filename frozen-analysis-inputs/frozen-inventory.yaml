@@ -1,0 +1,15 @@
+snapshot_id: smic-a283e95e2c9e8068
+analysis_rule_version: smic-v3-analysis-v1
+selection_hash: sha256:a0cd803ce8301b611542b376c8a1913cb97487b0a6ef145d84d247a46781ff94
+model_identity: 'claude-opus-4-8 (registered, not gated: model identity is not verifiable)'
+files:
+- path: findings-attempt-1.yaml
+  sha256: sha256:b14ae8817c7dfe816a0be45000687d58cae6914a65c579e25b0bf7de151a92a5
+- path: findings-attempt-2.yaml
+  sha256: sha256:f40bfa5cbba2f6a98e144d4a0b7df0b8a2dd75ee86a17dd53a4de36c7c788e92
+- path: challenges-model.yaml
+  sha256: sha256:7758f7336fc99a64787b23332f12af126adbfb5f35f0a8714d971303622b7e25
+- path: analysis-validation.yaml
+  sha256: sha256:56d268b232fb08baaafb6ef5d460467949693daa647b460668672076d4fc9fe2
+- path: analysis-attempts.jsonl
+  sha256: sha256:6243041d59be5d3e9599ea0969b2c58d27d63e45a9fae9d5711222bc57f81e62
