@@ -1,0 +1,1923 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>单股票投研 Demo — 流程可视化</title>
+<style>
+:root {
+  color-scheme: light;
+  --plane:   #f9f9f7;
+  --surface: #fcfcfb;
+  --sunk:    #f2f1ed;
+  --ink:     #0b0b0b;
+  --ink2:    #52514e;
+  --muted:   #898781;
+  --grid:    #e1e0d9;
+  --rule:    #c3c2b7;
+  --border:  rgba(11,11,11,0.10);
+  --good:    #0ca30c;
+  --warn:    #fab219;
+  --crit:    #d03b3b;
+  --blue:    #2a78d6;
+  --blue-dk: #184f95;
+  --blue-lt: #86b6ef;
+  --violet:  #4a3aa7;
+  --shadow:  0 1px 2px rgba(11,11,11,.05), 0 6px 20px rgba(11,11,11,.05);
+  --mono: ui-monospace, SFMono-Regular, "Cascadia Mono", Menlo, Consolas, monospace;
+  --sans: system-ui, -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) {
+    color-scheme: dark;
+    --plane:   #0d0d0d;
+    --surface: #1a1a19;
+    --sunk:    #232322;
+    --ink:     #ffffff;
+    --ink2:    #c3c2b7;
+    --muted:   #898781;
+    --grid:    #2c2c2a;
+    --rule:    #383835;
+    --border:  rgba(255,255,255,0.10);
+    --blue:    #3987e5;
+    --blue-dk: #86b6ef;
+    --blue-lt: #184f95;
+    --violet:  #9085e9;
+    --shadow:  0 1px 2px rgba(0,0,0,.4), 0 6px 20px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --plane:   #0d0d0d;
+  --surface: #1a1a19;
+  --sunk:    #232322;
+  --ink:     #ffffff;
+  --ink2:    #c3c2b7;
+  --muted:   #898781;
+  --grid:    #2c2c2a;
+  --rule:    #383835;
+  --border:  rgba(255,255,255,0.10);
+  --blue:    #3987e5;
+  --blue-dk: #86b6ef;
+  --blue-lt: #184f95;
+  --violet:  #9085e9;
+  --shadow:  0 1px 2px rgba(0,0,0,.4), 0 6px 20px rgba(0,0,0,.35);
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--plane); color: var(--ink);
+  font-family: var(--sans); font-size: 16px; line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+code, .mono { font-family: var(--mono); }
+
+/* ---------- layout ---------- */
+.app { display: grid; grid-template-columns: 250px minmax(0,1fr); min-height: 100vh; }
+.nav {
+  position: sticky; top: 0; align-self: start; height: 100vh; overflow-y: auto;
+  background: var(--surface); border-right: 1px solid var(--border); padding: 20px 0 40px;
+}
+.nav-brand { padding: 4px 20px 16px; }
+.nav-brand b { display: block; font-size: 14px; letter-spacing: .02em; }
+.nav-brand span { font-size: 11.5px; color: var(--muted); }
+.nav-group { margin-top: 14px; }
+.nav-group > h6 {
+  margin: 0; padding: 6px 20px; font-size: 11px; font-weight: 600;
+  letter-spacing: .09em; color: var(--muted); text-transform: uppercase;
+}
+.nav a {
+  display: flex; gap: 9px; align-items: baseline; padding: 7px 20px;
+  color: var(--ink2); text-decoration: none; font-size: 13.5px; border-left: 2px solid transparent;
+}
+.nav a:hover { background: var(--sunk); color: var(--ink); }
+.nav a.on { border-left-color: var(--blue); color: var(--ink); background: var(--sunk); font-weight: 600; }
+.nav a .n { color: var(--muted); font-size: 11.5px; font-family: var(--mono); min-width: 15px; }
+.nav a.on .n { color: var(--blue); }
+
+main { padding: 0 0 80px; max-width: 100%; }
+.page { display: none; }
+.page.on { display: block; animation: fade .22s ease; }
+@keyframes fade { from { opacity: 0; transform: translateY(5px);} to {opacity:1; transform:none;} }
+.wrap { max-width: 880px; margin: 0 auto; padding: 0 32px; }
+
+.topbar {
+  border-bottom: 1px solid var(--border); background: var(--surface);
+  padding: 9px 32px; font-size: 11.5px; color: var(--muted);
+  display: flex; gap: 14px; flex-wrap: wrap; align-items: center;
+  position: sticky; top: 0; z-index: 20;
+}
+.topbar .pill {
+  border: 1px solid var(--border); border-radius: 999px; padding: 1px 9px;
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: .02em;
+}
+.topbar .sp { flex: 1; }
+.tbtn {
+  background: none; border: 1px solid var(--border); color: var(--ink2);
+  border-radius: 999px; padding: 2px 11px; font: inherit; font-size: 11.5px; cursor: pointer;
+}
+.tbtn:hover { background: var(--sunk); color: var(--ink); }
+
+/* ---------- type ---------- */
+h1 { font-size: 30px; line-height: 1.3; margin: 40px 0 6px; letter-spacing: -.01em; }
+h1 .eyebrow { display:block; font-size: 12px; letter-spacing: .12em; color: var(--blue);
+  font-weight: 600; text-transform: uppercase; margin-bottom: 10px; }
+h2 { font-size: 19px; margin: 44px 0 12px; letter-spacing: -.005em; }
+h3 { font-size: 15px; margin: 26px 0 8px; }
+p { margin: 12px 0; }
+.lede { font-size: 18px; line-height: 1.7; color: var(--ink2); margin: 8px 0 26px; }
+.sub { color: var(--ink2); font-size: 14px; }
+small, .fine { font-size: 12.5px; color: var(--muted); line-height: 1.65; }
+b, strong { font-weight: 650; color: var(--ink); }
+a.ext { color: var(--blue); }
+hr { border: 0; border-top: 1px solid var(--grid); margin: 40px 0; }
+
+.kbd, .id {
+  font-family: var(--mono); font-size: 12.5px; background: var(--sunk);
+  border: 1px solid var(--border); border-radius: 4px; padding: 0 5px;
+  word-break: break-all;
+}
+
+/* ---------- callouts ---------- */
+.block {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+  padding: 18px 20px; margin: 18px 0; box-shadow: var(--shadow);
+}
+.block.spine { border-left: 3px solid var(--blue); }
+.block.bad   { border-left: 3px solid var(--crit); }
+.block.warn  { border-left: 3px solid var(--warn); }
+.block.good  { border-left: 3px solid var(--good); }
+.block h3:first-child, .block h4:first-child { margin-top: 0; }
+.block > :last-child { margin-bottom: 0; }
+h4 { font-size: 13.5px; margin: 0 0 8px; letter-spacing: .01em; }
+
+.gate {
+  background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--blue);
+  border-radius: 10px; padding: 18px 20px; margin: 18px 0; box-shadow: var(--shadow);
+}
+.gate > h4 { color: var(--blue); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; }
+.gate ul { margin: 0; padding-left: 20px; }
+.gate li { margin: 7px 0; }
+.gate li::marker { color: var(--blue); }
+
+/* ---------- tiles ---------- */
+.tiles { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); margin: 20px 0; }
+.tile {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+  padding: 14px 16px; box-shadow: var(--shadow);
+}
+.tile .v { font-size: 27px; line-height: 1.2; font-weight: 620; letter-spacing: -.02em; display: block; }
+.tile .k { font-size: 12px; color: var(--muted); display: block; margin-top: 3px; }
+.tile .note { font-size: 11.5px; color: var(--ink2); display:block; margin-top: 6px; line-height:1.5; }
+.tile.hero .v { font-size: 38px; }
+
+/* ---------- status ---------- */
+.st { display: inline-flex; align-items: center; gap: 5px; font-family: var(--mono);
+  font-size: 11.5px; font-weight: 600; letter-spacing: .03em; white-space: nowrap; }
+.st::before { content: ""; width: 8px; height: 8px; border-radius: 2px; flex: none; }
+.st-pass { color: var(--good); } .st-pass::before { background: var(--good); }
+.st-warn { color: #a97400; } .st-warn::before { background: var(--warn); }
+:root[data-theme="dark"] .st-warn, :root:where(:not([data-theme="light"])) .st-warn { color: var(--warn); }
+@media (prefers-color-scheme: light) { :root:where(:not([data-theme="dark"])) .st-warn { color: #a97400; } }
+.st-fail { color: var(--crit); } .st-fail::before { background: var(--crit); }
+
+/* ---------- flow map ---------- */
+.orch {
+  border: 1px dashed var(--rule); border-radius: 10px; padding: 10px 14px; margin: 22px 0 0;
+  font-size: 12.5px; color: var(--ink2); background: var(--sunk);
+}
+.orch b { font-size: 12px; }
+.flow { display: grid; gap: 8px; grid-template-columns: repeat(auto-fit, minmax(148px,1fr)); margin: 12px 0 6px; }
+.node {
+  display: block; text-align: left; text-decoration: none; cursor: pointer;
+  background: var(--surface); border: 1px solid var(--border); border-top: 3px solid var(--blue);
+  border-radius: 9px; padding: 11px 13px; color: var(--ink); box-shadow: var(--shadow);
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.node:hover { transform: translateY(-2px); box-shadow: 0 3px 6px rgba(11,11,11,.07), 0 12px 28px rgba(11,11,11,.09); }
+.node .num { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+.node .ttl { display: block; font-weight: 640; font-size: 14px; margin: 1px 0 5px; }
+.node .out { display: block; font-size: 11.5px; color: var(--ink2); font-family: var(--mono);
+  word-break: break-all; line-height: 1.5; }
+.node .st { margin-top: 7px; }
+
+/* ---------- cascade ---------- */
+.casc { margin: 20px 0; }
+.casc-row {
+  display: grid; grid-template-columns: 116px 1fr; gap: 16px; align-items: start;
+  padding: 13px 0; border-top: 1px solid var(--grid);
+}
+.casc-row:last-child { border-bottom: 1px solid var(--grid); }
+.casc-n { font-family: var(--mono); font-size: 21px; font-weight: 620; letter-spacing: -.02em;
+  text-align: right; font-variant-numeric: tabular-nums; }
+.casc-lbl { font-size: 14px; font-weight: 600; }
+.casc-d { font-size: 12.5px; color: var(--ink2); margin-top: 2px; }
+.delta { font-family: var(--mono); font-size: 11px; padding: 1px 7px; border-radius: 999px;
+  border: 1px solid var(--border); margin-left: 8px; white-space: nowrap; }
+.delta.up   { color: var(--blue); }
+.delta.down { color: var(--violet); }
+.delta.same { color: var(--crit); }
+
+/* ---------- bars ---------- */
+.bar { display: flex; gap: 2px; height: 26px; margin: 10px 0 6px; }
+.seg { border-radius: 2px; position: relative; min-width: 3px; cursor: default; }
+.seg:first-child { border-radius: 5px 2px 2px 5px; }
+.seg:last-child  { border-radius: 2px 5px 5px 2px; }
+.legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: 12px; color: var(--ink2); margin-bottom: 6px; }
+.legend i { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 5px; }
+
+/* ---------- chain (trace pages) ---------- */
+.chain { margin: 24px 0; position: relative; }
+.step { position: relative; padding: 0 0 6px 34px; }
+.step::before {
+  content: ""; position: absolute; left: 9px; top: 26px; bottom: -6px; width: 2px; background: var(--grid);
+}
+.step:last-child::before { display: none; }
+.step > .dot {
+  position: absolute; left: 0; top: 5px; width: 20px; height: 20px; border-radius: 50%;
+  background: var(--surface); border: 2px solid var(--blue); color: var(--blue);
+  font-size: 10.5px; font-weight: 700; display: grid; place-items: center; font-family: var(--mono);
+}
+.step.err > .dot { border-color: var(--crit); color: var(--crit); }
+.step-h { font-size: 15px; font-weight: 640; margin: 4px 0 2px; }
+.step-h .id { font-weight: 400; margin-left: 6px; }
+.step-k { font-size: 12px; color: var(--muted); font-family: var(--mono); letter-spacing: .04em; }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+  padding: 14px 16px; margin: 10px 0 20px; box-shadow: var(--shadow); overflow-x: auto;
+}
+.card.err { border-left: 3px solid var(--crit); }
+.card.ok  { border-left: 3px solid var(--good); }
+.fields { display: grid; grid-template-columns: max-content minmax(0,1fr); gap: 3px 16px;
+  font-family: var(--mono); font-size: 12.5px; line-height: 1.65; }
+.fields dt { color: var(--muted); white-space: nowrap; }
+.fields dd { margin: 0; word-break: break-word; }
+.fields dd.hit { color: var(--crit); font-weight: 640; }
+.fields dd.gd  { color: var(--good); font-weight: 640; }
+
+.checks { display: grid; gap: 8px; grid-template-columns: 1fr 1fr; margin-top: 12px; }
+@media (max-width: 700px) { .checks { grid-template-columns: 1fr; } }
+.check { border: 1px solid var(--border); border-radius: 8px; padding: 9px 11px; background: var(--plane); }
+.check h5 { margin: 0 0 4px; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.check p { margin: 0; font-size: 12.5px; line-height: 1.6; color: var(--ink2); }
+.check.did h5 { color: var(--good); }
+.check.didnt h5 { color: var(--crit); }
+
+.excerpt {
+  font-family: var(--mono); font-size: 12.5px; line-height: 1.85; white-space: pre-wrap;
+  background: var(--sunk); border: 1px solid var(--border); border-radius: 8px;
+  padding: 12px 14px; margin: 10px 0; overflow-x: auto;
+}
+.excerpt mark { background: rgba(42,120,214,.20); color: inherit; border-radius: 3px; padding: 0 2px; }
+.excerpt mark.bad { background: rgba(208,59,59,.22); }
+
+/* ---------- tables ---------- */
+.tw { overflow-x: auto; margin: 16px 0; border: 1px solid var(--border); border-radius: 10px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 13px; }
+th, td { text-align: left; padding: 9px 13px; border-bottom: 1px solid var(--grid); vertical-align: top; }
+th { font-size: 11.5px; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); font-weight: 600;
+  white-space: nowrap; background: var(--sunk); }
+tr:last-child td { border-bottom: 0; }
+td.num { font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+/* ---------- details ---------- */
+details.deep {
+  border: 1px solid var(--border); border-radius: 10px; background: var(--surface);
+  margin: 16px 0; overflow: hidden;
+}
+details.deep > summary {
+  cursor: pointer; padding: 11px 16px; font-size: 13.5px; font-weight: 600; color: var(--ink2);
+  list-style: none; display: flex; align-items: center; gap: 8px;
+}
+details.deep > summary::-webkit-details-marker { display: none; }
+details.deep > summary::before { content: "▸"; color: var(--blue); font-size: 11px; }
+details.deep[open] > summary::before { content: "▾"; }
+details.deep > summary:hover { background: var(--sunk); }
+details.deep .body { padding: 2px 18px 16px; border-top: 1px solid var(--grid); }
+details.deep .body > :first-child { margin-top: 12px; }
+
+/* ---------- live-open footer ---------- */
+.live {
+  margin: 36px 0 8px; border: 1px dashed var(--rule); border-radius: 10px;
+  padding: 12px 16px; background: var(--sunk);
+}
+.live h5 { margin: 0 0 6px; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.live ul { margin: 0; padding-left: 18px; font-size: 13px; }
+.live li { margin: 4px 0; }
+.live code { font-size: 12.5px; }
+
+/* ---------- term tooltip ---------- */
+.term {
+  border-bottom: 1px dotted var(--rule); cursor: help; position: relative;
+}
+.term:hover::after, .term:focus-visible::after {
+  content: attr(data-tip); position: absolute; left: 0; top: calc(100% + 7px); z-index: 40;
+  width: max-content; max-width: 320px; background: var(--ink); color: var(--plane);
+  font-size: 12.5px; line-height: 1.6; font-weight: 400; padding: 8px 11px; border-radius: 7px;
+  box-shadow: 0 6px 22px rgba(0,0,0,.28); white-space: normal; pointer-events: none;
+}
+
+/* ---------- tooltip for bars ---------- */
+#tip {
+  position: fixed; z-index: 60; background: var(--ink); color: var(--plane);
+  font-size: 12.5px; padding: 6px 10px; border-radius: 6px; pointer-events: none;
+  opacity: 0; transition: opacity .1s; font-family: var(--mono); white-space: nowrap;
+}
+#tip.on { opacity: 1; }
+
+.pager { display: flex; justify-content: space-between; gap: 12px; margin-top: 48px;
+  border-top: 1px solid var(--grid); padding-top: 18px; font-size: 13.5px; }
+.pager a { color: var(--blue); text-decoration: none; }
+.pager a:hover { text-decoration: underline; }
+
+@media (max-width: 860px) {
+  .app { grid-template-columns: 1fr; }
+  .nav { position: static; height: auto; border-right: 0; border-bottom: 1px solid var(--border); }
+  .nav-group { display: inline-block; vertical-align: top; }
+  .wrap { padding: 0 20px; }
+  h1 { font-size: 25px; }
+  .casc-row { grid-template-columns: 84px 1fr; gap: 12px; }
+  .casc-n { font-size: 18px; }
+}
+@media print {
+  .nav, .topbar, .pager { display: none; }
+  .page { display: block !important; page-break-after: always; }
+  details.deep { break-inside: avoid; }
+  details.deep > .body { display: block !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="app">
+<aside class="nav">
+  <div class="nav-brand">
+    <b>单股票投研 Demo</b>
+    <span>中芯国际 688981.SH · Snapshot v3</span>
+  </div>
+
+  <div class="nav-group">
+    <h6>主线</h6>
+    <a href="#/overview"><span class="n">—</span>框架总览</a>
+  </div>
+
+  <div class="nav-group">
+    <h6>七个阶段</h6>
+    <a href="#/s1"><span class="n">1</span>采集与冻结</a>
+    <a href="#/s2"><span class="n">2</span>上下文治理</a>
+    <a href="#/s3"><span class="n">3</span>事实规整</a>
+    <a href="#/s4"><span class="n">4</span>证据治理</a>
+    <a href="#/s5"><span class="n">5</span>分析与打分</a>
+    <a href="#/s6"><span class="n">6</span>反方质询</a>
+    <a href="#/s7"><span class="n">7</span>报告生成</a>
+  </div>
+
+  <div class="nav-group">
+    <h6>贯穿追踪</h6>
+    <a href="#/trace"><span class="n">✓</span>一个数字的一生</a>
+    <a href="#/badtrace"><span class="n">✕</span>一个抽错的一生</a>
+  </div>
+
+  <div class="nav-group">
+    <h6>结果</h6>
+    <a href="#/results"><span class="n">—</span>实测结果</a>
+    <a href="#/issues"><span class="n">—</span>已知问题</a>
+  </div>
+</aside>
+
+<main id="main">
+<div class="topbar">
+  <span class="pill">FROZEN_REPLAY</span>
+  <span class="pill">INTERNAL_DEMO_ONLY</span>
+  <span class="pill">PENDING_HUMAN_REVIEW</span>
+  <span>不构成任何投资建议</span>
+  <span class="sp"></span>
+  <button class="tbtn" id="theme">切换主题</button>
+</div>
+
+<!-- ══════════════════════ OVERVIEW ══════════════════════ -->
+<section class="page" id="p-overview"><div class="wrap">
+  <h1><span class="eyebrow">框架总览</span>把「可核验」做成工程约束</h1>
+  <p class="lede">
+    用一份<b>冻结的</b>真实公开资料——中芯国际 20 份年报 / 季报 / 电话会纪要——跑通一条从原始 PDF
+    到研究报告的完整流水线，验证一件事：报告里的每一个数字，能不能都追溯回原文的确切位置。
+  </p>
+
+  <div class="tiles">
+    <div class="tile hero">
+      <span class="v">19.9<small style="font-size:18px">%</small></span>
+      <span class="k">D1 结论叙述的保留比例</span>
+      <span class="note">473 字里 379 字被整句删除，因为句中的数字没有对应的证据行。</span>
+    </div>
+    <div class="tile hero">
+      <span class="v">0</span>
+      <span class="k">报告自由叙述区的未绑定数字</span>
+      <span class="note">最终门禁回读渲染后的 report.md 断言此值为 0。</span>
+    </div>
+    <div class="tile hero">
+      <span class="v">0 / 7</span>
+      <span class="k">得出 SUPPORTED 的维度</span>
+      <span class="note">5 个 MIXED、2 个 UNKNOWN。跑出漂亮结论才该怀疑。</span>
+    </div>
+  </div>
+
+  <h2>为什么这不是「把年报丢给 GPT」</h2>
+  <p>
+    大模型能写出流畅的研报，问题是你无法逐个核验里面的数字——真数字和幻觉数字长得一模一样。
+    这个项目的做法不是「让模型少犯错」，而是把可核验性变成<b>结构上无法绕过的约束</b>：
+  </p>
+  <div class="gate">
+    <h4>三个机制</h4>
+    <ul>
+      <li><b>溯源链</b>：每个数字都带
+        <span class="id">evidence_id → fact_id → chunk_id → material_id</span>，
+        能一路点回「哪份材料、第几页、哪一章」。</li>
+      <li><b>整句排除</b>：模型写的叙述里，凡是带了数字但那个数字没有对应证据行的，<b>整句删除</b>——
+        不是把数字抹掉。抹字符会留下「毛利率由上升到，改善个百分点」这种看起来还像人话的垃圾。</li>
+      <li><b>最终门禁</b>：报告渲染完之后，程序<b>回读这个文件</b>，扫自由叙述区，断言未绑定数字数量为 0。</li>
+    </ul>
+  </div>
+  <p>
+    代价很直白，也已经量化在上面那张卡片里。项目的立场是<b>难看但可核验 &gt; 好看但不可核验</b>。
+  </p>
+
+  <h2>流水线</h2>
+  <div class="orch">
+    <b>编排器（只做裁判）</b>　preflight 校验冻结输入 → 七阶段按固定顺序执行 → gate 合成
+    <span class="term" data-tip="只由检索、规整、证据治理三个状态按最坏值合成。分析与质询状态属于另一条概念轴，不并入，并列展示。">governance_status</span>
+    并决定报告形态 → finalize-manifest。
+    <span class="fine">它不 import 阶段脚本、不 subprocess 调用它们、不含「下一步是什么」的控制流。</span>
+  </div>
+  <div class="flow">
+    <a class="node" href="#/s1"><span class="num">01</span><span class="ttl">采集与冻结</span>
+      <span class="out">snapshot v3 · 20 份材料</span><span class="st st-pass">PREFLIGHT PASS</span></a>
+    <a class="node" href="#/s2"><span class="num">02</span><span class="ttl">上下文治理</span>
+      <span class="out">context.jsonl · 3,399 片段</span><span class="st st-pass">PASS</span></a>
+    <a class="node" href="#/s3"><span class="num">03</span><span class="ttl">事实规整</span>
+      <span class="out">normalized-facts · 20,114</span><span class="st st-warn">WARN</span></a>
+    <a class="node" href="#/s4"><span class="num">04</span><span class="ttl">证据治理</span>
+      <span class="out">governed-evidence · 20,114</span><span class="st st-warn">WARN</span></a>
+    <a class="node" href="#/s5"><span class="num">05</span><span class="ttl">分析与打分</span>
+      <span class="out">findings.yaml · D1–D7</span><span class="st st-pass">PASS</span></a>
+    <a class="node" href="#/s6"><span class="num">06</span><span class="ttl">反方质询</span>
+      <span class="out">challenges.yaml · 5 条</span><span class="st st-warn">WARN</span></a>
+    <a class="node" href="#/s7"><span class="num">07</span><span class="ttl">报告生成</span>
+      <span class="out">report.md · 十章节</span><span class="st st-pass">PASS</span></a>
+  </div>
+  <p class="fine">
+    点任意一个阶段进入详情。全流程约 1 分 45 秒；8 个 CLI 约 9,700 行，测试约 7,000 行 / 144 个用例。
+  </p>
+
+  <h2>数据在链条上的形态</h2>
+  <p class="sub">
+    注意这<b>不是一个漏斗</b>——中间有一段是放大的。把它画成漏斗会掩盖两件真事：
+    分块之后候选集其实收窄了很多，而事实到证据是严格 1:1、一条没筛掉。
+  </p>
+  <div class="casc">
+    <div class="casc-row">
+      <div class="casc-n">20</div>
+      <div><div class="casc-lbl">份冻结材料</div>
+        <div class="casc-d">13 份 PDF + 7 份 HTML，全部 <span class="term" data-tip="「已取得，未评估」。进快照 ≠ 可信。采集只管有没有出处、时间对不对、字节能不能哈希复现。">ACQUIRED_UNASSESSED</span>；19 个同源组。</div></div>
+    </div>
+    <div class="casc-row">
+      <div class="casc-n">3,399</div>
+      <div><div class="casc-lbl">上下文片段 <span class="delta up">全量入库</span></div>
+        <div class="casc-d">结构原子分块，不用固定长度滑窗。全部进 BM25 索引，包括结构噪声。</div></div>
+    </div>
+    <div class="casc-row">
+      <div class="casc-n">415</div>
+      <div><div class="casc-lbl">候选上下文 <span class="delta down">↓ 收窄 88%</span></div>
+        <div class="casc-d">由 31 个固定子查询的 BM25 命中并集决定。下游只处理这 415 个。</div></div>
+    </div>
+    <div class="casc-row">
+      <div class="casc-n">20,114</div>
+      <div><div class="casc-lbl">原子事实 <span class="delta up">↑ 放大</span></div>
+        <div class="casc-d">TEXT_PROPOSITION 15,539 / NUMERIC_OBSERVATION 4,575 / DERIVATION 0。一句话里两个数字拆成两条。</div></div>
+    </div>
+    <div class="casc-row">
+      <div class="casc-n">20,114</div>
+      <div><div class="casc-lbl">治理证据 <span class="delta same">= 一条没少</span></div>
+        <div class="casc-d">这一层<b>只贴标签、不筛选</b>。收窄的责任全压在下一步挑证据上——这是已登记的问题 A3。</div></div>
+    </div>
+    <div class="casc-row">
+      <div class="casc-n">7</div>
+      <div><div class="casc-lbl">结构化发现 <span class="delta down">↓ 每维一条</span></div>
+        <div class="casc-d">D1–D7，各带证据分 0–3。无加权总分，<span class="id">overall_score</span> 恒为 NOT_APPLICABLE。</div></div>
+    </div>
+    <div class="casc-row">
+      <div class="casc-n">85</div>
+      <div><div class="casc-lbl">报告证据表行数</div>
+        <div class="casc-d">报告里所有数字的唯一出处。溯源链未解析项 0。</div></div>
+    </div>
+  </div>
+
+  <h2>三个可能有意思的设计决定</h2>
+
+  <div class="block spine">
+    <h4>1 · 材料不会自动变成证据</h4>
+    <p class="sub">
+      进快照的材料统一标 <span class="id">ACQUIRED_UNASSESSED</span>。采集只管「有没有出处、时间对不对、
+      字节能不能哈希复现」，<b>完全不判断真假</b>。能不能拿来支撑结论是后面独立一层的事。
+      这样「我找到了这份资料」和「这份资料可信」就不会被偷偷合并。
+    </p>
+  </div>
+
+  <div class="block spine">
+    <h4>2 · 模型判断被夹在两层确定性逻辑中间</h4>
+    <p class="sub">
+      选证据是确定性脚本（按检索分数和来源多样性挑，有预算上限）；模型只在中间做一次有界判断，
+      且<b>只能引用给定候选集里的 ID</b>，引用集外的直接判失败；证据分由脚本从模型选中的证据<b>反算</b>，
+      模型不产出分数。实测首轮有 3/7 个维度因为「因果措辞没有标注来源」被拒绝重来。
+    </p>
+  </div>
+
+  <div class="block spine">
+    <h4>3 · 端到端不重新调模型（这条最容易被质疑）</h4>
+    <p class="sub">
+      模型的判断产物被冻结成只读输入，跑流程时零模型调用。所以「端到端可复现」证明的是
+      <b>从冻结输入到最终产物的确定性重放</b>，不是判断层被重新执行。
+    </p>
+    <p class="sub">
+      这么选的原因是实测的：每个维度只有两次生成机会，第二次再失败就强制 UNKNOWN。真调模型会让
+      同一份验收<b>一次通过一次失败</b>——不可复现的验收不是验收。判断层本身的可信度由 12 项校验
+      加全过程留痕承担。代价已如实记录在 <span class="id">docs/adr/0005</span>。
+    </p>
+  </div>
+
+  <div class="live">
+    <h5>现场打开</h5>
+    <ul>
+      <li><code>single-stock-demo-run/report.md</code> — 翻到第三章 D1，看被掏空的叙述 + 下面 16 列的证据表</li>
+      <li><code>docs/PROJECT-GUIDE.md</code> — 完整导览，带实测结果表</li>
+    </ul>
+  </div>
+
+  <div class="pager"><span></span><a href="#/s1">① 采集与冻结 →</a></div>
+</div></section>
+
+<!-- ══════════════════════ STAGE 1 ══════════════════════ -->
+<section class="page" id="p-s1"><div class="wrap">
+  <h1><span class="eyebrow">阶段 01 · acquire-research-materials</span>采集与冻结</h1>
+  <p class="lede">把公开资料变成一份<b>自包含、带哈希、只读</b>的快照，并且明确声明：进来了不等于可信。</p>
+
+  <div class="tiles">
+    <div class="tile"><span class="v">20</span><span class="k">份材料</span>
+      <span class="note">13 PDF + 7 HTML，19 个同源组</span></div>
+    <div class="tile"><span class="v">0</span><span class="k">晚于 as_of 的材料</span>
+      <span class="note">preflight 逐条核验</span></div>
+    <div class="tile"><span class="v">v3</span><span class="k">当前快照</span>
+      <span class="note">smic-a283e95e2c9e8068</span></div>
+  </div>
+
+  <h2>输入 → 输出</h2>
+  <div class="tw"><table>
+    <tr><th>输入</th><td>港交所 / 巨潮 / 公司投资者关系页 / SIA / 电话会纪要，以及 <span class="id">case.yaml</span> 里冻结的研究入口</td></tr>
+    <tr><th>输出</th><td><span class="id">single-stock-demo-v3/</span>：<span class="id">snapshot-manifest.yaml</span>、<span class="id">materials.jsonl</span>、<span class="id">raw/</span> 原件、<span class="id">parsed/</span> 解析结果、采集缺口</td></tr>
+  </table></div>
+
+  <div class="gate">
+    <h4>这一步拦住了什么</h4>
+    <ul>
+      <li><b>时间晚于 <span class="term" data-tip="as_of = 信息最晚公开时间，不是财报期末、不是采集时间。本案例为 2026-05-15T23:59:59+08:00。">as_of</span> 的内容</b>——已确认晚于 as_of 的直接不进快照；发布时间区间跨越 as_of 的也不进。</li>
+      <li><b>拿不出出处的内容</b>——采集来源、展示发布主体、发布时间依据、材料定位，缺任何一项就留在快照外的<b>候选材料暂存区</b>，不分配 <span class="id">material_id</span>。</li>
+      <li><b>字节不可复现的内容</b>——每份材料记录 sha256 内容哈希；相同哈希只创建一个 material_id，转载入口作为备用定位。</li>
+      <li><b>把「找到了」升级成「可信」</b>——这是最关键的一道。所有材料统一 <span class="id">ACQUIRED_UNASSESSED</span>，采集阶段<b>不做</b>真假判断、不评信源等级、不判证据资格。</li>
+    </ul>
+  </div>
+
+  <p>
+    这条分离是有意为之的架构决策（<span class="id">ADR 0002</span>）。合并的诱惑很大：既然都费劲找到了，
+    顺手标个「可信」多方便。但一旦合并，后面就再也分不清「这个结论站得住是因为证据强」还是
+    「因为我当初找资料时觉得这来源不错」。
+  </p>
+
+  <details class="deep"><summary>深入：两种运行模式，以及为什么快照不能原地更新</summary><div class="body">
+    <p>
+      <span class="id">SNAPSHOT_BUILD</span> 可联网采集；<span class="id">DEMO_RUN</span> 只读冻结输入，
+      绝不联网、绝不接受晚于 as_of 的材料。本 Demo 的端到端跑的全是 DEMO_RUN。
+    </p>
+    <p>
+      每个快照必须<b>自包含</b>。更新材料、采集元数据或规则时生成新的 <span class="id">snapshot_id</span>，
+      不得原地伪装成同一快照。所以有 v1 / v2 / v3 三代，前两代不可变地保留着。
+      下游产物<b>不写回快照目录</b>——写回会破坏它的自包含冻结身份。
+    </p>
+    <h3>21 项 required_coverage 的实际取得数</h3>
+    <div class="tw"><table>
+      <tr><th>覆盖目标</th><th>材料数</th><th>覆盖目标</th><th>材料数</th></tr>
+      <tr><td>company_security_master</td><td class="num">6</td><td>capacity</td><td class="num">14</td></tr>
+      <tr><td>annual_materials_fy2023</td><td class="num">2</td><td>utilization</td><td class="num">13</td></tr>
+      <tr><td>annual_materials_fy2024</td><td class="num">2</td><td>shipments</td><td class="num">13</td></tr>
+      <tr><td>annual_materials_fy2025</td><td class="num">2</td><td>average_selling_price</td><td class="num">6</td></tr>
+      <tr><td>quarterly_materials_2025_q2</td><td class="num">3</td><td>process_application_mix</td><td class="num">13</td></tr>
+      <tr><td>quarterly_materials_2025_q3</td><td class="num">2</td><td>capital_expenditure</td><td class="num">14</td></tr>
+      <tr><td>quarterly_materials_2025_q4</td><td class="num">3</td><td>government_grants</td><td class="num">13</td></tr>
+      <tr><td>quarterly_materials_2026_q1</td><td class="num">4</td><td>ifrs_cas_reconciliation</td><td class="num">9</td></tr>
+    </table></div>
+    <p class="fine">
+      搜索状态只允许 <span class="id">IN_PROGRESS</span> 或 <span class="id">SATURATED</span>，
+      不允许用 COVERED / PARTIAL 声称事实完整——「我搜不动了」和「这件事没有更多资料」是两回事。
+    </p>
+  </div></details>
+
+  <div class="live">
+    <h5>现场打开</h5>
+    <ul>
+      <li><code>single-stock-demo-v3/materials.jsonl</code> — 一行一份材料，看采集元数据有多啰嗦</li>
+      <li><code>single-stock-demo-run/run-integrity.yaml</code> — preflight 的 14 项逐条核验</li>
+    </ul>
+  </div>
+  <div class="pager"><a href="#/overview">← 框架总览</a><a href="#/s2">② 上下文治理 →</a></div>
+</div></section>
+
+<!-- ══════════════════════ STAGE 2 ══════════════════════ -->
+<section class="page" id="p-s2"><div class="wrap">
+  <h1><span class="eyebrow">阶段 02 · govern-research-context</span>上下文治理</h1>
+  <p class="lede">把 PDF 切成<b>可精确定位</b>的片段，用<b>冻结的</b>查询把相关的挑出来。检索命中不表示事实成立。</p>
+
+  <div class="tiles">
+    <div class="tile"><span class="v">3,399</span><span class="k">片段全量入库</span></div>
+    <div class="tile"><span class="v">415</span><span class="k">候选上下文</span>
+      <span class="note">candidate_context = true</span></div>
+    <div class="tile"><span class="v">100%</span><span class="k">MUST_HIT 召回 / 定位准确率</span></div>
+    <div class="tile"><span class="v">0</span><span class="k">负控进入候选</span></div>
+  </div>
+
+  <div class="gate">
+    <h4>这一步拦住了什么</h4>
+    <ul>
+      <li><b>运行时改写查询</b>——查询族是版本化的中英文子查询（31 个），各自独立跑 BM25 再取并集。
+        <b>禁止模型临时扩写同义词、改写查询或改变固定查询集。</b>否则每次跑出来的候选集都不一样，
+        「可复现」直接不成立。</li>
+      <li><b>固定长度滑窗切碎表格</b>——用<span class="term" data-tip="PDF 正文按章节内段落组；表格必须共同保留表头、单位、期间、数据行和脚注；HTML 按标题栏目；transcript 按发言人轮次。">结构原子</span>分块。
+        表格片段必须<b>共同携带</b>表头、单位、期间和脚注，大表按行组拆分时重复携带这些解释要素——
+        否则「20.1」就只是个孤零零的数字。</li>
+      <li><b>静默删除噪声</b>——导航、Cookie 提示、页脚这类结构噪声<b>仍然保留</b>在 context.jsonl 里，
+        只是固定标 <span class="id">candidate_context=false</span> 并记录 filter_reason。删掉就无法解释为什么没被检索到。</li>
+      <li><b>用信源等级做过滤</b>——过滤只能识别结构性噪声，<b>不得</b>使用信源等级、内容类型、可信度、
+        观点方向或证据资格。那些是下一层的职责。</li>
+    </ul>
+  </div>
+
+  <h2>实测：retrieval_status = <span class="st st-pass">PASS</span></h2>
+  <div class="tw"><table>
+    <tr><th>指标</th><th>门槛</th><th>实测</th></tr>
+    <tr><td>MUST_HIT Recall</td><td>100%</td><td class="num">100%</td></tr>
+    <tr><td>SHOULD_HIT Recall（总体）</td><td>≥ 80%</td><td class="num">100%</td></tr>
+    <tr><td>SHOULD_HIT Recall（任一查询族）</td><td>≥ 60%</td><td class="num">全部 100%</td></tr>
+    <tr><td>Precision@min(5,N)（每个子查询）</td><td>≥ 60%</td><td class="num">全部 100%</td></tr>
+    <tr><td>NEGATIVE_CONTROL 成为候选的比例</td><td>0%</td><td class="num">0%</td></tr>
+    <tr><td>MUST_HIT 的定位准确率</td><td>100%</td><td class="num">100%</td></tr>
+    <tr><td>两次干净重建的哈希</td><td>一致</td><td class="num">一致</td></tr>
+  </table></div>
+  <p class="fine">
+    分词器 <span class="id">smic-mixed-zh-en-tokenizer-v1</span>，词表 <span class="id">smic-research-lexicon-v1</span>，
+    停用词 <span class="id">smic-stopwords-v1</span>——三者版本都写进检索记录。
+  </p>
+
+  <details class="deep"><summary>深入：为什么是 BM25 而不是向量检索</summary><div class="body">
+    <p>
+      关键词 / BM25 是<b>必需基线</b>，Embedding 只是可选实验，而且触发条件写死了：只有在 BM25 为 WARN
+      <b>且实验前已登记具体词法漏召回</b>时，才允许做一次同集对比。BM25 为 PASS 时不做实验；
+      BM25 为 FAIL 时先去修分块、查询、词表或定位，而不是换检索方式掩盖问题。
+    </p>
+    <p>
+      本次 BM25 直接 PASS，所以向量检索<b>一次都没跑</b>。这不是「向量不好」，
+      而是这个语料的特点——财报里的指标名是高度术语化的固定写法，词法匹配本来就强；
+      真正的难点在切分和定位，不在语义相似。
+    </p>
+    <h3>分词器固定保留的领域符号</h3>
+    <p class="sub">
+      IFRS、CAS、USD、R&amp;D、EBITDA、晶圆尺寸、制程节点。并且把
+      <span class="id">4Q25</span>、<span class="id">Q4 2025</span>、<span class="id">2025 Q4</span>
+      三种写法归一到同一个规范期间 token——这类归一化必须写死在分词器里，不能靠模型临场理解。
+    </p>
+    <h3>截断规则</h3>
+    <p class="sub">
+      每个子查询取全局 Top 20，同一材料最多保留 5 个直接命中，排序固定为
+      <span class="id">score desc, chunk_id asc</span>。第 20 名同分时保留全部同分片段，但单材料上限仍生效。
+      <b>不设跨查询的绝对 BM25 分数阈值</b>，也不比较不同子查询的原始分数——BM25 分数不可跨查询比较。
+    </p>
+  </div></details>
+
+  <div class="live">
+    <h5>现场打开</h5>
+    <ul>
+      <li><code>rules/context-retrieval.yaml</code> — 分块 / 分词 / BM25 / 查询族的唯一权威定义</li>
+      <li><code>single-stock-demo-run/retrieval-validation.yaml</code> — 每个子查询的 tokens、命中排名和分数</li>
+    </ul>
+  </div>
+  <div class="pager"><a href="#/s1">← ① 采集与冻结</a><a href="#/s3">③ 事实规整 →</a></div>
+</div></section>
+
+<!-- ══════════════════════ STAGE 3 ══════════════════════ -->
+<section class="page" id="p-s3"><div class="wrap">
+  <h1><span class="eyebrow">阶段 03 · normalize-research-facts</span>事实规整</h1>
+  <p class="lede">把片段里的每个数字拆成<b>原子记录</b>：值、单位、币种、缩放、期间、会计准则、审计状态全部分字段存。</p>
+
+  <div class="tiles">
+    <div class="tile"><span class="v">20,114</span><span class="k">原子事实</span>
+      <span class="note">TEXT 15,539 / NUMERIC 4,575 / DERIVATION 0</span></div>
+    <div class="tile"><span class="v">15,202</span><span class="k">normalization_status = PASS</span></div>
+    <div class="tile"><span class="v">4,912</span><span class="k">PARTIAL</span>
+      <span class="note">部分规整属性为 UNKNOWN</span></div>
+    <div class="tile"><span class="v">0</span><span class="k">BLOCKED</span></div>
+  </div>
+
+  <div class="gate">
+    <h4>这一步拦住了什么</h4>
+    <ul>
+      <li><b>浮点数</b>——可解析值一律用十进制定点字符串 + Decimal 计算，<b>不得使用 JSON/二进制浮点数</b>。
+        百分比以原显示数值配 <span class="id">unit=PERCENT</span> 保存，不静默改为小数比率；
+        百分点用 <span class="id">unit=PERCENTAGE_POINT</span>。</li>
+      <li><b>把空白当零</b>——每个数值必须有 <span class="id">value_status</span>：
+        PRESENT / EXPLICIT_ZERO / NOT_APPLICABLE / NOT_REPORTED / UNPARSEABLE / UNKNOWN。
+        只有原文明确为零、或表格图例明确说明破折号代表零<b>且该图例可定位</b>时才能用 EXPLICIT_ZERO。
+        空白、破折号、N/A <b>不得</b>自动转为零。</li>
+      <li><b>模糊匹配指标名</b>——指标和主体只通过固定版本映射表规范化。
+        <b>禁止字符串相似度、词干推断、停用词删除、Embedding 或模型语义归并。</b>
+        没命中已确认别名就是 UNMAPPED，不猜。</li>
+      <li><b>「映射成功 = 可比」</b>——可比性必须绑定明确的比较对象，单独存
+        <span class="id">comparability_status</span> 和固定原因码。不得保存没有比较对象的笼统可比状态。</li>
+      <li><b>运行时自由公式</b>——系统派生只允许固定白名单的 9 个公式，每项实现为固定函数 + 规则 ID。
+        <b>不建设公式 DSL，不接受运行时自由公式。</b></li>
+      <li><b>晶圆口径互换</b>——8 寸 / 12 寸 / 8 寸等效<b>不是单位缩放</b>。
+        除非原文明确给了换算规则，否则禁止互换。利用率只保存来源披露值，<b>不用产能与出货反推</b>。</li>
+    </ul>
+  </div>
+
+  <h2>实测：normalization_run_status = <span class="st st-warn">WARN</span></h2>
+  <p>
+    WARN 的来源是那 4,912 条 PARTIAL——原始内容和定位可以安全保存，但部分规整属性是 UNKNOWN，
+    只能用于不依赖缺失字段的用途。每一条都登记了对应的 gap。
+  </p>
+  <p class="fine">
+    注意 <span class="id">DERIVATION = 0</span>：一条系统派生都没生成。不是功能没实现，
+    而是所有派生的前置可比性检查（主体、期间、准则、范围、币种、单位、定义、版本）没有一组全部通过。
+    这是数据的真实承载力，报告里原样写出来。
+  </p>
+
+  <details class="deep"><summary>深入：IFRS / CAS 桥接与政府补助敏感性</summary><div class="body">
+    <h3>桥接只实现一个方向</h3>
+    <p class="sub">
+      <span class="id">CAS_TO_IFRS</span>，公式固定为
+      <span class="id">IFRS_TARGET = CAS_BASE + sum(normalized_signed_amount of ADJUSTMENT_DETAIL)</span>。
+      不接受运行时反向复算。每行标 <span class="id">row_role=BASE|ADJUSTMENT_DETAIL|SUBTOTAL|TARGET</span>，
+      只有 ADJUSTMENT_DETAIL 进入求和——防止明细、小计和总计重复计入。
+    </p>
+    <p class="sub">
+      复算差异恰为零 → PASS；非零但在容差内 → ROUNDING_DIFFERENCE；超出容差 → FORMULA_MISMATCH。
+      容差固定为 <span class="id">0.5 × (各行 rounding_increment 之和)</span>，<b>不猜容差</b>：
+      若任一必要披露精度缺失，则只有差异恰为零可 PASS。
+    </p>
+    <p class="sub">
+      <b>实测 7 条：4 条 PASS，3 条 UNKNOWN（口径不匹配无法计算）。</b>
+    </p>
+    <h3>政府补助敏感性：实测 0 条</h3>
+    <p class="sub">
+      只有当政府资金确认金额<b>可分离、可追溯</b>，与报告的 profit from operations 在期间、主体、准则、
+      合并范围、币种上一致，<b>并能证明已计入该营业利润</b>时，才允许计算敏感性。
+    </p>
+    <p class="sub">
+      报告口径下有 15 条政府补助记录，但<b>无一满足「可分离且已计入同口径」</b>，所以敏感性记录为 0。
+      仅收到未计入损益的现金、资本补助、未摊销递延收益、计入所得税的税收优惠——全部不许调整。
+      项目的选择是把这个 0 和原因原样写进报告，而不是放宽条件凑一个数出来。
+    </p>
+  </div></details>
+
+  <div class="live">
+    <h5>现场打开</h5>
+    <ul>
+      <li><code>rules/accounting.yaml</code> — 会计规整规则的唯一权威定义</li>
+      <li><code>single-stock-demo-run/normalized-facts.jsonl</code> — 抽一行看看一条事实有多少字段</li>
+    </ul>
+  </div>
+  <div class="pager"><a href="#/s2">← ② 上下文治理</a><a href="#/s4">④ 证据治理 →</a></div>
+</div></section>
+
+<!-- ══════════════════════ STAGE 4 ══════════════════════ -->
+<section class="page" id="p-s4"><div class="wrap">
+  <h1><span class="eyebrow">阶段 04 · govern-and-validate-research-evidence</span>证据治理</h1>
+  <p class="lede">给每条事实定<b>信源等级</b>、<b>内容类型</b>、<b>同源组</b>和<b>可用状态</b>。这一层决定谁能承重。</p>
+
+  <div class="tiles">
+    <div class="tile"><span class="v">20,114</span><span class="k">治理证据</span>
+      <span class="note">与事实数严格 1:1</span></div>
+    <div class="tile"><span class="v">19</span><span class="k">同源组</span>
+      <span class="note">20 份材料 → 19 组</span></div>
+    <div class="tile"><span class="v">13 / 13</span><span class="k">确定性核验全 PASS</span></div>
+    <div class="tile"><span class="v">0</span><span class="k">冲突组 / 隔离证据</span></div>
+  </div>
+
+  <h2>证据状态三档</h2>
+  <div class="legend">
+    <span><i style="background:#2a78d6"></i>USABLE 15,202（75.6%）</span>
+    <span><i style="background:#9085e9"></i>RESTRICTED 4,912（24.4%）</span>
+    <span><i style="background:#d03b3b"></i>QUARANTINED 0</span>
+  </div>
+  <div class="bar" id="bar-evst">
+    <div class="seg" style="flex:15202; background:#2a78d6" data-tip="USABLE 15,202 · 可引用且可承重"></div>
+    <div class="seg" style="flex:4912; background:#9085e9" data-tip="RESTRICTED 4,912 · 可引用但不可承重"></div>
+  </div>
+  <p class="fine">QUARANTINED 为 0，条形图里没有它的位置——这一点本身就是问题 A2 的内容，见「已知问题」。</p>
+
+  <div class="tw"><table>
+    <tr><th>状态</th><th>含义</th><th>实测</th></tr>
+    <tr><td><b>USABLE</b></td><td>可引用<b>且可承重</b>（<span class="id">permitted_use = CITE_AND_BEAR</span>）</td><td class="num">15,202</td></tr>
+    <tr><td><b>RESTRICTED</b></td><td>可引用<b>但不可承重</b></td><td class="num">4,912</td></tr>
+    <tr><td><b>QUARANTINED</b></td><td>隔离，下游一律不许引用</td><td class="num">0</td></tr>
+  </table></div>
+
+  <div class="gate">
+    <h4>这一步拦住了什么</h4>
+    <ul>
+      <li><b>让来源观点承重</b>——这是最重要的一条。
+        <span class="term" data-tip="结论方向直接依赖某条证据 = 该证据「承重」。只有 USABLE 能承重。">承重</span>的定义是「结论方向直接依赖它」。
+        管理层说「利用率显著改善」可以写进报告（标为 MANAGEMENT_ASSERTION），
+        但<b>不能成为「利用率确实改善了」的支撑</b>。</li>
+      <li><b>转载冒充多来源</b>——同一份原始披露的不同入口算<b>一个</b>来源组。
+        转载不增加确认数量，证据分只按独立同源组计。</li>
+      <li><b>定位断链</b>——原始材料缺失或无法建立内容定位的记录不能成为可用证据，
+        <b>也不能以 T4 代替</b>（「来源差」和「找不到出处」是两回事）。</li>
+    </ul>
+  </div>
+
+  <h2>信源分级实测</h2>
+  <div class="legend">
+    <span><i style="background:#2a78d6"></i>T1 19,544</span>
+    <span><i style="background:#3987e5"></i>T2 203</span>
+    <span><i style="background:#86b6ef"></i>T3 278</span>
+    <span><i style="background:#c3c2b7"></i>T4 89</span>
+  </div>
+  <div class="bar">
+    <div class="seg" style="flex:19544; background:#2a78d6" data-tip="T1 发行人/监管直接披露 · 19,544"></div>
+    <div class="seg" style="flex:203; background:#3987e5" data-tip="T2 · 203"></div>
+    <div class="seg" style="flex:278; background:#86b6ef" data-tip="T3 · 278"></div>
+    <div class="seg" style="flex:89; background:#c3c2b7" data-tip="T4 · 89"></div>
+  </div>
+  <p class="fine">
+    内容类型：REPORTED_FACT 19,544 / THIRD_PARTY_VIEW 314 / MANAGEMENT_ASSERTION 222 / MANAGEMENT_GUIDANCE 34。
+  </p>
+
+  <h2>实测：validation_status = <span class="st st-warn">WARN</span></h2>
+  <p>
+    十三项确定性核验<b>全部 PASS</b>——哈希完整性、as_of 准入、定位可解析、必需字段、单位币种期间、
+    公式复算、同源组一致性、冲突检测、隔离、ID 引用完整性、定位链一致性、状态组合合法性、白名单签名。
+    WARN 来自上游继承的 PARTIAL 记录，以及两条新登记的 gap。
+  </p>
+
+  <div class="block warn">
+    <h4>但要说清楚：这一层<b>没有筛掉任何记录</b></h4>
+    <p class="sub">
+      20,114 条事实进，20,114 条证据出，<b>一条没少</b>。它的作用目前是「给每条事实贴标签」，
+      不是「筛掉不合格的」。这符合项目一贯的「保留一切、只限制用途」，但收窄的责任因此全压在
+      下一步挑证据上。已登记为问题 A3。
+    </p>
+  </div>
+
+  <details class="deep"><summary>深入：冲突检测为什么只覆盖 2 条事实</summary><div class="body">
+    <p>
+      <span class="id">ADR 0003</span> 把冲突检测限制在人工核对过的 fact_id 白名单上，
+      白名单目前只有 <b>2 条</b>用户确认的 FY2024 利润事实。
+    </p>
+    <p>
+      代价很直接：<span class="id">CONFLICT_UNRESOLVED</span> 这条受限理由在 20,114 条里几乎不可能触发
+      （数据也印证了——4,912 条 RESTRICTED <b>全部</b>由上游 PARTIAL 触发，另外两条理由一次都没独立触发过）。
+      「多来源冲突检测」这个能力在真实数据上等于没开。
+    </p>
+    <p>
+      这是<b>有意识的取舍</b>，不是 bug：全量冲突检测要先解决「什么算同一个指标的同一个期间」，
+      而那正是这个 Demo 刻意不去建通用框架的地方。代价是这个能力展示不出来，
+      报告第九章的冲突计数确实是 0，并附了一句说明这是 Snapshot v3 的真实承载力。
+    </p>
+    <p class="fine">被排除在冲突检测之外的记录，按原因分：文本命题超出范围 15,539 / 缺 metric_id 3,499 /
+      缺可比性键 800 / 不在白名单 274。</p>
+  </div></details>
+
+  <div class="live">
+    <h5>现场打开</h5>
+    <ul>
+      <li><code>rules/source-governance.yaml</code> — 信源分级 / 内容类型 / 冲突 / 证据状态</li>
+      <li><code>single-stock-demo-run/evidence-validation.yaml</code> — 13 项核验逐条结果</li>
+    </ul>
+  </div>
+  <div class="pager"><a href="#/s3">← ③ 事实规整</a><a href="#/s5">⑤ 分析与打分 →</a></div>
+</div></section>
+
+<!-- ══════════════════════ STAGE 5 ══════════════════════ -->
+<section class="page" id="p-s5"><div class="wrap">
+  <h1><span class="eyebrow">阶段 05 · analyze-and-score-research-findings</span>分析与打分</h1>
+  <p class="lede">模型在这里做<b>唯一一次</b>判断——而且被夹在两层确定性逻辑中间，前后都不许它越界。</p>
+
+  <div class="block spine">
+    <h4>三段式：确定性 → 有界模型 → 确定性</h4>
+    <div class="tw"><table>
+      <tr><th>段</th><th>谁做</th><th>做什么</th></tr>
+      <tr><td><b>select</b></td><td>脚本</td><td>按检索分数和来源多样性挑候选集，有字符预算上限；产出 <span class="id">analysis-inputs.jsonl</span> 与 <span class="id">selection_hash</span></td></tr>
+      <tr><td><b>判断</b></td><td>模型</td><td>每维一次有界判断，<b>只能引用候选集内的 evidence_id</b>；每维最多两次尝试</td></tr>
+      <tr><td><b>finalize</b></td><td>脚本</td><td>从模型选中的证据<b>反算</b>证据分 + 跑 12 项具名校验</td></tr>
+    </table></div>
+  </div>
+
+  <div class="gate">
+    <h4>这一步拦住了什么</h4>
+    <ul>
+      <li><b>引用候选集外的证据</b>——<span class="id">candidate_set_closure</span> 校验，违反直接判失败。
+        模型看不见候选集之外的世界，所以也无法「回忆」出一个不存在的 evidence_id。</li>
+      <li><b>模型自己给分</b>——证据分由脚本从选中证据反算。分 0 强制 UNKNOWN；
+        反之不成立。<b>无加权总分</b>，<span class="id">overall_score</span> 恒为 NOT_APPLICABLE。</li>
+      <li><b>没标来源的因果措辞</b>——<span class="id">causal_attribution</span> 校验。
+        <b>实测拦下了 3 次</b>，全是同一个词：「因而」。</li>
+      <li><b>用白名单外的指标承重</b>——每个维度只有名单内的 metric_id 能承担结论方向。
+        <b>D2 / D5 / D7 名单为空，D3 只有一条</b>，如实披露不修补。</li>
+      <li><b>无限重试到通过为止</b>——每维最多两次生成机会，第二次再失败就<b>强制 UNKNOWN</b>
+        + 证据分 0 + 整个阶段 FAIL。</li>
+    </ul>
+  </div>
+
+  <h2>实测：3 次被拒绝，全是同一个词</h2>
+  <div class="tw"><table>
+    <tr><th>维度</th><th>尝试</th><th>错误码</th></tr>
+    <tr><td>D1_PROFITABILITY_CHANGE</td><td class="num">1</td><td><span class="id">UNATTRIBUTED_CAUSAL_CLAIM:finding_statement:因而</span><br><span class="id">UNATTRIBUTED_CAUSAL_CLAIM:supporting_evidence.overlap_note:因而</span></td></tr>
+    <tr><td>D2_UTILIZATION_EFFECT</td><td class="num">1</td><td><span class="id">UNATTRIBUTED_CAUSAL_CLAIM:finding_statement:因而</span></td></tr>
+    <tr><td>D3_MIX_EFFECT</td><td class="num">1</td><td><span class="id">UNATTRIBUTED_CAUSAL_CLAIM:finding_statement:因而</span><br><span class="id">UNATTRIBUTED_CAUSAL_CLAIM:supporting_evidence.note:因而</span><br><span class="id">UNATTRIBUTED_CAUSAL_CLAIM:supporting_evidence.overlap_note:因而</span></td></tr>
+  </table></div>
+  <p>
+    这是<b>整个项目最好的演示素材</b>：闸门真的拦下过东西，而且同一个词拦了三次。
+    所有尝试——包括被拒绝的——全文留在 <span class="id">analysis-attempts.jsonl</span> 里，10 条记录。
+  </p>
+
+  <h2>承重指标白名单（实测）</h2>
+  <div class="tw"><table>
+    <tr><th>维度</th><th>白名单</th><th>可承重数值条数</th></tr>
+    <tr><td>D1 盈利能力变化</td><td>GROSS_MARGIN, GROSS_PROFIT, PROFIT_FROM_OPERATIONS, PROFIT_ATTRIBUTABLE_TO_OWNERS, REVENUE, COST_OF_SALES</td><td class="num">55</td></tr>
+    <tr><td>D2 利用率效应</td><td><b>空</b></td><td class="num">0</td></tr>
+    <tr><td>D3 结构效应</td><td>ASP_SOURCE_REPORTED<span class="fine">（仅一条）</span></td><td class="num">1</td></tr>
+    <tr><td>D4 资本开支转化</td><td>CAPITAL_EXPENDITURE_INCURRED, DEPRECIATION_EXPENSE</td><td class="num">42</td></tr>
+    <tr><td>D5 周期解释</td><td><b>空</b></td><td class="num">0</td></tr>
+    <tr><td>D6 非经常性解释</td><td>GOVERNMENT_FUNDING_RECOGNIZED_IN_PNL, OTHER_OPERATING_INCOME</td><td class="num">20</td></tr>
+    <tr><td>D7 可持续性证据</td><td><b>空</b></td><td class="num">0</td></tr>
+  </table></div>
+  <p>
+    D2 为空是因为快照里<b>没有任何利用率或产能指标的数值记录</b>——利用率只以文字形式出现。
+    D7 更微妙：唯一正当的承重指标 <span class="id">NET_CASH_FROM_OPERATING_ACTIVITIES</span>
+    在快照内<b>有 6 条 USABLE 记录</b>，但全落在 RQ_MAIN / D1 / D3 查询族，
+    <b>无一被冻结的 D7 查询族命中</b>，所以进不了 D7 的候选集。
+  </p>
+  <p class="fine">
+    这条限制在质询阶段被 CH_005 揪出来了，处置是降级而不是去改 03 的查询族——因为 03 已冻结。
+    项目宁可让 D7 掉到 UNKNOWN，也不在跑到一半时回头改上游规则。
+  </p>
+
+  <details class="deep"><summary>深入：12 项具名校验，以及候选集是怎么被预算切掉的</summary><div class="body">
+    <div class="tw"><table>
+      <tr><th>校验</th><th>结果</th></tr>
+      <tr><td>dimension_coverage</td><td>7 个维度全部产出发现</td></tr>
+      <tr><td>schema_conformance</td><td>0 违规</td></tr>
+      <tr><td>evidence_reference_legality</td><td>0 违规</td></tr>
+      <tr><td>candidate_set_closure</td><td>0 违规</td></tr>
+      <tr><td>score_status_binding</td><td>0 违规</td></tr>
+      <tr><td>forbidden_output_terms</td><td>0 违规</td></tr>
+      <tr><td>causal_attribution</td><td>0 违规（<b>在被接受的发现里</b>；被拒绝的 3 次见上表）</td></tr>
+      <tr><td>management_assertion_placement</td><td>0 违规</td></tr>
+      <tr><td>cross_dimension_attribution</td><td>2 条事实跨维承重，0 条缺 overlap_note</td></tr>
+      <tr><td>d7_threshold_basis</td><td>5 个观察指标，0 个阈值缺乏来源依据</td></tr>
+      <tr><td>generation_attempts_bounded</td><td>0 个维度被强制 UNKNOWN，0 个超预算</td></tr>
+      <tr><td>frozen_rule_binding</td><td>0 处规则绑定漂移</td></tr>
+    </table></div>
+    <h3>候选集选择（每维）</h3>
+    <div class="tw"><table>
+      <tr><th>维度</th><th>候选 chunk</th><th>选中</th><th>因预算跳过</th><th>选中字符数</th><th>同源组</th></tr>
+      <tr><td>D1</td><td class="num">56</td><td class="num">32</td><td class="num">24</td><td class="num">64,482</td><td class="num">7</td></tr>
+      <tr><td>D2</td><td class="num">29</td><td class="num">29</td><td class="num">0</td><td class="num">62,298</td><td class="num">12</td></tr>
+      <tr><td>D3</td><td class="num">41</td><td class="num">20</td><td class="num">21</td><td class="num">64,211</td><td class="num">6</td></tr>
+      <tr><td>D4</td><td class="num">43</td><td class="num">21</td><td class="num">22</td><td class="num">62,638</td><td class="num">7</td></tr>
+      <tr><td>D5</td><td class="num">36</td><td class="num">19</td><td class="num">17</td><td class="num">63,528</td><td class="num">5</td></tr>
+      <tr><td>D6</td><td class="num">55</td><td class="num">35</td><td class="num">20</td><td class="num">65,793</td><td class="num">11</td></tr>
+    </table></div>
+    <p class="fine">
+      被预算跳过的 chunk_id <b>逐条记录在案</b>，不是静默丢弃。这样「模型为什么没看到那条证据」
+      是可以回答的问题，而不是黑箱。
+    </p>
+  </div></details>
+
+  <div class="live">
+    <h5>现场打开</h5>
+    <ul>
+      <li><code>frozen-analysis-inputs/analysis-attempts.jsonl</code> — <b>最好的演示</b>：10 条记录，3 条被拒</li>
+      <li><code>rules/analysis.yaml</code> — 承重指标白名单，看 D2/D5/D7 那几行空的，旁边写着为什么空</li>
+    </ul>
+  </div>
+  <div class="pager"><a href="#/s4">← ④ 证据治理</a><a href="#/s6">⑥ 反方质询 →</a></div>
+</div></section>
+
+<!-- ══════════════════════ STAGE 6 ══════════════════════ -->
+<section class="page" id="p-s6"><div class="wrap">
+  <h1><span class="eyebrow">阶段 06 · challenge-research-findings</span>反方质询</h1>
+  <p class="lede">对自己的结论提四类反方问题，每问只做<b>一次</b>定向复核，最多两轮。实测翻转了两个维度。</p>
+
+  <div class="tiles">
+    <div class="tile"><span class="v">5</span><span class="k">条质询</span><span class="note">2 轮用满</span></div>
+    <div class="tile"><span class="v">2</span><span class="k">无改动</span></div>
+    <div class="tile"><span class="v">2</span><span class="k">修订</span></div>
+    <div class="tile"><span class="v">1</span><span class="k">降级</span></div>
+  </div>
+
+  <div class="gate">
+    <h4>这一步拦住了什么</h4>
+    <ul>
+      <li><b>伪多源虚高证据分</b>——同一次原始披露的两种呈报（比如 CAS 口径年报和 IFRS 口径年报）
+        <b>不构成独立来源</b>。CH_002 正是这么把 D2 从 SUPPORTED 打下来的。</li>
+      <li><b>把公司自述升级成已验证的原因</b>——CH_003 指出 D3 把「due to the product mix change」
+        列为 PRIMARY_SUPPORT，复核后<b>全部移入管理层表述</b>，不再作为支撑证据。</li>
+      <li><b>无限复核到自己满意</b>——每个问题 <span class="id">review_count</span> 固定为 1，
+        两轮后按固定触发清单决定降级还是 BLOCKING。<b>不设与 BLOCKING 语义重叠的 severity 轴。</b></li>
+      <li><b>「没有证据」被含糊过去</b>——CH_005 问 D7「在没有现金流证据的情况下 MIXED 能否成立」，
+        答案是不能，直接降到 UNKNOWN。</li>
+    </ul>
+  </div>
+
+  <h2>五条质询实测</h2>
+  <div class="tw"><table>
+    <tr><th>ID</th><th>轮</th><th>类型</th><th>目标</th><th>处置</th></tr>
+    <tr><td class="num">CH_001</td><td class="num">1</td><td>SOURCE_TRACEABILITY</td><td>D1</td><td><span class="st st-pass">RESOLVED_NO_CHANGE</span></td></tr>
+    <tr><td class="num">CH_002</td><td class="num">1</td><td>SOURCE_TRACEABILITY</td><td>D2</td><td><span class="st st-warn">RESOLVED_WITH_REVISION</span></td></tr>
+    <tr><td class="num">CH_003</td><td class="num">1</td><td>ATTRIBUTION_CAUSALITY</td><td>D3</td><td><span class="st st-warn">RESOLVED_WITH_REVISION</span></td></tr>
+    <tr><td class="num">CH_004</td><td class="num">1</td><td>ACCOUNTING_COMPARABILITY</td><td>某条折旧证据</td><td><span class="st st-pass">RESOLVED_NO_CHANGE</span></td></tr>
+    <tr><td class="num">CH_005</td><td class="num">2</td><td>FALSIFICATION_MISSING_EVIDENCE</td><td>D7</td><td><span class="st st-fail">UNRESOLVED_DOWNGRADED</span></td></tr>
+  </table></div>
+
+  <h2>两次方向翻转</h2>
+
+  <div class="block warn">
+    <h4>CH_002 · D2 利用率效应：SUPPORTED → MIXED</h4>
+    <p class="sub"><b>问题</b>：本维度方向为 SUPPORTED，但支撑证据同时来自 CAS 口径年报与 IFRS 口径年报。
+      两者是否为同一次原始披露的两种呈报，即伪多源？</p>
+    <p class="sub"><b>复核结论</b>：两条表述指向同一年度同一次原始披露，互相印证不构成独立来源；
+      且本维度承重指标白名单为空，无任何数值证据可独立支撑方向。方向下调为 MIXED，并在限制中写明伪多源。</p>
+  </div>
+
+  <div class="block bad">
+    <h4>CH_005 · D7 可持续性证据：MIXED → UNKNOWN</h4>
+    <p class="sub"><b>问题</b>：候选集内 18 条数值全部是结果指标，承重指标白名单为空。
+      在没有现金流或单位成本证据的情况下，MIXED 的方向能否成立？</p>
+    <p class="sub"><b>复核结论</b>：冻结快照内<b>存在</b> NET_CASH_FROM_OPERATING_ACTIVITIES 记录，
+      但无一被冻结的 D7 查询族命中，因而不在本维度候选集内；03 查询族已冻结，本阶段<b>不得改动</b>。
+      两轮内无法在候选集内取得可承重证据，按固定阶梯降级。</p>
+    <p class="fine">
+      这一条值得单独讲：系统<b>知道</b>自己缺什么、也知道那份数据就在快照里，
+      但它没有偷偷回头改检索规则把数据捞出来，而是承认「在本次冻结配置下我拿不到」并降级。
+      结果难看，但可复现。
+    </p>
+  </div>
+
+  <details class="deep"><summary>深入：D3 修订后的表述是什么样的</summary><div class="body">
+    <p class="sub">
+      修订后的 D3 发现原文（<b>注意它自己就不含未绑定的数字了</b>，
+      括号里的数值是因为它们在证据表里有对应行）：
+    </p>
+    <div class="excerpt">经质询后重述：本维度可承重的数值指标只有一条 FY2025 的 ASP_SOURCE_REPORTED（6482 CNY），无同口径跨期可比值；应用结构占比在 2025 年报中确有可观察位移（智能手机 37.8% 升至 43.2%，消费电子 27.8% 降至 23.1%），而按尺寸划分的 12 英寸占比在两年间基本持平。公司关于「产品结构变化」的说明已全部移入管理层表述，不再作为支撑证据。在剩余可承重证据下，结构变化与售价、成本或毛利之间的关系只能表述为同期并存，方向维持 MIXED。</div>
+    <p class="fine">
+      「只能表述为同期并存」——这就是把因果降级为相关的具体写法。
+      模型原本想说的是结构变化<b>导致</b>了什么，校验和质询把它逼回到「同期并存」。
+    </p>
+  </div></details>
+
+  <div class="live">
+    <h5>现场打开</h5>
+    <ul>
+      <li><code>single-stock-demo-run/challenges.yaml</code> — 5 条质询的问题、复核理由、修订前后全文</li>
+      <li><code>single-stock-demo-run/findings-revised.yaml</code> — 修订版发现；原始 findings.yaml 保持不变</li>
+    </ul>
+  </div>
+  <div class="pager"><a href="#/s5">← ⑤ 分析与打分</a><a href="#/s7">⑦ 报告生成 →</a></div>
+</div></section>
+
+<!-- ══════════════════════ STAGE 7 ══════════════════════ -->
+<section class="page" id="p-s7"><div class="wrap">
+  <h1><span class="eyebrow">阶段 07 · generate-research-report</span>报告生成</h1>
+  <p class="lede">十个固定章节。数字<b>只出现在证据表里</b>。散文里凡是带了未绑定数字的句子，<b>整句删除</b>。</p>
+
+  <div class="tiles">
+    <div class="tile"><span class="v">442</span><span class="k">散文中检出的数字提及</span></div>
+    <div class="tile"><span class="v">126</span><span class="k">被整句排除的句子</span></div>
+    <div class="tile hero"><span class="v">0</span><span class="k">最终报告的未绑定数字</span>
+      <span class="note">回读渲染后的 report.md 断言</span></div>
+    <div class="tile"><span class="v">85</span><span class="k">证据表行数</span>
+      <span class="note">溯源链未解析项 0</span></div>
+  </div>
+
+  <div class="gate">
+    <h4>这一步拦住了什么</h4>
+    <ul>
+      <li><b>把数字抹掉当作合规</b>——按<b>整句</b>排除，不是删字符。删字符会留下
+        「毛利率由上升到，改善个百分点」这种看起来还像人话的垃圾，比直接删句更危险。</li>
+      <li><b>扫自己的输出冒充门禁</b>——这是 06 实现期踩到的真坑：散文数字门禁最初扫的是
+        sanitizer 自己的输出，恒等于 0，<b>是个假闸门</b>。已改为<b>回读渲染后的 report.md</b>，
+        只有结构行和逐字匹配的固定说明可豁免。</li>
+      <li><b>投资建议类输出</b>——26 个禁止输出词，报告生成后扫一遍，<b>0 命中</b>。
+        不输出买卖建议、目标价、估值锚、仓位建议、投资评级、系统预测。</li>
+      <li><b>用模型做范围识别</b>——确定性三规则：命中禁止输出词表 → 真实拒答；
+        提到同业 → 免责；晚于 as_of → 免责。<b>不用模型分类。</b></li>
+      <li><b>失败时静默停止</b>——完整性失败（输入不可信）→ <span class="id">DIAGNOSTIC_ONLY</span>，
+        <b>不含任何结论</b>；内容级失败（结论不合格）→ <span class="id">FULL_REPORT</span> + 显著标警。
+        <b>永远有报告，没有静默停止。</b></li>
+    </ul>
+  </div>
+
+  <h2>被删掉的句子长什么样</h2>
+  <p class="sub">这是 D1 结论叙述里被整句删掉的两句（合计 379 字里的一部分）：</p>
+  <div class="excerpt">年度层面，2025 财年毛利率为 <mark class="bad">21.0%</mark>，2024 财年为 <mark class="bad">18.0%</mark>；
+
+同期毛利由 <mark class="bad">1,447,968</mark> 千美元升至 <mark class="bad">1,956,599</mark> 千美元（<mark class="bad">+35.1%</mark>），经营利润由 <mark class="bad">473,900</mark> 千美元升至 <mark class="bad">1,109,937</mark> 千美元，净利率由 <mark class="bad">9.1%</mark> 升至 <mark class="bad">10.6%</mark>，四项年度指标方向一致向上。</div>
+  <p>
+    这些数字<b>本身是对的</b>——它们就在证据表里。被删的原因不是数字错，而是
+    <b>模型从来没说过哪个数字对应哪条证据</b>。硬把它们配对回去，就是伪造溯源关系。
+    所以项目的选择是：句子整个不要，数字去证据表里看。
+  </p>
+  <p class="fine">
+    126 句的分布：D1 30 句、D7 27 句、D4 22 句、D6 21 句、D3 14 句、D5 7 句，另有 5 句在质询记录里。
+    按字段分：证据 note 40 句、限制 18 句、结论陈述 17 句、反方证据 note 14 句。
+  </p>
+
+  <h2>报告的十个章节</h2>
+  <div class="tw"><table>
+    <tr><th>#</th><th>章节</th><th>在证明什么</th></tr>
+    <tr><td class="num">一</td><td>案例、as_of、快照、治理状态与分发状态</td><td>这份报告是在什么前提下产生的</td></tr>
+    <tr><td class="num">二</td><td>数据覆盖与来源覆盖</td><td>拿到了多少、缺什么</td></tr>
+    <tr><td class="num">三</td><td>盈利能力变化（D1）</td><td><b>最值得现场展示的一章</b>：掏空的叙述 + 16 列证据表</td></tr>
+    <tr><td class="num">四</td><td>D2–D4 利用率、结构和资本开支驱动</td><td>三条解释渠道</td></tr>
+    <tr><td class="num">五</td><td>D5–D6 行业周期、政府补助和其他替代解释</td><td>替代解释是否被排除</td></tr>
+    <tr><td class="num">六</td><td>D7 可持续性支持、降级与证伪条件</td><td>什么情况下这个结论会被推翻</td></tr>
+    <tr><td class="num">七</td><td>D1–D7 发现和证据分向量</td><td>七个维度并列，无加权总分</td></tr>
+    <tr><td class="num">八</td><td>反方质询与修订</td><td>自己怎么反驳自己的</td></tr>
+    <tr><td class="num">九</td><td>冲突、UNKNOWN、TBD、隔离项和数据限制</td><td><b>自曝其短的一章</b></td></tr>
+    <tr><td class="num">十</td><td>来源、公式、会计口径和溯源附录</td><td>怎么自己去核</td></tr>
+  </table></div>
+
+  <details class="deep"><summary>深入：范围识别的六个例子（确定性规则，不用模型）</summary><div class="body">
+    <div class="tw"><table>
+      <tr><th>#</th><th>问题</th><th>判定</th><th>动作</th></tr>
+      <tr><td>Q1</td><td>主研究问题</td><td>IN_SCOPE</td><td>ANSWER</td></tr>
+      <tr><td>Q2</td><td>2025 年毛利率改善主要来自利用率还是产品结构？</td><td>IN_SCOPE</td><td>ANSWER</td></tr>
+      <tr><td>Q3</td><td>盈利改善有多少来自政府补助等非经常项目？</td><td>IN_SCOPE</td><td>ANSWER</td></tr>
+      <tr><td>Q4</td><td><b>（命中禁止输出词表，问题原文不复述）</b></td><td>OUT_OF_SCOPE_FORBIDDEN_OUTPUT</td><td><b>REFUSE</b></td></tr>
+      <tr><td>Q5</td><td>把中芯国际和华虹半导体做个对比</td><td>OUT_OF_SCOPE_OTHER_SUBJECT</td><td>DISCLAIM</td></tr>
+      <tr><td>Q6</td><td>中芯国际 2026 下半年业绩会怎样？</td><td>OUT_OF_SCOPE_BEYOND_AS_OF</td><td>DISCLAIM</td></tr>
+    </table></div>
+    <p class="fine">
+      注意 Q4 的处理：<b>连问题原文都不在报告里复述</b>。因为复述本身就构成一次「这个问题被认真对待了」
+      的暗示。这是真实拒答，不是委婉转移话题。
+    </p>
+    <h3>还有一条：不生成外部分发格式</h3>
+    <p class="sub">
+      报告阶段固定记录 <span class="id">prohibited_external_artifacts: {pdf, html, dashboard, api} = NOT_GENERATED</span>。
+      Demo 只产出内部 Markdown 报告。
+    </p>
+  </div></details>
+
+  <div class="live">
+    <h5>现场打开</h5>
+    <ul>
+      <li><code>single-stock-demo-run/report.md</code> — 第三章 D1</li>
+      <li><code>single-stock-demo-run/report-validation.yaml</code> — 126 句被删的明细，每句列出命中的数字 token</li>
+    </ul>
+  </div>
+  <div class="pager"><a href="#/s6">← ⑥ 反方质询</a><a href="#/trace">一个数字的一生 →</a></div>
+</div></section>
+
+<!-- ══════════════════════ TRACE (GOOD) ══════════════════════ -->
+<section class="page" id="p-trace"><div class="wrap">
+  <h1><span class="eyebrow">贯穿追踪 · 正例</span>一个数字的一生</h1>
+  <p class="lede">
+    跟着 <b>20.1%</b> 走完全程。这是 2026 年一季度的毛利率，它出现在报告第三章 D1 数值证据表的第一行。
+    下面每一步都是运行产物里的<b>真实记录</b>。
+  </p>
+
+  <div class="chain">
+
+    <div class="step">
+      <div class="dot">0</div>
+      <div class="step-k">SOURCE · 原文</div>
+      <div class="step-h">SMIC 2026 Q1 业绩公告 PDF 第 4 页</div>
+      <div class="card">
+        <div class="excerpt">Summary of First Quarter 2026 Operating Results
+Amounts in US$ thousands, except for earnings per share
+1Q26 4Q25 QoQ 1Q25 YoY
+Revenue 2,505,487 2,488,710 0.7% 2,247,201 11.5%
+Cost of sales (2,001,884) (2,010,589) -0.4% (1,741,333) 15.0%
+Gross profit 503,603 478,121 5.3% 505,868 -0.4%
+...
+<mark>Gross margin 20.1% 19.2% 22.5%</mark>
+...
+ <mark>Gross margin was 20.1% in 1Q26, compared to 19.2% in 4Q25, due to the product mix change and
+the increase of average selling price in 1Q26.</mark></div>
+        <dl class="fields">
+          <dt>material_id</dt><dd>MATERIAL_SMIC_2026_Q1_RESULTS</dd>
+          <dt>发布主体</dt><dd>Semiconductor Manufacturing International Corporation</dd>
+          <dt>发布时间</dt><dd>2026-05-14T18:17:59+08:00 <span class="fine">（早于 as_of 2026-05-15，准入通过）</span></dd>
+          <dt>content_hash</dt><dd>sha256:64901d4c50f4dabbc1…c0b773a4854</dd>
+          <dt>acquisition_status</dt><dd>ACQUIRED_UNASSESSED</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="dot">1</div>
+      <div class="step-k">CHUNK · 分块与检索</div>
+      <div class="step-h">结构原子片段 <span class="id">CHUNK_fd51b55ab05bfc90ed31a5cf</span></div>
+      <div class="card">
+        <dl class="fields">
+          <dt>structure_type</dt><dd>PDF_PARAGRAPH_GROUP</dd>
+          <dt>content_locator</dt><dd>page 4 · section WEBCAST · paragraph_group page_text</dd>
+          <dt>candidate_context</dt><dd class="gd">true</dd>
+          <dt>命中查询</dt><dd>10 个子查询，跨 RQ_MAIN / D1 / D3 / D5 / D7 五个查询族</dd>
+          <dt>最强命中</dt><dd class="gd">D1_Q1_SUMMARY_TABLE_EN · rank 1 · score 62.54</dd>
+          <dt>text_hash</dt><dd>sha256:cfce68075059855401e5…9661d1bbdb</dd>
+        </dl>
+        <div class="checks">
+          <div class="check did"><h5>这一关检查了</h5>
+            <p>片段边界是否可复现、定位是否解析得出、表头单位期间是否随表格一起保留、
+              固定查询能否召回它。</p></div>
+          <div class="check didnt"><h5>这一关<b>没</b>检查</h5>
+            <p>内容真假、信源等级、内容类型、证据资格。<b>检索命中不表示事实成立。</b></p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="dot">2</div>
+      <div class="step-k">FACT · 事实规整</div>
+      <div class="step-h">原子事实 <span class="id">FACT_0030ec95b60bda21e9f04b2f</span></div>
+      <div class="card ok">
+        <dl class="fields">
+          <dt>record_kind</dt><dd>NUMERIC_OBSERVATION</dd>
+          <dt>source_metric_label</dt><dd>gross margin　<span class="fine">（原文标签，原样保留）</span></dd>
+          <dt>metric_id</dt><dd class="gd">GROSS_MARGIN　<span class="fine">via METRIC_GROSS_MARGIN_V1 · MAPPED</span></dd>
+          <dt>raw_value_text</dt><dd>"20.1%"</dd>
+          <dt>raw_unit / target_unit</dt><dd class="gd">PERCENT / PERCENT　<span class="fine">不静默转成 0.201</span></dd>
+          <dt>raw_scale_factor</dt><dd>1</dd>
+          <dt>period</dt><dd class="gd">SINGLE_QUARTER · 2026-01-01 ~ 2026-03-31 · duration_days 90 · MAPPED</dd>
+          <dt>会计四字段</dt><dd>IFRS / CONSOLIDATED / UNAUDITED / ORIGINAL<br>
+            <span class="fine">四个字段<b>各自独立</b>解析并各自记录来源 locator，不打包继承</span></dd>
+          <dt>value_origin</dt><dd>SOURCE_REPORTED</dd>
+          <dt>conversion_trace</dt><dd>PRESERVE_REPORTED_PERCENT_V1 · 20.1 → 20.1 · exact=true</dd>
+          <dt>normalization_status</dt><dd class="gd">PASS</dd>
+        </dl>
+        <div class="checks">
+          <div class="check did"><h5>这一关检查了</h5>
+            <p>单位期间口径是否齐全、指标名是否命中固定映射表、数值转换是否精确、
+              期间边界是否能算出来。</p></div>
+          <div class="check didnt"><h5>这一关<b>没</b>检查</h5>
+            <p><b>抽出来的值和原文是不是一回事。</b>这就是反例那一页的全部内容。</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="dot">3</div>
+      <div class="step-k">EVIDENCE · 证据治理</div>
+      <div class="step-h">治理证据 <span class="id">EVID_d6efa2d8f71dc14d7c9c89c1</span></div>
+      <div class="card ok">
+        <dl class="fields">
+          <dt>source_tier</dt><dd class="gd">T1　<span class="fine">via MATERIAL_TIER_TABLE_V1</span></dd>
+          <dt>claim_type</dt><dd>REPORTED_FACT</dd>
+          <dt>source_group_id</dt><dd>SG_SMIC_2026_Q1_DISCLOSURE　<span class="fine">同一次披露的多个入口共享一组</span></dd>
+          <dt>evidence_status</dt><dd class="gd">USABLE</dd>
+          <dt>permitted_use</dt><dd class="gd">CITE_AND_BEAR　<span class="fine">可引用<b>且可承重</b></span></dd>
+          <dt>conflict_status</dt><dd>NOT_EVALUATED　<span class="fine">NOT_IN_CONFLICT_WHITELIST（见问题 A4）</span></dd>
+          <dt>quarantine_reason_codes</dt><dd>[]</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="dot">4</div>
+      <div class="step-k">FINDING · 分析与打分</div>
+      <div class="step-h">D1_PROFITABILITY_CHANGE 的 PRIMARY_SUPPORT</div>
+      <div class="card ok">
+        <dl class="fields">
+          <dt>进入候选集</dt><dd>D1 的 56 个候选 chunk 中被选中（选中 32 个，24 个因预算跳过）</dd>
+          <dt>被模型引用</dt><dd class="gd">role = PRIMARY_SUPPORT</dd>
+          <dt>能否承重</dt><dd class="gd">GROSS_MARGIN <b>在 D1 承重指标白名单内</b> + 状态 USABLE → <b>可承重</b></dd>
+          <dt>维度结论</dt><dd>MIXED · evidence_score 3 (STRONG) · generation_attempts 2</dd>
+        </dl>
+        <p class="sub" style="margin-top:12px">
+          模型给它附了一条 <span class="id">overlap_note</span>：
+          「毛利率同样可被利用率维度或产品结构维度引用，但那些维度需要的是利用率百分比与结构占比的独立证据；
+          此处只把毛利率本身作为盈利能力结果指标的水平变化来读，不解释其构成……不构成重复计分。」
+        </p>
+        <p class="fine">
+          这条 note 是 <span class="id">cross_dimension_attribution</span> 校验强制要求的——
+          一条事实在多个维度承重时，必须显式说明为什么不算重复计分。
+        </p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="dot">5</div>
+      <div class="step-k">CHALLENGE · 反方质询</div>
+      <div class="step-h">CH_001 质疑了这条证据所在维度的证据分</div>
+      <div class="card">
+        <p class="sub" style="margin-top:0"><b>问题</b>：D1 证据分为 3，依赖「两个以上独立同源组」。
+          4Q25 毛利率 19.2% 同时出现在 SG_SMIC_2025_Q4_RESULTS 与 SG_SMIC_2026_Q1_DISCLOSURE，
+          是否属于伪多源，从而使证据分虚高？</p>
+        <p class="sub"><b>一次定向复核后的结论</b>：承重的跨期可比数值是 2025 年报中 FY2025 与 FY2024 的
+          GROSS_MARGIN 对比，来自年度报告这一次原始披露；季度公告是另一次独立披露。
+          被质疑的 19.2% 重复<b>已在限制中披露</b>，且未作为跨期比较的承重项，证据分依据不变。</p>
+        <dl class="fields" style="margin-top:12px">
+          <dt>disposition</dt><dd>RESOLVED_NO_CHANGE</dd>
+          <dt>review_count</dt><dd>1　<span class="fine">每问只做一次定向复核</span></dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="dot">6</div>
+      <div class="step-k">REPORT · 报告生成</div>
+      <div class="step-h">落进第三章 D1 数值证据表的第一行</div>
+      <div class="card ok">
+        <div class="excerpt">| fact_id | evidence_id | metric_id | display_value | raw_value_text | unit | ... |
+| FACT_0030ec95… | EVID_d6efa2d8… | GROSS_MARGIN | <mark>20.1</mark> | 20.1% | PERCENT | ... |
+| ... | ... | IFRS/CONSOLIDATED/UNAUDITED | SINGLE_QUARTER 2026-01-01~2026-03-31 |
+| ... | 来源 SMIC Reports Unaudited Results…(MATERIAL_SMIC_2026_Q1_RESULTS) |
+| ... | 定位 <mark>p.4 WEBCAST CHUNK_fd51b55ab05bfc90ed31a5cf</mark> | REPORTED_FACT |</div>
+        <p class="sub">
+          表里 16 列，最后一列是 gap_ids（这条是空的）。
+          <b>结论叙述里不会出现「20.1%」这几个字</b>——它只活在这张表里。
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="block spine">
+    <h4>这一页要说的一件事</h4>
+    <p class="sub">
+      从 PDF 第 4 页的一行表格，到报告证据表的一行，中间经过了 6 次形态变化、
+      每一次都留下了可回溯的 ID 和哈希。<b>任何人拿到这份报告，都可以反着走一遍，
+      最后打开那份 PDF 翻到第 4 页，看到那个 20.1%。</b>
+    </p>
+    <p class="sub">
+      这就是「可核验」的全部含义。它不保证 20.1% 是对的——SMIC 自己写错了这条链也发现不了——
+      但它保证你<b>知道该去问谁</b>。
+    </p>
+  </div>
+
+  <div class="live">
+    <h5>现场打开</h5>
+    <ul>
+      <li><code>single-stock-demo-v3/raw/MATERIAL_SMIC_2026_Q1_RESULTS.pdf</code> — 翻到第 4 页</li>
+      <li><code>single-stock-demo-run/report.md</code> — 第三章 D1 数值证据表第一行</li>
+    </ul>
+  </div>
+  <div class="pager"><a href="#/s7">← ⑦ 报告生成</a><a href="#/badtrace">一个抽错的一生 →</a></div>
+</div></section>
+
+<!-- ══════════════════════ TRACE (BAD) ══════════════════════ -->
+<section class="page" id="p-badtrace"><div class="wrap">
+  <h1><span class="eyebrow">贯穿追踪 · 反例</span>一个抽错的一生</h1>
+  <p class="lede">
+    同样的链条，换一条<b>抽错了的</b>记录。原文说的是「EBITDA 利润率提高 1.4 个百分点」，
+    系统抽成了「折旧费用 = 1400 元」。<b>它一路绿灯，走到了 T1 / USABLE / 可承重。</b>
+  </p>
+
+  <div class="block bad">
+    <h4>先把结论说了</h4>
+    <p class="sub">
+      这是项目<b>最大的已知缺陷</b>，已写进报告第九章披露，<b>未修复</b>。
+      根因比错误率本身更值得说：<b>整条链上没有任何一关比对过「抽出来的值」和「原文」。</b>
+    </p>
+  </div>
+
+  <div class="chain">
+
+    <div class="step err">
+      <div class="dot">0</div>
+      <div class="step-k">SOURCE · 原文</div>
+      <div class="step-h">SMIC 2025 半年度 A 股报告 第 7 页 · 主要财务指标表</div>
+      <div class="card">
+        <div class="excerpt">(二)主要财务指标
+　　　　　　　　　　　　　　　　本报告期比上年同
+主要财务指标　　本报告期　上年同期　　期增减(%)
+毛利率(%)　　　　21.9　　13.9　　增加8.0个百分点
+净利率(%)　　　　10.4　　 6.3　　增加4.1个百分点
+<mark class="bad">息税折旧及摊销前利润率（%）　53.8　52.4　增加1.4个百分点</mark>
+基本每股收益（元／股）　0.29　0.21　38.1</div>
+        <p class="sub">
+          人读这一行没有任何歧义：<b>EBITDA 利润率从 52.4% 提高到 53.8%，提高了 1.4 个百分点。</b>
+          单位是百分点，不是钱。
+        </p>
+      </div>
+    </div>
+
+    <div class="step err">
+      <div class="dot">1</div>
+      <div class="step-k">CHUNK · 分块与检索</div>
+      <div class="step-h">表格片段 <span class="id">CHUNK_d58b6634ab53c450387949dc</span></div>
+      <div class="card">
+        <dl class="fields">
+          <dt>structure_type</dt><dd>PDF_TABLE</dd>
+          <dt>content_locator</dt><dd>page 7 · table 3 · bbox [90.4, 483.5, 532.1, 540.7]</dd>
+          <dt>candidate_context</dt><dd>true</dd>
+          <dt>numeric_context.column_headers</dt><dd>["", "本报告期末", "上年度末", "本报告期末比上年度末增减(%)"]<br>
+            <span class="fine">注意：这是<b>上面另一张表</b>的表头，不是这一行所在的那张</span></dd>
+          <dt>numeric_context.units</dt><dd>["单位：千元", "币种：人民币"]　<span class="fine">← 后面会出事的就是它</span></dd>
+        </dl>
+        <div class="checks">
+          <div class="check did"><h5>这一关做对了</h5>
+            <p>片段定位精确到页码、表号和 bbox；表头和单位随表格一起保留了。
+              后面能把错误追到这里，靠的就是这个定位。</p></div>
+          <div class="check didnt"><h5>但它埋下了雷</h5>
+            <p>chunk 级的 <span class="id">units</span> 是「千元」。任何在句子里找不到单位的数字，
+              都会<b>退回</b>用这个默认单位。</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step err">
+      <div class="dot">2</div>
+      <div class="step-k">FACT · 事实规整</div>
+      <div class="step-h">错误发生在这里 <span class="id">FACT_ecbb3d82b20ae58fed788265</span></div>
+      <div class="card err">
+        <dl class="fields">
+          <dt>source_span_text</dt><dd>息税折旧及摊销前利润率（%） 53.8 52.4 增加1.4个百分点</dd>
+          <dt>source_metric_label</dt><dd class="hit">"折旧"　<span class="fine">← 从「息税<b>折旧</b>及摊销前利润率」<b>内部</b>切出来的</span></dd>
+          <dt>metric_id</dt><dd class="hit">DEPRECIATION_EXPENSE　<span class="fine">via METRIC_DEPRECIATION_V1 · <b>MAPPED</b></span></dd>
+          <dt>raw_value_text</dt><dd class="hit">"1.4"　<span class="fine">← 取的是「增加1.4个百分点」里的 1.4</span></dd>
+          <dt>raw_unit</dt><dd class="hit">MONEY　<span class="fine">← 「个百分点」没被识别，退回 chunk 默认单位</span></dd>
+          <dt>raw_scale_factor</dt><dd class="hit">1000</dd>
+          <dt>base_unit_value</dt><dd class="hit">1400.0 CNY　<span class="fine">via DECIMAL_SCALE_V1 · exact=true</span></dd>
+          <dt>period</dt><dd class="hit">FISCAL_YEAR 2025-01-01 ~ 2025-12-31
+            <span class="fine">← 材料是<b>半年报</b>，却标成了全年</span></dd>
+          <dt>gap_ids</dt><dd class="hit">[]　<span class="fine">一条 gap 都没登记</span></dd>
+          <dt>normalization_status</dt><dd class="hit">PASS ✓</dd>
+        </dl>
+        <p class="sub" style="margin-top:14px">
+          <b>三个独立缺陷同时命中</b>，而且每一个单独看都很合理：
+        </p>
+        <div class="tw"><table>
+          <tr><th>#</th><th>缺陷</th><th>为什么会这样</th></tr>
+          <tr><td class="num">1</td><td>单位正则只认英文</td>
+            <td><span class="id">(%|percentage points?|pp)?</span> —— 中文「个百分点」不匹配，
+              于是 fallback 到 chunk 级默认单位「千元」，判成 MONEY ×1000</td></tr>
+          <tr><td class="num">2</td><td>指标别名纯子串扫描</td>
+            <td>别名「折旧」用 <span class="id">re.escape</span> 做子串匹配，命中了
+              「息税<b>折旧</b>摊销前利润率」的内部；候选排序取位置最靠前者，「折旧」胜出</td></tr>
+          <tr><td class="num">3</td><td>表头兜底就算生效也救不了</td>
+            <td>这个 chunk 的 <span class="id">column_headers</span> <b>确实有值</b>，但它属于<b>同一片段里上面那张表</b>
+              （净资产 / 总资产），不是「主要财务指标」那张。兜底拿到的是错的表头。<br>
+              <span class="fine">另有一个未验证的怀疑 B1：某些 chunk 该键为空、兜底可能从未执行——那是另一件事，见「已知问题」</span></td></tr>
+        </table></div>
+        <div class="checks">
+          <div class="check did"><h5>这一关检查了</h5>
+            <p>单位、期间、币种、缩放字段是否<b>齐全</b>；转换公式是否<b>精确</b>；
+              指标是否<b>命中</b>映射表。全部通过——因为它们确实都齐全、都精确、都命中了。</p></div>
+          <div class="check didnt"><h5>这一关<b>没</b>检查</h5>
+            <p>命中的是<b>不是对的那一个</b>。1.4 × 1000 = 1400 算得完全正确，
+              只是这个乘法本来就不该发生。</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step err">
+      <div class="dot">3</div>
+      <div class="step-k">EVIDENCE · 证据治理</div>
+      <div class="step-h">这里是最后一道可能拦住它的关卡 <span class="id">EVID_1c7514cb9cea404daae03a44</span></div>
+      <div class="card err">
+        <dl class="fields">
+          <dt>source_tier</dt><dd class="hit">T1</dd>
+          <dt>claim_type</dt><dd class="hit">REPORTED_FACT</dd>
+          <dt>evidence_status</dt><dd class="hit">USABLE</dd>
+          <dt>permitted_use</dt><dd class="hit">CITE_AND_BEAR　<span class="fine">可引用<b>且可承重</b></span></dd>
+          <dt>quarantine_reason_codes</dt><dd class="hit">[]</dd>
+          <dt>evidence_status_reason_codes</dt><dd class="hit">[]</dd>
+        </dl>
+        <p class="sub" style="margin-top:14px">
+          <b>为什么没拦住</b>：三档证据状态的六条判定条件——时间是否合规、定位是否可解析、
+          会计准则是否清楚、单位期间是否齐全、信源什么等级、有没有冲突——
+          <b>全部在判「元数据健不健全」，没有一条在判「抽取的语义对不对」。</b>
+        </p>
+        <p class="sub">
+          这条记录的元数据<b>非常健全</b>：来源是发行人直接披露（T1），定位精确到页码表号 bbox，
+          准则是 CAS，单位期间币种缩放一应俱全。所以它拿到了满分待遇。
+        </p>
+      </div>
+    </div>
+
+    <div class="step err">
+      <div class="dot">4</div>
+      <div class="step-k">ANALYSIS · 它止步于此</div>
+      <div class="step-h">没有进入任何维度的候选集</div>
+      <div class="card">
+        <dl class="fields">
+          <dt>出现在 analysis-inputs.jsonl</dt><dd>0 次</dd>
+          <dt>出现在 findings.yaml</dt><dd>0 次</dd>
+          <dt>出现在 report.md</dt><dd>0 次</dd>
+        </dl>
+        <div class="block bad" style="margin:14px 0 0">
+          <h4>但请注意它<b>为什么</b>止步</h4>
+          <p class="sub">
+            不是因为任何门禁拦住了它。<b>是因为冻结的查询族没有把这个 chunk 召回进任何维度的候选集。</b>
+            它当时的状态是 USABLE / CITE_AND_BEAR / T1——<b>完全有资格被选中承重</b>，
+            只是没被选上。
+          </p>
+          <p class="sub">
+            换句话说：这一次它没进报告，靠的是<b>运气，不是机制</b>。
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="step err">
+      <div class="dot">5</div>
+      <div class="step-k">CHALLENGE · 一个旁证</div>
+      <div class="step-h">质询阶段确实<b>看见</b>了这类问题——但对另一条记录</div>
+      <div class="card">
+        <p class="sub" style="margin-top:0">
+          <b>CH_004</b>（类型 ACCOUNTING_COMPARABILITY，目标 <span class="id">EVID_28c333bb3006b183a5e34b57</span>）：
+        </p>
+        <div class="excerpt">该折旧记录来源为半年度材料却被标注为 FISCAL_YEAR 2025 全年，且同一
+DEPRECIATION_EXPENSE 指标在候选集内同时存在百分比型与金额型取值。
+它是否可比、是否已污染 D4 的折旧压力判断？</div>
+        <p class="sub">
+          <b>处置：RESOLVED_NO_CHANGE。</b>理由是——「该记录及同类折旧记录<b>均未进入 D4 的支撑证据</b>，
+          仅在限制中披露；D4 的证据分来自 CAPITAL_EXPENDITURE_INCURRED 的跨期可比值。」
+        </p>
+        <p class="sub">
+          <b>这就是同一个模式又出现了一次</b>：问题被准确识别（「半年报却标成全年」「同一指标同时有百分比型和金额型」，
+          正是我们这条记录的两个症状），但因为「它没被用到」而<b>不需要处理</b>。
+          上游的期间标注缺陷交给了 04 阶段的一条 gap 承接。
+        </p>
+        <p class="fine">
+          质询层能问出这个问题，说明系统对自己的毛病是有感知的。
+          但「没被用到所以不处理」是一个<b>依赖运气的免责</b>——下一次查询族稍微一变，它就被用到了。
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <h2>规模有多大</h2>
+  <div class="tiles">
+    <div class="tile"><span class="v">4,575</span><span class="k">数值事实总数</span></div>
+    <div class="tile"><span class="v">179</span><span class="k">疑似同类错误</span>
+      <span class="note">raw_unit=MONEY 且原文含「百分点」</span></div>
+    <div class="tile"><span class="v">3.9<small style="font-size:18px">%</small></span><span class="k">粗筛占比</span></div>
+  </div>
+  <p class="fine">
+    ⚠️ 这是<b>启发式粗筛，非精确统计，未人工核对真实错误率</b>。
+    文档里怎么写的，这里就怎么说——不确定性本身也要如实传达。
+  </p>
+
+  <h2>怎么修：三档方案</h2>
+  <div class="tw"><table>
+    <tr><th>方案</th><th>成本</th><th>效果</th></tr>
+    <tr><td><b>加交叉校验门禁</b><br><span class="fine">raw_unit=MONEY 但 source_span_text 含「百分点」→ 判矛盾，降 PARTIAL → 证据降 RESTRICTED 不可承重</span></td>
+      <td class="num">约 1 天</td><td>治标，但能一次拦住这 179 条</td></tr>
+    <tr><td><b>修抽取层</b><br><span class="fine">中文别名加词边界检查（左右紧邻汉字则判 UNMAPPED）+ 正则补「个百分点」</span></td>
+      <td class="num">2–3 天</td><td>治本一半，但会改变几千条记录的 metric_id，须重跑 03/04，fixture 可能大面积要改</td></tr>
+    <tr><td><b>LLM 抽取 + 构建期冻结</b></td><td class="num">1 周+</td><td>换地基</td></tr>
+  </table></div>
+
+  <div class="block warn">
+    <h4>还有个前置问题没验，它决定上面哪档方案有意义</h4>
+    <p class="sub">
+      <b>问题 B2</b>：PDF 表格的单元格结构可能在<b>解析阶段</b>就被压平成一根字符串了。
+      如果是这样，前两个方案都是在坏地基上盖房子。<b>这是下一步要先验的东西</b>，优先级最高。
+    </p>
+  </div>
+
+  <div class="block spine">
+    <h4>这一页要说的一件事</h4>
+    <p class="sub">
+      这是个<b>设计缺口，不是实现 bug</b>。三档证据状态的六条判定全在判元数据健不健全，
+      整条链上没有任何一关做过「值」与「原文」的一致性比对——这不是谁写错了一行代码，
+      是这一层职责压根没有被设计出来。
+    </p>
+    <p class="sub">
+      而且它和正例那一页共用<b>完全相同</b>的链条和闸门。同一套机制，一条通过得理直气壮，
+      一条错得同样理直气壮。这就是为什么「每个数字可追溯」≠「每个数字是对的」——
+      <b>可核验性解决的是「你能去查」，不是「不用查」。</b>
+    </p>
+  </div>
+
+  <div class="live">
+    <h5>现场打开</h5>
+    <ul>
+      <li><code>DEMO-KNOWN-ISSUES.md</code> — A1 和 B2 两节。<b>主动打开自己的问题清单，比被问出来强得多</b></li>
+      <li><code>single-stock-demo-v3/raw/MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO.pdf</code> — 第 7 页</li>
+    </ul>
+  </div>
+  <div class="pager"><a href="#/trace">← 一个数字的一生</a><a href="#/results">实测结果 →</a></div>
+</div></section>
+
+<!-- ══════════════════════ RESULTS ══════════════════════ -->
+<section class="page" id="p-results"><div class="wrap">
+  <h1><span class="eyebrow">黄金案例实测</span>跑出来的真实结果</h1>
+  <p class="lede">
+    以下全部是<b>实测数字，不是目标值</b>。读这张表的正确方式：
+    <b>0 和 WARN 不是 bug，是 Snapshot v3 的真实承载力。</b>
+  </p>
+
+  <h2>五个阶段状态</h2>
+  <div class="tw"><table>
+    <tr><th>阶段状态</th><th>值</th><th>是否并入 governance_status</th></tr>
+    <tr><td>retrieval_status</td><td><span class="st st-pass">PASS</span></td><td>是</td></tr>
+    <tr><td>normalization_run_status</td><td><span class="st st-warn">WARN</span></td><td>是</td></tr>
+    <tr><td>validation_status</td><td><span class="st st-warn">WARN</span></td><td>是</td></tr>
+    <tr><td>analysis_run_status</td><td><span class="st st-pass">PASS</span></td><td><b>否</b>——另一条概念轴，并列展示</td></tr>
+    <tr><td>challenge_run_status</td><td><span class="st st-warn">WARN</span></td><td><b>否</b></td></tr>
+    <tr><td><b>governance_status</b></td><td><span class="st st-warn">WARN</span></td><td>= 前三者取最坏值</td></tr>
+    <tr><td>report_form</td><td><span class="id">FULL_REPORT</span></td><td>完整性 PASS → 不降级为 DIAGNOSTIC_ONLY</td></tr>
+  </table></div>
+
+  <h2>D1–D7 的方向与证据分</h2>
+  <div class="tw"><table>
+    <tr><th>维度</th><th>初版</th><th>质询后</th><th>证据分</th><th>尝试次数</th></tr>
+    <tr><td>D1 盈利能力变化</td><td>MIXED</td><td>MIXED</td><td class="num">3 STRONG</td><td class="num">2</td></tr>
+    <tr><td>D2 利用率效应</td><td><b>SUPPORTED</b></td><td><b>→ MIXED</b></td><td class="num">2 ADEQUATE</td><td class="num">2</td></tr>
+    <tr><td>D3 结构效应</td><td>MIXED</td><td>MIXED<span class="fine">（内容重述）</span></td><td class="num">2 ADEQUATE</td><td class="num">2</td></tr>
+    <tr><td>D4 资本开支转化</td><td>MIXED</td><td>MIXED</td><td class="num">3 STRONG</td><td class="num">1</td></tr>
+    <tr><td>D5 周期解释</td><td>UNKNOWN</td><td>UNKNOWN</td><td class="num">2 ADEQUATE</td><td class="num">1</td></tr>
+    <tr><td>D6 非经常性解释</td><td>MIXED</td><td>MIXED</td><td class="num">3 STRONG</td><td class="num">1</td></tr>
+    <tr><td>D7 可持续性证据</td><td>MIXED</td><td><b>→ UNKNOWN</b></td><td class="num">2 ADEQUATE</td><td class="num">1</td></tr>
+  </table></div>
+  <p>
+    <b>没有一个 SUPPORTED。</b>如果这套流程跑出一个「证据充分支持可持续改善」，那才该怀疑。
+    主研究问题本身是开放的——允许得出支持 / 部分支持 / 反驳 / 证据不足任一结果，
+    而<b>成功标准不是预测准确率，是报告准确、全面、可核验</b>。
+  </p>
+  <p class="fine">
+    证据分 0–3 表示<b>证据强度</b>，不表示公司质量或投资吸引力。无加权总分，
+    <span class="id">overall_score</span> 恒为 <span class="id">NOT_APPLICABLE</span>。
+  </p>
+
+  <h2>那些 0</h2>
+  <div class="tw"><table>
+    <tr><th>项</th><th>实测</th><th>为什么是 0</th></tr>
+    <tr><td>冲突组 / 未解决冲突</td><td class="num">0 / 0</td><td>冲突检测被 ADR 0003 缩到 2 条白名单事实，真实数据上等于没开（问题 A4）</td></tr>
+    <tr><td>QUARANTINED 隔离证据</td><td class="num">0</td><td>三条隔离规则只有 fixture 验证过，真实数据一次没跑到（问题 A2）</td></tr>
+    <tr><td>政府补助敏感性</td><td class="num">0</td><td>报告口径 15 条存在，但<b>无一满足「可分离且已计入同口径」</b></td></tr>
+    <tr><td>DERIVATION 派生事实</td><td class="num">0</td><td>所有派生的前置可比性检查没有一组全部通过</td></tr>
+    <tr><td>报告未绑定数字</td><td class="num">0</td><td><b>这个 0 是门禁强制的结果，不是缺数据</b></td></tr>
+    <tr><td>禁止输出词命中</td><td class="num">0</td><td>26 个词全扫，0 命中</td></tr>
+    <tr><td>溯源链未解析项</td><td class="num">0</td><td>85 行证据表逐行检查</td></tr>
+  </table></div>
+
+  <div class="block spine">
+    <h4>项目在这件事上的立场</h4>
+    <p class="sub">
+      冲突、隔离、敏感性、FAIL 报告这四个机制在真实数据上<b>没有观察对象</b>。
+      项目的处理是：<b>由合成 fixtures 证明机制存在</b>，报告里把零值和原因<b>原样写出来</b>，
+      <b>绝不为了让报告好看去造数据</b>。
+    </p>
+    <p class="sub">
+      同理，缺数不许用 0 / 空串 / 模型估计顶替，一律 <span class="id">UNKNOWN</span> /
+      <span class="id">TBD</span> + 登记 gap。
+    </p>
+  </div>
+
+  <h2>其他实测</h2>
+  <div class="tw"><table>
+    <tr><th>项</th><th>实测</th></tr>
+    <tr><td>散文数字检出 / 整句排除 / 最终泄漏</td><td class="num">442 / 126 句 / <b>0</b></td></tr>
+    <tr><td>证据表行数 / 溯源链未解析</td><td class="num">85 / 0</td></tr>
+    <tr><td>IFRS-CAS 调节桥接复算</td><td class="num">7 条：4 PASS / 3 UNKNOWN（口径不匹配）</td></tr>
+    <tr><td>gap 登记总数</td><td class="num">4,922（P1 4,915 / P2 7）</td></tr>
+    <tr><td>其中 NORMALIZATION_UNKNOWN</td><td class="num">4,912</td></tr>
+    <tr><td>模型尝试 / 被拒绝</td><td class="num">10 次 / 3 次（全是「因而」）</td></tr>
+    <tr><td>全流程耗时</td><td class="num">约 1 分 45 秒</td></tr>
+  </table></div>
+
+  <h2>可复现性</h2>
+  <div class="block good">
+    <p class="sub" style="margin-top:0">
+      两次连续干净重放的 <span class="id">report.md</span>、<span class="id">report-validation.yaml</span>、
+      <span class="id">run-integrity.yaml</span> <b>字节一致</b>；
+      <span class="id">manifest.yaml</span> 除 <span class="id">generated_at</span> 外一致。
+    </p>
+    <p class="sub">
+      检索、规整、证据治理三个阶段各自另做了一次<b>干净重建哈希比对</b>，全部 match。
+    </p>
+    <p class="fine">
+      有个真实的坑：<b>行尾是哈希的一部分</b>。Windows 上 git 默认 CRLF 检出会改变冻结判断输入的字节，
+      新克隆 preflight 直接失败。已用 <span class="id">.gitattributes</span> 把工作区钉死为 LF。
+    </p>
+  </div>
+
+  <div class="live">
+    <h5>现场打开</h5>
+    <ul>
+      <li><code>single-stock-demo-run/run-gate.yaml</code> — 五个阶段状态和 governance_status 的合成过程</li>
+      <li><code>single-stock-demo-run/manifest.yaml</code> — 每个权威文件的路径与哈希</li>
+    </ul>
+  </div>
+  <div class="pager"><a href="#/badtrace">← 一个抽错的一生</a><a href="#/issues">已知问题 →</a></div>
+</div></section>
+
+<!-- ══════════════════════ ISSUES ══════════════════════ -->
+<section class="page" id="p-issues"><div class="wrap">
+  <h1><span class="eyebrow">自曝其短</span>已知问题</h1>
+  <p class="lede">
+    处置原则：<b>不解决可以，不记录不行。</b>这份清单不构成待办，只构成「已知」。
+    以下全部<b>已在报告中披露</b>，但都<b>未修复</b>。
+  </p>
+
+  <h2>A · 已确认的问题</h2>
+
+  <div class="block bad">
+    <h4>A1 · 事实抽取存在语义错误，且不影响证据状态<span class="fine">（最需要关注）</span></h4>
+    <p class="sub">
+      完整追踪见「<a href="#/badtrace" class="ext">一个抽错的一生</a>」。
+      粗筛 4,575 条数值中约 179 条（3.9%）疑似同类问题。
+      根因：三档证据状态的六条判定<b>全部在判元数据健不健全，没有一条在判抽取语义</b>。
+    </p>
+  </div>
+
+  <div class="block warn">
+    <h4>A2 · QUARANTINED 隔离机制从未被真实数据触发</h4>
+    <p class="sub">
+      隔离恒为 0，且 RESTRICTED 数量（4,912）与规整阶段 PARTIAL 数量<b>完全相等</b>——
+      说明另外两条受限理由从未独立触发过。
+    </p>
+    <p class="sub">
+      <b>两种解读，目前无法区分</b>：采集阶段确实把不合格材料挡在了门外（好事），
+      还是隔离机制存在但从未被真实检验（风险）。
+    </p>
+  </div>
+
+  <div class="block warn">
+    <h4>A3 · 事实到证据 1:1，证据治理没筛掉任何记录</h4>
+    <p class="sub">
+      20,114 → 20,114，一条没少。04 的作用是<b>贴标签</b>不是<b>收窄</b>，
+      收窄责任全压在 05 挑证据那一步。这符合「保留一切、只限制用途」的设计，但值得记下来。
+    </p>
+  </div>
+
+  <div class="block warn">
+    <h4>A4 · 冲突检测被缩到 2 条白名单事实</h4>
+    <p class="sub">
+      <span class="id">ADR 0003</span> 的<b>有意取舍</b>，代价是「多来源冲突检测」这个能力在 Demo 里展示不出来。
+      06 的处置：报告第九章的冲突计数确实全是 0，并附一句说明这是真实承载力，
+      <b>没有为了让章节好看去造冲突数据</b>。是否扩白名单仍未决。
+    </p>
+  </div>
+
+  <div class="block warn">
+    <h4>A5 · gap 优先级轴失去区分度</h4>
+    <p class="sub">
+      4,922 条里 4,915 条是 P1（99.9%）。成因是各阶段各自定优先级，
+      规整阶段的 NORMALIZATION_UNKNOWN（4,912 条机械登记）直接把这一轴淹没。
+      报告因此<b>显式声明不按优先级筛选</b>，改按 <span class="id">origin_stage × gap_kind</span> 聚合。
+    </p>
+    <p class="fine">
+      为什么不在 06 修：这是 03 的设计缺陷，不是数据 UNKNOWN。
+      把设计缺陷写成一条运行 gap 是<b>滥用登记册</b>。
+    </p>
+  </div>
+
+  <h2>B · 待验证的怀疑</h2>
+
+  <div class="block bad">
+    <h4>B1 / B2 · 表头兜底可能静默失效；PDF 表格结构可能在解析阶段就被压平</h4>
+    <p class="sub">
+      <b>均未验证。B2 的结论决定 A1 该修哪一层，验证优先级最高。</b>
+    </p>
+    <p class="sub">
+      B1 的具体怀疑：代码读的是 <span class="id">numeric_context.column_headers</span>，
+      而抽样看到的部分 chunk 该键为 <span class="id">headers</span> 且值为空——
+      如果属实，这层兜底<b>从来没有执行过</b>，不报错、不留痕，fixture 大概率照样通过。
+    </p>
+    <p class="sub">
+      <b>做这份材料时顺手查了一条</b>：A1 案例所在的那个 chunk（<span class="id">CHUNK_d58b6634…</span>）
+      同时有 <span class="id">column_headers</span> 和 <span class="id">headers</span> 两个键，
+      且 <span class="id">column_headers</span> <b>非空</b>。所以「该键恒为空」这个说法至少不普遍成立，
+      B1 <b>仍然是未验证的怀疑</b>——但它在那条记录上不是错误成因（真正的成因是表头属于同片段里的另一张表）。
+    </p>
+  </div>
+
+  <h2>其他已披露的具体问题</h2>
+  <div class="tw"><table>
+    <tr><th>问题</th><th>要害</th></tr>
+    <tr><td>D3 唯一承重数值的期间标注错误</td>
+      <td><span class="id">ASP_SOURCE_REPORTED</span> 标 FISCAL_YEAR 但来自半年报。
+        <b>D3 整个数值骨架架在这一条上</b>，报告原样展示并附 gap，不洗白</td></tr>
+    <tr><td>跨维 overlap_note 只能全局校验</td>
+      <td>单维模型判断看不见其他维度，进不了逐次重生成闸</td></tr>
+    <tr><td>D7 的现金流证据取不到</td>
+      <td>快照里有 6 条 USABLE 记录，但冻结的 D7 查询族一条都没召回</td></tr>
+  </table></div>
+
+  <h2>06 实现期踩到的两个真坑（已修）</h2>
+  <div class="block good">
+    <h4>1 · 假闸门</h4>
+    <p class="sub">
+      散文数字门禁最初扫的是 sanitizer <b>自己的输出</b>，所以恒等于 0——
+      它看起来一直在通过，其实什么都没检查。已改为<b>回读渲染后的 report.md</b>，
+      只有结构行和逐字匹配的固定说明可豁免。
+    </p>
+  </div>
+  <div class="block good">
+    <h4>2 · CRLF 破哈希</h4>
+    <p class="sub">
+      Windows 上 git 默认 CRLF 检出会改变冻结判断输入的字节，新克隆 preflight 直接失败。
+      已用 <span class="id">.gitattributes</span> 把工作区钉死为 LF。
+      <b>行尾是哈希的一部分</b>——这件事在跨平台冻结场景里很容易漏。
+    </p>
+  </div>
+
+  <h2>下一步</h2>
+  <div class="tw"><table>
+    <tr><th>#</th><th>事项</th><th>为什么是这个顺序</th></tr>
+    <tr><td class="num">1</td><td>验证 B2：PDF 表格结构是否在解析阶段被压平</td>
+      <td>它的结论决定 A1 该修哪一层。<b>先验这个，否则后面可能白干</b></td></tr>
+    <tr><td class="num">2</td><td>A1 第一档：加单位交叉校验门禁</td>
+      <td>约 1 天，能一次拦住这 179 条；即使治标，也把「没有任何一关比对语义」变成「有一关」</td></tr>
+    <tr><td class="num">3</td><td>A2：故意构造一份越界材料走全流程</td>
+      <td>确认隔离真的会触发、下游真的引不到；或者接受「fixture 验过即可」但显式记录取舍</td></tr>
+  </table></div>
+
+  <div class="live">
+    <h5>现场打开</h5>
+    <ul>
+      <li><code>DEMO-KNOWN-ISSUES.md</code> — 六组问题的完整版，带代码位置</li>
+      <li><code>docs/product/open-questions.md</code> — OQ-001..006，谁来拍板</li>
+      <li><code>single-stock-demo-run/report.md</code> — 第九章「数据限制」，看这些问题是怎么写进报告的</li>
+    </ul>
+  </div>
+
+  <hr>
+  <p class="fine">
+    本页面由 <code>docs/briefing/05-流程可视化.html</code> 提供，属于<b>汇报辅助材料</b>，不是项目的权威定义。
+    数字取自 main <code>0facd28</code> 的黄金案例运行产物，只改呈现方式，<b>不新增任何结论、数值或来源</b>。
+    权威定义以 <code>CONTEXT.md</code>、<code>.scratch/single-stock-demo/spec.md</code>、
+    <code>contracts/contract-map.md</code>、<code>rules/*.yaml</code> 为准。
+  </p>
+
+  <div class="pager"><a href="#/results">← 实测结果</a><a href="#/overview">回到框架总览 →</a></div>
+</div></section>
+
+</main>
+</div>
+
+<div id="tip"></div>
+
+<script>
+(function () {
+  var PAGES = ['overview','s1','s2','s3','s4','s5','s6','s7','trace','badtrace','results','issues'];
+
+  function show(id) {
+    if (PAGES.indexOf(id) === -1) id = 'overview';
+    PAGES.forEach(function (p) {
+      var el = document.getElementById('p-' + p);
+      if (el) el.classList.toggle('on', p === id);
+    });
+    document.querySelectorAll('.nav a').forEach(function (a) {
+      a.classList.toggle('on', a.getAttribute('href') === '#/' + id);
+    });
+    var m = document.getElementById('main');
+    if (m) m.scrollTop = 0;
+    // instant, not animated: page switches must land at the top immediately
+    if (document.scrollingElement) document.scrollingElement.scrollTop = 0;
+    window.scrollTo(0, 0);
+  }
+
+  function route() {
+    show((location.hash || '#/overview').replace(/^#\//, ''));
+  }
+  window.addEventListener('hashchange', route);
+  route();
+
+  // theme toggle: none -> dark -> light -> none
+  var btn = document.getElementById('theme');
+  if (btn) {
+    btn.addEventListener('click', function () {
+      var cur = document.documentElement.getAttribute('data-theme');
+      if (!cur) document.documentElement.setAttribute('data-theme', 'dark');
+      else if (cur === 'dark') document.documentElement.setAttribute('data-theme', 'light');
+      else document.documentElement.removeAttribute('data-theme');
+    });
+  }
+
+  // bar-segment tooltip
+  var tip = document.getElementById('tip');
+  document.querySelectorAll('.seg[data-tip]').forEach(function (seg) {
+    seg.addEventListener('mousemove', function (e) {
+      tip.textContent = seg.getAttribute('data-tip');
+      tip.classList.add('on');
+      var x = e.clientX + 12, y = e.clientY - 30;
+      if (x + tip.offsetWidth > window.innerWidth - 8) x = e.clientX - tip.offsetWidth - 12;
+      tip.style.left = x + 'px';
+      tip.style.top = y + 'px';
+    });
+    seg.addEventListener('mouseleave', function () { tip.classList.remove('on'); });
+  });
+
+  // make term tooltips keyboard-reachable
+  document.querySelectorAll('.term').forEach(function (t) {
+    if (!t.hasAttribute('tabindex')) t.setAttribute('tabindex', '0');
+  });
+})();
+</script>
+</body>
+</html>
