@@ -1,0 +1,401 @@
+{
+  "material_id": "MATERIAL_SMIC_2025_Q2_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD",
+  "parser": "html-parser-v1",
+  "headings": [
+    {
+      "level": 1,
+      "locator": "heading:h1[1]",
+      "text": "Semiconductor Manufacturing International Corp HKEX:981"
+    },
+    {
+      "level": 2,
+      "locator": "heading:h2[1]",
+      "text": "Q2-2025 Earnings Call"
+    },
+    {
+      "level": 3,
+      "locator": "heading:h3[1]",
+      "text": "AI Summary Earnings Call on Aug 8, 2025"
+    },
+    {
+      "level": 2,
+      "locator": "heading:h2[2]",
+      "text": "Earnings Call Transcript"
+    },
+    {
+      "level": 4,
+      "locator": "heading:h4[1]",
+      "text": "Company"
+    },
+    {
+      "level": 4,
+      "locator": "heading:h4[2]",
+      "text": "Help"
+    },
+    {
+      "level": 4,
+      "locator": "heading:h4[3]",
+      "text": "Tools"
+    },
+    {
+      "level": 4,
+      "locator": "heading:h4[4]",
+      "text": "Stocks"
+    }
+  ],
+  "paragraphs": [
+    {
+      "locator": "paragraph:p[1]",
+      "text": "Decide at what price you'd be comfortable buying and we'll help you stay ready."
+    },
+    {
+      "locator": "paragraph:p[2]",
+      "text": "Revenue Decline: Second quarter revenue was $2.21 billion, down 1.7% from the previous quarter."
+    },
+    {
+      "locator": "paragraph:p[3]",
+      "text": "Gross Margin Compression: Gross margin fell to 20.4%, a decrease of 2.1 percentage points sequentially."
+    },
+    {
+      "locator": "paragraph:p[4]",
+      "text": "Shipment Growth: Wafer shipments rose 4.3% sequentially, driven by distributor stockpiling and inventory replenishment."
+    },
+    {
+      "locator": "paragraph:p[5]",
+      "text": "Automotive Strength: Automotive electronics saw 20% quarter-over-quarter growth, with robust demand for automotive-grade chips."
+    },
+    {
+      "locator": "paragraph:p[6]",
+      "text": "Third Quarter Guidance: Revenue is expected to grow 5%-7% sequentially, with gross margin guided between 18%-20%."
+    },
+    {
+      "locator": "paragraph:p[7]",
+      "text": "First Half Improvement: First half revenue increased 22% year-over-year, and gross margin rose by 7.6 percentage points."
+    },
+    {
+      "locator": "paragraph:p[8]",
+      "text": "Industry Outperformance Target: Company aims to exceed industry average growth for the year, assuming stable external conditions."
+    },
+    {
+      "locator": "paragraph:p[9]",
+      "text": "The company reported a slight sequential decline in revenue for the second quarter, mainly due to a decrease in average selling prices. However, wafer shipments increased as distributors engaged in stockpiling and inventory replenishment, responding to policy changes. Management expects revenue to rebound in the third quarter, projecting 5% to 7% sequential growth."
+    },
+    {
+      "locator": "paragraph:p[10]",
+      "text": "Gross margin dropped by 2.1 percentage points sequentially to 20.4%, impacted by lower average selling prices and changes in product mix. Management guided for gross margin to remain under pressure in the third quarter, expecting it to be in the range of 18% to 20% due to higher depreciation, partially offset by increased output."
+    },
+    {
+      "locator": "paragraph:p[11]",
+      "text": "Automotive electronics drove strong growth, with shipments up 20% quarter-over-quarter, especially in automotive-grade chips like analog, power management, and embedded memory. Analog chip demand was also strong, as domestic players gained market share and the company benefited from deep collaborations, resulting in incremental orders."
+    },
+    {
+      "locator": "paragraph:p[12]",
+      "text": "Revenue by region remained stable, with China accounting for 84%, America 13%, and Eurasia 3%. By application, consumer electronics continued to be the largest contributor at 41%, followed by smartphones (25%) and computers/tablets (15%). Automotive revenues saw a notable increase, reflecting industry diversification."
+    },
+    {
+      "locator": "paragraph:p[13]",
+      "text": "Capacity utilization improved, rising by 2.9 percentage points to 92.5%. Utilization rates for both 8-inch and 12-inch wafers increased, and monthly capacity reached 991,000 standard logic 8-inch equivalent wafers. The company’s overall capacity still cannot meet demand, and management does not expect a potential slowdown to impact utilization significantly."
+    },
+    {
+      "locator": "paragraph:p[14]",
+      "text": "While third quarter guidance is positive, management cautioned that the typical seasonal slowdown in the fourth quarter may be more pronounced due to customer inventory buildup in the first three quarters. There is limited visibility into the fourth quarter, but so far, concerns about negative impacts from tariffs and demand overdraw have not materialized."
+    },
+    {
+      "locator": "paragraph:p[15]",
+      "text": "The company maintains a strong balance sheet, with $13.1 billion in cash and a debt-to-equity ratio of 36.5%. Net cash from operating activities in the second quarter was $1.07 billion, and net debt-to-equity was negative, reflecting more cash than debt. Capital expenditure for the first half was $3.3 billion."
+    },
+    {
+      "locator": "paragraph:p[16]",
+      "text": "[Interpreted] Welcome to the Semiconductor Manufacturing International Corporation's Second Quarter 2025 Webcast Conference Call. Today's call will be simultaneously streamed through the Internet and telephone. [Operator Instructions]"
+    },
+    {
+      "locator": "paragraph:p[17]",
+      "text": "Without further ado, I would like to introduce Ms. Guo Guangli, Senior Vice President and Board Secretary to host the webcast."
+    },
+    {
+      "locator": "paragraph:p[18]",
+      "text": "[Interpreted] Greetings. Welcome to SMIC's second quarter 2025 webcast conference call. Attending today's call are Dr. Zhao Haijun, Co-Chief Executive Officer; Dr. Wu Junfeng, Senior Vice President and person in charge of Finance."
+    },
+    {
+      "locator": "paragraph:p[19]",
+      "text": "Let me remind you that today's presentation may contain forward-looking statements that do not guarantee future performance but represent the company's expectations and are subject to inherent risks and uncertainties. Please refer to the forward-looking statements in our earnings announcement. Please note that today's earnings statement is presented in accordance with International Financial Reporting Standards, IFRS, and all currency figures are in U.S. dollars, unless otherwise stated."
+    },
+    {
+      "locator": "paragraph:p[20]",
+      "text": "I will now hand the call to Dr. Wu Junfeng to introduce the company's financial status."
+    },
+    {
+      "locator": "paragraph:p[21]",
+      "text": "[Interpreted] First, I will report our unaudited results for the second quarter and the first half of 2025 followed by our guidance for the third quarter. The second quarter results are as follows: revenue was $2,209 million, down 1.7% sequentially. Gross margin was 20.4%, down 2.1 percentage points sequentially. Profit from operations was $151 million, EBITDA was $1,129 million. EBITDA margin was 51.1%. Profit attributable to the company was $132 million."
+    },
+    {
+      "locator": "paragraph:p[22]",
+      "text": "Moving to the balance sheet. At the end of the second quarter, the company had total assets of $49.4 billion, of which total cash on hand was $13.1 billion. Total liabilities were $16.7 billion, of which total debt was $ 11.9 billion. Total equity was $32.7 billion. Debt-to-equity ratio was 36.5% and net debt-to-equity ratio was negative 3.4%. In terms of cash flow, in the second quarter, net cash generated from operating activities was $1,070 million. Net cash used in investing activities was $1,560 million. Net cash generated from financing activities was $958 million."
+    },
+    {
+      "locator": "paragraph:p[23]",
+      "text": "The company's unaudited results for the first half of 2025 are as follows: revenue was $4,466 million, up 22% year-over-year. Gross margin was 21.4%, up 7.6 percentage points year-over-year. Profit from operation was $460 million. EBITDA was $2,421 million. EBITDA margin was 54.3%. Profit attributable to the company was $321 million. For the third quarter 2025, our guidance are as follows: revenue is expected to increase by 5% to 7% sequentially, and gross margin is expected to be in the range of 18% to 20%."
+    },
+    {
+      "locator": "paragraph:p[24]",
+      "text": "This concludes the financial status. Thank you."
+    },
+    {
+      "locator": "paragraph:p[25]",
+      "text": "[Interpreted] Thank you, Dr. Wu. Next, I will hand the call to Dr. Zhao Haijun to comment on operations."
+    },
+    {
+      "locator": "paragraph:p[26]",
+      "text": "[Interpreted] Morning, everyone. Thank you for attending SMIC's Second Quarter 2025 Earnings Call. In the second quarter, the company's revenue was $2,209 million, a sequential decrease of 1.7%. Blended ASP decreased by 6.4% sequentially, while the wafer shipment increased by 4.3% sequentially to 2,390,000 standard logic 8-inch equivalent wafers, mainly because distributor stepped up stockpiling and inventory replenishment impacted by domestic and overseas policy changes. The company actively collaborated with customers to ensure shipments. This situation persisted into the third quarter."
+    },
+    {
+      "locator": "paragraph:p[27]",
+      "text": "By region, revenue from China, America and Eurasia accounted for 84%, 13% and 3%, respectively, with no big change quarter-over-quarter. By application, the wafer revenue from smartphones, computers and tablets, consumer electronics, connectivity and IoT, industrial and automotive accounted for 25%, 15%, 41%, 8% and 11%, respectively. The company's automotive electronic shipments maintained steady growth with the primary revenue contribution coming from various types of automotive grade chips, including analog, power management, CIS, logic, embedded memory and controllers, achieving 20% quarter-over-quarter overall growth in second quarter. By size, wafer revenue from 8-inch and 12-inch accounted for 24% and 76%, respectively. 8-inch wafer revenue achieved a 7% quarter-over-quarter growth in absolute terms, with utilization rates outperforming industry peers."
+    },
+    {
+      "locator": "paragraph:p[28]",
+      "text": "By platform, demand for analog chips have notable growth in the second quarter. Analog chip, which is broadly applied into phone quick charge and power management, is currently at a stage when domestic players are rapidly gaining market share from overseas competitors. Having established deep collaborations with these domestic customers, the company has developed a customized device and process platforms tailored to their needs. As a result, the company has secured incremental orders during this transition, driving continued improvement in utilization rate. In addition, the revenue from CIS increased over 20% sequentially. Revenue from RF also showed relatively sound quarter-over-quarter growth."
+    },
+    {
+      "locator": "paragraph:p[29]",
+      "text": "In the second quarter, the company's gross margin decreased by 2.1 percentage points sequentially to 20.4%, mainly due to the blended ASP decline brought by the production fluctuations and changes in product mix. The capacity utilization rate increased by 2.9 percentage points sequentially to 92.5%, among which the utilization rate of 8-inch and 12-inch both improved further. By the end of the second quarter, the monthly capacity reached 991,000 standard logic 8-inch equivalent wafers."
+    },
+    {
+      "locator": "paragraph:p[30]",
+      "text": "According to the unaudited results for the first and second quarters, the company's revenue in the first half of 2025 was $4,456 million, up 22% comparing to the same period last year. The gross margin was 21.4%, up 7.6 percentage points comparing to the same period last year. The company's total capital expenditure for the first half of the year was $3,301 million."
+    },
+    {
+      "locator": "paragraph:p[31]",
+      "text": "In the third quarter, the revenue is expected to increase 5% to 7% sequentially. The shipment unit and blended ASP are both expected to increase. The gross margin is expected to be in the range of 18% to 20%, remain the same level as the guidance for the second quarter, mainly because the increase in depreciation is expected to be mitigated by more output."
+    },
+    {
+      "locator": "paragraph:p[32]",
+      "text": "Traditionally, the fourth quarter follows seasonal patterns. In the first 3 quarters, the company has worked with customers to pull in the shipments and customers have already built up some inventory. Although customers' confidence remains strong, the rush orders and shipment pull in will probably slow down in fourth quarter. Therefore, our visibility for the fourth quarter remains limited at this point. We are now broadly collecting customers' feedback to do evaluation."
+    },
+    {
+      "locator": "paragraph:p[33]",
+      "text": "However, our initial concerns whether the tariff policy will hard land, whether market stimulus and rush stocking will overdraw the future demand, whether the demand for commodity products will decline due to the pricing increase brought by the new tariffs did not happen or at least have not happened yet. Besides the company's overall capacity cannot meet the demand, the slowdown will not have a significant impact on our capacity utilization."
+    },
+    {
+      "locator": "paragraph:p[34]",
+      "text": "To sum up, according to the unaudited financial results for the first half of the year and the third quarter's guidance, based on the premise that there are no significant changes in the external environment, the company's target for this year remains to exceed industry average in the same market."
+    },
+    {
+      "locator": "paragraph:p[35]",
+      "text": "Finally, we sincerely thank all customers, suppliers, investors and community for the strong support. Thank you all."
+    },
+    {
+      "locator": "paragraph:p[36]",
+      "text": "[Interpreted] Thank you, Dr. Zhao. Next is our Q&A session. Questions will be answered by Dr. Zhao and Dr. Wu. Chinese questions will be answered in Chinese. English questions will be answered in English. Please limit your questions to 2 per person. I would now like to open up the call for Q&A. Operator, please assist."
+    },
+    {
+      "locator": "paragraph:p[37]",
+      "text": "[Interpreted] [Operator Instructions] Your first question comes from the line of Leping Huang of Huatai Securities."
+    },
+    {
+      "locator": "paragraph:p[38]",
+      "text": "[Foreign Language]"
+    },
+    {
+      "locator": "paragraph:p[39]",
+      "text": "[Foreign Language]"
+    },
+    {
+      "locator": "paragraph:p[40]",
+      "text": "[Interpreted] [Operator Instructions] Your next question comes from [ Kwai Chan ] of Orient Securities."
+    },
+    {
+      "locator": "paragraph:p[41]",
+      "text": "[Foreign Language]"
+    },
+    {
+      "locator": "paragraph:p[42]",
+      "text": "[Foreign Language]"
+    },
+    {
+      "locator": "paragraph:p[43]",
+      "text": "[Interpreted] [Operator Instructions] Your next question comes from Ziyuan Wang of Citic Securities."
+    },
+    {
+      "locator": "paragraph:p[44]",
+      "text": "[Foreign Language]"
+    },
+    {
+      "locator": "paragraph:p[45]",
+      "text": "[Foreign Language]"
+    },
+    {
+      "locator": "paragraph:p[46]",
+      "text": "[Interpreted] [Operator Instructions] Your next question comes from Jian Hu of Guosen Securities."
+    },
+    {
+      "locator": "paragraph:p[47]",
+      "text": "[Foreign Language]"
+    },
+    {
+      "locator": "paragraph:p[48]",
+      "text": "[Foreign Language]"
+    },
+    {
+      "locator": "paragraph:p[49]",
+      "text": "[Interpreted] [Operator Instructions] Last question for today comes from Tianzi Fu of Everbright Securities."
+    },
+    {
+      "locator": "paragraph:p[50]",
+      "text": "[Foreign Language]"
+    },
+    {
+      "locator": "paragraph:p[51]",
+      "text": "[Foreign Language]"
+    },
+    {
+      "locator": "paragraph:p[52]",
+      "text": "[Interpreted] I would now like to hand the call back to Ms. Guo Guangli for closing remarks."
+    },
+    {
+      "locator": "paragraph:p[53]",
+      "text": "[Interpreted] Thank you for participating in today's conference call. Thank you for your trust and support."
+    },
+    {
+      "locator": "paragraph:p[54]",
+      "text": "[Interpreted] This concludes SMIC's Second Quarter Webcast Conference Call. We thank you for joining us today."
+    },
+    {
+      "locator": "paragraph:p[55]",
+      "text": "[Portions of this transcript that are marked [Interpreted] were spoken by an interpreter present on the live call.]"
+    },
+    {
+      "locator": "paragraph:p[56]",
+      "text": "© 2026 Alpha Spread Limited. All Rights Reserved."
+    },
+    {
+      "locator": "paragraph:p[57]",
+      "text": "www.alphaspread.com is not operated by a broker, a dealer, or a registered investment adviser. Under no circumstances does any information posted on www.alphaspread.com represent a recommendation to buy or sell a security. The information on this site, and in its related newsletters, is not intended to be, nor does it constitute, investment advice or recommendations. The information on this site is in no way guaranteed for completeness, accuracy or in any other way. In no event shall Alpha Spread Limited be liable to any member, guest or third party for any damages of any kind arising out of the use of any content or other material published or available on www.alphaspread.com, or relating to the use of, or inability to use, www.alphaspread.com or any content, including, without limitation, any investment losses, lost profits, lost opportunity, special, incidental, indirect, consequential or punitive damages. Past performance is a poor indicator of future performance."
+    },
+    {
+      "locator": "paragraph:p[58]",
+      "text": "AI-generated answers can contain mistakes, outdated facts, or incomplete information. Always verify important details before making decisions."
+    },
+    {
+      "locator": "paragraph:p[59]",
+      "text": "The AI Assistant is designed for research and education. It does not provide personalized investment, legal, or tax advice."
+    },
+    {
+      "locator": "paragraph:p[60]",
+      "text": "Intrinsic Value is all-important and is the only logical way to evaluate the relative attractiveness of investments and businesses."
+    },
+    {
+      "locator": "paragraph:p[61]",
+      "text": "By using Alpha Spread you are agreeing to our Terms of Service and Privacy Policy."
+    },
+    {
+      "locator": "paragraph:p[62]",
+      "text": "By using Alpha Spread you are agreeing to our Terms of Service and Privacy Policy."
+    },
+    {
+      "locator": "paragraph:p[63]",
+      "text": "Stock intrinsic value is the real worth of a company's stock, based on its financial health and performance."
+    },
+    {
+      "locator": "paragraph:p[64]",
+      "text": "Instead of looking at the stock's current market price, which can change due to people's opinions and emotions, intrinsic value helps us understand if a stock is truly a good deal or not."
+    },
+    {
+      "locator": "paragraph:p[65]",
+      "text": "By focusing on the company's actual financial strength, like its earnings and debts, we can make better decisions about which stocks to buy and when."
+    }
+  ],
+  "tables": [
+    {
+      "table_number": 1,
+      "locator": "table[1]",
+      "rows": []
+    },
+    {
+      "table_number": 2,
+      "locator": "table[2]",
+      "rows": [
+        [
+          "",
+          "Johnson & Johnson NYSE:JNJ",
+          "US"
+        ],
+        [
+          "",
+          "Berkshire Hathaway Inc NYSE:BRK.A",
+          "US"
+        ],
+        [
+          "",
+          "Bank of America Corp NYSE:BAC",
+          "US"
+        ],
+        [
+          "",
+          "Mastercard Inc NYSE:MA",
+          "US"
+        ],
+        [
+          "",
+          "UnitedHealth Group Inc NYSE:UNH",
+          "US"
+        ],
+        [
+          "",
+          "Exxon Mobil Corp NYSE:XOM",
+          "US"
+        ],
+        [
+          "",
+          "Pfizer Inc NYSE:PFE",
+          "US"
+        ],
+        [
+          "",
+          "Nike Inc NYSE:NKE",
+          "US"
+        ],
+        [
+          "",
+          "Visa Inc NYSE:V",
+          "US"
+        ],
+        [
+          "",
+          "Alibaba Group Holding Ltd NYSE:BABA",
+          "CN"
+        ],
+        [
+          "",
+          "JPMorgan Chase & Co NYSE:JPM",
+          "US"
+        ],
+        [
+          "",
+          "Coca-Cola Co NYSE:KO",
+          "US"
+        ],
+        [
+          "",
+          "Verizon Communications Inc NYSE:VZ",
+          "US"
+        ],
+        [
+          "",
+          "Chevron Corp NYSE:CVX",
+          "US"
+        ],
+        [
+          "",
+          "Walt Disney Co NYSE:DIS",
+          "US"
+        ],
+        [
+          "",
+          "PayPal Holdings Inc NASDAQ:PYPL",
+          "US"
+        ]
+      ]
+    }
+  ]
+}

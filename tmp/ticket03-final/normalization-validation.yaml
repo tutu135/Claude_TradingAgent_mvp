@@ -1,0 +1,21 @@
+snapshot_id: smic-a283e95e2c9e8068
+normalization_rule_version: smic-v3-accounting-normalization-v1
+mapping_version: smic-v3-fixed-mappings-v1
+normalization_run_status: WARN
+duplicate_fact_ids: []
+clean_rebuild_hashes_match: true
+clean_rebuild_hashes:
+  first_records: sha256:c215dc151a83f2b64e6ce9172230af44fefbc4cf1cab9e1fb3b102b7d125081b
+  rebuilt_records: sha256:c215dc151a83f2b64e6ce9172230af44fefbc4cf1cab9e1fb3b102b7d125081b
+  first_gaps: sha256:8094747a2a29bc5ca161866280ebba045768766e338b56bf5373d2f5ebc50a0d
+  rebuilt_gaps: sha256:8094747a2a29bc5ca161866280ebba045768766e338b56bf5373d2f5ebc50a0d
+statistics:
+  candidate_chunks: 415
+  facts: 20114
+  pass: 15202
+  partial: 4912
+  blocked: 0
+  normalization_gaps: 4912
+rules_hash: sha256:d39c62b9dd4dab248bc0e3ef0240025e2936ff86570a48604eb20c4da0b510b0
+context_hash: sha256:786b1c4393d5894a689f41eb762eb348eb6ca97cef533970703a8c0e20c5be6f
+facts_hash: sha256:1769258dc183a40014cfeda29117f5490393736723d4a147d24deb4cb3d1c192

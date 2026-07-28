@@ -1,0 +1,501 @@
+{
+  "material_id": "MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD",
+  "parser": "html-parser-v1",
+  "headings": [
+    {
+      "level": 1,
+      "locator": "heading:h1[1]",
+      "text": "Semiconductor Manufacturing International Corp HKEX:981"
+    },
+    {
+      "level": 2,
+      "locator": "heading:h2[1]",
+      "text": "Q1-2026 Earnings Call"
+    },
+    {
+      "level": 3,
+      "locator": "heading:h3[1]",
+      "text": "AI Summary Earnings Call on May 15, 2026"
+    },
+    {
+      "level": 2,
+      "locator": "heading:h2[2]",
+      "text": "Earnings Call Transcript"
+    },
+    {
+      "level": 4,
+      "locator": "heading:h4[1]",
+      "text": "Company"
+    },
+    {
+      "level": 4,
+      "locator": "heading:h4[2]",
+      "text": "Help"
+    },
+    {
+      "level": 4,
+      "locator": "heading:h4[3]",
+      "text": "Tools"
+    },
+    {
+      "level": 4,
+      "locator": "heading:h4[4]",
+      "text": "Stocks"
+    }
+  ],
+  "paragraphs": [
+    {
+      "locator": "paragraph:p[1]",
+      "text": "Decide at what price you'd be comfortable buying and we'll help you stay ready."
+    },
+    {
+      "locator": "paragraph:p[2]",
+      "text": "Revenue: SMIC posted first-quarter revenue of $2,505 million, up 0.7% sequentially, with wafer revenue making up 93.9% of sales."
+    },
+    {
+      "locator": "paragraph:p[3]",
+      "text": "Margins: Gross margin improved to 20.1%, up 0.9 percentage points sequentially, helped by higher pricing and a better product mix."
+    },
+    {
+      "locator": "paragraph:p[4]",
+      "text": "Outlook: For the second quarter, management guided for revenue to rise 14% to 16% sequentially and gross margin to be 20% to 22%."
+    },
+    {
+      "locator": "paragraph:p[5]",
+      "text": "Demand: Management said demand was being supported by AI-related chips, power management, automotive-grade products, and customers building inventory amid supply concerns."
+    },
+    {
+      "locator": "paragraph:p[6]",
+      "text": "Capital plan: The company said it will not distribute profits for 2025, citing continued heavy investment needs in capacity expansion and R&D."
+    },
+    {
+      "locator": "paragraph:p[7]",
+      "text": "SMIC reported a stable first quarter, with revenue up 0.7% sequentially to $2,505 million and gross margin rising to 20.1%. Management said the quarter benefited from stronger pricing in some products and a better mix, while overall utilization remained high despite a small sequential decline."
+    },
+    {
+      "locator": "paragraph:p[8]",
+      "text": "The company added close to 9,000 12-inch equivalent capacity during the quarter, but utilization fell 2.6 percentage points to 93.1%. Management said this was mainly because a new fab was still ramping and because some mobile phone demand shifted from the fourth quarter into the first quarter."
+    },
+    {
+      "locator": "paragraph:p[9]",
+      "text": "Management described solid demand for AI-supporting chips, power management, automotive-grade products, and specialty memory. It said capacity shortages in some areas and customer inventory building were helping orders, especially in China and in segments tied to AI, consumer electronics, and industrial applications."
+    },
+    {
+      "locator": "paragraph:p[10]",
+      "text": "Average wafer prices increased 2.5% sequentially, which management linked to steady pricing in stronger product categories and to customers accepting price increases in short-supplied products. This pricing improvement was a key driver of the margin increase and the better second-quarter margin outlook."
+    },
+    {
+      "locator": "paragraph:p[11]",
+      "text": "SMIC said its standalone flash and analog platforms are seeing strong demand, while automotive-grade BCD, ToF, Micro OLED, and ultra-low-power logic platforms are gaining traction. Management emphasized that these platforms support applications such as automotive LiDAR, handheld imaging, smart headsets, AI glasses, and cloud and edge AI."
+    },
+    {
+      "locator": "paragraph:p[12]",
+      "text": "Management guided second-quarter revenue to grow 14% to 16% sequentially, with gross margin expected at 20% to 22%. It said shipment volume and blended ASP should both improve meaningfully, and that the margin outlook is about 2 percentage points higher than the previous quarter's guidance."
+    },
+    {
+      "locator": "paragraph:p[13]",
+      "text": "The company said 2025 free cash flow after capex remained negative because it is still in a phase of expanding capacity and investing in R&D. On that basis, SMIC plans not to distribute profits for 2025, saying funds should continue to be directed toward core operations and long-term competitiveness."
+    },
+    {
+      "locator": "paragraph:p[14]",
+      "text": "Management said the global macro environment remains uncertain and could affect supply chain costs, stability, and market expectations. It plans to respond with multi-channel procurement, stronger supply chain resilience, and flexible resource allocation to protect delivery quality."
+    },
+    {
+      "locator": "paragraph:p[15]",
+      "text": "[Foreign Language] Welcome to Semiconductor Manufacturing International Corporation's first quarter 2026 webcast conference call. Today's call will be simultaneously streamed through the internet and telephone. [Operator Instructions]"
+    },
+    {
+      "locator": "paragraph:p[16]",
+      "text": "Without further ado, I'd like to introduce Miss Guo Guangli, Senior Vice President and Board Secretary to host the webcast."
+    },
+    {
+      "locator": "paragraph:p[17]",
+      "text": "[Interpreted] Greetings. Welcome to SMIC's first quarter 2026 webcast conference call. Attending today's call are Dr. Zhao Haijun, Co-Chief Executive Officer; Dr. Wu Junfeng, Senior Vice President and Person in Charge of Finance."
+    },
+    {
+      "locator": "paragraph:p[18]",
+      "text": "Let me remind you that today's presentation contains forward-looking statements that do not guarantee future performance, but represent the company's expectations and are subject to inherent risks and uncertainties. Please refer to the forward-looking statements in our earnings announcement. Please note that today's earnings statement is presented in accordance with International Financial Reporting Standards, IFRS, and currency figures are U.S. dollars unless otherwise stated."
+    },
+    {
+      "locator": "paragraph:p[19]",
+      "text": "I will now hand the call to Dr. Wu Junfeng to introduce the company's financial status."
+    },
+    {
+      "locator": "paragraph:p[20]",
+      "text": "[Interpreted] First, I will report our unaudited results for the first quarter of 2026, followed by our guidance for the second quarter."
+    },
+    {
+      "locator": "paragraph:p[21]",
+      "text": "The first quarter results were as follows: Revenue was $2,505 million, up 0.7% sequentially. Gross margin was 20.1%, up 0.9 percentage points sequentially. Profit from operations was $248 million. EBITDA was $1,435 million. EBITDA margin was 57.3%. Profit attributable to the company was $197 million."
+    },
+    {
+      "locator": "paragraph:p[22]",
+      "text": "Moving to the balance sheet. At the end of the first quarter, the company had total assets of $55 billion, of which total cash on hand was $13.9 billion. Total liabilities were $13.2 billion, of which total debt was $14.5 billion. Total equity was $35.8 billion. Debt-to-equity ratio was 40.5%, and net debt-to-equity ratio was 1.8%."
+    },
+    {
+      "locator": "paragraph:p[23]",
+      "text": "In terms of cash flow, in the first quarter, net cash generated from operating activities was $685 million. Net cash used in investing activities was $1,697 million. Net cash generated from financing activities was $2,365 million."
+    },
+    {
+      "locator": "paragraph:p[24]",
+      "text": "For the second quarter 2026, our guidance is as follows. Revenue is expected to increase by 14% to 16% sequentially, and gross margin is expected to be in the range of 20% to 22%."
+    },
+    {
+      "locator": "paragraph:p[25]",
+      "text": "This concludes the financial status. Next, let me recap the relevant matters related to the company's 2025 annual report. According to the relevant regulations of, when a listed company has made profits during the annual reporting period and its accumulated undistributed profits are positive, but no cash dividends are distributed, the company should provide a key explanations on matters related to the cash dividend plan in the earnings conference after the disclosure of the annual report and before the record date of the annual general meeting."
+    },
+    {
+      "locator": "paragraph:p[26]",
+      "text": "In 2025, the company's free cash flow after deducting capital expenditure from operating cash flow remained negative. This indicates that the company is currently still in a pivotal phase of capacity expansion and consistently growing market presence, and the company still requires ongoing capital investment for both capacity construction and R&D activities. For 2026, the company anticipated [indiscernible] largely unchanged from the previous year. Under this investment plan, prioritizing fund allocation to its core operations, including capacity expansion and R&D, remains essential. This will enhance the company's core competitiveness and value, solidify its leadership in fierce market competition, and so as to protect investor interests with a maximum degree."
+    },
+    {
+      "locator": "paragraph:p[27]",
+      "text": "Thus, the company plan not to distribute profits for the year 2025. This decision better aligns with the company's sustainable development objectives and shareholders fundamental interests and is in accordance with relevant regulations, regulatory documents and the company's profit distribution policy as well. There are no circumstances that harms the interest of the company and its shareholders. The plan has been reviewed and approved by the Board of Directors and disclosed in the annual report and will be submitted for approval at the annual general meeting. We extend our sincere appreciation to shareholders for your understanding and support."
+    },
+    {
+      "locator": "paragraph:p[28]",
+      "text": "[Interpreted] Thank you Dr. Wu."
+    },
+    {
+      "locator": "paragraph:p[29]",
+      "text": "Next, I will hand the call to Dr. Zhao Haijun."
+    },
+    {
+      "locator": "paragraph:p[30]",
+      "text": "[Interpreted] Hello, everyone. Thank you for attending SMIC's first quarter 2026 earnings call. In the first quarter, the company realized revenue of $2,505 million, a sequential increase of 0.7%. By service type, wafer revenue accounted for 93.9% of total revenue, with a sequential increase 2.3% in amount. Among that, the shipment units decreased by 0.2%, while the blended wafer price increased by 2.5%, mainly due to the steady and rising prices for certain products in the company's advantages segmented markets. In the first quarter, the company added close to 9,000 12 in equivalent capacity, and overall utilization rates decreased by 2.6 percentage points sequentially to 93.1%."
+    },
+    {
+      "locator": "paragraph:p[31]",
+      "text": "There were two main reasons. First, affected by the AI siphon effect. In the fourth quarter of last year, mobile phone manufacturer partially transmitted to the first quarter this year. Second, in the first quarter, we have new fab exited startup phase, with its capacity newly added into the denominator of the capacity utilization rates."
+    },
+    {
+      "locator": "paragraph:p[32]",
+      "text": "In the first quarter, in terms of company's revenue by region, China, America, and Eurasia accounted for 89%, 9%, and 2% respectively. The revenue amount from China increased by 2% sequentially, continuously demonstrating the industrial chain reshuffling effect. By size, wafer revenue from 12 in and 8 in accounted for 76% and 24% respectively. The wafer revenue amount from 8 in increased by 6% sequentially, mainly because the company has secured incremental orders driven by strong demand for AI supporting chips and capacity supply squeeze in other application sectors. Our capacity could not fully meet BCD, logic, and embedded memory business all achieved quarter-over-quarter growth. By application, wafer revenue from smartphone, computer and tablet, consumer electronics, connectivity and IoT, industrial and automotive accounted for 19%, 14%, 46%, 7%, and 14% respectively."
+    },
+    {
+      "locator": "paragraph:p[33]",
+      "text": "The company allocated more capacity to high demand platforms such as BCD and memory to adapt to market changes, driving sequential revenue growth of 18% for computer and tablet, industrial and automotive respectively. Secondly, the revenue amount from smartphone decreased by 10% sequentially."
+    },
+    {
+      "locator": "paragraph:p[34]",
+      "text": "In the first quarter, the company's growth margin increased by 0.9 percentage point to 20.1%, mainly due to an increase in pricing and improved product mix."
+    },
+    {
+      "locator": "paragraph:p[35]",
+      "text": "Given the current conditions, the company has negotiated price increase with customers for product categories that are in short supply, and the effect will be gradually reflected. In addition, concern that lingering uncertainty in the external may lead to short supply and further push up supply chain prices. Some customers have built inventory for consumer and IoT products in advance. Therefore, the company has sufficient order in hand. Combining above factors, in the second quarter, the revenue is expected to increase 14% to 16% sequentially. The shipment unit and blended ASP are expected to improve meaningfully. The growth margin is expected to be in the range of 20% to 22%, representing an increase of 2 percentage points from the previous quarter's guidance, mainly driven by increased blended ASP."
+    },
+    {
+      "locator": "paragraph:p[36]",
+      "text": "In terms of product platforms, the company has continued to strengthen its layouts. Over the past two years, AI boom has directly driven the demand for power management and data transmission chips, while squeeze the capacity supply for NOR flash and SLC NAND flash. Therefore, at present, the company's standalone flash platform and Analog platform are seeing strong market demand. The company has a comprehensive automotive-grade processes covering logic, Analog BCD, embedded memory, standalone flash, display drivers IC, image sensors, power devices, and etc. After years of technical refinement, automotive-grade products have gradually ramped up. In particular, the automotive-grade BCD platform is seeing strong market demand with a solid order book. The company's ToF products have been widely applied into automotive LiDAR and handheld imaging devices. The company's Micro OLED platform has been adopted in emerging products such as smart head-mounted displays and AI glasses. The company's ultra-low power logic process platform provides wired and wireless connectivity solutions for both cloud AI and edge AI applications."
+    },
+    {
+      "locator": "paragraph:p[37]",
+      "text": "Based on customer demand and order in hand, compared to last quarter, we are more optimistic about our overall business performance for this year. The main reasons are as follows. First, the strong demand for supporting chips from AI has directly pushed up demand for the company's power management capacity, which is now under shortage. Second, driven by overseas AI siphon effects, customers in consumer and IoT fields trying to secure capacity in Mainland China, with orders flowing back to domestic. Third, AI has also driven demand for chips in emerging fields such as ToF, electric vehicle, and robots, where local companies have actively explored the markets. Fourth, a peer for localization promoted the demand for domestic logic and network chips. The fifth reason is the price increase effects and customers' earlier inventory building on concerns over insufficient supply in the future, as mentioned before."
+    },
+    {
+      "locator": "paragraph:p[38]",
+      "text": "Under the backdrop of the market changes, the company's advantages of technological reserves, diversified platform layouts and flexible capacity conversion support its order taking capability. We have shifted the capacity to continuously iterated products such as logic, specialty memory, PMIC, analog front end, ADC products, Micro OLED, and et cetera. The company continues to promote capacity expansion by long term agreements with customers to lock in future demand and thereby generate steady growth momentum."
+    },
+    {
+      "locator": "paragraph:p[39]",
+      "text": "The current global macro environment is still confronted with numerous uncertainties, which continue to pose challenges to supply chain costs, stability and market expectations. Leveraging our experience gained over the years, we will continue to strengthen the resilience management of our supply chain, adopt multi-channel procurement strategies, and make efforts to mitigate the adverse impacts. At the same time, the company will closely monitor customer demand, flexibly allocate resources, accelerate product response speed, and ensure sustained high quality delivery amid a complex environment."
+    },
+    {
+      "locator": "paragraph:p[40]",
+      "text": "In addition, we would like to recap the company's market value management over the past year. The company attached great importance to market value management. It formulated accordingly. Over the past year, the company has stayed focusing on its core business and reached a new milestone in its operating performance, continuously advanced technological breakthroughs and promoted coordinated development across the industrial chain, further strengthened its talent team and fully promoted green and sustainable development and deepened mutual communication between investors and the company, proactively conveying the company's value to the capital market through a variety of online and offline channels."
+    },
+    {
+      "locator": "paragraph:p[41]",
+      "text": "Finally, we sincerely thank all customers, suppliers, investors and community for your understanding and strong support. Thank you all."
+    },
+    {
+      "locator": "paragraph:p[42]",
+      "text": "[Interpreted] Thank you, Dr. Zhao. Next is our Q&A session. Questions will be answered by Dr. Zhao and Dr. Wu. Chinese questions will be answered in Chinese. English questions will be answered in English. [Operator Instructions]"
+    },
+    {
+      "locator": "paragraph:p[43]",
+      "text": "I would now like to open up the call for Q&A. Operator, please assist."
+    },
+    {
+      "locator": "paragraph:p[44]",
+      "text": "[Operator Instructions] Our first question comes from the line of Leping Huang of Huatai Securities. Please ask your question."
+    },
+    {
+      "locator": "paragraph:p[45]",
+      "text": "[Foreign Language]"
+    },
+    {
+      "locator": "paragraph:p[46]",
+      "text": "[Foreign Language]"
+    },
+    {
+      "locator": "paragraph:p[47]",
+      "text": "[Foreign Language]"
+    },
+    {
+      "locator": "paragraph:p[48]",
+      "text": "[Foreign Language]"
+    },
+    {
+      "locator": "paragraph:p[49]",
+      "text": "[Interpreted] The next question comes from the line of Ziyuan Wang of CITIC Securities. Please go ahead."
+    },
+    {
+      "locator": "paragraph:p[50]",
+      "text": "[Foreign Language]"
+    },
+    {
+      "locator": "paragraph:p[51]",
+      "text": "[Foreign Language]"
+    },
+    {
+      "locator": "paragraph:p[52]",
+      "text": "[Foreign Language]"
+    },
+    {
+      "locator": "paragraph:p[53]",
+      "text": "[Foreign Language]"
+    },
+    {
+      "locator": "paragraph:p[54]",
+      "text": "[Foreign Language]"
+    },
+    {
+      "locator": "paragraph:p[55]",
+      "text": "[Foreign Language]"
+    },
+    {
+      "locator": "paragraph:p[56]",
+      "text": "[Foreign Language]"
+    },
+    {
+      "locator": "paragraph:p[57]",
+      "text": "[Foreign Language]"
+    },
+    {
+      "locator": "paragraph:p[58]",
+      "text": "[Foreign Language]"
+    },
+    {
+      "locator": "paragraph:p[59]",
+      "text": "[Foreign Language]"
+    },
+    {
+      "locator": "paragraph:p[60]",
+      "text": "Our next question comes from the line of Yikang Zhang from CICC. Please ask your question."
+    },
+    {
+      "locator": "paragraph:p[61]",
+      "text": "[Foreign Language]"
+    },
+    {
+      "locator": "paragraph:p[62]",
+      "text": "[Foreign Language]"
+    },
+    {
+      "locator": "paragraph:p[63]",
+      "text": "[Foreign Language]"
+    },
+    {
+      "locator": "paragraph:p[64]",
+      "text": "[Foreign Language]"
+    },
+    {
+      "locator": "paragraph:p[65]",
+      "text": "[Foreign Language]"
+    },
+    {
+      "locator": "paragraph:p[66]",
+      "text": "[Foreign Language]"
+    },
+    {
+      "locator": "paragraph:p[67]",
+      "text": "[Foreign Language]"
+    },
+    {
+      "locator": "paragraph:p[68]",
+      "text": "[Foreign Language]"
+    },
+    {
+      "locator": "paragraph:p[69]",
+      "text": "[Foreign Language]"
+    },
+    {
+      "locator": "paragraph:p[70]",
+      "text": "[Interpreted] The next question comes from the line of [indiscernible] of [ Orient ] Securities. Please ask your question."
+    },
+    {
+      "locator": "paragraph:p[71]",
+      "text": "[Foreign Language]"
+    },
+    {
+      "locator": "paragraph:p[72]",
+      "text": "[Foreign Language]"
+    },
+    {
+      "locator": "paragraph:p[73]",
+      "text": "[Foreign Language]"
+    },
+    {
+      "locator": "paragraph:p[74]",
+      "text": "[Foreign Language]"
+    },
+    {
+      "locator": "paragraph:p[75]",
+      "text": "[Foreign Language]"
+    },
+    {
+      "locator": "paragraph:p[76]",
+      "text": "[Foreign Language]"
+    },
+    {
+      "locator": "paragraph:p[77]",
+      "text": "[Interpreted] I would like to hand the call back to Ms. Guo Guangli for closing remarks."
+    },
+    {
+      "locator": "paragraph:p[78]",
+      "text": "[Interpreted] Thank you for participating in today's conference call. Thank you for your trust and support."
+    },
+    {
+      "locator": "paragraph:p[79]",
+      "text": "[Interpreted] This concludes SMIC's First Quarter Webcast Conference Call. We thank you for joining us today."
+    },
+    {
+      "locator": "paragraph:p[80]",
+      "text": "[Portions of this transcript that are marked [Interpreted] were spoken by an interpreter present on the live call.]"
+    },
+    {
+      "locator": "paragraph:p[81]",
+      "text": "© 2026 Alpha Spread Limited. All Rights Reserved."
+    },
+    {
+      "locator": "paragraph:p[82]",
+      "text": "www.alphaspread.com is not operated by a broker, a dealer, or a registered investment adviser. Under no circumstances does any information posted on www.alphaspread.com represent a recommendation to buy or sell a security. The information on this site, and in its related newsletters, is not intended to be, nor does it constitute, investment advice or recommendations. The information on this site is in no way guaranteed for completeness, accuracy or in any other way. In no event shall Alpha Spread Limited be liable to any member, guest or third party for any damages of any kind arising out of the use of any content or other material published or available on www.alphaspread.com, or relating to the use of, or inability to use, www.alphaspread.com or any content, including, without limitation, any investment losses, lost profits, lost opportunity, special, incidental, indirect, consequential or punitive damages. Past performance is a poor indicator of future performance."
+    },
+    {
+      "locator": "paragraph:p[83]",
+      "text": "AI-generated answers can contain mistakes, outdated facts, or incomplete information. Always verify important details before making decisions."
+    },
+    {
+      "locator": "paragraph:p[84]",
+      "text": "The AI Assistant is designed for research and education. It does not provide personalized investment, legal, or tax advice."
+    },
+    {
+      "locator": "paragraph:p[85]",
+      "text": "Intrinsic Value is all-important and is the only logical way to evaluate the relative attractiveness of investments and businesses."
+    },
+    {
+      "locator": "paragraph:p[86]",
+      "text": "By using Alpha Spread you are agreeing to our Terms of Service and Privacy Policy."
+    },
+    {
+      "locator": "paragraph:p[87]",
+      "text": "By using Alpha Spread you are agreeing to our Terms of Service and Privacy Policy."
+    },
+    {
+      "locator": "paragraph:p[88]",
+      "text": "Stock intrinsic value is the real worth of a company's stock, based on its financial health and performance."
+    },
+    {
+      "locator": "paragraph:p[89]",
+      "text": "Instead of looking at the stock's current market price, which can change due to people's opinions and emotions, intrinsic value helps us understand if a stock is truly a good deal or not."
+    },
+    {
+      "locator": "paragraph:p[90]",
+      "text": "By focusing on the company's actual financial strength, like its earnings and debts, we can make better decisions about which stocks to buy and when."
+    }
+  ],
+  "tables": [
+    {
+      "table_number": 1,
+      "locator": "table[1]",
+      "rows": []
+    },
+    {
+      "table_number": 2,
+      "locator": "table[2]",
+      "rows": [
+        [
+          "",
+          "Johnson & Johnson NYSE:JNJ",
+          "US"
+        ],
+        [
+          "",
+          "Berkshire Hathaway Inc NYSE:BRK.A",
+          "US"
+        ],
+        [
+          "",
+          "Bank of America Corp NYSE:BAC",
+          "US"
+        ],
+        [
+          "",
+          "Mastercard Inc NYSE:MA",
+          "US"
+        ],
+        [
+          "",
+          "UnitedHealth Group Inc NYSE:UNH",
+          "US"
+        ],
+        [
+          "",
+          "Exxon Mobil Corp NYSE:XOM",
+          "US"
+        ],
+        [
+          "",
+          "Pfizer Inc NYSE:PFE",
+          "US"
+        ],
+        [
+          "",
+          "Nike Inc NYSE:NKE",
+          "US"
+        ],
+        [
+          "",
+          "Visa Inc NYSE:V",
+          "US"
+        ],
+        [
+          "",
+          "Alibaba Group Holding Ltd NYSE:BABA",
+          "CN"
+        ],
+        [
+          "",
+          "JPMorgan Chase & Co NYSE:JPM",
+          "US"
+        ],
+        [
+          "",
+          "Coca-Cola Co NYSE:KO",
+          "US"
+        ],
+        [
+          "",
+          "Verizon Communications Inc NYSE:VZ",
+          "US"
+        ],
+        [
+          "",
+          "Chevron Corp NYSE:CVX",
+          "US"
+        ],
+        [
+          "",
+          "Walt Disney Co NYSE:DIS",
+          "US"
+        ],
+        [
+          "",
+          "PayPal Holdings Inc NASDAQ:PYPL",
+          "US"
+        ]
+      ]
+    }
+  ]
+}

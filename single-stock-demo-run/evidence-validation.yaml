@@ -1,0 +1,108 @@
+snapshot_id: smic-a283e95e2c9e8068
+governance_rule_version: smic-v3-source-governance-v1
+validation_status: WARN
+clean_rebuild_hashes_match: true
+clean_rebuild_hashes:
+  first_evidence: sha256:cc44d74ae573aa4b552c4dc49d08c47efe6bb6c60fcba85b193dea933cd28eb6
+  rebuilt_evidence: sha256:cc44d74ae573aa4b552c4dc49d08c47efe6bb6c60fcba85b193dea933cd28eb6
+  first_gaps: sha256:5d1f6607d9c72d89150ceb79cafd01ffa3a1ca8dffcc33ecfb794a7632e8622e
+  rebuilt_gaps: sha256:5d1f6607d9c72d89150ceb79cafd01ffa3a1ca8dffcc33ecfb794a7632e8622e
+inherited_guarantees:
+  locator_accuracy: Content-locator accuracy is inherited from the Ticket 03 retrieval
+    acceptance; this stage re-checks only reference integrity and chunk-text hashes.
+checks:
+- check: hash_integrity
+  status: PASS
+  reason: 0 evidence rows whose source_chunk_text_hash does not match the chunk text
+    hash.
+  mismatch_count: 0
+- check: as_of_eligibility
+  status: PASS
+  reason: 0 evidence rows come from as_of-ineligible materials and are quarantined.
+  ineligible_count: 0
+- check: content_locator_resolvable
+  status: PASS
+  reason: 0 evidence rows have an unresolvable content locator and are quarantined.
+  unresolvable_count: 0
+- check: required_fields
+  status: PASS
+  reason: 0 evidence rows are missing a required field.
+  missing_count: 0
+- check: unit_currency_period
+  status: PASS
+  reason: 0 eligible numeric records violate metric-class unit/currency/period requirements.
+  checked: 2
+  violations: 0
+- check: formula_recomputation
+  status: PASS
+  reason: 0 of 4 recomputable IFRS/CAS reconciliations disagree with Ticket 03.
+  recomputed: 4
+  mismatch: 0
+- check: source_group_consistency
+  status: PASS
+  reason: 0 evidence rows disagree with the fixed material source-group table.
+  issue_count: 0
+- check: conflict_detection
+  status: PASS
+  reason: 0 records in unresolved conflicts; conflicts only formed on whitelisted
+    records.
+  unresolved_records: 0
+  non_whitelist_conflict_records: 0
+- check: isolation_quarantine
+  status: PASS
+  reason: 0 quarantined rows; 0 incorrectly remain usable.
+  quarantined_count: 0
+  wrongly_usable: 0
+- check: id_reference_integrity
+  status: PASS
+  reason: 0 duplicate evidence ids; 0 dangling references.
+  duplicate_evidence_ids: 0
+  dangling_references: 0
+- check: locator_chain_consistency
+  status: PASS
+  reason: 0 broken fact->chunk->material chains or chunk-hash mismatches. Content-locator
+    accuracy is inherited from the Ticket 03 retrieval acceptance; this stage re-checks
+    only reference integrity and chunk-text hashes.
+  broken_count: 0
+- check: state_combination_legality
+  status: PASS
+  reason: 0 evidence rows use an illegal state combination.
+  illegal_count: 0
+- check: whitelist_signature
+  status: PASS
+  reason: 0 whitelisted records are missing or fail full-signature verification.
+  signature_failures: 0
+  whitelist_size: 2
+statistics:
+  candidate_fact_count: 71
+  eligible_fact_count: 2
+  excluded_fact_count_by_reason:
+    MISSING_COMPARABILITY_KEY: 800
+    MISSING_METRIC_ID: 3499
+    NOT_IN_CONFLICT_WHITELIST: 274
+    TEXT_CONFLICT_OUT_OF_SCOPE: 15539
+  comparable_group_count: 2
+  comparison_pair_count: 0
+  detected_conflict_group_count: 0
+  unresolved_conflict_group_count: 0
+  evidence_count: 20114
+  evidence_status_counts:
+    RESTRICTED: 4912
+    USABLE: 15202
+  source_tier_counts:
+    T1: 19544
+    T2: 203
+    T3: 278
+    T4: 89
+  claim_type_counts:
+    MANAGEMENT_ASSERTION: 222
+    MANAGEMENT_GUIDANCE: 34
+    REPORTED_FACT: 19544
+    THIRD_PARTY_VIEW: 314
+  source_group_count: 19
+new_gap_ids:
+- GAP_EVIDENCE_9aea1f6de4cfa1ee
+- GAP_EVIDENCE_UPSTREAM_PERIOD_MISLABEL
+rules_hash: sha256:ad474ad3a0d00c1f493808ef995ed34d26977c70215c31928674fdb66e7eb190
+facts_hash: sha256:cfb20059ad7543b15fe2e49ac6e53f78931567380cdd304253c92ea4696d63ad
+evidence_hash: sha256:caa5aa5d3c8f3b9a64e84156f42f25430465b2bcb87d8c0f8f9fb777d0fedeb0

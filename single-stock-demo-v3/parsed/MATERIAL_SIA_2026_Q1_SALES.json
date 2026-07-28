@@ -1,0 +1,70 @@
+{
+  "material_id": "MATERIAL_SIA_2026_Q1_SALES",
+  "parser": "html-parser-v1",
+  "headings": [
+    {
+      "level": 1,
+      "locator": "heading:h1[1]",
+      "text": "Latest News"
+    },
+    {
+      "level": 1,
+      "locator": "heading:h1[2]",
+      "text": "Global Semiconductor Sales Increase 25% from Q4 2025 to Q1 2026"
+    },
+    {
+      "level": 6,
+      "locator": "heading:h6[1]",
+      "text": "Media Contact Dylan Peterson Semiconductor Industry Association 812-679-8952 [email protected]"
+    },
+    {
+      "level": 6,
+      "locator": "heading:h6[2]",
+      "text": "About SIA The Semiconductor Industry Association (SIA) is the voice of the semiconductor industry, one of America’s top export industries and a key driver of America’s economic strength, national security, and global competitiveness. SIA represents 99% of the U.S. semiconductor industry by revenue and nearly two-thirds of non-U.S. chip firms. Through this coalition, SIA seeks to strengthen leadership of semiconductor manufacturing, design, and research by working with Congress, the Administration, and key industry stakeholders around the world to encourage policies that fuel innovation, propel business, and drive international competition. Learn more at www.semiconductors.org."
+    },
+    {
+      "level": 6,
+      "locator": "heading:h6[3]",
+      "text": "About WSTS World Semiconductor Trade Statistics (WSTS) is an independent non-profit organization representing the vast majority of the world semiconductor industry. The mission of WSTS is to be the respected source of semiconductor market data and forecasts. Founded in 1986, WSTS is the singular source for monthly industry shipment statistics."
+    }
+  ],
+  "paragraphs": [
+    {
+      "locator": "paragraph:p[1]",
+      "text": "by Semiconductor Industry Association"
+    },
+    {
+      "locator": "paragraph:p[2]",
+      "text": "Worldwide chip sales in March increase 79.2% year-to-year, 11.5% month-to-month"
+    },
+    {
+      "locator": "paragraph:p[3]",
+      "text": "WASHINGTON—May 4, 2026—The Semiconductor Industry Association (SIA) today announced global semiconductor sales were $298.5 billion during the first quarter of 2026, an increase of 25% compared to Q4 of 2025. Global sales were $99.5 billion during the month of March 2026, an increase of 79.2% compared to the March 2025 total of $55.5 billion and 11.5% more than sales in February 2026. Monthly sales are compiled by the World Semiconductor Trade Statistics (WSTS) organization and represent a three-month moving average. SIA represents 99% of the U.S. semiconductor industry by revenue and nearly two-thirds of non-U.S. chip firms."
+    },
+    {
+      "locator": "paragraph:p[4]",
+      "text": "“Global chip sales remain on track to reach $1 trillion in 2026, with Q1 sales significantly exceeding sales in Q4 2025,” said John Neuffer, SIA president and CEO. “Strong sales across the Asia Pacific region, the Americas, and China drove global semiconductor market growth, highlighting broad and robust demand for semiconductors and the countless tech products they enable.”"
+    },
+    {
+      "locator": "paragraph:p[5]",
+      "text": "Regionally, year-to-year sales in March were up in the Asia Pacific/All Other (108.5%), the Americas (83.1%), China (74.8%), Europe (46.5%), and Japan (7.4%). Month-to-month sales in March increased in the Americas (13.3%), China (12.7%), Asia Pacific/All Other (9.8%), Europe (8.4%), and Japan (7.1%)."
+    },
+    {
+      "locator": "paragraph:p[6]",
+      "text": "For comprehensive monthly semiconductor sales data and detailed WSTS forecasts, consider purchasing the WSTS Subscription Package. For detailed historical information about the global semiconductor industry and market, consider ordering the SIA Databook."
+    },
+    {
+      "locator": "paragraph:p[7]",
+      "text": "[March 2026 chart and graph]"
+    },
+    {
+      "locator": "paragraph:p[8]",
+      "text": "###"
+    },
+    {
+      "locator": "paragraph:p[9]",
+      "text": "1101 K Street NW Suite 450, Washington, DC 20005 E-mail"
+    }
+  ],
+  "tables": []
+}

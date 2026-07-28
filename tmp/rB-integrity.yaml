@@ -1,0 +1,83 @@
+snapshot_id: smic-a283e95e2c9e8068
+execution_mode: FROZEN_REPLAY
+integrity_status: PASS
+reason_codes: []
+unexpected_files: []
+as_of_violations: []
+removed_files:
+- context.jsonl
+- retrieval-validation.yaml
+- normalized-facts.jsonl
+- normalization-validation.yaml
+- governed-evidence.jsonl
+- evidence-validation.yaml
+- analysis-inputs.jsonl
+- findings.yaml
+- analysis-attempts.jsonl
+- analysis-validation.yaml
+- challenges.yaml
+- findings-revised.yaml
+- gaps.yaml
+- run-integrity.yaml
+- run-gate.yaml
+- report.md
+- report-validation.yaml
+- manifest.yaml
+checks:
+- name: run_directory_inventory
+  status: PASS
+  detail: clean
+  reason_code: null
+- name: frozen_input_hash
+  status: PASS
+  detail: findings-attempt-1.yaml sha256:b14ae8817c7dfe816a0be45000687d58cae6914a65c579e25b0bf7de151a92a5
+  reason_code: null
+- name: frozen_input_hash
+  status: PASS
+  detail: findings-attempt-2.yaml sha256:f40bfa5cbba2f6a98e144d4a0b7df0b8a2dd75ee86a17dd53a4de36c7c788e92
+  reason_code: null
+- name: frozen_input_hash
+  status: PASS
+  detail: challenges-model.yaml sha256:7758f7336fc99a64787b23332f12af126adbfb5f35f0a8714d971303622b7e25
+  reason_code: null
+- name: frozen_input_hash
+  status: PASS
+  detail: analysis-validation.yaml sha256:56d268b232fb08baaafb6ef5d460467949693daa647b460668672076d4fc9fe2
+  reason_code: null
+- name: frozen_input_hash
+  status: PASS
+  detail: analysis-attempts.jsonl sha256:6243041d59be5d3e9599ea0969b2c58d27d63e45a9fae9d5711222bc57f81e62
+  reason_code: null
+- name: snapshot_identity
+  status: PASS
+  detail: expected smic-a283e95e2c9e8068
+  reason_code: null
+- name: analysis_rule_version
+  status: PASS
+  detail: expected smic-v3-analysis-v1
+  reason_code: null
+- name: frozen_rules_hash
+  status: PASS
+  detail: rules/analysis.yaml differs from the file the analysis stage ran under
+  reason_code: null
+- name: frozen_selection_hash
+  status: PASS
+  detail: expected sha256:a0cd803ce8301b611542b376c8a1913cb97487b0a6ef145d84d247a46781ff94
+  reason_code: null
+- name: model_output_binding
+  status: PASS
+  detail: findings-attempt-1.yaml snapshot/selection/rule binding
+  reason_code: null
+- name: model_output_binding
+  status: PASS
+  detail: findings-attempt-2.yaml snapshot/selection/rule binding
+  reason_code: null
+- name: model_output_binding
+  status: PASS
+  detail: challenges-model.yaml snapshot/selection/rule binding
+  reason_code: null
+- name: as_of_eligibility
+  status: PASS
+  detail: 0 material(s) published later than 2026-05-15T23:59:59+08:00
+  reason_code: null
+gaps: []

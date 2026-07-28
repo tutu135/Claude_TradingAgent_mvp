@@ -1,0 +1,69 @@
+{
+  "material_id": "MATERIAL_SIA_2023_ANNUAL_SALES",
+  "parser": "html-parser-v1",
+  "headings": [
+    {
+      "level": 1,
+      "locator": "heading:h1[1]",
+      "text": "Latest News"
+    },
+    {
+      "level": 1,
+      "locator": "heading:h1[2]",
+      "text": "Global Semiconductor Sales Decrease 8.2% in 2023; Market Rebounds Late in Year"
+    },
+    {
+      "level": 5,
+      "locator": "heading:h5[1]",
+      "text": "About SIA The Semiconductor Industry Association (SIA) is the voice of the semiconductor industry, one of America’s top export industries and a key driver of America’s economic strength, national security, and global competitiveness. SIA represents 99% of the U.S. semiconductor industry by revenue and nearly two-thirds of non-U.S. chip firms. Through this coalition, SIA seeks to strengthen leadership of semiconductor manufacturing, design, and research by working with Congress, the Administration, and key industry stakeholders around the world to encourage policies that fuel innovation, propel business, and drive international competition. Learn more at www.semiconductors.org."
+    },
+    {
+      "level": 5,
+      "locator": "heading:h5[2]",
+      "text": "About WSTS World Semiconductor Trade Statistics (WSTS) is an independent non-profit organization representing the vast majority of the world semiconductor industry. The mission of WSTS is to be the respected source of semiconductor market data and forecasts. Founded in 1986, WSTS is the singular source for monthly industry shipment statistics."
+    }
+  ],
+  "paragraphs": [
+    {
+      "locator": "paragraph:p[1]",
+      "text": "by Semiconductor Industry Association"
+    },
+    {
+      "locator": "paragraph:p[2]",
+      "text": "Worldwide industry sales totaled $526.8 billion in 2023; market grew during second half of year and sales are projected to increase by 13.1% in 2024"
+    },
+    {
+      "locator": "paragraph:p[3]",
+      "text": "WASHINGTON—Feb. 5, 2024—The Semiconductor Industry Association (SIA) today announced global semiconductor industry sales totaled $526.8 billion in 2023, a decrease of 8.2% compared to the 2022 total of $574.1 billion, which was the industry’s highest-ever annual total. Sales picked up during the second half of 2023. In fact, fourth-quarter sales of $146.0 billion were 11.6% more than the total from the fourth quarter of 2022 and 8.4% higher than the total from third quarter of 2023. And global sales for the month of December 2023 were $48.6 billion, an increase of 1.5% compared to November 2023 total. Monthly sales are compiled by the World Semiconductor Trade Statistics (WSTS) organization and represent a three-month moving average. SIA represents 99% of the U.S. semiconductor industry by revenue and nearly two-thirds of non-U.S. chip firms."
+    },
+    {
+      "locator": "paragraph:p[4]",
+      "text": "“Global semiconductor sales were sluggish early in 2023 but rebounded strongly during the second half of the year, and double-digit market growth is projected for 2024,” said John Neuffer, SIA president and CEO. “With chips playing a larger and more important role in countless products the world depends on, the long-term outlook for the semiconductor market is extremely strong. Advancing government policies that invest in R&D, strengthen the semiconductor workforce, and reduce barriers to trade will help the industry continue to grow and innovate for many years to come.”"
+    },
+    {
+      "locator": "paragraph:p[5]",
+      "text": "On a regional basis, Europe was the only regional market that experienced annual growth in 2023, with sales there increasing 4.0%. Annual sales into all other regional markets decreased in 2023: Japan (-3.1%), the Americas (-5.2%), Asia-Pacific/All Other (-10.1%), and China (-14.0%). Sales for the month of December 2023 increased compared to November 2023 in China (4.7%), the Americas (1.8%), and Asia Pacific/All Other (0.3%), but decreased in Japan (-2.4%) and Europe (-3.9%)."
+    },
+    {
+      "locator": "paragraph:p[6]",
+      "text": "Several semiconductor product segments stood out in 2023. Sales of logic products totaled $178.5 billion in 2023, making it the largest product category by sales. Memory products were second in terms of sales, totaling $92.3 billion. Microcontroller units (MCUs) grew by 11.4% to a total of $27.9 billion. And sales of automotive ICs grew by 23.7% year-over-year to a record total of $42.2 billion."
+    },
+    {
+      "locator": "paragraph:p[7]",
+      "text": "For comprehensive monthly semiconductor sales data and detailed WSTS forecasts, consider purchasing the WSTS Subscription Package. For detailed historical information about the global semiconductor industry and market, consider ordering the SIA Databook."
+    },
+    {
+      "locator": "paragraph:p[8]",
+      "text": "December 2023 chart and graph"
+    },
+    {
+      "locator": "paragraph:p[9]",
+      "text": "# # #"
+    },
+    {
+      "locator": "paragraph:p[10]",
+      "text": "1101 K Street NW Suite 450, Washington, DC 20005 E-mail"
+    }
+  ],
+  "tables": []
+}

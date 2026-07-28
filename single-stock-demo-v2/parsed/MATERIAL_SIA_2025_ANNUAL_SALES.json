@@ -1,0 +1,78 @@
+{
+  "material_id": "MATERIAL_SIA_2025_ANNUAL_SALES",
+  "parser": "html-parser-v1",
+  "headings": [
+    {
+      "level": 1,
+      "locator": "heading:h1[1]",
+      "text": "Latest News"
+    },
+    {
+      "level": 1,
+      "locator": "heading:h1[2]",
+      "text": "Global Annual Semiconductor Sales Increase 25.6% to $791.7 Billion in 2025"
+    },
+    {
+      "level": 6,
+      "locator": "heading:h6[1]",
+      "text": "Media Contact Dylan Peterson Semiconductor Industry Association 812-679-8952 [email protected]"
+    },
+    {
+      "level": 6,
+      "locator": "heading:h6[2]",
+      "text": "About SIA The Semiconductor Industry Association (SIA) is the voice of the semiconductor industry, one of America’s top export industries and a key driver of America’s economic strength, national security, and global competitiveness. SIA represents 99% of the U.S. semiconductor industry by revenue and nearly two-thirds of non-U.S. chip firms. Through this coalition, SIA seeks to strengthen leadership of semiconductor manufacturing, design, and research by working with Congress, the Administration, and key industry stakeholders around the world to encourage policies that fuel innovation, propel business, and drive international competition. Learn more at www.semiconductors.org."
+    },
+    {
+      "level": 6,
+      "locator": "heading:h6[3]",
+      "text": "About WSTS World Semiconductor Trade Statistics (WSTS) is an independent non-profit organization representing the vast majority of the world semiconductor industry. The mission of WSTS is to be the respected source of semiconductor market data and forecasts. Founded in 1986, WSTS is the singular source for monthly industry shipment statistics."
+    }
+  ],
+  "paragraphs": [
+    {
+      "locator": "paragraph:p[1]",
+      "text": "by Semiconductor Industry Association"
+    },
+    {
+      "locator": "paragraph:p[2]",
+      "text": "Logic and memory products saw largest growth; annual sales projected to reach roughly $1 trillion worldwide in 2026"
+    },
+    {
+      "locator": "paragraph:p[3]",
+      "text": "WASHINGTON—Feb. 6, 2026—The Semiconductor Industry Association (SIA) today announced global semiconductor sales hit $791.7 billion in 2025, an increase of 25.6% compared to the 2024 total of $630.5 billion. Additionally, fourth-quarter sales of $236.6 billion were 37.1% more than the fourth quarter of 2024, and 13.6% higher than the third quarter of 2025. Global sales for the month of December 2025 were $78.9 billion, an increase of 2.7% compared to the November 2025 total. Monthly sales are compiled by the World Semiconductor Trade Statistics (WSTS) organization and represent a three-month moving average. SIA represents 99% of the U.S. semiconductor industry by revenue and nearly two-thirds of non-U.S. chip firms."
+    },
+    {
+      "locator": "paragraph:p[4]",
+      "text": "“The global semiconductor industry posted its highest-ever annual sales in 2025, nearly hitting $800 billion, and global sales in 2026 are projected to reach roughly $1 trillion,” said John Neuffer, SIA president and CEO. “Semiconductors are the foundation of nearly all modern technology, and emerging technologies like AI, IoT, 6G, autonomous driving, and others will continue to drive robust demand for chips.”"
+    },
+    {
+      "locator": "paragraph:p[5]",
+      "text": "Regionally, yearly sales were up in Asia Pacific/All Others (45.0%), the Americas (30.5%), China (17.3%), and Europe (6.3%), but were down in Japan (-4.7%). Month-to-month sales in December increased in the Americas (3.9%), China (3.8%), and Asia Pacific/All Others (2.5%), but declined in Europe (-2.2%), and Japan (-2.5%)."
+    },
+    {
+      "locator": "paragraph:p[6]",
+      "text": "“As semiconductors continue to propel the game-changing technologies of today and tomorrow, it’s critical for leaders in Washington to prioritize policies that will strengthen the domestic chip ecosystem for years to come. A globally competitive U.S. semiconductor industry will allow us to boost our economy, enhance national security, and lead the global race for technological leadership in the 21st century,” said Neuffer."
+    },
+    {
+      "locator": "paragraph:p[7]",
+      "text": "Several semiconductor product segments stood out in 2025. Sales of logic products increased by 39.9%, totaling $301.9 billion in 2025, making it the largest product category by sales. Memory products were second in terms of sales, increasing by 34.8% in 2024 to a total of $223.1 billion."
+    },
+    {
+      "locator": "paragraph:p[8]",
+      "text": "For comprehensive monthly semiconductor sales data and detailed WSTS forecasts, consider purchasing the WSTS Subscription Package. For detailed historical information about the global semiconductor industry and market, consider ordering the SIA Databook."
+    },
+    {
+      "locator": "paragraph:p[9]",
+      "text": "[December 2025 chart and graph]"
+    },
+    {
+      "locator": "paragraph:p[10]",
+      "text": "###"
+    },
+    {
+      "locator": "paragraph:p[11]",
+      "text": "1101 K Street NW Suite 450, Washington, DC 20005 E-mail"
+    }
+  ],
+  "tables": []
+}

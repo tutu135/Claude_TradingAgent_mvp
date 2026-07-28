@@ -1,0 +1,315 @@
+snapshot_id: smic-a283e95e2c9e8068
+analysis_rule_version: smic-v3-analysis-v1
+analysis_run_status: PASS
+selection_hash: sha256:a0cd803ce8301b611542b376c8a1913cb97487b0a6ef145d84d247a46781ff94
+selection_summary:
+  D1_PROFITABILITY_CHANGE:
+    available_source_group_count: 12
+    bearing_numeric_count: 55
+    candidate_chunks: 56
+    min_selected_score: 32.712838512968
+    numeric_evidence_count: 74
+    selected_chars: 64482
+    selected_chunks: 32
+    skipped_due_budget:
+    - CHUNK_bcd0a113e34911e7904ac4a3
+    - CHUNK_c7c4a880eb5a9a70978bc15f
+    - CHUNK_d6f6db576be5052fed536071
+    - CHUNK_a7c6e712567f5d8cf327dc97
+    - CHUNK_6fde9a260cfadddcc82a7d5f
+    - CHUNK_d1dfcf900fb5508d396f852f
+    - CHUNK_014de5841b2c638509367e18
+    - CHUNK_147513b98011d2d61311c7f2
+    - CHUNK_721a25f3e29003ee9e584351
+    - CHUNK_b6097dab7ed5d7e5cd28129f
+    - CHUNK_b414d48f62213d58cd42c324
+    - CHUNK_dd8415a61d9a74bce9cadb92
+    - CHUNK_88df9697758353a9bbce57f3
+    - CHUNK_47180931354cfba494f6da0b
+    - CHUNK_39146e287210572a19f0b63a
+    - CHUNK_a36cb747f8174ea61ebbc931
+    - CHUNK_d981c8285e227e3de8f93fe0
+    - CHUNK_91b66d24c60b7930fd79e362
+    - CHUNK_f45d41dc0003053251a88881
+    - CHUNK_517a48d3e245a40a5e28282b
+    - CHUNK_047f7c0644533f5f8da9a760
+    - CHUNK_42f10a406fae2fe45ce1defd
+    - CHUNK_46e7930fbe45a730025a7110
+    - CHUNK_d6ff2e35c4a601d774193024
+    skipped_due_budget_count: 24
+    source_group_count: 7
+    text_evidence_count: 1407
+  D2_UTILIZATION_EFFECT:
+    available_source_group_count: 12
+    bearing_numeric_count: 0
+    candidate_chunks: 29
+    min_selected_score: 7.745624205893
+    numeric_evidence_count: 10
+    selected_chars: 62298
+    selected_chunks: 29
+    skipped_due_budget: []
+    skipped_due_budget_count: 0
+    source_group_count: 12
+    text_evidence_count: 1231
+  D3_MIX_EFFECT:
+    available_source_group_count: 11
+    bearing_numeric_count: 1
+    candidate_chunks: 41
+    min_selected_score: 22.870554902006
+    numeric_evidence_count: 60
+    selected_chars: 64211
+    selected_chunks: 20
+    skipped_due_budget:
+    - CHUNK_9bd8a41947282fe40ab7752a
+    - CHUNK_461d3ea418efa90a335ba1bc
+    - CHUNK_42f10a406fae2fe45ce1defd
+    - CHUNK_983e5200b5909fc8b052c786
+    - CHUNK_d6ff2e35c4a601d774193024
+    - CHUNK_91b66d24c60b7930fd79e362
+    - CHUNK_7cb9b53f6f877dd08f1467ad
+    - CHUNK_012ac869c5db583d55a321ac
+    - CHUNK_d302ca791ee75f48f105dd0a
+    - CHUNK_b280166770e935bb67c2bdd2
+    - CHUNK_71b9b3a55527015f35e53dd7
+    - CHUNK_0e80e7d4ec7e4e31cec3699d
+    - CHUNK_d842666525fd2dc90afb3252
+    - CHUNK_151e99b110c37a10f1e254de
+    - CHUNK_292e34c1054e2f9df3f07fd5
+    - CHUNK_4b9a4d2abb879d7ab807d2d9
+    - CHUNK_c66a767062b2723873937d09
+    - CHUNK_0a039d068339d69bb23c095f
+    - CHUNK_20e8ea551ea0005ad5d166a9
+    - CHUNK_6a0539eecd126d0989b6c0c5
+    - CHUNK_f6ca82d7b54d2f1586ffc1ec
+    skipped_due_budget_count: 21
+    source_group_count: 6
+    text_evidence_count: 1064
+  D4_CAPEX_CONVERSION:
+    available_source_group_count: 11
+    bearing_numeric_count: 42
+    candidate_chunks: 43
+    min_selected_score: 18.949826107815
+    numeric_evidence_count: 42
+    selected_chars: 62638
+    selected_chunks: 21
+    skipped_due_budget:
+    - CHUNK_ce6dbe8257c5ac3eacc1c89d
+    - CHUNK_8082b717f9e2842423acb7ca
+    - CHUNK_aed23e68d37b91cc16d8c54b
+    - CHUNK_2d6ff75afdee9a7a3fbeab48
+    - CHUNK_d6da4885ef3361c4cf516734
+    - CHUNK_bb889c239c64afdb619f224a
+    - CHUNK_7cbc7867eb543005b96a19dd
+    - CHUNK_134b873ab530b072365121a9
+    - CHUNK_517a48d3e245a40a5e28282b
+    - CHUNK_d527c8efe6375715b30eae87
+    - CHUNK_2143a5f8470450e8462720e7
+    - CHUNK_095ae80cdae99496bc16a9ee
+    - CHUNK_b95eb0a35f8c09722bc3c974
+    - CHUNK_f6ca82d7b54d2f1586ffc1ec
+    - CHUNK_6a0539eecd126d0989b6c0c5
+    - CHUNK_117ef545d7dc3d8fd9d31ea8
+    - CHUNK_2fa271aad7fc6cf52d81ef58
+    - CHUNK_27582649a5e461832552338a
+    - CHUNK_292e34c1054e2f9df3f07fd5
+    - CHUNK_5cb54515f8383fbbe9d2dd47
+    - CHUNK_2b8f481f79c5bfbac3784a58
+    - CHUNK_0e80e7d4ec7e4e31cec3699d
+    skipped_due_budget_count: 22
+    source_group_count: 7
+    text_evidence_count: 1054
+  D5_CYCLE_EXPLANATION:
+    available_source_group_count: 11
+    bearing_numeric_count: 0
+    candidate_chunks: 36
+    min_selected_score: 24.44448793803
+    numeric_evidence_count: 0
+    selected_chars: 63528
+    selected_chunks: 19
+    skipped_due_budget:
+    - CHUNK_f29213144453668ab804564a
+    - CHUNK_8daecb55abc86510bd522969
+    - CHUNK_040ad9b8619f5a7d24aa7748
+    - CHUNK_c6cbb64dc84c2b4355f1dccf
+    - CHUNK_7c48ff2719ff17dbd3afce54
+    - CHUNK_65eade87ac0323d4ea5b1c82
+    - CHUNK_6a0539eecd126d0989b6c0c5
+    - CHUNK_559e75a05f6684bf8fb87ef9
+    - CHUNK_9a92c6419a069b2946177955
+    - CHUNK_c1e2f0f4eb0d38d9ab7f27ae
+    - CHUNK_c86d23e00ecefd68de32dd02
+    - CHUNK_9d15b89ff8269ffa00add6ce
+    - CHUNK_92a5ef7d85272cb4c8327f85
+    - CHUNK_2143a5f8470450e8462720e7
+    - CHUNK_50347b0291834d97d32c9e2a
+    - CHUNK_6fa8eaeb80a0dcce8855083d
+    - CHUNK_87ed93b2ef246fa2581f8458
+    skipped_due_budget_count: 17
+    source_group_count: 5
+    text_evidence_count: 1084
+  D6_NONCORE_EXPLANATION:
+    available_source_group_count: 12
+    bearing_numeric_count: 20
+    candidate_chunks: 55
+    min_selected_score: 25.425384734531
+    numeric_evidence_count: 58
+    selected_chars: 65793
+    selected_chunks: 35
+    skipped_due_budget:
+    - CHUNK_cc9fcaf6075d0de3f4c44859
+    - CHUNK_6e8a29746791880ee06cf345
+    - CHUNK_ae2421d6454b3497bc8932a9
+    - CHUNK_d5e5524b4691f885ed26c5a4
+    - CHUNK_8a702ab2250950f9f6e744b3
+    - CHUNK_d9f3073fdca0fd6d96cd3eea
+    - CHUNK_767452835f63d81d70066faa
+    - CHUNK_0ffe0c93997624d6aecb4f9e
+    - CHUNK_1690c8b2f51869c7bc31802f
+    - CHUNK_77749d3b4f11611f3c415834
+    - CHUNK_4276e38b0993aa6631ef7b0b
+    - CHUNK_ef4765e7f2ae574d14ef8998
+    - CHUNK_5beaaafdcf1ed4b936d1ca6b
+    - CHUNK_ffe9e3fe8d9db858f08808b0
+    - CHUNK_488d921c8bf2cc8619e298f5
+    - CHUNK_4c02021fb44dc6fcc398a119
+    - CHUNK_7c722045e29ab3a92fcd4df1
+    - CHUNK_bd99530bfd7e204dcc6aff3d
+    - CHUNK_9c46bceb1cba96b9b098224b
+    - CHUNK_bba7287760d6ca789714b5be
+    skipped_due_budget_count: 20
+    source_group_count: 11
+    text_evidence_count: 1537
+  D7_SUSTAINABILITY_EVIDENCE:
+    available_source_group_count: 11
+    bearing_numeric_count: 0
+    candidate_chunks: 51
+    min_selected_score: 31.264365183115
+    numeric_evidence_count: 18
+    selected_chars: 63260
+    selected_chunks: 12
+    skipped_due_budget:
+    - CHUNK_5a0e8fefb0d6994d1d4bdc7c
+    - CHUNK_15d82773133ae7149416b9ff
+    - CHUNK_1d44742fad564095e3dced88
+    - CHUNK_3c5ef6fd7d4daba69256b1d4
+    - CHUNK_c8907cadccb5fcd54a88592e
+    - CHUNK_81978bccf1b967fcc947f5ab
+    - CHUNK_37e650d14903437453e129ba
+    - CHUNK_c5adb5d7d4bd018678765d48
+    - CHUNK_40ea119d2389cf9e5ace6f7b
+    - CHUNK_02df2b53d99c35916936aaad
+    - CHUNK_bb889c239c64afdb619f224a
+    - CHUNK_559e75a05f6684bf8fb87ef9
+    - CHUNK_9a92c6419a069b2946177955
+    - CHUNK_c1e2f0f4eb0d38d9ab7f27ae
+    - CHUNK_c86d23e00ecefd68de32dd02
+    - CHUNK_d0bac88eca468c8196eafe43
+    - CHUNK_8498c6b6d07561225cd7f841
+    - CHUNK_57fefa74326c12fcee878953
+    - CHUNK_3efa035241fd32b9a1083b0b
+    - CHUNK_8dd421b4ac2fbdb094382471
+    - CHUNK_38c81d23212aec3058f3b5a5
+    - CHUNK_9b43e687827576bfd9a4449c
+    - CHUNK_07e715d57504a0f14108111f
+    - CHUNK_23dbf2a705f7111a27bf1394
+    - CHUNK_87ed93b2ef246fa2581f8458
+    - CHUNK_20e8ea551ea0005ad5d166a9
+    - CHUNK_50347b0291834d97d32c9e2a
+    - CHUNK_65eade87ac0323d4ea5b1c82
+    - CHUNK_f6ca82d7b54d2f1586ffc1ec
+    - CHUNK_15b589c565ba839c26891647
+    - CHUNK_be9f94eaf2e2b11b5b5a411a
+    - CHUNK_6673c3dbcdee031ba7c06d6d
+    - CHUNK_aed23e68d37b91cc16d8c54b
+    - CHUNK_c6cbb64dc84c2b4355f1dccf
+    - CHUNK_cadeff7c316a80e532e233ab
+    - CHUNK_e37d3f096fca72c367cd0f15
+    - CHUNK_fe7226e4050a537918998c43
+    - CHUNK_7bae2a946040cd50470dc3bb
+    - CHUNK_92a5ef7d85272cb4c8327f85
+    skipped_due_budget_count: 39
+    source_group_count: 5
+    text_evidence_count: 878
+checks:
+- check: dimension_coverage
+  status: PASS
+  reason: 7 findings emitted for 7 declared dimensions.
+  missing: []
+  unexpected: []
+- check: schema_conformance
+  status: PASS
+  reason: 0 violations in the accepted findings.
+  violations: []
+  violation_count: 0
+- check: evidence_reference_legality
+  status: PASS
+  reason: 0 violations in the accepted findings.
+  violations: []
+  violation_count: 0
+- check: candidate_set_closure
+  status: PASS
+  reason: 0 violations in the accepted findings.
+  violations: []
+  violation_count: 0
+- check: score_status_binding
+  status: PASS
+  reason: 0 findings violate the score/status binding.
+  violations: []
+- check: forbidden_output_terms
+  status: PASS
+  reason: 0 violations in the accepted findings.
+  violations: []
+  violation_count: 0
+- check: causal_attribution
+  status: PASS
+  reason: 0 violations in the accepted findings.
+  violations: []
+  violation_count: 0
+- check: management_assertion_placement
+  status: PASS
+  reason: 0 violations in the accepted findings.
+  violations: []
+  violation_count: 0
+- check: cross_dimension_attribution
+  status: PASS
+  reason: 2 facts bear primary support in more than one dimension; 0 of them lack
+    an overlap_note.
+  cross_dimension_fact_count: 2
+  missing_overlap_note: []
+- check: d7_threshold_basis
+  status: PASS
+  reason: 5 watch indicators; 0 numeric thresholds lacked a source-disclosed or recomputable
+    basis and were kept as proposed_threshold.
+  indicator_count: 5
+  rejected_thresholds: []
+  incomplete_indicators: []
+- check: generation_attempts_bounded
+  status: PASS
+  reason: 0 dimensions were forced to UNKNOWN after 2 attempts; 0 exceeded the attempt
+    budget.
+  forced_dimensions: []
+  over_budget_dimensions: []
+- check: frozen_rule_binding
+  status: PASS
+  reason: 0 frozen-rule bindings drifted from ticket 05 section 3.
+  issues: []
+  required_context_rule_version: smic-v3-context-retrieval-v3
+rejected_attempts:
+- dimension_id: D1_PROFITABILITY_CHANGE
+  attempt: 1
+  errors:
+  - UNATTRIBUTED_CAUSAL_CLAIM:finding_statement:因而
+  - UNATTRIBUTED_CAUSAL_CLAIM:supporting_evidence.overlap_note:因而
+- dimension_id: D2_UTILIZATION_EFFECT
+  attempt: 1
+  errors:
+  - UNATTRIBUTED_CAUSAL_CLAIM:finding_statement:因而
+- dimension_id: D3_MIX_EFFECT
+  attempt: 1
+  errors:
+  - UNATTRIBUTED_CAUSAL_CLAIM:finding_statement:因而
+  - UNATTRIBUTED_CAUSAL_CLAIM:supporting_evidence.note:因而
+  - UNATTRIBUTED_CAUSAL_CLAIM:supporting_evidence.overlap_note:因而
+new_gap_ids: []
+rules_hash: sha256:e2c205325d30eb4ffb38a8a4051ae08bae5b09dd5563ce7aaa94af46edabcd36
+findings_hash: sha256:1e43dd7b2718879ba16a718d3e8f619155180e050fc21fa171cea05c68c284d5

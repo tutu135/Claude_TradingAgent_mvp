@@ -1,0 +1,4279 @@
+snapshot_id: smic-a283e95e2c9e8068
+query_rule_version: smic-v3-context-retrieval-v3
+acceptance_version: smic-v3-retrieval-acceptance-v3
+tokenizer_version: smic-mixed-zh-en-tokenizer-v1
+lexicon_version: smic-research-lexicon-v1
+stopwords_version: smic-stopwords-v1
+retrieval_status: PASS
+metrics:
+  must_hit_recall: 1.0
+  should_hit_recall_overall: 1.0
+  should_hit_recall_by_family:
+    D1_PROFITABILITY_CHANGE: 1.0
+    D2_UTILIZATION_EFFECT: 1.0
+    D3_MIX_EFFECT: 1.0
+    D4_CAPEX_CONVERSION: 1.0
+    D5_CYCLE_EXPLANATION: 1.0
+    D6_NONCORE_EXPLANATION: 1.0
+    D7_SUSTAINABILITY_EVIDENCE: 1.0
+    G_ACCOUNTING_SCOPE: 1.0
+    G_ADJUSTMENT_BRIDGE: 1.0
+    G_PERIOD_UNIT: 1.0
+    RQ_MAIN: 1.0
+  precision_by_query:
+    RQ_MAIN_ZH: 1.0
+    RQ_MAIN_EN: 1.0
+    RQ_MAIN_RESULTS_EN: 1.0
+    D1_ZH: 1.0
+    D1_EN: 1.0
+    D1_RESULTS_TABLE_EN: 1.0
+    D1_Q1_SUMMARY_TABLE_EN: 1.0
+    D2_ZH: 1.0
+    D2_EN: 1.0
+    D3_ZH: 1.0
+    D3_EN: 1.0
+    D3_PRICING_MIX_EN: 1.0
+    D4_ZH: 1.0
+    D4_EN: 1.0
+    D4_TRANSCRIPT_CAPEX_EN: 1.0
+    D5_ZH: 1.0
+    D5_EN: 1.0
+    D6_ZH: 1.0
+    D6_EN: 1.0
+    D6_DEFERRED_FUNDING_EN: 1.0
+    D7_ZH: 1.0
+    D7_EN: 1.0
+    D7_ORDERS_GUIDANCE_EN: 1.0
+    D7_RISKS_EN: 1.0
+    G_ACCOUNTING_SCOPE_ZH: 1.0
+    G_ACCOUNTING_SCOPE_EN: 1.0
+    G_PERIOD_UNIT_ZH: 1.0
+    G_PERIOD_UNIT_EN: 1.0
+    G_ADJUSTMENT_BRIDGE_ZH: 1.0
+    G_ADJUSTMENT_BRIDGE_EN: 1.0
+    G_GOVERNMENT_FUNDING_POLICY_EN: 1.0
+  precision_annotation_complete: true
+  negative_control_candidate_rate: 0.0
+  locator_accuracy: 1.0
+  numeric_context_completeness: 1.0
+  clean_rebuild_hashes_match: true
+label_results:
+- label_id: MUST_MAIN_Q1_REPORTED_RESULTS
+  level: MUST_HIT
+  query_family_id: RQ_MAIN
+  resolved_chunk_ids:
+  - CHUNK_184f16cf919e510c1afc4368
+  direct_hit: true
+  candidate_context: true
+  numeric_context_complete: true
+- label_id: SHOULD_MAIN_Q1_OPERATING_COMMENT
+  level: SHOULD_HIT
+  query_family_id: RQ_MAIN
+  resolved_chunk_ids:
+  - CHUNK_3b7138339840c059b4cf5e4c
+  direct_hit: true
+  candidate_context: true
+  numeric_context_complete: true
+- label_id: MUST_D1_Q1_RESULTS_TABLE
+  level: MUST_HIT
+  query_family_id: D1_PROFITABILITY_CHANGE
+  resolved_chunk_ids:
+  - CHUNK_ce2dc8b7ce966e6f138395d0
+  direct_hit: true
+  candidate_context: true
+  numeric_context_complete: true
+- label_id: SHOULD_D1_Q2_TRANSCRIPT_RESULTS
+  level: SHOULD_HIT
+  query_family_id: D1_PROFITABILITY_CHANGE
+  resolved_chunk_ids:
+  - CHUNK_30c0424eb058b8749fdeff9b
+  direct_hit: true
+  candidate_context: true
+  numeric_context_complete: true
+- label_id: MUST_D2_Q1_UTILIZATION
+  level: MUST_HIT
+  query_family_id: D2_UTILIZATION_EFFECT
+  resolved_chunk_ids:
+  - CHUNK_ab6ecd3dc002e36b8c8049f8
+  direct_hit: true
+  candidate_context: true
+  numeric_context_complete: true
+- label_id: SHOULD_D2_Q2_UTILIZATION
+  level: SHOULD_HIT
+  query_family_id: D2_UTILIZATION_EFFECT
+  resolved_chunk_ids:
+  - CHUNK_bf326af817d828351f84b33e
+  direct_hit: true
+  candidate_context: true
+  numeric_context_complete: true
+- label_id: MUST_D3_Q1_MIX
+  level: MUST_HIT
+  query_family_id: D3_MIX_EFFECT
+  resolved_chunk_ids:
+  - CHUNK_3b7138339840c059b4cf5e4c
+  direct_hit: true
+  candidate_context: true
+  numeric_context_complete: true
+- label_id: SHOULD_D3_Q2_MIX
+  level: SHOULD_HIT
+  query_family_id: D3_MIX_EFFECT
+  resolved_chunk_ids:
+  - CHUNK_bf326af817d828351f84b33e
+  direct_hit: true
+  candidate_context: true
+  numeric_context_complete: true
+- label_id: MUST_D4_Q1_INVESTMENT_NEED
+  level: MUST_HIT
+  query_family_id: D4_CAPEX_CONVERSION
+  resolved_chunk_ids:
+  - CHUNK_664a7f18c0ca5715330a4548
+  direct_hit: true
+  candidate_context: true
+  numeric_context_complete: true
+- label_id: SHOULD_D4_Q2_CAPEX
+  level: SHOULD_HIT
+  query_family_id: D4_CAPEX_CONVERSION
+  resolved_chunk_ids:
+  - CHUNK_40526fcc9bba27a86ef1861d
+  direct_hit: true
+  candidate_context: true
+  numeric_context_complete: true
+- label_id: MUST_D5_SIA_Q1_2026
+  level: MUST_HIT
+  query_family_id: D5_CYCLE_EXPLANATION
+  resolved_chunk_ids:
+  - CHUNK_6845f29cb7a8b33cad6d664e
+  direct_hit: true
+  candidate_context: true
+  numeric_context_complete: true
+- label_id: SHOULD_D5_SIA_2025
+  level: SHOULD_HIT
+  query_family_id: D5_CYCLE_EXPLANATION
+  resolved_chunk_ids:
+  - CHUNK_7088f53b786c3fbcb68ebe08
+  direct_hit: true
+  candidate_context: true
+  numeric_context_complete: true
+- label_id: MUST_D6_GOVERNMENT_FUNDING
+  level: MUST_HIT
+  query_family_id: D6_NONCORE_EXPLANATION
+  resolved_chunk_ids:
+  - CHUNK_c127cf4dafb66dbaf1ac4b80
+  direct_hit: true
+  candidate_context: true
+  numeric_context_complete: true
+- label_id: SHOULD_D6_Q2_OTHER_INCOME
+  level: SHOULD_HIT
+  query_family_id: D6_NONCORE_EXPLANATION
+  resolved_chunk_ids:
+  - CHUNK_967b276ce58698ea27755c9b
+  direct_hit: true
+  candidate_context: true
+  numeric_context_complete: true
+- label_id: MUST_D7_Q1_OUTLOOK_DRIVERS
+  level: MUST_HIT
+  query_family_id: D7_SUSTAINABILITY_EVIDENCE
+  resolved_chunk_ids:
+  - CHUNK_0ed9b7098703a4ea62e2eba5
+  direct_hit: true
+  candidate_context: true
+  numeric_context_complete: true
+- label_id: SHOULD_D7_Q1_RISKS
+  level: SHOULD_HIT
+  query_family_id: D7_SUSTAINABILITY_EVIDENCE
+  resolved_chunk_ids:
+  - CHUNK_0796c4b552014ee1d917309e
+  direct_hit: true
+  candidate_context: true
+  numeric_context_complete: true
+- label_id: MUST_G_SCOPE_Q1_TRANSCRIPT
+  level: MUST_HIT
+  query_family_id: G_ACCOUNTING_SCOPE
+  resolved_chunk_ids:
+  - CHUNK_ca75de28ca754d1b32f06a2e
+  direct_hit: true
+  candidate_context: true
+  numeric_context_complete: true
+- label_id: SHOULD_G_SCOPE_Q2_TRANSCRIPT
+  level: SHOULD_HIT
+  query_family_id: G_ACCOUNTING_SCOPE
+  resolved_chunk_ids:
+  - CHUNK_ec8558773f1829ca6d7fc13e
+  direct_hit: true
+  candidate_context: true
+  numeric_context_complete: true
+- label_id: MUST_G_PERIOD_Q1_RELEASE
+  level: MUST_HIT
+  query_family_id: G_PERIOD_UNIT
+  resolved_chunk_ids:
+  - CHUNK_e7b7250889236755b3f148e0
+  direct_hit: true
+  candidate_context: true
+  numeric_context_complete: true
+- label_id: SHOULD_G_PERIOD_Q2_RELEASE
+  level: SHOULD_HIT
+  query_family_id: G_PERIOD_UNIT
+  resolved_chunk_ids:
+  - CHUNK_49bd5fd700cf2f6c3fc4721f
+  direct_hit: true
+  candidate_context: true
+  numeric_context_complete: true
+- label_id: MUST_G_BRIDGE_GOVERNMENT_FUNDING
+  level: MUST_HIT
+  query_family_id: G_ADJUSTMENT_BRIDGE
+  resolved_chunk_ids:
+  - CHUNK_c127cf4dafb66dbaf1ac4b80
+  direct_hit: true
+  candidate_context: true
+  numeric_context_complete: true
+- label_id: SHOULD_G_BRIDGE_Q2_OTHER_INCOME
+  level: SHOULD_HIT
+  query_family_id: G_ADJUSTMENT_BRIDGE
+  resolved_chunk_ids:
+  - CHUNK_967b276ce58698ea27755c9b
+  direct_hit: true
+  candidate_context: true
+  numeric_context_complete: true
+- label_id: NEGATIVE_TRANSCRIPT_BUY_CTA_Q1
+  level: NEGATIVE_CONTROL
+  query_family_id: RQ_MAIN
+  resolved_chunk_ids:
+  - CHUNK_893a8648e751a9420f3a5f51
+  direct_hit: false
+  candidate_context: false
+  numeric_context_complete: true
+- label_id: NEGATIVE_TRANSCRIPT_FOOTER_Q1
+  level: NEGATIVE_CONTROL
+  query_family_id: RQ_MAIN
+  resolved_chunk_ids:
+  - CHUNK_77d471cf07f1780ee020a6ea
+  direct_hit: false
+  candidate_context: false
+  numeric_context_complete: true
+diagnostics:
+  hard_failures: []
+  warnings: []
+  failure_scope: NONE
+  failed_query_family_ids: []
+  precision_details:
+  - query_id: RQ_MAIN_ZH
+    qualified_direct_hits: 19
+    evaluated_count: 5
+    judged_count: 5
+    relevant_count: 5
+    precision_at_min_5_n: 1.0
+  - query_id: RQ_MAIN_EN
+    qualified_direct_hits: 20
+    evaluated_count: 5
+    judged_count: 5
+    relevant_count: 5
+    precision_at_min_5_n: 1.0
+  - query_id: RQ_MAIN_RESULTS_EN
+    qualified_direct_hits: 20
+    evaluated_count: 5
+    judged_count: 5
+    relevant_count: 5
+    precision_at_min_5_n: 1.0
+  - query_id: D1_ZH
+    qualified_direct_hits: 19
+    evaluated_count: 5
+    judged_count: 5
+    relevant_count: 5
+    precision_at_min_5_n: 1.0
+  - query_id: D1_EN
+    qualified_direct_hits: 20
+    evaluated_count: 5
+    judged_count: 5
+    relevant_count: 5
+    precision_at_min_5_n: 1.0
+  - query_id: D1_RESULTS_TABLE_EN
+    qualified_direct_hits: 20
+    evaluated_count: 5
+    judged_count: 5
+    relevant_count: 5
+    precision_at_min_5_n: 1.0
+  - query_id: D1_Q1_SUMMARY_TABLE_EN
+    qualified_direct_hits: 20
+    evaluated_count: 5
+    judged_count: 5
+    relevant_count: 5
+    precision_at_min_5_n: 1.0
+  - query_id: D2_ZH
+    qualified_direct_hits: 20
+    evaluated_count: 5
+    judged_count: 5
+    relevant_count: 5
+    precision_at_min_5_n: 1.0
+  - query_id: D2_EN
+    qualified_direct_hits: 20
+    evaluated_count: 5
+    judged_count: 5
+    relevant_count: 5
+    precision_at_min_5_n: 1.0
+  - query_id: D3_ZH
+    qualified_direct_hits: 19
+    evaluated_count: 5
+    judged_count: 5
+    relevant_count: 5
+    precision_at_min_5_n: 1.0
+  - query_id: D3_EN
+    qualified_direct_hits: 20
+    evaluated_count: 5
+    judged_count: 5
+    relevant_count: 5
+    precision_at_min_5_n: 1.0
+  - query_id: D3_PRICING_MIX_EN
+    qualified_direct_hits: 20
+    evaluated_count: 5
+    judged_count: 5
+    relevant_count: 5
+    precision_at_min_5_n: 1.0
+  - query_id: D4_ZH
+    qualified_direct_hits: 20
+    evaluated_count: 5
+    judged_count: 5
+    relevant_count: 5
+    precision_at_min_5_n: 1.0
+  - query_id: D4_EN
+    qualified_direct_hits: 20
+    evaluated_count: 5
+    judged_count: 5
+    relevant_count: 5
+    precision_at_min_5_n: 1.0
+  - query_id: D4_TRANSCRIPT_CAPEX_EN
+    qualified_direct_hits: 20
+    evaluated_count: 5
+    judged_count: 5
+    relevant_count: 5
+    precision_at_min_5_n: 1.0
+  - query_id: D5_ZH
+    qualified_direct_hits: 20
+    evaluated_count: 5
+    judged_count: 5
+    relevant_count: 5
+    precision_at_min_5_n: 1.0
+  - query_id: D5_EN
+    qualified_direct_hits: 23
+    evaluated_count: 5
+    judged_count: 5
+    relevant_count: 5
+    precision_at_min_5_n: 1.0
+  - query_id: D6_ZH
+    qualified_direct_hits: 20
+    evaluated_count: 5
+    judged_count: 5
+    relevant_count: 5
+    precision_at_min_5_n: 1.0
+  - query_id: D6_EN
+    qualified_direct_hits: 20
+    evaluated_count: 5
+    judged_count: 5
+    relevant_count: 5
+    precision_at_min_5_n: 1.0
+  - query_id: D6_DEFERRED_FUNDING_EN
+    qualified_direct_hits: 20
+    evaluated_count: 5
+    judged_count: 5
+    relevant_count: 5
+    precision_at_min_5_n: 1.0
+  - query_id: D7_ZH
+    qualified_direct_hits: 19
+    evaluated_count: 5
+    judged_count: 5
+    relevant_count: 5
+    precision_at_min_5_n: 1.0
+  - query_id: D7_EN
+    qualified_direct_hits: 21
+    evaluated_count: 5
+    judged_count: 5
+    relevant_count: 5
+    precision_at_min_5_n: 1.0
+  - query_id: D7_ORDERS_GUIDANCE_EN
+    qualified_direct_hits: 20
+    evaluated_count: 5
+    judged_count: 5
+    relevant_count: 5
+    precision_at_min_5_n: 1.0
+  - query_id: D7_RISKS_EN
+    qualified_direct_hits: 21
+    evaluated_count: 5
+    judged_count: 5
+    relevant_count: 5
+    precision_at_min_5_n: 1.0
+  - query_id: G_ACCOUNTING_SCOPE_ZH
+    qualified_direct_hits: 20
+    evaluated_count: 5
+    judged_count: 5
+    relevant_count: 5
+    precision_at_min_5_n: 1.0
+  - query_id: G_ACCOUNTING_SCOPE_EN
+    qualified_direct_hits: 20
+    evaluated_count: 5
+    judged_count: 5
+    relevant_count: 5
+    precision_at_min_5_n: 1.0
+  - query_id: G_PERIOD_UNIT_ZH
+    qualified_direct_hits: 20
+    evaluated_count: 5
+    judged_count: 5
+    relevant_count: 5
+    precision_at_min_5_n: 1.0
+  - query_id: G_PERIOD_UNIT_EN
+    qualified_direct_hits: 20
+    evaluated_count: 5
+    judged_count: 5
+    relevant_count: 5
+    precision_at_min_5_n: 1.0
+  - query_id: G_ADJUSTMENT_BRIDGE_ZH
+    qualified_direct_hits: 20
+    evaluated_count: 5
+    judged_count: 5
+    relevant_count: 5
+    precision_at_min_5_n: 1.0
+  - query_id: G_ADJUSTMENT_BRIDGE_EN
+    qualified_direct_hits: 20
+    evaluated_count: 5
+    judged_count: 5
+    relevant_count: 5
+    precision_at_min_5_n: 1.0
+  - query_id: G_GOVERNMENT_FUNDING_POLICY_EN
+    qualified_direct_hits: 20
+    evaluated_count: 5
+    judged_count: 5
+    relevant_count: 5
+    precision_at_min_5_n: 1.0
+clean_rebuild:
+  first:
+    context_hash: sha256:75fc38c2fb0e27d86c8c8f0fc4587f7e1091e1e2289f881d9be084786b9225dd
+    retrieval_hash: sha256:8dfdd1a3e5b0a9fbc6c600685a9082ad18f7a485a326d1dadb5b524e762011eb
+  second:
+    context_hash: sha256:75fc38c2fb0e27d86c8c8f0fc4587f7e1091e1e2289f881d9be084786b9225dd
+    retrieval_hash: sha256:8dfdd1a3e5b0a9fbc6c600685a9082ad18f7a485a326d1dadb5b524e762011eb
+queries:
+- query_family_id: RQ_MAIN
+  responsibility: RESEARCH
+  query_id: RQ_MAIN_ZH
+  language: zh
+  raw_query: 中芯国际 经常性经营盈利能力 毛利率 营业利润率 可持续改善
+  tokens:
+  - 中芯国际
+  - 经常性经营盈利能力
+  - 毛利率
+  - 营业利润率
+  - 可持续改善
+  anchor_tokens:
+  - 可持续改善
+  - 毛利率
+  - 经常性经营盈利能力
+  - 营业利润率
+  hits:
+  - chunk_id: CHUNK_b414d48f62213d58cd42c324
+    material_id: MATERIAL_SMIC_2025_Q3_A_SHARE_REPORT_CNINFO
+    rank: 1
+    score: 10.729669614979
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_47180931354cfba494f6da0b
+    material_id: MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 2
+    score: 10.361264632246
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_a36cb747f8174ea61ebbc931
+    material_id: MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+    rank: 3
+    score: 10.080498183859
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_dd8415a61d9a74bce9cadb92
+    material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 4
+    score: 9.314076286791
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_88df9697758353a9bbce57f3
+    material_id: MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 5
+    score: 9.267845169309
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_d981c8285e227e3de8f93fe0
+    material_id: MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+    rank: 6
+    score: 9.059362607775
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_39146e287210572a19f0b63a
+    material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 7
+    score: 8.695015960618
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_dbe621e74a7e1567b4f24361
+    material_id: MATERIAL_SMIC_SMNC_49_TRANSACTION_SUMMARY_CNINFO
+    rank: 8
+    score: 8.503979287741
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_c1fd8a217f46c8586b6c7cc7
+    material_id: MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+    rank: 9
+    score: 8.074185173634
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_94ba7cfaeb18c647493cfbf4
+    material_id: MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+    rank: 10
+    score: 8.041403204695
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_d58b6634ab53c450387949dc
+    material_id: MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+    rank: 11
+    score: 7.1701462835
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_63ab4a8487b80caf825fd2cd
+    material_id: MATERIAL_SMIC_SMNC_49_TRANSACTION_SUMMARY_CNINFO
+    rank: 12
+    score: 7.151380790515
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_c1796c0de525e55e2ef09c40
+    material_id: MATERIAL_SMIC_SMNC_49_TRANSACTION_SUMMARY_CNINFO
+    rank: 13
+    score: 6.942020354421
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_e781ff20fea16e1936583762
+    material_id: MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 14
+    score: 6.425834008991
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_33e8416dbcbcc8a039ce0fc9
+    material_id: MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+    rank: 15
+    score: 6.40761056697
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_2fd52c2cda1dfad5ec9c9e02
+    material_id: MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+    rank: 16
+    score: 6.181487038526
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_cc9d55320b7169ee583ba29e
+    material_id: MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+    rank: 17
+    score: 6.112899086304
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_208255118d0f0562fd733c30
+    material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 18
+    score: 5.882141752416
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_2622eb611e06ad9a9a7d08b5
+    material_id: MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 19
+    score: 5.54425185851
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_505847909d91a31fb49ec216
+    material_id: MATERIAL_SMIC_2026_Q1_A_SHARE_REPORT_CNSTOCK
+    rank: 20
+    score: 5.339337910619
+    selection_reason: STRUCTURAL_BOILERPLATE
+- query_family_id: RQ_MAIN
+  responsibility: RESEARCH
+  query_id: RQ_MAIN_EN
+  language: en
+  raw_query: SMIC recurring operating profitability gross margin profit from operations
+    sustainable improvement
+  tokens:
+  - smic
+  - recurring
+  - operating
+  - profitability
+  - gross
+  - margin
+  - profit
+  - operations
+  - sustainable
+  - improvement
+  anchor_tokens:
+  - margin
+  - profit
+  - profitability
+  - sustainable
+  hits:
+  - chunk_id: CHUNK_4153ba2ce3106fef5c17fb4b
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 1
+    score: 28.105750158258
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_da18502e24d16bc78d7fb302
+    material_id: MATERIAL_SMIC_2025_Q3_RESULTS
+    rank: 2
+    score: 26.264282010769
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_3326b561033913a3279172a0
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 3
+    score: 25.991276008577
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_672139818f9c53d320360f52
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 4
+    score: 25.697745604998
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_5755a6499a6563603daf0f63
+    material_id: MATERIAL_SMIC_2025_Q2_RESULTS
+    rank: 5
+    score: 25.321849842584
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_ea64802875034d5bf4858151
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 6
+    score: 25.254837785613
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_fd51b55ab05bfc90ed31a5cf
+    material_id: MATERIAL_SMIC_2026_Q1_RESULTS
+    rank: 7
+    score: 25.060124783367
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_cadeff7c316a80e532e233ab
+    material_id: MATERIAL_SMIC_2025_Q3_RESULTS
+    rank: 8
+    score: 25.023248678472
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_6673c3dbcdee031ba7c06d6d
+    material_id: MATERIAL_SMIC_2025_Q4_RESULTS
+    rank: 9
+    score: 24.986498611369
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_a8d8b7ee15f556a29c8b654f
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 10
+    score: 24.801342685121
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_21cdda567adfc57b35f90a01
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 11
+    score: 24.619354228145
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_725c0bc97940fb7aa4d21150
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 12
+    score: 24.548077152707
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_a59f5c3fa3b908b0bf482745
+    material_id: MATERIAL_SMIC_2025_Q2_RESULTS
+    rank: 13
+    score: 24.317786527309
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_ea34703de9efff2701320a6a
+    material_id: MATERIAL_SMIC_2025_Q4_RESULTS
+    rank: 14
+    score: 24.291619448305
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_ce2dc8b7ce966e6f138395d0
+    material_id: MATERIAL_SMIC_2026_Q1_RESULTS
+    rank: 15
+    score: 24.11025281178
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_2bcab9be965248438785dbb6
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 16
+    score: 24.008863516981
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_aae6d0ad0f6c2b629e39f643
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 17
+    score: 23.749178462978
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_d58291e470745fb0b178f0f8
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 18
+    score: 23.583211849363
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_184f16cf919e510c1afc4368
+    material_id: MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    rank: 19
+    score: 23.260716197265
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_30c0424eb058b8749fdeff9b
+    material_id: MATERIAL_SMIC_2025_Q2_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    rank: 20
+    score: 22.541113226865
+    selection_reason: DIRECT_HIT
+- query_family_id: RQ_MAIN
+  responsibility: RESEARCH
+  query_id: RQ_MAIN_RESULTS_EN
+  language: en
+  raw_query: gross margin increase pricing improved product mix profit from operations
+  tokens:
+  - gross
+  - margin
+  - increase
+  - pricing
+  - improved
+  - product
+  - mix
+  - profit
+  - operations
+  anchor_tokens:
+  - margin
+  - mix
+  - pricing
+  - profit
+  hits:
+  - chunk_id: CHUNK_9a1d02bea79f75f0a4c41f88
+    material_id: MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    rank: 1
+    score: 43.961689182515
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_3b7138339840c059b4cf5e4c
+    material_id: MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    rank: 2
+    score: 43.085939227489
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_6673c3dbcdee031ba7c06d6d
+    material_id: MATERIAL_SMIC_2025_Q4_RESULTS
+    rank: 3
+    score: 32.787271296642
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_bf326af817d828351f84b33e
+    material_id: MATERIAL_SMIC_2025_Q2_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    rank: 4
+    score: 32.758763007901
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_fd51b55ab05bfc90ed31a5cf
+    material_id: MATERIAL_SMIC_2026_Q1_RESULTS
+    rank: 5
+    score: 32.150265268887
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_cadeff7c316a80e532e233ab
+    material_id: MATERIAL_SMIC_2025_Q3_RESULTS
+    rank: 6
+    score: 32.090068487648
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_4311d1dc09e0aeedc7c63e17
+    material_id: MATERIAL_SMIC_2025_Q4_RESULTS
+    rank: 7
+    score: 30.5925875888
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_9413adf4fd97c9aef399831e
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 8
+    score: 30.051922766829
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_15b589c565ba839c26891647
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 9
+    score: 30.0270713136
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_fe7226e4050a537918998c43
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 10
+    score: 29.068072591245
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_2a6f4f1ed39ab63fed81f338
+    material_id: MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    rank: 11
+    score: 27.617716445558
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_15ae2fc264dfa0cde466ea68
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 12
+    score: 27.413859688295
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_1c101d08b7e9a6220810eb8c
+    material_id: MATERIAL_SMIC_2025_Q2_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    rank: 13
+    score: 27.346748671216
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_7f91b5b2e1add2fa000ed23f
+    material_id: MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    rank: 14
+    score: 26.963755797406
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_103b927500b5e189a3597274
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 15
+    score: 26.818156061725
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_2bcab9be965248438785dbb6
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 16
+    score: 26.5833171527
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_2a8bdeb72b27a1f41565e38e
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 17
+    score: 26.008508986236
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_147513b98011d2d61311c7f2
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 18
+    score: 25.846035281334
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_721a25f3e29003ee9e584351
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 19
+    score: 25.846035281334
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_31489fd840a49552b2fa88bf
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 20
+    score: 25.769040139902
+    selection_reason: DIRECT_HIT
+- query_family_id: D1_PROFITABILITY_CHANGE
+  responsibility: RESEARCH
+  query_id: D1_ZH
+  language: zh
+  raw_query: 毛利 毛利率 营业利润 营业利润率 收入 同比 环比
+  tokens:
+  - 毛利
+  - 毛利率
+  - 营业利润
+  - 营业利润率
+  - 收入
+  - 同比
+  - 环比
+  anchor_tokens:
+  - 毛利
+  - 毛利率
+  - 营业利润
+  - 营业利润率
+  hits:
+  - chunk_id: CHUNK_c1796c0de525e55e2ef09c40
+    material_id: MATERIAL_SMIC_SMNC_49_TRANSACTION_SUMMARY_CNINFO
+    rank: 1
+    score: 34.145614847318
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_63ab4a8487b80caf825fd2cd
+    material_id: MATERIAL_SMIC_SMNC_49_TRANSACTION_SUMMARY_CNINFO
+    rank: 2
+    score: 29.156123852714
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_b414d48f62213d58cd42c324
+    material_id: MATERIAL_SMIC_2025_Q3_A_SHARE_REPORT_CNINFO
+    rank: 3
+    score: 28.377242369094
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_a23141fd41b46bbd8de435a2
+    material_id: MATERIAL_SMIC_SMNC_49_TRANSACTION_SUMMARY_CNINFO
+    rank: 4
+    score: 24.764684684247
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_ac5f20819ade0f093058a465
+    material_id: MATERIAL_SMIC_SMNC_49_TRANSACTION_SUMMARY_CNINFO
+    rank: 5
+    score: 22.97032839491
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_dbe621e74a7e1567b4f24361
+    material_id: MATERIAL_SMIC_SMNC_49_TRANSACTION_SUMMARY_CNINFO
+    rank: 6
+    score: 22.619773706304
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_dd8415a61d9a74bce9cadb92
+    material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 7
+    score: 14.133810963189
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_88df9697758353a9bbce57f3
+    material_id: MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 8
+    score: 13.941479890699
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_47180931354cfba494f6da0b
+    material_id: MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 9
+    score: 13.892562448965
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_39146e287210572a19f0b63a
+    material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 10
+    score: 13.448909444236
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_a36cb747f8174ea61ebbc931
+    material_id: MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+    rank: 11
+    score: 12.994099547898
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_d981c8285e227e3de8f93fe0
+    material_id: MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+    rank: 12
+    score: 12.863908028044
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_91b66d24c60b7930fd79e362
+    material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 13
+    score: 12.849701327662
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_f45d41dc0003053251a88881
+    material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 14
+    score: 12.353510965496
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_517a48d3e245a40a5e28282b
+    material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 15
+    score: 11.88126972401
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_047f7c0644533f5f8da9a760
+    material_id: MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+    rank: 16
+    score: 11.527866959733
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_505847909d91a31fb49ec216
+    material_id: MATERIAL_SMIC_2026_Q1_A_SHARE_REPORT_CNSTOCK
+    rank: 17
+    score: 10.860973833811
+    selection_reason: STRUCTURAL_BOILERPLATE
+  - chunk_id: CHUNK_42f10a406fae2fe45ce1defd
+    material_id: MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+    rank: 18
+    score: 10.685882139886
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_46e7930fbe45a730025a7110
+    material_id: MATERIAL_SMIC_2025_Q3_A_SHARE_REPORT_CNINFO
+    rank: 19
+    score: 10.354601190553
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_d6ff2e35c4a601d774193024
+    material_id: MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+    rank: 20
+    score: 9.978786218919
+    selection_reason: DIRECT_HIT
+- query_family_id: D1_PROFITABILITY_CHANGE
+  responsibility: RESEARCH
+  query_id: D1_EN
+  language: en
+  raw_query: revenue gross profit gross margin profit from operations operating margin
+    year over year sequentially
+  tokens:
+  - revenue
+  - gross
+  - profit
+  - gross
+  - margin
+  - profit
+  - operations
+  - operating
+  - margin
+  - year
+  - over
+  - year
+  - sequentially
+  anchor_tokens:
+  - gross
+  - margin
+  - profit
+  - revenue
+  hits:
+  - chunk_id: CHUNK_115519bc27d1928cc74780f0
+    material_id: MATERIAL_SMIC_2025_Q2_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    rank: 1
+    score: 41.104959686352
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_184f16cf919e510c1afc4368
+    material_id: MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    rank: 2
+    score: 37.785402949733
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_30c0424eb058b8749fdeff9b
+    material_id: MATERIAL_SMIC_2025_Q2_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    rank: 3
+    score: 36.654300763669
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_ada0367884505128f1bfbbc7
+    material_id: MATERIAL_SMIC_2025_Q4_RESULTS
+    rank: 4
+    score: 34.447419657042
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_c5adb5d7d4bd018678765d48
+    material_id: MATERIAL_SMIC_2025_Q3_RESULTS
+    rank: 5
+    score: 34.25409787587
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_c8907cadccb5fcd54a88592e
+    material_id: MATERIAL_SMIC_2025_Q2_RESULTS
+    rank: 6
+    score: 34.199066211783
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_9413adf4fd97c9aef399831e
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 7
+    score: 32.89125352344
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_6fde9a260cfadddcc82a7d5f
+    material_id: MATERIAL_SMIC_2026_Q1_RESULTS
+    rank: 8
+    score: 32.039078639625
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_d1dfcf900fb5508d396f852f
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 9
+    score: 30.255252834878
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_014de5841b2c638509367e18
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 10
+    score: 30.23593631702
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_147513b98011d2d61311c7f2
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 11
+    score: 30.155947878682
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_721a25f3e29003ee9e584351
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 12
+    score: 30.155947878682
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_b6097dab7ed5d7e5cd28129f
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 13
+    score: 30.006091026319
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_da18502e24d16bc78d7fb302
+    material_id: MATERIAL_SMIC_2025_Q3_RESULTS
+    rank: 14
+    score: 29.626037762676
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_5755a6499a6563603daf0f63
+    material_id: MATERIAL_SMIC_2025_Q2_RESULTS
+    rank: 15
+    score: 29.480013256662
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_fd51b55ab05bfc90ed31a5cf
+    material_id: MATERIAL_SMIC_2026_Q1_RESULTS
+    rank: 16
+    score: 29.162804311384
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_cadeff7c316a80e532e233ab
+    material_id: MATERIAL_SMIC_2025_Q3_RESULTS
+    rank: 17
+    score: 29.118122579192
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_6673c3dbcdee031ba7c06d6d
+    material_id: MATERIAL_SMIC_2025_Q4_RESULTS
+    rank: 18
+    score: 29.073596529866
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_fe7226e4050a537918998c43
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 19
+    score: 28.408383822084
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_a59f5c3fa3b908b0bf482745
+    material_id: MATERIAL_SMIC_2025_Q2_RESULTS
+    rank: 20
+    score: 27.749218499965
+    selection_reason: DIRECT_HIT
+- query_family_id: D1_PROFITABILITY_CHANGE
+  responsibility: RESEARCH
+  query_id: D1_RESULTS_TABLE_EN
+  language: en
+  raw_query: amounts US$ thousands revenue cost of sales gross profit profit from
+    operations owners of the company
+  tokens:
+  - amounts
+  - us
+  - thousands
+  - revenue
+  - cost
+  - sales
+  - gross
+  - profit
+  - profit
+  - operations
+  - owners
+  - company
+  anchor_tokens:
+  - gross
+  - owners
+  - profit
+  - revenue
+  hits:
+  - chunk_id: CHUNK_5755a6499a6563603daf0f63
+    material_id: MATERIAL_SMIC_2025_Q2_RESULTS
+    rank: 1
+    score: 42.238625898098
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_0bac9a3e1f9baac9f541c2d4
+    material_id: MATERIAL_SMIC_2026_Q1_RESULTS
+    rank: 2
+    score: 41.844330543874
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_9510fc6d9ba292def5d33fae
+    material_id: MATERIAL_SMIC_2025_Q2_RESULTS
+    rank: 3
+    score: 41.844330543874
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_96299c7968a9129425194cb2
+    material_id: MATERIAL_SMIC_2025_Q3_RESULTS
+    rank: 4
+    score: 41.790080051602
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_e9e847b2b6fc9173db8302a6
+    material_id: MATERIAL_SMIC_2025_Q4_RESULTS
+    rank: 5
+    score: 41.790080051602
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_fd51b55ab05bfc90ed31a5cf
+    material_id: MATERIAL_SMIC_2026_Q1_RESULTS
+    rank: 6
+    score: 41.643768457453
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_cadeff7c316a80e532e233ab
+    material_id: MATERIAL_SMIC_2025_Q3_RESULTS
+    rank: 7
+    score: 41.560309046225
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_6673c3dbcdee031ba7c06d6d
+    material_id: MATERIAL_SMIC_2025_Q4_RESULTS
+    rank: 8
+    score: 41.47722155836
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_15b589c565ba839c26891647
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 9
+    score: 38.097403598045
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_15ae2fc264dfa0cde466ea68
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 10
+    score: 36.026345732216
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_9413adf4fd97c9aef399831e
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 11
+    score: 34.447265324412
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_fe7226e4050a537918998c43
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 12
+    score: 34.093172396024
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_35db791e7a5f107173447560
+    material_id: MATERIAL_SMIC_2025_Q3_RESULTS
+    rank: 13
+    score: 32.712838512968
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_bcd0a113e34911e7904ac4a3
+    material_id: MATERIAL_SMIC_2025_Q3_RESULTS
+    rank: 14
+    score: 32.31743189105
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_c7c4a880eb5a9a70978bc15f
+    material_id: MATERIAL_SMIC_2025_Q4_RESULTS
+    rank: 15
+    score: 32.292373048475
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_d6f6db576be5052fed536071
+    material_id: MATERIAL_SMIC_2026_Q1_RESULTS
+    rank: 16
+    score: 32.292373048475
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_a7c6e712567f5d8cf327dc97
+    material_id: MATERIAL_SMIC_2025_Q2_RESULTS
+    rank: 17
+    score: 32.260850202762
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_ebbd99768844d4e353d94853
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 18
+    score: 32.107027226927
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_15924eb7530fdb9bbfe7a703
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 19
+    score: 32.07090472911
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_540d7bbbd852bdd1794a7c01
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 20
+    score: 31.785160722169
+    selection_reason: DIRECT_HIT
+- query_family_id: D1_PROFITABILITY_CHANGE
+  responsibility: RESEARCH
+  query_id: D1_Q1_SUMMARY_TABLE_EN
+  language: en
+  raw_query: earnings per share basic diluted non-controlling interests QoQ YoY gross
+    margin
+  tokens:
+  - earnings
+  - per
+  - share
+  - basic
+  - diluted
+  - non-controlling
+  - non
+  - controlling
+  - interests
+  - qoq
+  - yoy
+  - gross
+  - margin
+  anchor_tokens:
+  - diluted
+  - earnings
+  - margin
+  - non-controlling
+  hits:
+  - chunk_id: CHUNK_fd51b55ab05bfc90ed31a5cf
+    material_id: MATERIAL_SMIC_2026_Q1_RESULTS
+    rank: 1
+    score: 62.542470697701
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_cadeff7c316a80e532e233ab
+    material_id: MATERIAL_SMIC_2025_Q3_RESULTS
+    rank: 2
+    score: 62.424759774112
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_6673c3dbcdee031ba7c06d6d
+    material_id: MATERIAL_SMIC_2025_Q4_RESULTS
+    rank: 3
+    score: 62.307531152589
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_5755a6499a6563603daf0f63
+    material_id: MATERIAL_SMIC_2025_Q2_RESULTS
+    rank: 4
+    score: 61.469276867254
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_da18502e24d16bc78d7fb302
+    material_id: MATERIAL_SMIC_2025_Q3_RESULTS
+    rank: 5
+    score: 57.399273575118
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_a59f5c3fa3b908b0bf482745
+    material_id: MATERIAL_SMIC_2025_Q2_RESULTS
+    rank: 6
+    score: 56.221408404889
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_ea34703de9efff2701320a6a
+    material_id: MATERIAL_SMIC_2025_Q4_RESULTS
+    rank: 7
+    score: 56.134916000948
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_ce2dc8b7ce966e6f138395d0
+    material_id: MATERIAL_SMIC_2026_Q1_RESULTS
+    rank: 8
+    score: 55.536916856061
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_ebbd99768844d4e353d94853
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 9
+    score: 45.238150457307
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_15924eb7530fdb9bbfe7a703
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 10
+    score: 45.184815624964
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_540d7bbbd852bdd1794a7c01
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 11
+    score: 45.055792801521
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_672139818f9c53d320360f52
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 12
+    score: 43.995558711283
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_21cdda567adfc57b35f90a01
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 13
+    score: 43.814127884929
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_ea64802875034d5bf4858151
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 14
+    score: 42.70894189372
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_6d1025bfe43ff31939eb6859
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 15
+    score: 42.103313310337
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_3326b561033913a3279172a0
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 16
+    score: 41.573571268062
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_4153ba2ce3106fef5c17fb4b
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 17
+    score: 41.522195344649
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_78b79b22cc60168246a72da7
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 18
+    score: 39.82739070775
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_a1e36178fe06d55bed0de3de
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 19
+    score: 39.435519220272
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_ad077ea6951464827b67d3de
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 20
+    score: 37.642533715105
+    selection_reason: DIRECT_HIT
+- query_family_id: D2_UTILIZATION_EFFECT
+  responsibility: RESEARCH
+  query_id: D2_ZH
+  language: zh
+  raw_query: 产能利用率 产能 稼动率 固定成本 吸收
+  tokens:
+  - 产能利用率
+  - 产能
+  - 稼动
+  - 动率
+  - 固定
+  - 定成
+  - 成本
+  - 吸收
+  anchor_tokens:
+  - 产能
+  - 产能利用率
+  - 利用率
+  hits:
+  - chunk_id: CHUNK_c1796c0de525e55e2ef09c40
+    material_id: MATERIAL_SMIC_SMNC_49_TRANSACTION_SUMMARY_CNINFO
+    rank: 1
+    score: 20.852896456831
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_ac5f20819ade0f093058a465
+    material_id: MATERIAL_SMIC_SMNC_49_TRANSACTION_SUMMARY_CNINFO
+    rank: 2
+    score: 16.77535418675
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_cac5d8f21aa5382ee4ce001a
+    material_id: MATERIAL_SMIC_2025_Q3_A_SHARE_REPORT_CNINFO
+    rank: 3
+    score: 16.687879394357
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_63ab4a8487b80caf825fd2cd
+    material_id: MATERIAL_SMIC_SMNC_49_TRANSACTION_SUMMARY_CNINFO
+    rank: 4
+    score: 16.108890855876
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_c491f8dba8ed06c30a0cf4bd
+    material_id: MATERIAL_SMIC_2025_Q3_A_SHARE_REPORT_CNINFO
+    rank: 5
+    score: 15.78209213688
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_9779692917aec764f097c8c7
+    material_id: MATERIAL_SMIC_2025_Q3_A_SHARE_REPORT_CNINFO
+    rank: 6
+    score: 15.716857701279
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_0f0c64c850fc1e96561b8ba6
+    material_id: MATERIAL_SMIC_2025_Q3_A_SHARE_REPORT_CNINFO
+    rank: 7
+    score: 15.700635127737
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_3c374b47c4d5bab8304ab950
+    material_id: MATERIAL_SMIC_2025_Q3_A_SHARE_REPORT_CNINFO
+    rank: 8
+    score: 15.398779440983
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_a23141fd41b46bbd8de435a2
+    material_id: MATERIAL_SMIC_SMNC_49_TRANSACTION_SUMMARY_CNINFO
+    rank: 9
+    score: 14.941428111096
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_da93e40a377fb18cd8b1ca97
+    material_id: MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+    rank: 10
+    score: 10.813272117305
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_bea480e9bcfd46411284ab9e
+    material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 11
+    score: 10.718201433389
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_f6ca82d7b54d2f1586ffc1ec
+    material_id: MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 12
+    score: 10.563206181385
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_91b66d24c60b7930fd79e362
+    material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 13
+    score: 10.169566025032
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_117ef545d7dc3d8fd9d31ea8
+    material_id: MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+    rank: 14
+    score: 8.928793167958
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_5cb54515f8383fbbe9d2dd47
+    material_id: MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+    rank: 15
+    score: 8.718632338189
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_0a039d068339d69bb23c095f
+    material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 16
+    score: 8.377915726385
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_047f7c0644533f5f8da9a760
+    material_id: MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+    rank: 17
+    score: 8.142259450762
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_20e8ea551ea0005ad5d166a9
+    material_id: MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+    rank: 18
+    score: 8.052887207921
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_2d6ff75afdee9a7a3fbeab48
+    material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 19
+    score: 7.994564136776
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_c840880297767ff9dc613b8b
+    material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 20
+    score: 7.745624205893
+    selection_reason: DIRECT_HIT
+- query_family_id: D2_UTILIZATION_EFFECT
+  responsibility: RESEARCH
+  query_id: D2_EN
+  language: en
+  raw_query: capacity utilization fixed cost absorption wafer capacity
+  tokens:
+  - capacity
+  - utilization
+  - fixed
+  - cost
+  - absorption
+  - wafer
+  - capacity
+  anchor_tokens:
+  - capacity
+  - utilization
+  hits:
+  - chunk_id: CHUNK_ce6dbe8257c5ac3eacc1c89d
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 1
+    score: 20.019386861613
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_2530f5dd3150f863931a3bd3
+    material_id: MATERIAL_SMIC_2025_Q2_RESULTS
+    rank: 2
+    score: 19.516766036913
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_fe7226e4050a537918998c43
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 3
+    score: 19.505121514071
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_8a6728d872d8c5a02efea27a
+    material_id: MATERIAL_SMIC_2025_Q3_RESULTS
+    rank: 4
+    score: 19.497409136987
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_94ea2e5744eeb2e4c5371ea0
+    material_id: MATERIAL_SMIC_2026_Q1_RESULTS
+    rank: 5
+    score: 19.4780912314
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_d39510d857cc96651cbdf1ea
+    material_id: MATERIAL_SMIC_2025_Q4_RESULTS
+    rank: 6
+    score: 19.362996026289
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_78c3137a8f8e87171382ea9f
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 7
+    score: 18.65432486629
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_ab6ecd3dc002e36b8c8049f8
+    material_id: MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    rank: 8
+    score: 18.621929110979
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_19cd1b1ae183e66f863ce149
+    material_id: MATERIAL_SMIC_2025_Q2_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    rank: 9
+    score: 17.488361899489
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_15d82773133ae7149416b9ff
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 10
+    score: 16.821012385659
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_bf326af817d828351f84b33e
+    material_id: MATERIAL_SMIC_2025_Q2_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    rank: 11
+    score: 16.025794601911
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_81d56871b4272bbb8893862b
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 12
+    score: 15.402811990951
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_b9b777a3f3d6923647d20254
+    material_id: MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    rank: 13
+    score: 14.837597697334
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_47b46282a49e55a290e171aa
+    material_id: MATERIAL_SMIC_2025_Q2_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    rank: 14
+    score: 14.431800635665
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_ada0367884505128f1bfbbc7
+    material_id: MATERIAL_SMIC_2025_Q4_RESULTS
+    rank: 15
+    score: 14.251342854849
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_aae6d0ad0f6c2b629e39f643
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 16
+    score: 14.069872229265
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_f2830149edd5d414c4282037
+    material_id: MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    rank: 17
+    score: 13.687771125407
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_8498c6b6d07561225cd7f841
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 18
+    score: 13.51832553101
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_2970cabcd47b22553e8099f3
+    material_id: MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    rank: 19
+    score: 13.296111415939
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_1667c4f5e9191cad183094f1
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 20
+    score: 13.242277076589
+    selection_reason: DIRECT_HIT
+- query_family_id: D3_MIX_EFFECT
+  responsibility: RESEARCH
+  query_id: D3_ZH
+  language: zh
+  raw_query: 制程结构 应用结构 产品组合 晶圆收入 平均售价
+  tokens:
+  - 制程结构
+  - 应用结构
+  - 产品组合
+  - 晶圆收入
+  - 平均售价
+  anchor_tokens:
+  - 产品组合
+  - 制程结构
+  - 平均售价
+  - 应用结构
+  hits:
+  - chunk_id: CHUNK_42f10a406fae2fe45ce1defd
+    material_id: MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+    rank: 1
+    score: 20.405564192574
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_983e5200b5909fc8b052c786
+    material_id: MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+    rank: 2
+    score: 16.107384846309
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_d6ff2e35c4a601d774193024
+    material_id: MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+    rank: 3
+    score: 14.83466736622
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_91b66d24c60b7930fd79e362
+    material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 4
+    score: 14.229205227901
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_7cb9b53f6f877dd08f1467ad
+    material_id: MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+    rank: 5
+    score: 13.56423804154
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_012ac869c5db583d55a321ac
+    material_id: MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 6
+    score: 9.918878398815
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_d302ca791ee75f48f105dd0a
+    material_id: MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+    rank: 7
+    score: 8.412048065184
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_b280166770e935bb67c2bdd2
+    material_id: MATERIAL_SMIC_2025_Q3_A_SHARE_REPORT_CNINFO
+    rank: 8
+    score: 8.097167872279
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_71b9b3a55527015f35e53dd7
+    material_id: MATERIAL_SMIC_2025_Q3_A_SHARE_REPORT_CNINFO
+    rank: 9
+    score: 7.831744262621
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_0e80e7d4ec7e4e31cec3699d
+    material_id: MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+    rank: 10
+    score: 6.193369291225
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_d842666525fd2dc90afb3252
+    material_id: MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+    rank: 11
+    score: 5.97087408772
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_151e99b110c37a10f1e254de
+    material_id: MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+    rank: 12
+    score: 5.906296896012
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_292e34c1054e2f9df3f07fd5
+    material_id: MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+    rank: 13
+    score: 3.821847796082
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_4b9a4d2abb879d7ab807d2d9
+    material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 14
+    score: 3.671356384453
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_c66a767062b2723873937d09
+    material_id: MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 15
+    score: 3.458760461535
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_0a039d068339d69bb23c095f
+    material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 16
+    score: 3.200995719162
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_20e8ea551ea0005ad5d166a9
+    material_id: MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+    rank: 17
+    score: 3.064971773047
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_6a0539eecd126d0989b6c0c5
+    material_id: MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 18
+    score: 3.047865780251
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_f6ca82d7b54d2f1586ffc1ec
+    material_id: MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 19
+    score: 2.974350502141
+    selection_reason: DIRECT_HIT
+- query_family_id: D3_MIX_EFFECT
+  responsibility: RESEARCH
+  query_id: D3_EN
+  language: en
+  raw_query: product mix application mix wafer revenue blended ASP average selling
+    price process node
+  tokens:
+  - product
+  - mix
+  - application
+  - mix
+  - wafer
+  - revenue
+  - blended
+  - asp
+  - average
+  - selling
+  - price
+  - process
+  - node
+  anchor_tokens:
+  - asp
+  - mix
+  - price
+  - wafer
+  hits:
+  - chunk_id: CHUNK_0ed9b7098703a4ea62e2eba5
+    material_id: MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    rank: 1
+    score: 37.756753539291
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_bf326af817d828351f84b33e
+    material_id: MATERIAL_SMIC_2025_Q2_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    rank: 2
+    score: 32.812459709652
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_15b589c565ba839c26891647
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 3
+    score: 30.425169569214
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_fe7226e4050a537918998c43
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 4
+    score: 30.245458207274
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_15ae2fc264dfa0cde466ea68
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 5
+    score: 29.578280488289
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_14d156cc293724446d65d052
+    material_id: MATERIAL_SMIC_2025_Q2_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    rank: 6
+    score: 29.214475267258
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_f29213144453668ab804564a
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 7
+    score: 27.772923922393
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_ad9905d5a15dd826a540e4eb
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 8
+    score: 27.2662243131
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_6908d85fab98cc543543a587
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 9
+    score: 26.591888875847
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_fa10795eace91704c3dd1ae9
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 10
+    score: 26.104884040113
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_26ee11bd2f67830c6bb8e5a3
+    material_id: MATERIAL_SMIC_2025_Q2_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    rank: 11
+    score: 26.05368467187
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_ab6ecd3dc002e36b8c8049f8
+    material_id: MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    rank: 12
+    score: 25.970675844042
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_5faaf57fdeb4296d1f90366c
+    material_id: MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    rank: 13
+    score: 25.88123022895
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_1c101d08b7e9a6220810eb8c
+    material_id: MATERIAL_SMIC_2025_Q2_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    rank: 14
+    score: 24.791789924508
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_8498c6b6d07561225cd7f841
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 15
+    score: 24.467150062633
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_fd51b55ab05bfc90ed31a5cf
+    material_id: MATERIAL_SMIC_2026_Q1_RESULTS
+    rank: 16
+    score: 23.376269419079
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_1667c4f5e9191cad183094f1
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 17
+    score: 22.870554902006
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_e8967f5f0d85bc5a03b73032
+    material_id: MATERIAL_SMIC_2025_Q2_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    rank: 18
+    score: 22.757983756875
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_9bd8a41947282fe40ab7752a
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 19
+    score: 22.295526444329
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_461d3ea418efa90a335ba1bc
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 20
+    score: 21.581683299625
+    selection_reason: DIRECT_HIT
+- query_family_id: D3_MIX_EFFECT
+  responsibility: RESEARCH
+  query_id: D3_PRICING_MIX_EN
+  language: en
+  raw_query: gross margin increased due to increase in pricing improved product mix
+  tokens:
+  - gross
+  - margin
+  - increased
+  - due
+  - increase
+  - pricing
+  - improved
+  - product
+  - mix
+  anchor_tokens:
+  - margin
+  - mix
+  - pricing
+  hits:
+  - chunk_id: CHUNK_3b7138339840c059b4cf5e4c
+    material_id: MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    rank: 1
+    score: 54.752591536379
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_9a1d02bea79f75f0a4c41f88
+    material_id: MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    rank: 2
+    score: 43.961689182515
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_bf326af817d828351f84b33e
+    material_id: MATERIAL_SMIC_2025_Q2_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    rank: 3
+    score: 43.461897362465
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_1c101d08b7e9a6220810eb8c
+    material_id: MATERIAL_SMIC_2025_Q2_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    rank: 4
+    score: 38.523235049724
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_15b589c565ba839c26891647
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 5
+    score: 33.986262186861
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_2a6f4f1ed39ab63fed81f338
+    material_id: MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    rank: 6
+    score: 33.873881715095
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_fe7226e4050a537918998c43
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 7
+    score: 31.652787479294
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_ea64802875034d5bf4858151
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 8
+    score: 31.566797659419
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_9413adf4fd97c9aef399831e
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 9
+    score: 31.136888903939
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_15ae2fc264dfa0cde466ea68
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 10
+    score: 30.890856749171
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_6673c3dbcdee031ba7c06d6d
+    material_id: MATERIAL_SMIC_2025_Q4_RESULTS
+    rank: 11
+    score: 30.204536504076
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_fd51b55ab05bfc90ed31a5cf
+    material_id: MATERIAL_SMIC_2026_Q1_RESULTS
+    rank: 12
+    score: 29.109192433947
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_cadeff7c316a80e532e233ab
+    material_id: MATERIAL_SMIC_2025_Q3_RESULTS
+    rank: 13
+    score: 29.054377416307
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_147513b98011d2d61311c7f2
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 14
+    score: 28.41966595133
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_2a8bdeb72b27a1f41565e38e
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 15
+    score: 27.272721247033
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_7f91b5b2e1add2fa000ed23f
+    material_id: MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    rank: 16
+    score: 26.963755797406
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_103b927500b5e189a3597274
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 17
+    score: 26.871444488236
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_d58291e470745fb0b178f0f8
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 18
+    score: 26.802921397644
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_2bcab9be965248438785dbb6
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 19
+    score: 26.670322137501
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_4311d1dc09e0aeedc7c63e17
+    material_id: MATERIAL_SMIC_2025_Q4_RESULTS
+    rank: 20
+    score: 26.664666959139
+    selection_reason: DIRECT_HIT
+- query_family_id: D4_CAPEX_CONVERSION
+  responsibility: RESEARCH
+  query_id: D4_ZH
+  language: zh
+  raw_query: 资本开支 购建资产 产能扩张 折旧 项目投资
+  tokens:
+  - 资本开支
+  - 购建资产
+  - 产能
+  - 扩张
+  - 折旧
+  - 项目
+  - 目投
+  - 投资
+  anchor_tokens:
+  - 产能
+  - 折旧
+  - 购建资产
+  - 资本开支
+  hits:
+  - chunk_id: CHUNK_aed23e68d37b91cc16d8c54b
+    material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 1
+    score: 12.833692469438
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_2d6ff75afdee9a7a3fbeab48
+    material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 2
+    score: 12.220784069051
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_d6da4885ef3361c4cf516734
+    material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 3
+    score: 12.079008173083
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_bb889c239c64afdb619f224a
+    material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 4
+    score: 11.992069646724
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_7cbc7867eb543005b96a19dd
+    material_id: MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+    rank: 5
+    score: 11.908734272609
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_134b873ab530b072365121a9
+    material_id: MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 6
+    score: 11.489600908171
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_517a48d3e245a40a5e28282b
+    material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 7
+    score: 11.365136063213
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_d527c8efe6375715b30eae87
+    material_id: MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+    rank: 8
+    score: 11.188437875736
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_2143a5f8470450e8462720e7
+    material_id: MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 9
+    score: 11.169125743067
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_095ae80cdae99496bc16a9ee
+    material_id: MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+    rank: 10
+    score: 11.009555464812
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_b95eb0a35f8c09722bc3c974
+    material_id: MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+    rank: 11
+    score: 10.903671589181
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_f6ca82d7b54d2f1586ffc1ec
+    material_id: MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 12
+    score: 10.901198514515
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_6a0539eecd126d0989b6c0c5
+    material_id: MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 13
+    score: 10.833180553666
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_117ef545d7dc3d8fd9d31ea8
+    material_id: MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+    rank: 14
+    score: 10.744224891674
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_2fa271aad7fc6cf52d81ef58
+    material_id: MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+    rank: 15
+    score: 10.630246306168
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_27582649a5e461832552338a
+    material_id: MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 16
+    score: 10.549731262871
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_292e34c1054e2f9df3f07fd5
+    material_id: MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+    rank: 17
+    score: 10.066984903839
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_5cb54515f8383fbbe9d2dd47
+    material_id: MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+    rank: 18
+    score: 9.867611933884
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_2b8f481f79c5bfbac3784a58
+    material_id: MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+    rank: 19
+    score: 9.620825848233
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_0e80e7d4ec7e4e31cec3699d
+    material_id: MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+    rank: 20
+    score: 9.295912786118
+    selection_reason: DIRECT_HIT
+- query_family_id: D4_CAPEX_CONVERSION
+  responsibility: RESEARCH
+  query_id: D4_EN
+  language: en
+  raw_query: capital expenditure capex capacity expansion construction depreciation
+    investment
+  tokens:
+  - capital
+  - expenditure
+  - capex
+  - capacity
+  - expansion
+  - construction
+  - depreciation
+  - investment
+  anchor_tokens:
+  - capacity
+  - capex
+  - depreciation
+  - expenditure
+  hits:
+  - chunk_id: CHUNK_664a7f18c0ca5715330a4548
+    material_id: MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    rank: 1
+    score: 39.620336495009
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_2bb77c1934879362c0fae69c
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 2
+    score: 26.941152236411
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_2b3e387e6b236ceb7962c953
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 3
+    score: 26.046932041915
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_d39510d857cc96651cbdf1ea
+    material_id: MATERIAL_SMIC_2025_Q4_RESULTS
+    rank: 4
+    score: 24.981153623867
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_83ba01352c93986aca4fce23
+    material_id: MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    rank: 5
+    score: 24.042652274237
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_2530f5dd3150f863931a3bd3
+    material_id: MATERIAL_SMIC_2025_Q2_RESULTS
+    rank: 6
+    score: 22.286826732386
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_8a6728d872d8c5a02efea27a
+    material_id: MATERIAL_SMIC_2025_Q3_RESULTS
+    rank: 7
+    score: 22.256277589518
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_94ea2e5744eeb2e4c5371ea0
+    material_id: MATERIAL_SMIC_2026_Q1_RESULTS
+    rank: 8
+    score: 22.22581807941
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_35e230c4e370ee57d12bc7bf
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 9
+    score: 22.025770348222
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_f475a2aa758b80f432ae40a3
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 10
+    score: 21.140563459934
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_f2122711b94af809f9cfe4a3
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 11
+    score: 21.102869687143
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_8fdebc692d82e0de37c5a21c
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 12
+    score: 20.711666649213
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_e647f10a81a1bd4a199722d5
+    material_id: MATERIAL_SMIC_2025_Q3_RESULTS
+    rank: 13
+    score: 20.415032167716
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_640905b37fb37f2823d8b528
+    material_id: MATERIAL_SMIC_2026_Q1_RESULTS
+    rank: 14
+    score: 20.072086115904
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_78c3137a8f8e87171382ea9f
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 15
+    score: 20.001815626377
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_dc286d2e039296938e7afebd
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 16
+    score: 19.465627600813
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_944c1cccfd1349af26d79ae3
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 17
+    score: 19.430011967637
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_8082b717f9e2842423acb7ca
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 18
+    score: 18.84251424588
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_ada0367884505128f1bfbbc7
+    material_id: MATERIAL_SMIC_2025_Q4_RESULTS
+    rank: 19
+    score: 18.24745063698
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_ce6dbe8257c5ac3eacc1c89d
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 20
+    score: 17.988364498203
+    selection_reason: DIRECT_HIT
+- query_family_id: D4_CAPEX_CONVERSION
+  responsibility: RESEARCH
+  query_id: D4_TRANSCRIPT_CAPEX_EN
+  language: en
+  raw_query: total capital expenditure first half capacity expansion R&D activities
+  tokens:
+  - total
+  - capital
+  - expenditure
+  - first
+  - half
+  - capacity
+  - expansion
+  - r&d
+  - activities
+  anchor_tokens:
+  - capacity
+  - expenditure
+  - r&d
+  hits:
+  - chunk_id: CHUNK_664a7f18c0ca5715330a4548
+    material_id: MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    rank: 1
+    score: 40.198238989997
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_40526fcc9bba27a86ef1861d
+    material_id: MATERIAL_SMIC_2025_Q2_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    rank: 2
+    score: 32.14462258126
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_2d3944e1c7cb995bf5375c54
+    material_id: MATERIAL_SMIC_2025_Q2_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    rank: 3
+    score: 31.192285767384
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_ada0367884505128f1bfbbc7
+    material_id: MATERIAL_SMIC_2025_Q4_RESULTS
+    rank: 4
+    score: 26.23363791928
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_83ba01352c93986aca4fce23
+    material_id: MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    rank: 5
+    score: 25.924789836392
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_2bb77c1934879362c0fae69c
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 6
+    score: 24.829000091757
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_dc286d2e039296938e7afebd
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 7
+    score: 24.615443449753
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_944c1cccfd1349af26d79ae3
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 8
+    score: 24.570714797601
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_f902f27324fe8415663359e7
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 9
+    score: 24.415052762757
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_1d44742fad564095e3dced88
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 10
+    score: 24.360908966369
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_35e230c4e370ee57d12bc7bf
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 11
+    score: 23.989328848212
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_3fa0073dac9921d9bcb5bea7
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 12
+    score: 23.931856776272
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_f475a2aa758b80f432ae40a3
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 13
+    score: 22.866108619914
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_2b3e387e6b236ceb7962c953
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 14
+    score: 21.962445067711
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_461d3ea418efa90a335ba1bc
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 15
+    score: 21.796876947765
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_d39510d857cc96651cbdf1ea
+    material_id: MATERIAL_SMIC_2025_Q4_RESULTS
+    rank: 16
+    score: 21.767533032375
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_78c3137a8f8e87171382ea9f
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 17
+    score: 21.038754174413
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_c8907cadccb5fcd54a88592e
+    material_id: MATERIAL_SMIC_2025_Q2_RESULTS
+    rank: 18
+    score: 18.949826107815
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_ce6dbe8257c5ac3eacc1c89d
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 19
+    score: 18.878735342815
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_2530f5dd3150f863931a3bd3
+    material_id: MATERIAL_SMIC_2025_Q2_RESULTS
+    rank: 20
+    score: 18.588018811603
+    selection_reason: DIRECT_HIT
+- query_family_id: D5_CYCLE_EXPLANATION
+  responsibility: RESEARCH
+  query_id: D5_ZH
+  language: zh
+  raw_query: 半导体销售 晶圆代工 行业周期 需求 库存 价格
+  tokens:
+  - 半导
+  - 导体
+  - 体销
+  - 销售
+  - 晶圆代工
+  - 行业周期
+  - 需求
+  - 库存
+  - 价格
+  anchor_tokens:
+  - 库存
+  - 晶圆代工
+  - 行业周期
+  - 需求
+  hits:
+  - chunk_id: CHUNK_0a039d068339d69bb23c095f
+    material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 1
+    score: 30.205047722949
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_aed23e68d37b91cc16d8c54b
+    material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 2
+    score: 28.671091204668
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_e37d3f096fca72c367cd0f15
+    material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 3
+    score: 27.963181658349
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_517a48d3e245a40a5e28282b
+    material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 4
+    score: 27.782063898435
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_40ea119d2389cf9e5ace6f7b
+    material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 5
+    score: 27.704459902035
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_e470e98bd5600dd5e28b4816
+    material_id: MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 6
+    score: 25.442358424976
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_d0bac88eca468c8196eafe43
+    material_id: MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 7
+    score: 24.44448793803
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_040ad9b8619f5a7d24aa7748
+    material_id: MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+    rank: 8
+    score: 22.880432708681
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_c6cbb64dc84c2b4355f1dccf
+    material_id: MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+    rank: 9
+    score: 22.788414944443
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_65eade87ac0323d4ea5b1c82
+    material_id: MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+    rank: 10
+    score: 21.85291214814
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_6a0539eecd126d0989b6c0c5
+    material_id: MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 11
+    score: 19.599323356736
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_9d15b89ff8269ffa00add6ce
+    material_id: MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+    rank: 12
+    score: 18.811995319785
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_92a5ef7d85272cb4c8327f85
+    material_id: MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+    rank: 13
+    score: 18.545146371217
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_e195959fdcbc776d9eae0406
+    material_id: MATERIAL_SMIC_SMNC_49_TRANSACTION_SUMMARY_CNINFO
+    rank: 14
+    score: 18.317409066775
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_2143a5f8470450e8462720e7
+    material_id: MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 15
+    score: 17.677231273611
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_50347b0291834d97d32c9e2a
+    material_id: MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 16
+    score: 17.513269000447
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_6fa8eaeb80a0dcce8855083d
+    material_id: MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+    rank: 17
+    score: 16.509037058695
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_d8299d35ea3e1ff7d89da344
+    material_id: MATERIAL_SMIC_SMNC_49_TRANSACTION_SUMMARY_CNINFO
+    rank: 18
+    score: 16.330725293642
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_87ed93b2ef246fa2581f8458
+    material_id: MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+    rank: 19
+    score: 16.283702961071
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_2ea5dc2eec2c45548f2e7589
+    material_id: MATERIAL_SMIC_SMNC_49_TRANSACTION_SUMMARY_CNINFO
+    rank: 20
+    score: 16.175258333881
+    selection_reason: DIRECT_HIT
+- query_family_id: D5_CYCLE_EXPLANATION
+  responsibility: RESEARCH
+  query_id: D5_EN
+  language: en
+  raw_query: semiconductor sales foundry industry cycle demand inventory pricing
+  tokens:
+  - semiconductor
+  - sales
+  - foundry
+  - industry
+  - cycle
+  - demand
+  - inventory
+  - pricing
+  anchor_tokens:
+  - demand
+  - foundry
+  - inventory
+  - semiconductor
+  hits:
+  - chunk_id: CHUNK_461d3ea418efa90a335ba1bc
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 1
+    score: 40.342964916862
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_81d56871b4272bbb8893862b
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 2
+    score: 35.65113498316
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_a3f233b769b926bad10d7df4
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 3
+    score: 32.682443946361
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_8cfc1dd57fd71a5c79eef2b8
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 4
+    score: 29.49805821564
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_ad9905d5a15dd826a540e4eb
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 5
+    score: 28.849530175424
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_f610ff184f8ad3e38537f117
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 6
+    score: 27.464293759773
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_8498c6b6d07561225cd7f841
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 7
+    score: 27.05279375793
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_170e6cafdd7992e5c4982e84
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 8
+    score: 25.573834618928
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_61e32ac412d7ebd4a2d9081a
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 9
+    score: 25.220364306261
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_6be2da6d53f4d27864de155e
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 10
+    score: 25.201096217847
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_2327e68e049e274649b779b4
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 11
+    score: 24.908976805729
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_02df2b53d99c35916936aaad
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 12
+    score: 24.449013162793
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_f29213144453668ab804564a
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 13
+    score: 24.416239161006
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_6845f29cb7a8b33cad6d664e
+    material_id: MATERIAL_SIA_2026_Q1_SALES
+    rank: 14
+    score: 23.15570557494
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_8daecb55abc86510bd522969
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 15
+    score: 22.995424347906
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_7088f53b786c3fbcb68ebe08
+    material_id: MATERIAL_SIA_2025_ANNUAL_SALES
+    rank: 16
+    score: 22.71889844648
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_7c48ff2719ff17dbd3afce54
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 17
+    score: 22.552538842396
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_521997ef6ea759fabd85a04d
+    material_id: MATERIAL_SIA_2024_ANNUAL_SALES
+    rank: 18
+    score: 22.451582510656
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_67bf07cfac3475a6f4e8928f
+    material_id: MATERIAL_SIA_2023_ANNUAL_SALES
+    rank: 19
+    score: 19.391288607163
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_559e75a05f6684bf8fb87ef9
+    material_id: MATERIAL_SMIC_2026_Q1_RESULTS
+    rank: 20
+    score: 19.388918489382
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_9a92c6419a069b2946177955
+    material_id: MATERIAL_SMIC_2025_Q2_RESULTS
+    rank: 21
+    score: 19.388918489382
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_c1e2f0f4eb0d38d9ab7f27ae
+    material_id: MATERIAL_SMIC_2025_Q3_RESULTS
+    rank: 22
+    score: 19.388918489382
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_c86d23e00ecefd68de32dd02
+    material_id: MATERIAL_SMIC_2025_Q4_RESULTS
+    rank: 23
+    score: 19.388918489382
+    selection_reason: DIRECT_HIT
+- query_family_id: D6_NONCORE_EXPLANATION
+  responsibility: RESEARCH
+  query_id: D6_ZH
+  language: zh
+  raw_query: 政府补助 政府资金 其他营业收入 非经常性 营业利润
+  tokens:
+  - 政府补助
+  - 政府资金
+  - 其他营业收入
+  - 非经
+  - 经常
+  - 常性
+  - 营业利润
+  anchor_tokens:
+  - 其他营业收入
+  - 政府补助
+  - 政府资金
+  - 营业利润
+  hits:
+  - chunk_id: CHUNK_58f3cc2744ee4dc9dfd6e6e7
+    material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 1
+    score: 27.913415957969
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_baf4feba5f7b279ae2137f53
+    material_id: MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+    rank: 2
+    score: 27.284072451373
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_481effeacf8ae7dbcae42b74
+    material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 3
+    score: 26.267168469562
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_61d705818d04fe6cb0e7413f
+    material_id: MATERIAL_SMIC_2025_Q3_A_SHARE_REPORT_CNINFO
+    rank: 4
+    score: 26.177325915726
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_05b3da291ad7137017858ef2
+    material_id: MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+    rank: 5
+    score: 25.861169602626
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_d9f3073fdca0fd6d96cd3eea
+    material_id: MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+    rank: 6
+    score: 22.209346736144
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_767452835f63d81d70066faa
+    material_id: MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+    rank: 7
+    score: 21.959117313
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_0ffe0c93997624d6aecb4f9e
+    material_id: MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 8
+    score: 21.771913239511
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_1690c8b2f51869c7bc31802f
+    material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 9
+    score: 21.252850460309
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_77749d3b4f11611f3c415834
+    material_id: MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+    rank: 10
+    score: 21.2341928814
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_4276e38b0993aa6631ef7b0b
+    material_id: MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 11
+    score: 21.129851656505
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_ef4765e7f2ae574d14ef8998
+    material_id: MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+    rank: 12
+    score: 21.07985484657
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_5beaaafdcf1ed4b936d1ca6b
+    material_id: MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+    rank: 13
+    score: 20.667045704462
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_ffe9e3fe8d9db858f08808b0
+    material_id: MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 14
+    score: 20.484669687182
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_488d921c8bf2cc8619e298f5
+    material_id: MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 15
+    score: 20.414588729313
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_4c02021fb44dc6fcc398a119
+    material_id: MATERIAL_SMIC_2025_Q3_A_SHARE_REPORT_CNINFO
+    rank: 16
+    score: 20.234684770089
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_7c722045e29ab3a92fcd4df1
+    material_id: MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+    rank: 17
+    score: 19.88796614422
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_bd99530bfd7e204dcc6aff3d
+    material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 18
+    score: 19.055362834799
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_9c46bceb1cba96b9b098224b
+    material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 19
+    score: 13.963427341882
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_bba7287760d6ca789714b5be
+    material_id: MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+    rank: 20
+    score: 7.877449056816
+    selection_reason: DIRECT_HIT
+- query_family_id: D6_NONCORE_EXPLANATION
+  responsibility: RESEARCH
+  query_id: D6_EN
+  language: en
+  raw_query: government grants government funding other operating income non recurring
+    profit from operations
+  tokens:
+  - government
+  - grants
+  - government
+  - funding
+  - other
+  - operating
+  - income
+  - non
+  - recurring
+  - profit
+  - operations
+  anchor_tokens:
+  - funding
+  - government
+  - grants
+  - income
+  hits:
+  - chunk_id: CHUNK_4f67e6f2a25bba32c9014c4f
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 1
+    score: 35.575177807831
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_0b683ef01c9fbce9995b1ce5
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 2
+    score: 35.457800032032
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_a8d8b7ee15f556a29c8b654f
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 3
+    score: 31.579351792884
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_725c0bc97940fb7aa4d21150
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 4
+    score: 31.43211419573
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_cce91e7645699631786b8f38
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 5
+    score: 31.313373330299
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_e51d4592ecb5cc5c7ccbbb95
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 6
+    score: 31.059227818551
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_6dc2d6b19fa8f4e46bea968e
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 7
+    score: 30.489766742148
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_2f31e4bf4ffca5ea2d0e65d1
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 8
+    score: 30.465735148731
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_59983ed69dd792e7c6cc45fc
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 9
+    score: 29.191297799556
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_65b0ad72dd1efeea7db3c883
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 10
+    score: 29.180718102339
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_a9c3cbfe017f17fd93fffd0a
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 11
+    score: 28.95741590505
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_300fa12fa7fb91f7f22ca504
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 12
+    score: 28.68754464885
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_0bac9a3e1f9baac9f541c2d4
+    material_id: MATERIAL_SMIC_2026_Q1_RESULTS
+    rank: 13
+    score: 28.187115815339
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_9510fc6d9ba292def5d33fae
+    material_id: MATERIAL_SMIC_2025_Q2_RESULTS
+    rank: 14
+    score: 28.187115815339
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_96299c7968a9129425194cb2
+    material_id: MATERIAL_SMIC_2025_Q3_RESULTS
+    rank: 15
+    score: 28.165268349078
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_e9e847b2b6fc9173db8302a6
+    material_id: MATERIAL_SMIC_2025_Q4_RESULTS
+    rank: 16
+    score: 28.165268349078
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_a7c6e712567f5d8cf327dc97
+    material_id: MATERIAL_SMIC_2025_Q2_RESULTS
+    rank: 17
+    score: 26.962253036838
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_c7c4a880eb5a9a70978bc15f
+    material_id: MATERIAL_SMIC_2025_Q4_RESULTS
+    rank: 18
+    score: 26.838268105653
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_d6f6db576be5052fed536071
+    material_id: MATERIAL_SMIC_2026_Q1_RESULTS
+    rank: 19
+    score: 26.838268105653
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_c127cf4dafb66dbaf1ac4b80
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 20
+    score: 26.747860341424
+    selection_reason: DIRECT_HIT
+- query_family_id: D6_NONCORE_EXPLANATION
+  responsibility: RESEARCH
+  query_id: D6_DEFERRED_FUNDING_EN
+  language: en
+  raw_query: deferred government funding liquidity current liabilities other income
+  tokens:
+  - deferred
+  - government
+  - funding
+  - liquidity
+  - current
+  - liabilities
+  - other
+  - income
+  anchor_tokens:
+  - funding
+  - government
+  - income
+  hits:
+  - chunk_id: CHUNK_0bb71cf0a260002127886671
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 1
+    score: 35.868220106788
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_967b276ce58698ea27755c9b
+    material_id: MATERIAL_SMIC_2025_Q2_RESULTS
+    rank: 2
+    score: 35.014713134968
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_93ec112f1a5322e5655c9273
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 3
+    score: 34.1522256141
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_6dc2d6b19fa8f4e46bea968e
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 4
+    score: 32.128089318463
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_a9c3cbfe017f17fd93fffd0a
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 5
+    score: 30.480546920609
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_2f31e4bf4ffca5ea2d0e65d1
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 6
+    score: 30.448661094726
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_1b62db4f81b487c643b49ebd
+    material_id: MATERIAL_SMIC_2025_Q2_RESULTS
+    rank: 7
+    score: 29.111155529786
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_59983ed69dd792e7c6cc45fc
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 8
+    score: 27.601111822422
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_787cdd749a2edc1fc05fcb5c
+    material_id: MATERIAL_SMIC_2025_Q3_RESULTS
+    rank: 9
+    score: 26.580293253193
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_b83064c05929e9104826fe9c
+    material_id: MATERIAL_SMIC_2025_Q4_RESULTS
+    rank: 10
+    score: 26.556757056233
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_7f9cfaf3f5f781b1cc7e4de1
+    material_id: MATERIAL_SMIC_2026_Q1_RESULTS
+    rank: 11
+    score: 26.533275240384
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_4f67e6f2a25bba32c9014c4f
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 12
+    score: 26.403467113606
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_768ddaa285d7b5a5630bd9ab
+    material_id: MATERIAL_SMIC_2026_Q1_RESULTS
+    rank: 13
+    score: 25.443465402645
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_756a382e00c7b0d5cc686a9b
+    material_id: MATERIAL_SMIC_2025_Q3_RESULTS
+    rank: 14
+    score: 25.425384734531
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_8947e37afe525232c1f700ef
+    material_id: MATERIAL_SMIC_2025_Q2_RESULTS
+    rank: 15
+    score: 25.425384734531
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_cc9fcaf6075d0de3f4c44859
+    material_id: MATERIAL_SMIC_2025_Q4_RESULTS
+    rank: 16
+    score: 25.425384734531
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_6e8a29746791880ee06cf345
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 17
+    score: 24.931305781473
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_ae2421d6454b3497bc8932a9
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 18
+    score: 24.777319222786
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_d5e5524b4691f885ed26c5a4
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 19
+    score: 24.386863653847
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_8a702ab2250950f9f6e744b3
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 20
+    score: 23.825074905689
+    selection_reason: DIRECT_HIT
+- query_family_id: D7_SUSTAINABILITY_EVIDENCE
+  responsibility: RESEARCH
+  query_id: D7_ZH
+  language: zh
+  raw_query: 可持续改善 订单在手 客户需求 产能不足 经营指引 风险 不确定性
+  tokens:
+  - 可持续改善
+  - 订单
+  - 单在
+  - 在手
+  - 客户
+  - 需求
+  - 产能
+  - 不足
+  - 经营
+  - 营指
+  - 指引
+  - 风险
+  - 不确
+  - 确定
+  - 定性
+  anchor_tokens:
+  - 产能
+  - 可持续改善
+  - 需求
+  hits:
+  - chunk_id: CHUNK_81978bccf1b967fcc947f5ab
+    material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 1
+    score: 27.270429585549
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_40ea119d2389cf9e5ace6f7b
+    material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 2
+    score: 26.301861759994
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_bb889c239c64afdb619f224a
+    material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 3
+    score: 26.09054681359
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_d0bac88eca468c8196eafe43
+    material_id: MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 4
+    score: 25.831472702536
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_57fefa74326c12fcee878953
+    material_id: MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+    rank: 5
+    score: 25.757978336479
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_3efa035241fd32b9a1083b0b
+    material_id: MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+    rank: 6
+    score: 25.200440255979
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_8dd421b4ac2fbdb094382471
+    material_id: MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+    rank: 7
+    score: 24.456197612283
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_38c81d23212aec3058f3b5a5
+    material_id: MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 8
+    score: 23.647319209584
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_87ed93b2ef246fa2581f8458
+    material_id: MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+    rank: 9
+    score: 23.497156335551
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_20e8ea551ea0005ad5d166a9
+    material_id: MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+    rank: 10
+    score: 23.174399074243
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_50347b0291834d97d32c9e2a
+    material_id: MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 11
+    score: 23.111436417599
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_65eade87ac0323d4ea5b1c82
+    material_id: MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+    rank: 12
+    score: 23.019465599914
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_505847909d91a31fb49ec216
+    material_id: MATERIAL_SMIC_2026_Q1_A_SHARE_REPORT_CNSTOCK
+    rank: 13
+    score: 22.737515455843
+    selection_reason: STRUCTURAL_BOILERPLATE
+  - chunk_id: CHUNK_f6ca82d7b54d2f1586ffc1ec
+    material_id: MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 14
+    score: 22.208408657409
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_be9f94eaf2e2b11b5b5a411a
+    material_id: MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+    rank: 15
+    score: 21.865226837088
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_aed23e68d37b91cc16d8c54b
+    material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 16
+    score: 21.388374773311
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_c6cbb64dc84c2b4355f1dccf
+    material_id: MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+    rank: 17
+    score: 20.958338687793
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_e37d3f096fca72c367cd0f15
+    material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 18
+    score: 20.244000125592
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_7bae2a946040cd50470dc3bb
+    material_id: MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 19
+    score: 19.957151628276
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_92a5ef7d85272cb4c8327f85
+    material_id: MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+    rank: 20
+    score: 19.848247734105
+    selection_reason: DIRECT_HIT
+- query_family_id: D7_SUSTAINABILITY_EVIDENCE
+  responsibility: RESEARCH
+  query_id: D7_EN
+  language: en
+  raw_query: sustainable improvement orders in hand customer demand capacity shortage
+    guidance risks uncertainties
+  tokens:
+  - sustainable
+  - improvement
+  - orders
+  - hand
+  - customer
+  - demand
+  - capacity
+  - shortage
+  - guidance
+  - risks
+  - uncertainties
+  anchor_tokens:
+  - capacity
+  - demand
+  - guidance
+  - sustainable
+  hits:
+  - chunk_id: CHUNK_fac5f67af80d36509bdd8ccf
+    material_id: MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    rank: 1
+    score: 42.541151032651
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_6fde9a260cfadddcc82a7d5f
+    material_id: MATERIAL_SMIC_2026_Q1_RESULTS
+    rank: 2
+    score: 41.816678895436
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_461d3ea418efa90a335ba1bc
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 3
+    score: 27.789566495307
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_37e650d14903437453e129ba
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 4
+    score: 27.267644700779
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_61642ffa37e1e376e8f712b9
+    material_id: MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    rank: 5
+    score: 26.963528972084
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_78c3137a8f8e87171382ea9f
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 6
+    score: 26.538074398369
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_ada0367884505128f1bfbbc7
+    material_id: MATERIAL_SMIC_2025_Q4_RESULTS
+    rank: 7
+    score: 26.055525481314
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_8498c6b6d07561225cd7f841
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 8
+    score: 25.794099427205
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_02df2b53d99c35916936aaad
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 9
+    score: 25.750169847514
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_ce6dbe8257c5ac3eacc1c89d
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 10
+    score: 24.858641291429
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_c5adb5d7d4bd018678765d48
+    material_id: MATERIAL_SMIC_2025_Q3_RESULTS
+    rank: 11
+    score: 24.690963496544
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_c8907cadccb5fcd54a88592e
+    material_id: MATERIAL_SMIC_2025_Q2_RESULTS
+    rank: 12
+    score: 24.596764031728
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_7c48ff2719ff17dbd3afce54
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 13
+    score: 23.643078470724
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_aae6d0ad0f6c2b629e39f643
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 14
+    score: 23.63756971024
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_9b43e687827576bfd9a4449c
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 15
+    score: 23.577431791054
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_07e715d57504a0f14108111f
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 16
+    score: 23.505885725399
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_23dbf2a705f7111a27bf1394
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 17
+    score: 23.505885725399
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_559e75a05f6684bf8fb87ef9
+    material_id: MATERIAL_SMIC_2026_Q1_RESULTS
+    rank: 18
+    score: 22.927878234333
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_9a92c6419a069b2946177955
+    material_id: MATERIAL_SMIC_2025_Q2_RESULTS
+    rank: 19
+    score: 22.927878234333
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_c1e2f0f4eb0d38d9ab7f27ae
+    material_id: MATERIAL_SMIC_2025_Q3_RESULTS
+    rank: 20
+    score: 22.927878234333
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_c86d23e00ecefd68de32dd02
+    material_id: MATERIAL_SMIC_2025_Q4_RESULTS
+    rank: 21
+    score: 22.927878234333
+    selection_reason: DIRECT_HIT
+- query_family_id: D7_SUSTAINABILITY_EVIDENCE
+  responsibility: RESEARCH
+  query_id: D7_ORDERS_GUIDANCE_EN
+  language: en
+  raw_query: sufficient order in hand price increase shipment blended ASP guidance
+    gross margin
+  tokens:
+  - sufficient
+  - order
+  - hand
+  - price
+  - increase
+  - shipment
+  - blended
+  - asp
+  - guidance
+  - gross
+  - margin
+  anchor_tokens:
+  - guidance
+  - margin
+  - order
+  - price
+  - shipment
+  hits:
+  - chunk_id: CHUNK_0ed9b7098703a4ea62e2eba5
+    material_id: MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    rank: 1
+    score: 74.31040452318
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_26ee11bd2f67830c6bb8e5a3
+    material_id: MATERIAL_SMIC_2025_Q2_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    rank: 2
+    score: 55.509432175358
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_5faaf57fdeb4296d1f90366c
+    material_id: MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    rank: 3
+    score: 49.526497653793
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_6fde9a260cfadddcc82a7d5f
+    material_id: MATERIAL_SMIC_2026_Q1_RESULTS
+    rank: 4
+    score: 41.707133100397
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_ada0367884505128f1bfbbc7
+    material_id: MATERIAL_SMIC_2025_Q4_RESULTS
+    rank: 5
+    score: 32.122952681855
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_bf326af817d828351f84b33e
+    material_id: MATERIAL_SMIC_2025_Q2_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    rank: 6
+    score: 31.671571304121
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_c8907cadccb5fcd54a88592e
+    material_id: MATERIAL_SMIC_2025_Q2_RESULTS
+    rank: 7
+    score: 27.476693235588
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_ab6ecd3dc002e36b8c8049f8
+    material_id: MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    rank: 8
+    score: 27.121234877767
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_14d156cc293724446d65d052
+    material_id: MATERIAL_SMIC_2025_Q2_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    rank: 9
+    score: 26.982556163442
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_115519bc27d1928cc74780f0
+    material_id: MATERIAL_SMIC_2025_Q2_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    rank: 10
+    score: 26.623790484361
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_c5adb5d7d4bd018678765d48
+    material_id: MATERIAL_SMIC_2025_Q3_RESULTS
+    rank: 11
+    score: 26.306318373399
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_0c5ac6cc4ff7ea837b75bef6
+    material_id: MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    rank: 12
+    score: 25.967022131413
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_aae6d0ad0f6c2b629e39f643
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 13
+    score: 22.687384387949
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_78c3137a8f8e87171382ea9f
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 14
+    score: 22.193267994174
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_15b589c565ba839c26891647
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 15
+    score: 21.997606702972
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_6673c3dbcdee031ba7c06d6d
+    material_id: MATERIAL_SMIC_2025_Q4_RESULTS
+    rank: 16
+    score: 21.569801841375
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_fac5f67af80d36509bdd8ccf
+    material_id: MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    rank: 17
+    score: 21.268266788187
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_cadeff7c316a80e532e233ab
+    material_id: MATERIAL_SMIC_2025_Q3_RESULTS
+    rank: 18
+    score: 20.851296686675
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_3b4bc22faf5e59ea23c56c9d
+    material_id: MATERIAL_SMIC_2025_Q2_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    rank: 19
+    score: 20.55676238934
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_fe7226e4050a537918998c43
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 20
+    score: 20.228365591408
+    selection_reason: DIRECT_HIT
+- query_family_id: D7_SUSTAINABILITY_EVIDENCE
+  responsibility: RESEARCH
+  query_id: D7_RISKS_EN
+  language: en
+  raw_query: global macro environment uncertainties supply chain costs stability customer
+    demand
+  tokens:
+  - global
+  - macro
+  - environment
+  - uncertainties
+  - supply
+  - chain
+  - costs
+  - stability
+  - customer
+  - demand
+  anchor_tokens:
+  - demand
+  - supply
+  - uncertainties
+  hits:
+  - chunk_id: CHUNK_0796c4b552014ee1d917309e
+    material_id: MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    rank: 1
+    score: 69.674869096801
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_5f840d4f499a7120c1d080cc
+    material_id: MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    rank: 2
+    score: 52.188204226397
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_9ead3dafeafe389b1da78872
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 3
+    score: 39.582984299404
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_81d56871b4272bbb8893862b
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 4
+    score: 35.872631781189
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_78c3137a8f8e87171382ea9f
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 5
+    score: 34.412577638619
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_461d3ea418efa90a335ba1bc
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 6
+    score: 34.225020501414
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_0fd611f99520fec474364da7
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 7
+    score: 33.530152917239
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_7c48ff2719ff17dbd3afce54
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 8
+    score: 33.075653799175
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_aae6d0ad0f6c2b629e39f643
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 9
+    score: 32.292317984436
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_a3f233b769b926bad10d7df4
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 10
+    score: 31.6439464564
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_8cfc1dd57fd71a5c79eef2b8
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 11
+    score: 31.643253966121
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_ce6dbe8257c5ac3eacc1c89d
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 12
+    score: 31.264365183115
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_5a0e8fefb0d6994d1d4bdc7c
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 13
+    score: 30.880634803834
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_15d82773133ae7149416b9ff
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 14
+    score: 29.288770092616
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_1d44742fad564095e3dced88
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 15
+    score: 28.855084802186
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_3c5ef6fd7d4daba69256b1d4
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 16
+    score: 28.679007812013
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_02df2b53d99c35916936aaad
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 17
+    score: 26.300038921265
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_559e75a05f6684bf8fb87ef9
+    material_id: MATERIAL_SMIC_2026_Q1_RESULTS
+    rank: 18
+    score: 25.977493298856
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_9a92c6419a069b2946177955
+    material_id: MATERIAL_SMIC_2025_Q2_RESULTS
+    rank: 19
+    score: 25.977493298856
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_c1e2f0f4eb0d38d9ab7f27ae
+    material_id: MATERIAL_SMIC_2025_Q3_RESULTS
+    rank: 20
+    score: 25.977493298856
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_c86d23e00ecefd68de32dd02
+    material_id: MATERIAL_SMIC_2025_Q4_RESULTS
+    rank: 21
+    score: 25.977493298856
+    selection_reason: DIRECT_HIT
+- query_family_id: G_ACCOUNTING_SCOPE
+  responsibility: NORMALIZATION_GUARD
+  query_id: G_ACCOUNTING_SCOPE_ZH
+  language: zh
+  raw_query: 国际财务报告准则 企业会计准则 合并报表 合并范围 经审计 未经审计 重述 重新列报
+  tokens:
+  - 国际财务报告准则
+  - 企业会计准则
+  - 合并报表
+  - 合并范围
+  - 经审计
+  - 未经审计
+  - 重述
+  - 重新列报
+  anchor_tokens:
+  - 企业会计准则
+  - 合并报表
+  - 合并范围
+  - 国际财务报告准则
+  - 未经审计
+  - 经审计
+  - 重新列报
+  - 重述
+  hits:
+  - chunk_id: CHUNK_49a724489e9cbe6e0ecb7ed1
+    material_id: MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+    rank: 1
+    score: 15.05872175833
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_b4b3655b7be04156059fa606
+    material_id: MATERIAL_SMIC_2025_Q3_A_SHARE_REPORT_CNINFO
+    rank: 2
+    score: 14.67648949259
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_a82e2bf1279c87cea4d71910
+    material_id: MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 3
+    score: 14.460338260228
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_031bceb849c3fc69007b22c5
+    material_id: MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+    rank: 4
+    score: 14.352826711686
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_20d0fecdb2bd4de65cf87f0c
+    material_id: MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 5
+    score: 14.322951383596
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_54c2f35c3a4c0417ea0129a6
+    material_id: MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+    rank: 6
+    score: 14.104705633195
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_ed68235a9af2837057f18ad7
+    material_id: MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+    rank: 7
+    score: 14.095921842448
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_6734b14e60e3aa59118770c7
+    material_id: MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+    rank: 8
+    score: 12.853057215361
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_d302ca791ee75f48f105dd0a
+    material_id: MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+    rank: 9
+    score: 12.732522382891
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_5ba26678580499cf43b6d781
+    material_id: MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+    rank: 10
+    score: 12.594921493827
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_5e0b8cfb5486c668668583fc
+    material_id: MATERIAL_SMIC_2025_Q3_A_SHARE_REPORT_CNINFO
+    rank: 11
+    score: 12.573931501443
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_4b9a4d2abb879d7ab807d2d9
+    material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 12
+    score: 12.569048309431
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_1bad15c6900905489cd09430
+    material_id: MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 13
+    score: 12.416014329016
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_a1aba1bbce2c381279a70b90
+    material_id: MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 14
+    score: 12.041877424195
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_7ff07d1f005de2debba71fa9
+    material_id: MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 15
+    score: 12.018224407702
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_cc9d55320b7169ee583ba29e
+    material_id: MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+    rank: 16
+    score: 11.752745809332
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_fe11bec16c55479e848b8fc7
+    material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 17
+    score: 11.47894243859
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_6efef67a72b2989b815c1216
+    material_id: MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+    rank: 18
+    score: 11.211637320778
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_a3e44f1e0443aaf7569d143b
+    material_id: MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+    rank: 19
+    score: 10.683916336069
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_4c02021fb44dc6fcc398a119
+    material_id: MATERIAL_SMIC_2025_Q3_A_SHARE_REPORT_CNINFO
+    rank: 20
+    score: 10.666815353069
+    selection_reason: DIRECT_HIT
+- query_family_id: G_ACCOUNTING_SCOPE
+  responsibility: NORMALIZATION_GUARD
+  query_id: G_ACCOUNTING_SCOPE_EN
+  language: en
+  raw_query: IFRS CAS consolidated financial statements audited unaudited restated
+    re-presented
+  tokens:
+  - ifrs
+  - cas
+  - consolidated
+  - financial
+  - statements
+  - audited
+  - unaudited
+  - restated
+  - re-presented
+  - re
+  - presented
+  anchor_tokens:
+  - audited
+  - cas
+  - consolidated
+  - ifrs
+  - restated
+  - unaudited
+  hits:
+  - chunk_id: CHUNK_a19fdb55812ab563389ce209
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 1
+    score: 28.492589362887
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_be0f4e8b88c23a5713437ec7
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 2
+    score: 26.734465829817
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_3c62ffefe2c90064903b9766
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 3
+    score: 20.977576048938
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_ca75de28ca754d1b32f06a2e
+    material_id: MATERIAL_SMIC_2026_Q1_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    rank: 4
+    score: 20.540400025043
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_ec8558773f1829ca6d7fc13e
+    material_id: MATERIAL_SMIC_2025_Q2_EARNINGS_CALL_TRANSCRIPT_ALPHASPREAD
+    rank: 5
+    score: 20.459943592121
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_2bc1f886749e51dce4b28d6d
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 6
+    score: 20.40040201609
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_4cfd4626d9e34ef4dc45df9e
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 7
+    score: 20.355796449862
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_74333d062a8a2d49f0ecfa7d
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 8
+    score: 19.489384438275
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_0f019d17d888e0a1d6108130
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 9
+    score: 19.475249057934
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_4311d1dc09e0aeedc7c63e17
+    material_id: MATERIAL_SMIC_2025_Q4_RESULTS
+    rank: 10
+    score: 19.418856418666
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_ee92e54610b21f0a0d56190f
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 11
+    score: 18.596425985176
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_7b289640f7fdc837062c8f07
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 12
+    score: 18.465658048672
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_49bd5fd700cf2f6c3fc4721f
+    material_id: MATERIAL_SMIC_2025_Q2_RESULTS
+    rank: 13
+    score: 18.413652476275
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_953b5053a0ab5a0e06849eee
+    material_id: MATERIAL_SMIC_2025_Q3_RESULTS
+    rank: 14
+    score: 18.413652476275
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_e7b7250889236755b3f148e0
+    material_id: MATERIAL_SMIC_2026_Q1_RESULTS
+    rank: 15
+    score: 18.413652476275
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_1099d1a61eafe4a3da002b53
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 16
+    score: 18.322990331862
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_9c46deea2b838f50a6ba3110
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 17
+    score: 18.053756246846
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_5ee5be0e59320f7561d92084
+    material_id: MATERIAL_SMIC_2026_Q1_RESULTS
+    rank: 18
+    score: 17.741262630452
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_adf607f778aab8d583d82087
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 19
+    score: 17.638485555176
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_e6e2f2186a7c8acfdcaa6f43
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 20
+    score: 17.147534803969
+    selection_reason: DIRECT_HIT
+- query_family_id: G_PERIOD_UNIT
+  responsibility: NORMALIZATION_GUARD
+  query_id: G_PERIOD_UNIT_ZH
+  language: zh
+  raw_query: 截至 三个月 六个月 九个月 年度 第一季度 第二季度 第三季度 第四季度 美元 人民币 百万 千
+  tokens:
+  - 截至
+  - 三个
+  - 个月
+  - 六个
+  - 个月
+  - 九个
+  - 个月
+  - 年度
+  - 第一季度
+  - 第二季度
+  - 第三季度
+  - 第四季度
+  - 美元
+  - 人民币
+  - 百万
+  - 千
+  anchor_tokens:
+  - 人民币
+  - 第一季度
+  - 第三季度
+  - 第二季度
+  - 第四季度
+  - 美元
+  hits:
+  - chunk_id: CHUNK_8534f7a2fe97fa03bc17b097
+    material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 1
+    score: 36.317203249586
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_fe11bec16c55479e848b8fc7
+    material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 2
+    score: 27.790079357597
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_861357b2d59f2d1816553bbf
+    material_id: MATERIAL_SMIC_2025_Q3_A_SHARE_REPORT_CNINFO
+    rank: 3
+    score: 26.768083140719
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_d6819df36ff53b46109f5633
+    material_id: MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+    rank: 4
+    score: 25.781954740658
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_9f64613eb1319e1d83db41b5
+    material_id: MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 5
+    score: 24.97654102913
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_cac5d8f21aa5382ee4ce001a
+    material_id: MATERIAL_SMIC_2025_Q3_A_SHARE_REPORT_CNINFO
+    rank: 6
+    score: 24.213095700945
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_c491f8dba8ed06c30a0cf4bd
+    material_id: MATERIAL_SMIC_2025_Q3_A_SHARE_REPORT_CNINFO
+    rank: 7
+    score: 23.181689234484
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_9779692917aec764f097c8c7
+    material_id: MATERIAL_SMIC_2025_Q3_A_SHARE_REPORT_CNINFO
+    rank: 8
+    score: 23.034347236696
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_0f0c64c850fc1e96561b8ba6
+    material_id: MATERIAL_SMIC_2025_Q3_A_SHARE_REPORT_CNINFO
+    rank: 9
+    score: 22.997815125638
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_948f67f6dfcc7649e6395bc8
+    material_id: MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+    rank: 10
+    score: 22.820047427466
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_ef4765e7f2ae574d14ef8998
+    material_id: MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+    rank: 11
+    score: 19.795446467768
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_b8464ac93b321ac3ccf4507d
+    material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 12
+    score: 19.358551124008
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_488d921c8bf2cc8619e298f5
+    material_id: MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 13
+    score: 18.849138122329
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_4b9a4d2abb879d7ab807d2d9
+    material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 14
+    score: 18.779352647849
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_dcf920b1be3fdb891b137a42
+    material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 15
+    score: 18.627326907916
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_2438fecb2463e34561d3c25b
+    material_id: MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 16
+    score: 18.390578605374
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_30dc42a1d758ecd12ac4a011
+    material_id: MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 17
+    score: 18.121992022908
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_5566fde777a97ace4d7875b9
+    material_id: MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+    rank: 18
+    score: 17.420456735322
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_dabedb5a223d121d4aa43c3e
+    material_id: MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+    rank: 19
+    score: 17.330520226335
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_4e5693287564a658e77dd484
+    material_id: MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+    rank: 20
+    score: 16.928923764687
+    selection_reason: DIRECT_HIT
+- query_family_id: G_PERIOD_UNIT
+  responsibility: NORMALIZATION_GUARD
+  query_id: G_PERIOD_UNIT_EN
+  language: en
+  raw_query: three months six months nine months year ended quarter USD CNY RMB million
+    thousand
+  tokens:
+  - three
+  - months
+  - six
+  - months
+  - nine
+  - months
+  - year
+  - ended
+  - quarter
+  - usd
+  - cny
+  - rmb
+  - million
+  - thousand
+  anchor_tokens:
+  - cny
+  - million
+  - months
+  - quarter
+  - usd
+  - year
+  hits:
+  - chunk_id: CHUNK_b110f503e433fa7cd04c36a9
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 1
+    score: 24.98308360421
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_ada0367884505128f1bfbbc7
+    material_id: MATERIAL_SMIC_2025_Q4_RESULTS
+    rank: 2
+    score: 24.425857745633
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_49bd5fd700cf2f6c3fc4721f
+    material_id: MATERIAL_SMIC_2025_Q2_RESULTS
+    rank: 3
+    score: 23.013750727399
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_953b5053a0ab5a0e06849eee
+    material_id: MATERIAL_SMIC_2025_Q3_RESULTS
+    rank: 4
+    score: 23.013750727399
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_e7b7250889236755b3f148e0
+    material_id: MATERIAL_SMIC_2026_Q1_RESULTS
+    rank: 5
+    score: 23.013750727399
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_4311d1dc09e0aeedc7c63e17
+    material_id: MATERIAL_SMIC_2025_Q4_RESULTS
+    rank: 6
+    score: 22.859709422283
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_7f369ede8e0e621390dd8870
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 7
+    score: 22.808596613993
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_c5adb5d7d4bd018678765d48
+    material_id: MATERIAL_SMIC_2025_Q3_RESULTS
+    rank: 8
+    score: 21.534612495119
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_fe7226e4050a537918998c43
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 9
+    score: 20.11361166391
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_eb3c649a4c0ae70b3c88bcff
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 10
+    score: 19.874874333167
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_3b453809969a4bdc0750ceb6
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 11
+    score: 19.349158842544
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_15b589c565ba839c26891647
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 12
+    score: 19.34270018051
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_8464fa21a596f774de987d90
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 13
+    score: 19.334513455014
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_f475a2aa758b80f432ae40a3
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 14
+    score: 19.259468862255
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_15ae2fc264dfa0cde466ea68
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 15
+    score: 19.122417245387
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_ddc8db39ec48b7ade3d1c62b
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 16
+    score: 19.104992097009
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_61910f237928f25092f0947f
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 17
+    score: 19.087786133219
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_044b01b219088183de0cf63c
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 18
+    score: 18.651230119454
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_e5577730febeccc7ed34c86f
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 19
+    score: 18.500274996809
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_2f31e4bf4ffca5ea2d0e65d1
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 20
+    score: 18.31529204638
+    selection_reason: DIRECT_HIT
+- query_family_id: G_ADJUSTMENT_BRIDGE
+  responsibility: NORMALIZATION_GUARD
+  query_id: G_ADJUSTMENT_BRIDGE_ZH
+  language: zh
+  raw_query: 政府补助 政府资金 其他营业收入 折旧 研发 企业会计准则 国际财务报告准则 调节差异
+  tokens:
+  - 政府补助
+  - 政府资金
+  - 其他营业收入
+  - 折旧
+  - 研发
+  - 企业会计准则
+  - 国际财务报告准则
+  - 调节
+  - 节差
+  - 差异
+  anchor_tokens:
+  - 企业会计准则
+  - 其他营业收入
+  - 国际财务报告准则
+  - 折旧
+  - 政府补助
+  - 政府资金
+  - 研发
+  hits:
+  - chunk_id: CHUNK_ed68235a9af2837057f18ad7
+    material_id: MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+    rank: 1
+    score: 23.727346219294
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_20d0fecdb2bd4de65cf87f0c
+    material_id: MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 2
+    score: 23.548517719311
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_54c2f35c3a4c0417ea0129a6
+    material_id: MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+    rank: 3
+    score: 23.277254096941
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_a1aba1bbce2c381279a70b90
+    material_id: MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 4
+    score: 21.506376658332
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_7ff07d1f005de2debba71fa9
+    material_id: MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 5
+    score: 21.462299388589
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_cc9d55320b7169ee583ba29e
+    material_id: MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+    rank: 6
+    score: 20.656110193267
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_a3e44f1e0443aaf7569d143b
+    material_id: MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+    rank: 7
+    score: 20.578154777775
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_349aaae33dcaa113dabc81c7
+    material_id: MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+    rank: 8
+    score: 20.50508243029
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_5ba26678580499cf43b6d781
+    material_id: MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+    rank: 9
+    score: 20.474959682802
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_4b9a4d2abb879d7ab807d2d9
+    material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 10
+    score: 20.229935379754
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_1bad15c6900905489cd09430
+    material_id: MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 11
+    score: 20.153165947312
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_55baa73981de7a3dbd0ea65f
+    material_id: MATERIAL_SMIC_2024_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 12
+    score: 20.033061249758
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_6efef67a72b2989b815c1216
+    material_id: MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+    rank: 13
+    score: 19.367161961023
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_49a724489e9cbe6e0ecb7ed1
+    material_id: MATERIAL_SMIC_2025_A_SHARE_ANNUAL_REPORT_CNINFO
+    rank: 14
+    score: 18.163359734402
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_4c02021fb44dc6fcc398a119
+    material_id: MATERIAL_SMIC_2025_Q3_A_SHARE_REPORT_CNINFO
+    rank: 15
+    score: 18.104129708773
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_031bceb849c3fc69007b22c5
+    material_id: MATERIAL_SMIC_2025_H1_A_SHARE_REPORT_CNINFO
+    rank: 16
+    score: 17.748415747216
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_b4b3655b7be04156059fa606
+    material_id: MATERIAL_SMIC_2025_Q3_A_SHARE_REPORT_CNINFO
+    rank: 17
+    score: 17.617545659397
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_9cd81f6a5ec213cd1dff8d7c
+    material_id: MATERIAL_SMIC_2023_A_SHARE_ANNUAL_REPORT_HKEX_OVERSEAS
+    rank: 18
+    score: 16.597583490263
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_5e0b8cfb5486c668668583fc
+    material_id: MATERIAL_SMIC_2025_Q3_A_SHARE_REPORT_CNINFO
+    rank: 19
+    score: 15.650817583235
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_61d705818d04fe6cb0e7413f
+    material_id: MATERIAL_SMIC_2025_Q3_A_SHARE_REPORT_CNINFO
+    rank: 20
+    score: 15.33529532126
+    selection_reason: DIRECT_HIT
+- query_family_id: G_ADJUSTMENT_BRIDGE
+  responsibility: NORMALIZATION_GUARD
+  query_id: G_ADJUSTMENT_BRIDGE_EN
+  language: en
+  raw_query: government grants other operating income depreciation R&D CAS IFRS reconciliation
+    adjustment
+  tokens:
+  - government
+  - grants
+  - other
+  - operating
+  - income
+  - depreciation
+  - r&d
+  - cas
+  - ifrs
+  - reconciliation
+  - adjustment
+  anchor_tokens:
+  - cas
+  - depreciation
+  - government
+  - grants
+  - ifrs
+  - income
+  - r&d
+  hits:
+  - chunk_id: CHUNK_c7c4a880eb5a9a70978bc15f
+    material_id: MATERIAL_SMIC_2025_Q4_RESULTS
+    rank: 1
+    score: 28.292108376399
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_d6f6db576be5052fed536071
+    material_id: MATERIAL_SMIC_2026_Q1_RESULTS
+    rank: 2
+    score: 28.292108376399
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_a7c6e712567f5d8cf327dc97
+    material_id: MATERIAL_SMIC_2025_Q2_RESULTS
+    rank: 3
+    score: 28.066233743391
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_2f31e4bf4ffca5ea2d0e65d1
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 4
+    score: 23.889689645058
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_4f67e6f2a25bba32c9014c4f
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 5
+    score: 23.456905710594
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_bcd0a113e34911e7904ac4a3
+    material_id: MATERIAL_SMIC_2025_Q3_RESULTS
+    rank: 6
+    score: 23.130187332217
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_a19fdb55812ab563389ce209
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 7
+    score: 22.044381625137
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_be0f4e8b88c23a5713437ec7
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 8
+    score: 20.613182285552
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_a8d8b7ee15f556a29c8b654f
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 9
+    score: 20.495277228608
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_fe7226e4050a537918998c43
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 10
+    score: 20.408898242208
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_725c0bc97940fb7aa4d21150
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 11
+    score: 20.313636032099
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_6dc2d6b19fa8f4e46bea968e
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 12
+    score: 20.021769362894
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_a9c3cbfe017f17fd93fffd0a
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 13
+    score: 19.11348315414
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_0bb71cf0a260002127886671
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 14
+    score: 19.107434596259
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_0e6427dab660f1de48aa226b
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 15
+    score: 18.858259752139
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_4d9466090c819d60d2188d97
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 16
+    score: 18.844683974493
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_e51d4592ecb5cc5c7ccbbb95
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 17
+    score: 18.5376397319
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_4cfd4626d9e34ef4dc45df9e
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 18
+    score: 17.978460942829
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_0f019d17d888e0a1d6108130
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 19
+    score: 17.93751754378
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_967b276ce58698ea27755c9b
+    material_id: MATERIAL_SMIC_2025_Q2_RESULTS
+    rank: 20
+    score: 17.551803655355
+    selection_reason: DIRECT_HIT
+- query_family_id: G_ADJUSTMENT_BRIDGE
+  responsibility: NORMALIZATION_GUARD
+  query_id: G_GOVERNMENT_FUNDING_POLICY_EN
+  language: en
+  raw_query: government funding recognised fair value expense item income asset deferred
+    income profit or loss useful life
+  tokens:
+  - government
+  - funding
+  - recognised
+  - fair
+  - value
+  - expense
+  - item
+  - income
+  - asset
+  - deferred
+  - income
+  - profit
+  - loss
+  - useful
+  - life
+  anchor_tokens:
+  - asset
+  - funding
+  - government
+  - income
+  - profit
+  hits:
+  - chunk_id: CHUNK_0bb71cf0a260002127886671
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 1
+    score: 68.453168757737
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_59983ed69dd792e7c6cc45fc
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 2
+    score: 64.43021850333
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_c127cf4dafb66dbaf1ac4b80
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 3
+    score: 61.221810941695
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_8082b717f9e2842423acb7ca
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 4
+    score: 52.338157868461
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_1b3b30875c248e4c82586d2f
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 5
+    score: 51.36817611221
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_f5337c869fd1d2419c2ee679
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 6
+    score: 50.078813404709
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_c069d5d57f5f3bbd6cccedb9
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 7
+    score: 46.359453159998
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_6dc2d6b19fa8f4e46bea968e
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 8
+    score: 46.222901536076
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_a9c3cbfe017f17fd93fffd0a
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 9
+    score: 45.886363006171
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_2f31e4bf4ffca5ea2d0e65d1
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 10
+    score: 44.129204672043
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_d23f425ab9bd1bc7f3fc0334
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 11
+    score: 43.955909786722
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_80a886c3b713b5068e58c219
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 12
+    score: 43.869539460249
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_d5e5524b4691f885ed26c5a4
+    material_id: MATERIAL_SMIC_2024_ANNUAL_REPORT_IFRS_HKEX
+    rank: 13
+    score: 43.834176331254
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_b41a58bed01228df32578244
+    material_id: MATERIAL_SMIC_2023_ANNUAL_REPORT_IFRS_HKEX
+    rank: 14
+    score: 41.694813661382
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_a1bcc415165dbd156f1a74b5
+    material_id: MATERIAL_SMIC_2025_ANNUAL_REPORT_IFRS_HKEX
+    rank: 15
+    score: 41.413958153725
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_967b276ce58698ea27755c9b
+    material_id: MATERIAL_SMIC_2025_Q2_RESULTS
+    rank: 16
+    score: 32.86187703667
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_a7c6e712567f5d8cf327dc97
+    material_id: MATERIAL_SMIC_2025_Q2_RESULTS
+    rank: 17
+    score: 32.644088864444
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_1b62db4f81b487c643b49ebd
+    material_id: MATERIAL_SMIC_2025_Q2_RESULTS
+    rank: 18
+    score: 26.551146243526
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_fe4f8678efaac4e63b75991a
+    material_id: MATERIAL_SMIC_2025_Q2_RESULTS
+    rank: 19
+    score: 26.16336474201
+    selection_reason: DIRECT_HIT
+  - chunk_id: CHUNK_787cdd749a2edc1fc05fcb5c
+    material_id: MATERIAL_SMIC_2025_Q3_RESULTS
+    rank: 20
+    score: 24.435263675307
+    selection_reason: DIRECT_HIT

@@ -1,0 +1,28 @@
+{
+ "indicator": "季度毛利率（公司季度业绩公告披露口径）",
+ "judgment_logic": "若后续季度实际毛利率持续低于公司已披露的指引区间下限，则结果指标改善的跨期连续性被削弱，本维度结论应向 NOT_SUPPORTED 方向下调； 若实际值稳定处于或高于区间上限，则维持现有 MIXED 判断而不自动上调，机制层面的缺口并未随之补齐。",
+ "threshold": "18%",
+ "threshold_basis": "SOURCE_DISCLOSED_THRESHOLD",
+ "basis_evidence_id": "EVID_759908b984d49c1fedb7c038",
+ "proposed_threshold": null
+}
+{
+ "chunk_id": "CHUNK_ada0367884505128f1bfbbc7",
+ "claim_type": "REPORTED_FACT",
+ "conflict_status": "NOT_APPLICABLE",
+ "content_locator": {
+  "page_number": 2,
+  "paragraph_group": "page_text",
+  "section": "SEMICONDUCTOR MANUFACTURING INTERNATIONAL CORPORATION"
+ },
+ "dimension_id": "D7_SUSTAINABILITY_EVIDENCE",
+ "evidence_id": "EVID_759908b984d49c1fedb7c038",
+ "evidence_status": "USABLE",
+ "fact_id": "FACT_4e41ee6d5e010a0f03a1b4f2",
+ "material_id": "MATERIAL_SMIC_2025_Q4_RESULTS",
+ "record_kind": "TEXT_PROPOSITION",
+ "record_type": "CANDIDATE_EVIDENCE",
+ "source_group_id": "SG_SMIC_2025_Q4_RESULTS",
+ "source_span_text": "gross margin is expected to be in the range of 18% to 20%.",
+ "source_tier": "T1"
+}

@@ -1,0 +1,544 @@
+{
+  "material_id": "MATERIAL_SMIC_2026_Q1_A_SHARE_REPORT_CNSTOCK",
+  "parser": "html-parser-v1",
+  "headings": [
+    {
+      "level": 3,
+      "locator": "heading:h3[1]",
+      "text": "98版 信息披露"
+    },
+    {
+      "level": 3,
+      "locator": "heading:h3[2]",
+      "text": "中芯国际集成电路制造有限公司2026年第一季度报告"
+    },
+    {
+      "level": 2,
+      "locator": "heading:h2[1]",
+      "text": "上海证券报网络版郑重声明"
+    },
+    {
+      "level": 3,
+      "locator": "heading:h3[3]",
+      "text": "2026年"
+    },
+    {
+      "level": 2,
+      "locator": "heading:h2[2]",
+      "text": "5月15日"
+    },
+    {
+      "level": 3,
+      "locator": "heading:h3[4]",
+      "text": "返回首页"
+    },
+    {
+      "level": 3,
+      "locator": "heading:h3[5]",
+      "text": "版面导航"
+    },
+    {
+      "level": 3,
+      "locator": "heading:h3[6]",
+      "text": "稿件搜索"
+    },
+    {
+      "level": 1,
+      "locator": "heading:h1[1]",
+      "text": "中芯国际集成电路制造有限公司2026年第一季度报告"
+    },
+    {
+      "level": 3,
+      "locator": "heading:h3[7]",
+      "text": "上一版：97：信息披露"
+    },
+    {
+      "level": 3,
+      "locator": "heading:h3[8]",
+      "text": "下一版：99：信息披露"
+    }
+  ],
+  "paragraphs": [
+    {
+      "locator": "paragraph:p[1]",
+      "text": "经上海证券报社授权，中国证券网独家全权代理《上海证券报》信息登载业务。本页内容未经书面授权许可，不得转载、复制或在非中国证券网所属服务器建立镜像。欲咨询授权事宜请与中国证券网联系 (021-38967792) 。"
+    },
+    {
+      "locator": "paragraph:p[2]",
+      "text": "证券代码：688981 证券简称：中芯国际"
+    },
+    {
+      "locator": "paragraph:p[3]",
+      "text": "本公司董事会及全体董事保证本公告内容不存在任何虚假记载、误导性陈述或者重大遗漏，并对其内容的真实性、准确性和完整性依法承担法律责任。"
+    },
+    {
+      "locator": "paragraph:p[4]",
+      "text": "重要内容提示"
+    },
+    {
+      "locator": "paragraph:p[5]",
+      "text": "公司董事会及董事、高级管理人员保证季度报告内容的真实、准确、完整，不存在虚假记载、误导性陈述或重大遗漏，并承担个别和连带的法律责任。"
+    },
+    {
+      "locator": "paragraph:p[6]",
+      "text": "公司负责人、主管会计工作负责人及会计机构负责人（会计主管人员）保证季度报告中财务信息的真实、准确、完整。"
+    },
+    {
+      "locator": "paragraph:p[7]",
+      "text": "第一季度财务报表是否经审计"
+    },
+    {
+      "locator": "paragraph:p[8]",
+      "text": "□是 √否"
+    },
+    {
+      "locator": "paragraph:p[9]",
+      "text": "除非另有说明，本报告财务数据按中国企业会计准则编制并呈列。"
+    },
+    {
+      "locator": "paragraph:p[10]",
+      "text": "前瞻性陈述的风险声明"
+    },
+    {
+      "locator": "paragraph:p[11]",
+      "text": "本报告可能载有（除历史数据外）前瞻性陈述。该等前瞻性陈述乃根据中芯国际对未来事件或绩效的现行假设、期望、信念、计划、目标及预测而作出。中芯国际使用包括（但不限于)“相信”、“预期”、“打算”、“估计”、“预计”、“预测”、“指标”、“展望”、“继续”、“应该”、“或许”、“寻求”、“应当”、“计划”、“可能”、“愿景”、“目标”、“旨在”、“渴望”、“目的”、“预定”、“前景”和其他类似的表述，以识别前瞻性陈述。该等前瞻性陈述乃反映中芯国际高级管理层根据最佳判断作出的估计，存在重大已知及未知的风险、不确定性以及其他可能导致中芯国际实际业绩、财务状况或经营结果与前瞻性陈述所载数据有重大差异的因素，包括（但不限于）与半导体行业周期及市场情况有关风险、半导体行业的激烈竞争、中芯国际客户能否及时接收晶圆产品、能否及时引进新技术、中芯国际量产新产品的能力、半导体代工服务供求情况、设备、零备件、原材料、软件及服务支持短缺、来自未决诉讼的命令或判决、半导体行业常见的知识产权诉讼、宏观经济状况、货币汇率波动及地缘政治风险。"
+    },
+    {
+      "locator": "paragraph:p[12]",
+      "text": "一、 公司基本情况"
+    },
+    {
+      "locator": "paragraph:p[13]",
+      "text": "（一）2026年第二季指引"
+    },
+    {
+      "locator": "paragraph:p[14]",
+      "text": "以下声明为前瞻性陈述，基于目前的预期并涵盖风险和不确定性。以下数据不包含汇率变动的影响。本公司预期国际财务报告准则下的指引为："
+    },
+    {
+      "locator": "paragraph:p[15]",
+      "text": "?季度收入环比上升14%至16%。"
+    },
+    {
+      "locator": "paragraph:p[16]",
+      "text": "?毛利率介于20%至22%的范围内。"
+    },
+    {
+      "locator": "paragraph:p[17]",
+      "text": "（二）管理层评论"
+    },
+    {
+      "locator": "paragraph:p[18]",
+      "text": "按照国际财务报告准则，一季度，公司实现销售收入25.05亿美元，环比增长0.7%；毛利率为20.1%，环比增加0.9个百分点。"
+    },
+    {
+      "locator": "paragraph:p[19]",
+      "text": "二季度，公司给出的收入指引为环比增长14%到16%，毛利率指引为20%-22%，与上一季指引相比提升2个百分点。"
+    },
+    {
+      "locator": "paragraph:p[20]",
+      "text": "基于客户需求和在手订单情况，相较于上个季度，我们对于今年的整体运营情况更加乐观。公司将紧密跟踪客户需求，灵活调配资源，加快产品响应速度，确保在复杂环境中依然能保持高质量的交付。"
+    },
+    {
+      "locator": "paragraph:p[21]",
+      "text": "二、 主要财务数据"
+    },
+    {
+      "locator": "paragraph:p[22]",
+      "text": "（一）主要会计数据和财务指标"
+    },
+    {
+      "locator": "paragraph:p[23]",
+      "text": "单位：千元 币种：人民币"
+    },
+    {
+      "locator": "paragraph:p[24]",
+      "text": "■"
+    },
+    {
+      "locator": "paragraph:p[25]",
+      "text": "■"
+    },
+    {
+      "locator": "paragraph:p[26]",
+      "text": "■"
+    },
+    {
+      "locator": "paragraph:p[27]",
+      "text": "附注:“本报告期”指本季度初至本季度末3个月期间，下同。"
+    },
+    {
+      "locator": "paragraph:p[28]",
+      "text": "（二）主要会计数据、财务指标发生变动的情况、原因"
+    },
+    {
+      "locator": "paragraph:p[29]",
+      "text": "√适用 □不适用"
+    },
+    {
+      "locator": "paragraph:p[30]",
+      "text": "■"
+    },
+    {
+      "locator": "paragraph:p[31]",
+      "text": "（三）其他数据及指标"
+    },
+    {
+      "locator": "paragraph:p[32]",
+      "text": "主营业务收入分析"
+    },
+    {
+      "locator": "paragraph:p[33]",
+      "text": "■"
+    },
+    {
+      "locator": "paragraph:p[34]",
+      "text": "■"
+    },
+    {
+      "locator": "paragraph:p[35]",
+      "text": "晶圆收入分析"
+    },
+    {
+      "locator": "paragraph:p[36]",
+      "text": "■"
+    },
+    {
+      "locator": "paragraph:p[37]",
+      "text": "■"
+    },
+    {
+      "locator": "paragraph:p[38]",
+      "text": "其他指标"
+    },
+    {
+      "locator": "paragraph:p[39]",
+      "text": "■"
+    },
+    {
+      "locator": "paragraph:p[40]",
+      "text": "附注："
+    },
+    {
+      "locator": "paragraph:p[41]",
+      "text": "(1) 折合8英寸标准逻辑。"
+    },
+    {
+      "locator": "paragraph:p[42]",
+      "text": "(2) 期末月产能折算成8英寸标准逻辑的片数。"
+    },
+    {
+      "locator": "paragraph:p[43]",
+      "text": "(3) 产能利用率按产出晶圆总额除以估计季度产能计算。"
+    },
+    {
+      "locator": "paragraph:p[44]",
+      "text": "（四）非经常性损益项目和金额"
+    },
+    {
+      "locator": "paragraph:p[45]",
+      "text": "√适用 □不适用"
+    },
+    {
+      "locator": "paragraph:p[46]",
+      "text": "单位：千元 币种：人民币"
+    },
+    {
+      "locator": "paragraph:p[47]",
+      "text": "■"
+    },
+    {
+      "locator": "paragraph:p[48]",
+      "text": "对公司将《公开发行证券的公司信息披露解释性公告第1号——非经常性损益》未列举的项目认定为非经常性损益项目且金额重大的，以及将《公开发行证券的公司信息披露解释性公告第1号——非经常性损益》中列举的非经常性损益项目界定为经常性损益的项目，应说明原因。"
+    },
+    {
+      "locator": "paragraph:p[49]",
+      "text": "√适用 □不适用"
+    },
+    {
+      "locator": "paragraph:p[50]",
+      "text": "单位：千元 币种：人民币"
+    },
+    {
+      "locator": "paragraph:p[51]",
+      "text": "■"
+    },
+    {
+      "locator": "paragraph:p[52]",
+      "text": "（五）境内外会计准则下会计数据差异"
+    },
+    {
+      "locator": "paragraph:p[53]",
+      "text": "单位：千元 币种：人民币"
+    },
+    {
+      "locator": "paragraph:p[54]",
+      "text": "■"
+    },
+    {
+      "locator": "paragraph:p[55]",
+      "text": "附注：在企业会计准则下，联营及合营企业被动稀释产生的影响，应调整长期股权投资的账面价值，同时确认资本公积。在国际财务报告准则下，将联营及合营企业被动稀释产生的影响调整长期股权投资的账面价值并计入当期损益。"
+    },
+    {
+      "locator": "paragraph:p[56]",
+      "text": "三、 股东信息"
+    },
+    {
+      "locator": "paragraph:p[57]",
+      "text": "（一）普通股股东总数和表决权恢复的优先股股东数量及前十名股东持股情况表"
+    },
+    {
+      "locator": "paragraph:p[58]",
+      "text": "1. 截至本报告期末，本公司已发行8,001,459,818股，其中于香港联交所主板已发行6,001,897,269股，约占本公司总股本75.01%，于上海证券交易所科创板已发行1,999,562,549股，约占本公司总股本24.99%。"
+    },
+    {
+      "locator": "paragraph:p[59]",
+      "text": "2. 本公司香港股东名册由HKSCC NOMINEES LIMITED（香港中央结算（代理人）有限公司）及其他登记股东组成，其中HKSCC NOMINEES LIMITED代非登记股东持有股份约占本公司港股股份99.78%，其他登记股东持有股份约占本公司港股股份0.22%。"
+    },
+    {
+      "locator": "paragraph:p[60]",
+      "text": "3. 根据香港证券及期货条例，持有本公司5%或以上任何类别有投票权股份的权益的股东需自行进行权益申报。根据股东权益申报情况，大唐控股（香港）投资有限公司持有港股1,125,042,595股及鑫芯（香港）投资有限公司持有港股359,700,023股。公司已将前述股东所持股份数目从HKSCC NOMINEES LIMITED所持股份数目中剔除。"
+    },
+    {
+      "locator": "paragraph:p[61]",
+      "text": "4. A股股东性质按照中国结算A股股东名册中的持有人类别填报。"
+    },
+    {
+      "locator": "paragraph:p[62]",
+      "text": "单位：股"
+    },
+    {
+      "locator": "paragraph:p[63]",
+      "text": "■"
+    },
+    {
+      "locator": "paragraph:p[64]",
+      "text": "■"
+    },
+    {
+      "locator": "paragraph:p[65]",
+      "text": "持股5%以上股东、前10名股东及前10名无限售流通股股东参与转融通业务出借股份情况"
+    },
+    {
+      "locator": "paragraph:p[66]",
+      "text": "□适用 √不适用"
+    },
+    {
+      "locator": "paragraph:p[67]",
+      "text": "前10名股东及前10名无限售流通股股东因转融通出借/归还原因导致较上期发生变化"
+    },
+    {
+      "locator": "paragraph:p[68]",
+      "text": "□适用 √不适用"
+    },
+    {
+      "locator": "paragraph:p[69]",
+      "text": "四、 其他提醒事项"
+    },
+    {
+      "locator": "paragraph:p[70]",
+      "text": "需提醒投资者关注的关于公司报告期经营情况的其他重要信息"
+    },
+    {
+      "locator": "paragraph:p[71]",
+      "text": "□适用 √不适用"
+    },
+    {
+      "locator": "paragraph:p[72]",
+      "text": "五、 季度财务报表"
+    },
+    {
+      "locator": "paragraph:p[73]",
+      "text": "（一）审计意见类型"
+    },
+    {
+      "locator": "paragraph:p[74]",
+      "text": "□适用 √不适用"
+    },
+    {
+      "locator": "paragraph:p[75]",
+      "text": "（二）财务报表"
+    },
+    {
+      "locator": "paragraph:p[76]",
+      "text": "合并资产负债表"
+    },
+    {
+      "locator": "paragraph:p[77]",
+      "text": "2026年3月31日"
+    },
+    {
+      "locator": "paragraph:p[78]",
+      "text": "编制单位：中芯国际集成电路制造有限公司"
+    },
+    {
+      "locator": "paragraph:p[79]",
+      "text": "单位：千元 币种：人民币 审计类型：未经审计"
+    },
+    {
+      "locator": "paragraph:p[80]",
+      "text": "■"
+    },
+    {
+      "locator": "paragraph:p[81]",
+      "text": "公司负责人：刘训峰 主管会计工作负责人：吴俊峰 会计机构负责人：刘晨健"
+    },
+    {
+      "locator": "paragraph:p[82]",
+      "text": "合并利润表"
+    },
+    {
+      "locator": "paragraph:p[83]",
+      "text": "2026年1—3月"
+    },
+    {
+      "locator": "paragraph:p[84]",
+      "text": "编制单位：中芯国际集成电路制造有限公司"
+    },
+    {
+      "locator": "paragraph:p[85]",
+      "text": "单位：千元 币种：人民币 审计类型：未经审计"
+    },
+    {
+      "locator": "paragraph:p[86]",
+      "text": "■"
+    },
+    {
+      "locator": "paragraph:p[87]",
+      "text": "本期发生同一控制下企业合并的，被合并方在合并前实现的净利润为：0元，上期被合并方实现的净利润为：0 元。"
+    },
+    {
+      "locator": "paragraph:p[88]",
+      "text": "公司负责人：刘训峰 主管会计工作负责人：吴俊峰 会计机构负责人：刘晨健"
+    },
+    {
+      "locator": "paragraph:p[89]",
+      "text": "合并现金流量表"
+    },
+    {
+      "locator": "paragraph:p[90]",
+      "text": "2026年1—3月"
+    },
+    {
+      "locator": "paragraph:p[91]",
+      "text": "编制单位：中芯国际集成电路制造有限公司"
+    },
+    {
+      "locator": "paragraph:p[92]",
+      "text": "单位：千元 币种：人民币 审计类型：未经审计"
+    },
+    {
+      "locator": "paragraph:p[93]",
+      "text": "■"
+    },
+    {
+      "locator": "paragraph:p[94]",
+      "text": "公司负责人：刘训峰 主管会计工作负责人：吴俊峰 会计机构负责人：刘晨健"
+    },
+    {
+      "locator": "paragraph:p[95]",
+      "text": "2026年起首次执行新会计准则或准则解释等涉及调整首次执行当年年初的财务报表"
+    },
+    {
+      "locator": "paragraph:p[96]",
+      "text": "□适用 √不适用"
+    },
+    {
+      "locator": "paragraph:p[97]",
+      "text": "特此公告"
+    },
+    {
+      "locator": "paragraph:p[98]",
+      "text": "中芯国际集成电路制造有限公司董事会"
+    },
+    {
+      "locator": "paragraph:p[99]",
+      "text": "2026年5月14日"
+    },
+    {
+      "locator": "paragraph:p[100]",
+      "text": "■"
+    },
+    {
+      "locator": "paragraph:p[101]",
+      "text": "中芯国际集成电路制造有限公司"
+    },
+    {
+      "locator": "paragraph:p[102]",
+      "text": "关于修订组织章程细则的公告"
+    },
+    {
+      "locator": "paragraph:p[103]",
+      "text": "本公司董事会及全体董事保证本公告内容不存在任何虚假记载、误导性陈述或者重大遗漏，并对其内容的真实性、准确性和完整性依法承担法律责任。"
+    },
+    {
+      "locator": "paragraph:p[104]",
+      "text": "中芯国际集成电路制造有限公司（以下简称“本公司”）于2026年5月14日召开董事会会议，审议通过了《关于修订〈公司章程〉〈股东会议事规则〉及〈董事会议事规则〉的议案》。"
+    },
+    {
+      "locator": "paragraph:p[105]",
+      "text": "根据中国证券监督管理委员会发布的《上市公司章程指引》和《上市公司治理准则》，以及《上海证券交易所科创板股票上市规则》等法律法规、规范性文件的最新规定及监管要求，结合本公司实际情况，董事会建议修订本公司现有组织章程细则（以下简称“现有章程”）若干条款。"
+    },
+    {
+      "locator": "paragraph:p[106]",
+      "text": "本公告附录列载了对现有章程的现有条款与现有章程的建议修订之对比。"
+    },
+    {
+      "locator": "paragraph:p[107]",
+      "text": "对现有章程作出的修订须待股东于本公司2026年度股东会上以特别决议案批准后生效。载有（其中包括）(i) 建议修订现有章程的详情；及(ii) 年度股东会通告的通函将适时发送给股东。"
+    },
+    {
+      "locator": "paragraph:p[108]",
+      "text": "特此公告。"
+    },
+    {
+      "locator": "paragraph:p[109]",
+      "text": "中芯国际集成电路制造有限公司"
+    },
+    {
+      "locator": "paragraph:p[110]",
+      "text": "董事会"
+    },
+    {
+      "locator": "paragraph:p[111]",
+      "text": "2026年5月15日"
+    },
+    {
+      "locator": "paragraph:p[112]",
+      "text": "附录"
+    },
+    {
+      "locator": "paragraph:p[113]",
+      "text": "对现有章程的修订"
+    },
+    {
+      "locator": "paragraph:p[114]",
+      "text": "■"
+    },
+    {
+      "locator": "paragraph:p[115]",
+      "text": "(下转99版)"
+    },
+    {
+      "locator": "paragraph:p[116]",
+      "text": "上海证券报社有限公司版权所有。本网站提供之资料或信息，仅供投资者参考，不构成投资建议。"
+    },
+    {
+      "locator": "paragraph:p[117]",
+      "text": "Copyright 1998 Shanghai Securities News Co. Ltd. All rights reserved."
+    },
+    {
+      "locator": "paragraph:p[118]",
+      "text": "联系电话：021-38967777 转新媒体部 地址：上海浦东新区陆家嘴金融城东园路18号 邮编：200120 E-MAIL:webmaster@cnstock.com 投诉、举报电话：021-38967777"
+    },
+    {
+      "locator": "paragraph:p[119]",
+      "text": "互联网新闻信息服务许可证：10120190013 网络出版服务许可证：（总）网出证（沪）字第010号 增值电信业务经营许可证：沪B2-20180571"
+    },
+    {
+      "locator": "paragraph:p[120]",
+      "text": "广播电视节目制作经营许可证：（沪）字第2676号 沪ICP备17054524号-2 上海工商 沪公网安备31011502Q05973号"
+    }
+  ],
+  "tables": []
+}

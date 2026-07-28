@@ -1,0 +1,5626 @@
+{
+  "material_id": "MATERIAL_SMIC_2025_Q4_RESULTS",
+  "parser": "pdfplumber-v1",
+  "page_count": 13,
+  "reliable_text_layer": true,
+  "pages": [
+    {
+      "page_number": 1,
+      "width": 595.32,
+      "height": 841.92,
+      "text": "Hong Kong Exchanges and Clearing Limited and The Stock Exchange of Hong Kong Limited take no\nresponsibility for the contents of this announcement, make no representation as to its accuracy or\ncompleteness and expressly disclaim any liability whatsoever for any loss howsoever arising from or in\nreliance upon the whole or any part of the contents of this document.\nSEMICONDUCTOR MANUFACTURING INTERNATIONAL CORPORATION\n中 芯 國 際 集 成 電 路 製 造 有 限 公 司*\n(Incorporated in the Cayman Islands with limited liability)\n(STOCK CODE: 00981)\nSMIC REPORTS UNAUDITED RESULTS FOR THE THREE MONTHS ENDED DECEMBER 31, 2025\nThe consolidated financial information is prepared and presented in accordance with International\nFinancial Reporting Standards (“IFRSs”), unless otherwise stated below.\n Revenue was $2,488.7 million in 4Q25, compared to $2,381.8 million in 3Q25, and $2,207.3\nmillion in 4Q24.\n Gross profit was $478.1 million in 4Q25, compared to $522.8 million in 3Q25, and $499.0 million in\n4Q24.\n Gross margin was 19.2% in 4Q25, compared to 22.0% in 3Q25 and 22.6% in 4Q24.\n Unaudited revenue was $9,326.8 million in 2025, compared to $8,029.9 million in 2024.\n Unaudited profit attributable to owners of the Company was $685.1 million in 2025, an increase of\n39.1% from $492.7 million in 2024, mainly due to the increase in wafer shipment and utilization\nrate, and product mix change.\nSet out below is a copy of the full text of the release by the Company and its subsidiaries (the “Group”)\non February 10, 2026, in relation to its unaudited results for the three months ended DECEMBER 31,\n2025.\nAll currency figures stated in this report are in US Dollars unless stated otherwise.\nShanghai, China – February 10, 2026 – Semiconductor Manufacturing International Corporation (SEHK:\n00981; SSE STAR MARKET: 688981) (“SMIC”, the “Company” or “we”), one of the leading\nsemiconductor foundries in the world, today announced its consolidated results of operations for the\nthree months ended DECEMBER 31, 2025.\n* For identification purposes only\n- 1 -",
+      "text_lines": [
+        {
+          "text": "Hong Kong Exchanges and Clearing Limited and The Stock Exchange of Hong Kong Limited take no",
+          "bbox": [
+            72.024,
+            69.41167999999993,
+            532.69392,
+            79.37167999999997
+          ]
+        },
+        {
+          "text": "responsibility for the contents of this announcement, make no representation as to its accuracy or",
+          "bbox": [
+            72.024,
+            80.93167999999991,
+            532.58436,
+            90.89167999999995
+          ]
+        },
+        {
+          "text": "completeness and expressly disclaim any liability whatsoever for any loss howsoever arising from or in",
+          "bbox": [
+            72.024,
+            92.4516799999999,
+            533.0536000000001,
+            102.41167999999993
+          ]
+        },
+        {
+          "text": "reliance upon the whole or any part of the contents of this document.",
+          "bbox": [
+            72.024,
+            103.85167999999999,
+            375.2561999999998,
+            113.81168000000002
+          ]
+        },
+        {
+          "text": "SEMICONDUCTOR MANUFACTURING INTERNATIONAL CORPORATION",
+          "bbox": [
+            130.94,
+            230.50160000000005,
+            473.82296000000025,
+            240.46159999999998
+          ]
+        },
+        {
+          "text": "中 芯 國 際 集 成 電 路 製 造 有 限 公 司*",
+          "bbox": [
+            212.45,
+            242.17435999999987,
+            392.74444,
+            252.82159999999988
+          ]
+        },
+        {
+          "text": "(Incorporated in the Cayman Islands with limited liability)",
+          "bbox": [
+            166.94,
+            254.98159999999996,
+            437.87191999999993,
+            264.9415999999999
+          ]
+        },
+        {
+          "text": "(STOCK CODE: 00981)",
+          "bbox": [
+            248.93,
+            266.50160000000005,
+            356.04976,
+            276.4616
+          ]
+        },
+        {
+          "text": "SMIC REPORTS UNAUDITED RESULTS FOR THE THREE MONTHS ENDED DECEMBER 31, 2025",
+          "bbox": [
+            75.624,
+            289.4216,
+            531.80344,
+            299.38159999999993
+          ]
+        },
+        {
+          "text": "The consolidated financial information is prepared and presented in accordance with International",
+          "bbox": [
+            73.464,
+            313.0616,
+            531.6180400000001,
+            323.0215999999999
+          ]
+        },
+        {
+          "text": "Financial Reporting Standards (“IFRSs”), unless otherwise stated below.",
+          "bbox": [
+            73.464,
+            324.5816,
+            393.18,
+            334.54159999999996
+          ]
+        },
+        {
+          "text": " Revenue was $2,488.7 million in 4Q25, compared to $2,381.8 million in 3Q25, and $2,207.3",
+          "bbox": [
+            76.824,
+            346.01179999999994,
+            531.8060800000001,
+            356.0216
+          ]
+        },
+        {
+          "text": "million in 4Q24.",
+          "bbox": [
+            94.824,
+            357.5815999999999,
+            163.58888,
+            367.54159999999996
+          ]
+        },
+        {
+          "text": " Gross profit was $478.1 million in 4Q25, compared to $522.8 million in 3Q25, and $499.0 million in",
+          "bbox": [
+            76.824,
+            380.57179999999994,
+            531.68344,
+            390.5816
+          ]
+        },
+        {
+          "text": "4Q24.",
+          "bbox": [
+            94.824,
+            392.04159999999996,
+            121.94888,
+            402.0016
+          ]
+        },
+        {
+          "text": " Gross margin was 19.2% in 4Q25, compared to 22.0% in 3Q25 and 22.6% in 4Q24.",
+          "bbox": [
+            76.824,
+            415.0317999999999,
+            465.58888,
+            425.04159999999996
+          ]
+        },
+        {
+          "text": " Unaudited revenue was $9,326.8 million in 2025, compared to $8,029.9 million in 2024.",
+          "bbox": [
+            76.824,
+            438.07179999999994,
+            480.46888,
+            448.0816
+          ]
+        },
+        {
+          "text": " Unaudited profit attributable to owners of the Company was $685.1 million in 2025, an increase of",
+          "bbox": [
+            76.824,
+            460.99179999999996,
+            531.67384,
+            471.0016
+          ]
+        },
+        {
+          "text": "39.1% from $492.7 million in 2024, mainly due to the increase in wafer shipment and utilization",
+          "bbox": [
+            94.824,
+            472.56159999999994,
+            531.8128,
+            482.5216
+          ]
+        },
+        {
+          "text": "rate, and product mix change.",
+          "bbox": [
+            94.824,
+            484.0815999999999,
+            227.09888,
+            494.04159999999996
+          ]
+        },
+        {
+          "text": "Set out below is a copy of the full text of the release by the Company and its subsidiaries (the “Group”)",
+          "bbox": [
+            72.024,
+            519.1216,
+            532.9358799999999,
+            529.0816
+          ]
+        },
+        {
+          "text": "on February 10, 2026, in relation to its unaudited results for the three months ended DECEMBER 31,",
+          "bbox": [
+            72.024,
+            530.6415999999999,
+            532.6939199999998,
+            540.6016
+          ]
+        },
+        {
+          "text": "2025.",
+          "bbox": [
+            72.024,
+            542.0416,
+            96.97380000000001,
+            552.0016
+          ]
+        },
+        {
+          "text": "All currency figures stated in this report are in US Dollars unless stated otherwise.",
+          "bbox": [
+            72.024,
+            565.1116,
+            432.93456000000003,
+            575.0716
+          ]
+        },
+        {
+          "text": "Shanghai, China – February 10, 2026 – Semiconductor Manufacturing International Corporation (SEHK:",
+          "bbox": [
+            72.024,
+            588.1515999999999,
+            532.9570399999999,
+            598.1116
+          ]
+        },
+        {
+          "text": "00981; SSE STAR MARKET: 688981) (“SMIC”, the “Company” or “we”), one of the leading",
+          "bbox": [
+            72.024,
+            599.6715999999999,
+            532.7736000000001,
+            609.6315999999999
+          ]
+        },
+        {
+          "text": "semiconductor foundries in the world, today announced its consolidated results of operations for the",
+          "bbox": [
+            72.024,
+            611.0716,
+            533.2190800000001,
+            621.0316
+          ]
+        },
+        {
+          "text": "three months ended DECEMBER 31, 2025.",
+          "bbox": [
+            72.024,
+            622.5916,
+            264.67032,
+            632.5516
+          ]
+        },
+        {
+          "text": "* For identification purposes only",
+          "bbox": [
+            72.024,
+            772.1315999999999,
+            217.17608,
+            782.0916
+          ]
+        },
+        {
+          "text": "- 1 -",
+          "bbox": [
+            293.69,
+            792.1715999999999,
+            311.42668000000003,
+            802.1315999999999
+          ]
+        }
+      ],
+      "tables": [],
+      "section_candidates": [
+        "SEMICONDUCTOR MANUFACTURING INTERNATIONAL CORPORATION",
+        "(STOCK CODE: 00981)",
+        "SMIC REPORTS UNAUDITED RESULTS FOR THE THREE MONTHS ENDED DECEMBER 31, 2025",
+        "4Q24."
+      ],
+      "footnote_candidates": [
+        {
+          "text": "All currency figures stated in this report are in US Dollars unless stated otherwise.",
+          "bbox": [
+            72.024,
+            565.1116,
+            432.93456000000003,
+            575.0716
+          ]
+        },
+        {
+          "text": "Shanghai, China – February 10, 2026 – Semiconductor Manufacturing International Corporation (SEHK:",
+          "bbox": [
+            72.024,
+            588.1515999999999,
+            532.9570399999999,
+            598.1116
+          ]
+        },
+        {
+          "text": "00981; SSE STAR MARKET: 688981) (“SMIC”, the “Company” or “we”), one of the leading",
+          "bbox": [
+            72.024,
+            599.6715999999999,
+            532.7736000000001,
+            609.6315999999999
+          ]
+        },
+        {
+          "text": "semiconductor foundries in the world, today announced its consolidated results of operations for the",
+          "bbox": [
+            72.024,
+            611.0716,
+            533.2190800000001,
+            621.0316
+          ]
+        },
+        {
+          "text": "three months ended DECEMBER 31, 2025.",
+          "bbox": [
+            72.024,
+            622.5916,
+            264.67032,
+            632.5516
+          ]
+        },
+        {
+          "text": "* For identification purposes only",
+          "bbox": [
+            72.024,
+            772.1315999999999,
+            217.17608,
+            782.0916
+          ]
+        },
+        {
+          "text": "- 1 -",
+          "bbox": [
+            293.69,
+            792.1715999999999,
+            311.42668000000003,
+            802.1315999999999
+          ]
+        }
+      ]
+    },
+    {
+      "page_number": 2,
+      "width": 595.32,
+      "height": 841.92,
+      "text": "The following statements are forward looking statements based on current expectations and involved\nrisks and uncertainties.\nFirst Quarter 2026 Guidance\nThe Company expects (in accordance with IFRSs):\n Revenue to be flat.\n Gross margin to range from 18% to 20%.\nThe Management Comments\nIn the fourth quarter, the Company’s revenue was 2,489 million, a sequential increase of 4.5%. Gross\nmargin was 19.2% and the capacity utilization rate remained at 95.7%.\nIn 2025, the reshuffling effects driven by the shift toward localization of the semiconductor industry chain\ncontinued throughout the whole year. According to the unaudited financial results, the Company’s\nrevenue in 2025 increased by 16.2% year-over-year to $9,327 million, and gross margin increased by\n3.0 percentage points to 21.0%. The Company’s capital expenditure in 2025 was $8.1 billion. Monthly\ncapacity was 1,059 thousand standard logic 8-inch equivalent wafers by the end of the year, increased\nby around 111 thousand wafers compared to the end of previous year. Total shipment reached around\n9.7 million wafers, and annualized capacity utilization rate increased by 8 percentage points year-over-\nyear to 93.5%.\nLooking ahead to 2026, for SMIC, the Company will face both opportunities from the industrial chain\nreshoring from overseas and challenges brought by the memory cycle. Combining the above factors,\nthe Company’s first quarter guidance is as follows: Revenue is expected to be flat sequentially, and the\ngross margin is expected to be in the range of 18% to 20%. Based on the premise that there are no\nsignificant changes in the external environment, the Company's guidance for the year 2026 are: The\nrevenue growth is expected to be higher than industry average in the same markets, and the capital\nexpenditure is expected to be roughly flat compared to that of 2025.\n- 2 -",
+      "text_lines": [
+        {
+          "text": "The following statements are forward looking statements based on current expectations and involved",
+          "bbox": [
+            72.024,
+            69.55160000000001,
+            517.26588,
+            79.51159999999993
+          ]
+        },
+        {
+          "text": "risks and uncertainties.",
+          "bbox": [
+            72.024,
+            81.07159999999999,
+            174.07416000000003,
+            91.03159999999991
+          ]
+        },
+        {
+          "text": "First Quarter 2026 Guidance",
+          "bbox": [
+            72.024,
+            106.57999999999993,
+            232.898,
+            118.57999999999993
+          ]
+        },
+        {
+          "text": "The Company expects (in accordance with IFRSs):",
+          "bbox": [
+            72.024,
+            131.59159999999997,
+            297.57584,
+            141.5515999999999
+          ]
+        },
+        {
+          "text": " Revenue to be flat.",
+          "bbox": [
+            72.024,
+            154.58180000000004,
+            176.54888,
+            164.59159999999997
+          ]
+        },
+        {
+          "text": " Gross margin to range from 18% to 20%.",
+          "bbox": [
+            72.024,
+            167.78179999999998,
+            274.73888000000005,
+            177.7915999999999
+          ]
+        },
+        {
+          "text": "The Management Comments",
+          "bbox": [
+            72.024,
+            204.26,
+            235.442,
+            216.26
+          ]
+        },
+        {
+          "text": "In the fourth quarter, the Company’s revenue was 2,489 million, a sequential increase of 4.5%. Gross",
+          "bbox": [
+            72.024,
+            229.39160000000004,
+            532.7437199999999,
+            239.35159999999996
+          ]
+        },
+        {
+          "text": "margin was 19.2% and the capacity utilization rate remained at 95.7%.",
+          "bbox": [
+            72.024,
+            240.9416,
+            383.57803999999993,
+            250.90159999999992
+          ]
+        },
+        {
+          "text": "In 2025, the reshuffling effects driven by the shift toward localization of the semiconductor industry chain",
+          "bbox": [
+            72.024,
+            263.98159999999996,
+            532.5980000000001,
+            273.9415999999999
+          ]
+        },
+        {
+          "text": "continued throughout the whole year. According to the unaudited financial results, the Company’s",
+          "bbox": [
+            72.024,
+            275.38160000000005,
+            532.8233999999998,
+            285.34159999999997
+          ]
+        },
+        {
+          "text": "revenue in 2025 increased by 16.2% year-over-year to $9,327 million, and gross margin increased by",
+          "bbox": [
+            72.024,
+            286.90160000000003,
+            533.1269599999998,
+            296.86159999999995
+          ]
+        },
+        {
+          "text": "3.0 percentage points to 21.0%. The Company’s capital expenditure in 2025 was $8.1 billion. Monthly",
+          "bbox": [
+            72.024,
+            298.4216,
+            532.7935199999997,
+            308.38159999999993
+          ]
+        },
+        {
+          "text": "capacity was 1,059 thousand standard logic 8-inch equivalent wafers by the end of the year, increased",
+          "bbox": [
+            72.024,
+            309.9416,
+            532.9679599999998,
+            319.9015999999999
+          ]
+        },
+        {
+          "text": "by around 111 thousand wafers compared to the end of previous year. Total shipment reached around",
+          "bbox": [
+            72.024,
+            321.4616,
+            532.7961599999999,
+            331.42159999999996
+          ]
+        },
+        {
+          "text": "9.7 million wafers, and annualized capacity utilization rate increased by 8 percentage points year-over-",
+          "bbox": [
+            72.024,
+            332.98159999999996,
+            533.21668,
+            342.9416
+          ]
+        },
+        {
+          "text": "year to 93.5%.",
+          "bbox": [
+            72.024,
+            344.38159999999993,
+            136.30584000000002,
+            354.34159999999997
+          ]
+        },
+        {
+          "text": "Looking ahead to 2026, for SMIC, the Company will face both opportunities from the industrial chain",
+          "bbox": [
+            72.024,
+            367.42159999999996,
+            532.73376,
+            377.3816
+          ]
+        },
+        {
+          "text": "reshoring from overseas and challenges brought by the memory cycle. Combining the above factors,",
+          "bbox": [
+            72.024,
+            378.94159999999994,
+            533.38888,
+            388.9016
+          ]
+        },
+        {
+          "text": "the Company’s first quarter guidance is as follows: Revenue is expected to be flat sequentially, and the",
+          "bbox": [
+            72.024,
+            390.4616,
+            532.9282,
+            400.4216
+          ]
+        },
+        {
+          "text": "gross margin is expected to be in the range of 18% to 20%. Based on the premise that there are no",
+          "bbox": [
+            72.024,
+            402.00159999999994,
+            533.0418400000001,
+            411.9616
+          ]
+        },
+        {
+          "text": "significant changes in the external environment, the Company's guidance for the year 2026 are: The",
+          "bbox": [
+            72.024,
+            413.4016,
+            533.2904800000001,
+            423.3616
+          ]
+        },
+        {
+          "text": "revenue growth is expected to be higher than industry average in the same markets, and the capital",
+          "bbox": [
+            72.024,
+            424.92159999999996,
+            532.7966,
+            434.8816
+          ]
+        },
+        {
+          "text": "expenditure is expected to be roughly flat compared to that of 2025.",
+          "bbox": [
+            72.024,
+            436.44159999999994,
+            371.06224000000003,
+            446.4016
+          ]
+        },
+        {
+          "text": "- 2 -",
+          "bbox": [
+            293.69,
+            792.1715999999999,
+            311.42668000000003,
+            802.1315999999999
+          ]
+        }
+      ],
+      "tables": [],
+      "section_candidates": [],
+      "footnote_candidates": [
+        {
+          "text": "- 2 -",
+          "bbox": [
+            293.69,
+            792.1715999999999,
+            311.42668000000003,
+            802.1315999999999
+          ]
+        }
+      ]
+    },
+    {
+      "page_number": 3,
+      "width": 595.32,
+      "height": 841.92,
+      "text": "Conference Call / Webcast Announcement\nDate: Wednesday, February 11, 2026\nTime: 8:30 A.M. - 9:30 A.M.\nWEBCAST\nThe call will be webcast live at:\nhttps://edge.media-server.com/mmc/p/n9dpeqkv\nCONFERENCE CALL\nPlease register in advance for the conference call at:\nhttps://register-conf.media-server.com/register/BIbce15e90f959464aa1592bb5413eacbf\nREPLAY\nRecording will be available 1 hour after the event and it will be archived for 12 months.\nhttps://www.smics.com/en/site/company_financialSummary\nAbout SMIC\nSemiconductor Manufacturing International Corporation (SEHK: 00981; SSE STAR MARKET: 688981)\nis one of the leading foundries in the world and is the front runner in manufacturing capability,\nmanufacturing scale, and comprehensive service in the Chinese Mainland. SMIC Group provides\nsemiconductor foundry and technology services to global customers on 8-inch and 12-inch wafers.\nHeadquartered in Shanghai, China, SMIC Group has an international manufacturing and service base,\nwith 8-inch and 12-inch wafer fabrication facilities in Shanghai, Beijing, Tianjin and Shenzhen. SMIC\nGroup also has marketing and customer service offices in the U.S., Europe, Japan, and Taiwan, China.\nFor more information, please visit www.smics.com.\nForward-Looking Statements\nThis release may contain, in addition to historical information, forward-looking statements. These\nforward-looking statements are based on SMIC's current assumptions, expectations, beliefs, plans,\nobjectives, and projections about future events or performance. SMIC uses words including but not\nlimited to “believe”, “anticipate”, “intend”, “estimate”, “expect”, “project”, “target”, “going forward”,\n“continue”, “ought to”, “may”, “seek”, “should”, “plan”, “could”, “vision”, “goal”, “aim”, “aspire”, “objective”,\n“schedule”, “outlook” and other similar expressions to identify forward looking statements. These\nforward-looking statements are estimates made by SMIC's senior management based on their best\njudgment and involve significant risks, both known and unknown, uncertainties and other factors that\nmay cause SMIC's actual performance, financial condition or results of operations to be materially\ndifferent from those suggested by the forward-looking statements including, among others, risks\nassociated with cyclicality and market conditions in the semiconductor industry, intense competition in\nthe semiconductor industry, timely wafer acceptance by SMIC's customers, timely introduction of new\ntechnologies, SMIC's ability to ramp new products into volume, supply and demand for semiconductor\nfoundry services, shortages in equipment, parts, raw materials, software and service supports, orders or\njudgments from pending litigation, common intellectual property litigation in the semiconductor industry,\nmacro-economic conditions, fluctuations in currency exchange rates and the risk of geopolitics.\n- 3 -",
+      "text_lines": [
+        {
+          "text": "Conference Call / Webcast Announcement",
+          "bbox": [
+            72.024,
+            79.69999999999993,
+            313.34399999999994,
+            91.69999999999993
+          ]
+        },
+        {
+          "text": "Date: Wednesday, February 11, 2026",
+          "bbox": [
+            72.024,
+            105.3116,
+            238.60652,
+            115.27159999999992
+          ]
+        },
+        {
+          "text": "Time: 8:30 A.M. - 9:30 A.M.",
+          "bbox": [
+            72.024,
+            117.3116,
+            194.1884,
+            127.27159999999992
+          ]
+        },
+        {
+          "text": "WEBCAST",
+          "bbox": [
+            72.024,
+            141.3116,
+            121.43556000000001,
+            151.27159999999992
+          ]
+        },
+        {
+          "text": "The call will be webcast live at:",
+          "bbox": [
+            72.024,
+            153.3116,
+            208.47600000000003,
+            163.27159999999992
+          ]
+        },
+        {
+          "text": "https://edge.media-server.com/mmc/p/n9dpeqkv",
+          "bbox": [
+            72.024,
+            165.0716,
+            285.9544400000001,
+            175.0315999999999
+          ]
+        },
+        {
+          "text": "CONFERENCE CALL",
+          "bbox": [
+            72.024,
+            191.11159999999995,
+            169.69176,
+            201.07159999999988
+          ]
+        },
+        {
+          "text": "Please register in advance for the conference call at:",
+          "bbox": [
+            72.024,
+            203.11159999999995,
+            304.87888000000004,
+            213.07159999999988
+          ]
+        },
+        {
+          "text": "https://register-conf.media-server.com/register/BIbce15e90f959464aa1592bb5413eacbf",
+          "bbox": [
+            72.024,
+            214.87160000000006,
+            459.6907999999999,
+            224.83159999999998
+          ]
+        },
+        {
+          "text": "REPLAY",
+          "bbox": [
+            72.024,
+            240.46159999999998,
+            111.4158,
+            250.4215999999999
+          ]
+        },
+        {
+          "text": "Recording will be available 1 hour after the event and it will be archived for 12 months.",
+          "bbox": [
+            72.024,
+            252.46159999999998,
+            453.2246800000001,
+            262.4215999999999
+          ]
+        },
+        {
+          "text": "https://www.smics.com/en/site/company_financialSummary",
+          "bbox": [
+            72.024,
+            264.10159999999996,
+            334.1612399999999,
+            274.0615999999999
+          ]
+        },
+        {
+          "text": "About SMIC",
+          "bbox": [
+            72.024,
+            313.13,
+            139.908,
+            325.13
+          ]
+        },
+        {
+          "text": "Semiconductor Manufacturing International Corporation (SEHK: 00981; SSE STAR MARKET: 688981)",
+          "bbox": [
+            72.024,
+            337.9016,
+            533.21752,
+            347.8616
+          ]
+        },
+        {
+          "text": "is one of the leading foundries in the world and is the front runner in manufacturing capability,",
+          "bbox": [
+            72.024,
+            349.42159999999996,
+            532.6042799999999,
+            359.3816
+          ]
+        },
+        {
+          "text": "manufacturing scale, and comprehensive service in the Chinese Mainland. SMIC Group provides",
+          "bbox": [
+            72.024,
+            360.94159999999994,
+            532.7337599999998,
+            370.9016
+          ]
+        },
+        {
+          "text": "semiconductor foundry and technology services to global customers on 8-inch and 12-inch wafers.",
+          "bbox": [
+            72.024,
+            372.4616,
+            533.347,
+            382.4216
+          ]
+        },
+        {
+          "text": "Headquartered in Shanghai, China, SMIC Group has an international manufacturing and service base,",
+          "bbox": [
+            72.024,
+            383.98159999999996,
+            532.7636399999998,
+            393.9416
+          ]
+        },
+        {
+          "text": "with 8-inch and 12-inch wafer fabrication facilities in Shanghai, Beijing, Tianjin and Shenzhen. SMIC",
+          "bbox": [
+            72.024,
+            395.5216,
+            532.8070399999997,
+            405.4816
+          ]
+        },
+        {
+          "text": "Group also has marketing and customer service offices in the U.S., Europe, Japan, and Taiwan, China.",
+          "bbox": [
+            72.024,
+            406.92159999999996,
+            527.74888,
+            416.8816
+          ]
+        },
+        {
+          "text": "For more information, please visit www.smics.com.",
+          "bbox": [
+            72.024,
+            429.9616,
+            297.29888,
+            439.9216
+          ]
+        },
+        {
+          "text": "Forward-Looking Statements",
+          "bbox": [
+            72.024,
+            465.66999999999996,
+            238.016,
+            477.66999999999996
+          ]
+        },
+        {
+          "text": "This release may contain, in addition to historical information, forward-looking statements. These",
+          "bbox": [
+            72.024,
+            491.28159999999997,
+            533.2459600000001,
+            501.2416
+          ]
+        },
+        {
+          "text": "forward-looking statements are based on SMIC's current assumptions, expectations, beliefs, plans,",
+          "bbox": [
+            72.024,
+            503.28159999999997,
+            532.6371199999999,
+            513.2416000000001
+          ]
+        },
+        {
+          "text": "objectives, and projections about future events or performance. SMIC uses words including but not",
+          "bbox": [
+            72.024,
+            515.2816,
+            532.7337599999997,
+            525.2416000000001
+          ]
+        },
+        {
+          "text": "limited to “believe”, “anticipate”, “intend”, “estimate”, “expect”, “project”, “target”, “going forward”,",
+          "bbox": [
+            72.024,
+            527.2816,
+            532.79,
+            537.2416000000001
+          ]
+        },
+        {
+          "text": "“continue”, “ought to”, “may”, “seek”, “should”, “plan”, “could”, “vision”, “goal”, “aim”, “aspire”, “objective”,",
+          "bbox": [
+            72.024,
+            539.2816,
+            532.56444,
+            549.2416000000001
+          ]
+        },
+        {
+          "text": "“schedule”, “outlook” and other similar expressions to identify forward looking statements. These",
+          "bbox": [
+            72.024,
+            551.2816,
+            533.05588,
+            561.2416000000001
+          ]
+        },
+        {
+          "text": "forward-looking statements are estimates made by SMIC's senior management based on their best",
+          "bbox": [
+            72.024,
+            563.3116,
+            533.14516,
+            573.2716
+          ]
+        },
+        {
+          "text": "judgment and involve significant risks, both known and unknown, uncertainties and other factors that",
+          "bbox": [
+            72.024,
+            575.3116,
+            532.7314399999999,
+            585.2716
+          ]
+        },
+        {
+          "text": "may cause SMIC's actual performance, financial condition or results of operations to be materially",
+          "bbox": [
+            72.024,
+            587.3116,
+            532.8114799999998,
+            597.2715999999999
+          ]
+        },
+        {
+          "text": "different from those suggested by the forward-looking statements including, among others, risks",
+          "bbox": [
+            72.024,
+            599.3116,
+            533.0735599999999,
+            609.2715999999999
+          ]
+        },
+        {
+          "text": "associated with cyclicality and market conditions in the semiconductor industry, intense competition in",
+          "bbox": [
+            72.024,
+            611.3116,
+            533.0285200000001,
+            621.2715999999999
+          ]
+        },
+        {
+          "text": "the semiconductor industry, timely wafer acceptance by SMIC's customers, timely introduction of new",
+          "bbox": [
+            72.024,
+            623.3116,
+            532.8732000000001,
+            633.2715999999999
+          ]
+        },
+        {
+          "text": "technologies, SMIC's ability to ramp new products into volume, supply and demand for semiconductor",
+          "bbox": [
+            72.024,
+            635.3116,
+            532.6739999999999,
+            645.2715999999999
+          ]
+        },
+        {
+          "text": "foundry services, shortages in equipment, parts, raw materials, software and service supports, orders or",
+          "bbox": [
+            72.024,
+            647.3116,
+            533.1961600000001,
+            657.2715999999999
+          ]
+        },
+        {
+          "text": "judgments from pending litigation, common intellectual property litigation in the semiconductor industry,",
+          "bbox": [
+            72.024,
+            659.3116,
+            533.25568,
+            669.2715999999999
+          ]
+        },
+        {
+          "text": "macro-economic conditions, fluctuations in currency exchange rates and the risk of geopolitics.",
+          "bbox": [
+            72.024,
+            671.3116,
+            491.14888,
+            681.2715999999999
+          ]
+        },
+        {
+          "text": "- 3 -",
+          "bbox": [
+            293.69,
+            792.1715999999999,
+            311.42668000000003,
+            802.1315999999999
+          ]
+        }
+      ],
+      "tables": [],
+      "section_candidates": [
+        "WEBCAST",
+        "CONFERENCE CALL",
+        "REPLAY"
+      ],
+      "footnote_candidates": [
+        {
+          "text": "“schedule”, “outlook” and other similar expressions to identify forward looking statements. These",
+          "bbox": [
+            72.024,
+            551.2816,
+            533.05588,
+            561.2416000000001
+          ]
+        },
+        {
+          "text": "forward-looking statements are estimates made by SMIC's senior management based on their best",
+          "bbox": [
+            72.024,
+            563.3116,
+            533.14516,
+            573.2716
+          ]
+        },
+        {
+          "text": "judgment and involve significant risks, both known and unknown, uncertainties and other factors that",
+          "bbox": [
+            72.024,
+            575.3116,
+            532.7314399999999,
+            585.2716
+          ]
+        },
+        {
+          "text": "may cause SMIC's actual performance, financial condition or results of operations to be materially",
+          "bbox": [
+            72.024,
+            587.3116,
+            532.8114799999998,
+            597.2715999999999
+          ]
+        },
+        {
+          "text": "different from those suggested by the forward-looking statements including, among others, risks",
+          "bbox": [
+            72.024,
+            599.3116,
+            533.0735599999999,
+            609.2715999999999
+          ]
+        },
+        {
+          "text": "associated with cyclicality and market conditions in the semiconductor industry, intense competition in",
+          "bbox": [
+            72.024,
+            611.3116,
+            533.0285200000001,
+            621.2715999999999
+          ]
+        },
+        {
+          "text": "the semiconductor industry, timely wafer acceptance by SMIC's customers, timely introduction of new",
+          "bbox": [
+            72.024,
+            623.3116,
+            532.8732000000001,
+            633.2715999999999
+          ]
+        },
+        {
+          "text": "technologies, SMIC's ability to ramp new products into volume, supply and demand for semiconductor",
+          "bbox": [
+            72.024,
+            635.3116,
+            532.6739999999999,
+            645.2715999999999
+          ]
+        },
+        {
+          "text": "foundry services, shortages in equipment, parts, raw materials, software and service supports, orders or",
+          "bbox": [
+            72.024,
+            647.3116,
+            533.1961600000001,
+            657.2715999999999
+          ]
+        },
+        {
+          "text": "judgments from pending litigation, common intellectual property litigation in the semiconductor industry,",
+          "bbox": [
+            72.024,
+            659.3116,
+            533.25568,
+            669.2715999999999
+          ]
+        },
+        {
+          "text": "macro-economic conditions, fluctuations in currency exchange rates and the risk of geopolitics.",
+          "bbox": [
+            72.024,
+            671.3116,
+            491.14888,
+            681.2715999999999
+          ]
+        },
+        {
+          "text": "- 3 -",
+          "bbox": [
+            293.69,
+            792.1715999999999,
+            311.42668000000003,
+            802.1315999999999
+          ]
+        }
+      ]
+    },
+    {
+      "page_number": 4,
+      "width": 595.32,
+      "height": 841.92,
+      "text": "Summary of Fourth Quarter 2025 Operating Results\nAmounts in US$ thousands, except for earnings per share\n4Q25 3Q25 QoQ 4Q24 YoY\nRevenue 2,488,710 2,381,822 4.5% 2,207,281 12.8%\nCost of sales (2,010,589) (1,859,011) 8.2% (1,708,270) 17.7%\nGross profit 478,121 522,811 -8.5% 499,011 -4.2%\nOperating expenses (179,501) (171,742) 4.5% (284,544) -36.9%\nProfit from operations 298,620 351,069 -14.9% 214,467 39.2%\nOther income, net (72,117) (13,993) 415.4% 140,791 N/A\nProfit before tax 226,503 337,076 -32.8% 355,258 -36.2%\nIncome tax expense (23,128) (21,610) 7.0% (84,312) -72.6%\nProfit for the period 203,375 315,466 -35.5% 270,946 -24.9%\nProfit for the period attributable to:\nOwners of the Company 172,851 191,758 -9.9% 107,587 60.7%\nNon-controlling interests 30,524 123,708 -75.3% 163,359 -81.3%\nProfit for the period 203,375 315,466 -35.5% 270,946 -24.9%\nGross margin 19.2% 22.0% 22.6%\nEarnings per share(1)\nBasic $0.02 $0.02 $0.01\nDiluted $0.02 $0.02 $0.01\nNote:\n(1) Based on weighted average ordinary shares of 8,000 million (basic) and 8,013 million (diluted) in 4Q25, 7,988 million (basic)\nand 8,009 million (diluted) in 3Q25, and 7,975 million (basic) and 7,998 million (diluted) in 4Q24.\n Revenue was $2,488.7 million in 4Q25, an increase of 4.5% QoQ from $2,381.8 million in 3Q25. The\ngrowth was mainly due to the increase in wafer shipment and product mix change in 4Q25.\n Cost of sales was $2,010.6 million in 4Q25, compared to $1,859.0 million in 3Q25.\n Gross profit was $478.1 million in 4Q25, compared to $522.8 million in 3Q25.\n Gross margin was 19.2% in 4Q25, compared to 22.0% in 3Q25, due to the increase in depreciation.\n Operating expenses were $179.5 million in 4Q25, compared to $171.7 million in 3Q25. The change\nwas mainly due to the reasons stated in Operating Expenses below.\n Other income, net was $72.1 million loss in 4Q25, compared to $14.0 million loss in 3Q25. The\nchange was mainly due to the reasons stated in Other Income, Net below.\n- 4 -",
+      "text_lines": [
+        {
+          "text": "Summary of Fourth Quarter 2025 Operating Results",
+          "bbox": [
+            155.54,
+            68.17999999999995,
+            449.692,
+            80.17999999999995
+          ]
+        },
+        {
+          "text": "Amounts in US$ thousands, except for earnings per share",
+          "bbox": [
+            72.024,
+            97.85167999999999,
+            328.74548,
+            107.81168000000002
+          ]
+        },
+        {
+          "text": "4Q25 3Q25 QoQ 4Q24 YoY",
+          "bbox": [
+            298.73,
+            114.91160000000002,
+            541.9218400000001,
+            124.87159999999994
+          ]
+        },
+        {
+          "text": "Revenue 2,488,710 2,381,822 4.5% 2,207,281 12.8%",
+          "bbox": [
+            77.424,
+            131.11159999999995,
+            541.7454,
+            141.07159999999988
+          ]
+        },
+        {
+          "text": "Cost of sales (2,010,589) (1,859,011) 8.2% (1,708,270) 17.7%",
+          "bbox": [
+            77.424,
+            145.27160000000003,
+            541.7454,
+            155.23159999999996
+          ]
+        },
+        {
+          "text": "Gross profit 478,121 522,811 -8.5% 499,011 -4.2%",
+          "bbox": [
+            77.424,
+            160.03160000000003,
+            541.74544,
+            169.99159999999995
+          ]
+        },
+        {
+          "text": "Operating expenses (179,501) (171,742) 4.5% (284,544) -36.9%",
+          "bbox": [
+            77.424,
+            174.1916,
+            541.7454,
+            184.15159999999992
+          ]
+        },
+        {
+          "text": "Profit from operations 298,620 351,069 -14.9% 214,467 39.2%",
+          "bbox": [
+            77.424,
+            188.83159999999998,
+            541.7454,
+            198.7915999999999
+          ]
+        },
+        {
+          "text": "Other income, net (72,117) (13,993) 415.4% 140,791 N/A",
+          "bbox": [
+            77.424,
+            203.11159999999995,
+            541.8233200000001,
+            213.07159999999988
+          ]
+        },
+        {
+          "text": "Profit before tax 226,503 337,076 -32.8% 355,258 -36.2%",
+          "bbox": [
+            77.424,
+            217.75160000000005,
+            541.7454,
+            227.71159999999998
+          ]
+        },
+        {
+          "text": "Income tax expense (23,128) (21,610) 7.0% (84,312) -72.6%",
+          "bbox": [
+            77.424,
+            232.0616,
+            541.7454,
+            242.02159999999992
+          ]
+        },
+        {
+          "text": "Profit for the period 203,375 315,466 -35.5% 270,946 -24.9%",
+          "bbox": [
+            77.424,
+            246.58159999999998,
+            541.7454,
+            256.6615999999999
+          ]
+        },
+        {
+          "text": "Profit for the period attributable to:",
+          "bbox": [
+            77.424,
+            275.14160000000004,
+            228.40764000000001,
+            285.10159999999996
+          ]
+        },
+        {
+          "text": "Owners of the Company 172,851 191,758 -9.9% 107,587 60.7%",
+          "bbox": [
+            82.944,
+            289.3016,
+            541.7454,
+            299.26159999999993
+          ]
+        },
+        {
+          "text": "Non-controlling interests 30,524 123,708 -75.3% 163,359 -81.3%",
+          "bbox": [
+            82.944,
+            303.4616,
+            541.7454,
+            313.4215999999999
+          ]
+        },
+        {
+          "text": "Profit for the period 203,375 315,466 -35.5% 270,946 -24.9%",
+          "bbox": [
+            77.424,
+            318.10159999999996,
+            541.7454,
+            328.1815999999999
+          ]
+        },
+        {
+          "text": "Gross margin 19.2% 22.0% 22.6%",
+          "bbox": [
+            77.424,
+            346.66159999999996,
+            495.1854,
+            356.6216
+          ]
+        },
+        {
+          "text": "Earnings per share(1)",
+          "bbox": [
+            77.424,
+            374.7308,
+            169.70288,
+            384.9416
+          ]
+        },
+        {
+          "text": "Basic $0.02 $0.02 $0.01",
+          "bbox": [
+            82.944,
+            389.26159999999993,
+            495.21976,
+            399.22159999999997
+          ]
+        },
+        {
+          "text": "Diluted $0.02 $0.02 $0.01",
+          "bbox": [
+            82.944,
+            403.44159999999994,
+            495.21976,
+            413.4016
+          ]
+        },
+        {
+          "text": "Note:",
+          "bbox": [
+            72.024,
+            427.86231999999995,
+            91.16723999999999,
+            435.90232
+          ]
+        },
+        {
+          "text": "(1) Based on weighted average ordinary shares of 8,000 million (basic) and 8,013 million (diluted) in 4Q25, 7,988 million (basic)",
+          "bbox": [
+            72.024,
+            437.10231999999996,
+            541.52308,
+            445.14232
+          ]
+        },
+        {
+          "text": "and 8,009 million (diluted) in 3Q25, and 7,975 million (basic) and 7,998 million (diluted) in 4Q24.",
+          "bbox": [
+            90.024,
+            446.22231999999997,
+            429.41512,
+            454.26232
+          ]
+        },
+        {
+          "text": " Revenue was $2,488.7 million in 4Q25, an increase of 4.5% QoQ from $2,381.8 million in 3Q25. The",
+          "bbox": [
+            72.024,
+            463.2717999999999,
+            544.1864800000001,
+            473.28159999999997
+          ]
+        },
+        {
+          "text": "growth was mainly due to the increase in wafer shipment and product mix change in 4Q25.",
+          "bbox": [
+            93.024,
+            474.84159999999997,
+            494.38888000000003,
+            484.8016
+          ]
+        },
+        {
+          "text": " Cost of sales was $2,010.6 million in 4Q25, compared to $1,859.0 million in 3Q25.",
+          "bbox": [
+            72.024,
+            497.83179999999993,
+            456.46888,
+            507.84159999999997
+          ]
+        },
+        {
+          "text": " Gross profit was $478.1 million in 4Q25, compared to $522.8 million in 3Q25.",
+          "bbox": [
+            72.024,
+            520.8717999999999,
+            433.66888,
+            530.8815999999999
+          ]
+        },
+        {
+          "text": " Gross margin was 19.2% in 4Q25, compared to 22.0% in 3Q25, due to the increase in depreciation.",
+          "bbox": [
+            72.024,
+            543.7918,
+            533.86888,
+            553.8016
+          ]
+        },
+        {
+          "text": " Operating expenses were $179.5 million in 4Q25, compared to $171.7 million in 3Q25. The change",
+          "bbox": [
+            72.024,
+            566.8617999999999,
+            543.9181600000001,
+            576.8716
+          ]
+        },
+        {
+          "text": "was mainly due to the reasons stated in Operating Expenses below.",
+          "bbox": [
+            93.024,
+            578.4315999999999,
+            393.64396000000005,
+            588.3915999999999
+          ]
+        },
+        {
+          "text": " Other income, net was $72.1 million loss in 4Q25, compared to $14.0 million loss in 3Q25. The",
+          "bbox": [
+            72.024,
+            601.3018,
+            543.9601600000001,
+            611.3116
+          ]
+        },
+        {
+          "text": "change was mainly due to the reasons stated in Other Income, Net below.",
+          "bbox": [
+            93.024,
+            612.8716,
+            420.2944,
+            622.8316
+          ]
+        },
+        {
+          "text": "- 4 -",
+          "bbox": [
+            293.69,
+            792.1715999999999,
+            311.42668000000003,
+            802.1315999999999
+          ]
+        }
+      ],
+      "tables": [
+        {
+          "table_number": 1,
+          "bbox": [
+            72.024,
+            113.33428571428567,
+            547.3199900000001,
+            414.90142428571426
+          ],
+          "rows": [
+            [
+              "",
+              "",
+              "4Q25",
+              "",
+              "3Q25 QoQ 4Q24 YoY"
+            ],
+            [
+              "Revenue\nCost of sales\nGross profit\nOperating expenses\nProfit from operations\nOther income, net\nProfit before tax\nIncome tax expense\nProfit for the period\nProfit for the period attributable to:\nOwners of the Company\nNon-controlling interests\nProfit for the period\nGross margin\nEarnings per share(1)\nBasic\nDiluted",
+              "",
+              "2,488,710",
+              "",
+              "2,381,822 4.5% 2,207,281 12.8%\n(1,859,011) 8.2% (1,708,270) 17.7%\n522,811 -8.5% 499,011 -4.2%\n(171,742) 4.5% (284,544) -36.9%\n351,069 -14.9% 214,467 39.2%\n(13,993) 415.4% 140,791 N/A\n337,076 -32.8% 355,258 -36.2%\n(21,610) 7.0% (84,312) -72.6%\n315,466 -35.5% 270,946 -24.9%\n191,758 -9.9% 107,587 60.7%\n123,708 -75.3% 163,359 -81.3%\n315,466 -35.5% 270,946 -24.9%\n22.0% 22.6%\n$0.02 $0.01\n$0.02 $0.01"
+            ],
+            [
+              null,
+              "",
+              "(2,010,589)",
+              "",
+              null
+            ],
+            [
+              null,
+              "",
+              "478,121",
+              "",
+              null
+            ],
+            [
+              null,
+              "",
+              "(179,501)",
+              "",
+              null
+            ],
+            [
+              null,
+              "",
+              "298,620",
+              "",
+              null
+            ],
+            [
+              null,
+              "",
+              "(72,117)",
+              "",
+              null
+            ],
+            [
+              null,
+              "",
+              "226,503",
+              "",
+              null
+            ],
+            [
+              null,
+              "",
+              "(23,128)",
+              "",
+              null
+            ],
+            [
+              null,
+              "",
+              "203,375",
+              "",
+              null
+            ],
+            [
+              null,
+              "",
+              "",
+              "",
+              null
+            ],
+            [
+              null,
+              "",
+              "",
+              "",
+              null
+            ],
+            [
+              null,
+              "",
+              "172,851",
+              "",
+              null
+            ],
+            [
+              null,
+              "",
+              "30,524",
+              "",
+              null
+            ],
+            [
+              null,
+              "",
+              "203,375",
+              "",
+              null
+            ],
+            [
+              null,
+              "",
+              "",
+              "",
+              null
+            ],
+            [
+              null,
+              "",
+              "19.2%",
+              "",
+              null
+            ],
+            [
+              null,
+              "",
+              "",
+              "",
+              null
+            ],
+            [
+              null,
+              "",
+              "",
+              "",
+              null
+            ],
+            [
+              null,
+              "",
+              "$0.02",
+              "",
+              null
+            ],
+            [
+              null,
+              "",
+              "$0.02",
+              "",
+              null
+            ]
+          ]
+        }
+      ],
+      "section_candidates": [],
+      "footnote_candidates": [
+        {
+          "text": " Operating expenses were $179.5 million in 4Q25, compared to $171.7 million in 3Q25. The change",
+          "bbox": [
+            72.024,
+            566.8617999999999,
+            543.9181600000001,
+            576.8716
+          ]
+        },
+        {
+          "text": "was mainly due to the reasons stated in Operating Expenses below.",
+          "bbox": [
+            93.024,
+            578.4315999999999,
+            393.64396000000005,
+            588.3915999999999
+          ]
+        },
+        {
+          "text": " Other income, net was $72.1 million loss in 4Q25, compared to $14.0 million loss in 3Q25. The",
+          "bbox": [
+            72.024,
+            601.3018,
+            543.9601600000001,
+            611.3116
+          ]
+        },
+        {
+          "text": "change was mainly due to the reasons stated in Other Income, Net below.",
+          "bbox": [
+            93.024,
+            612.8716,
+            420.2944,
+            622.8316
+          ]
+        },
+        {
+          "text": "- 4 -",
+          "bbox": [
+            293.69,
+            792.1715999999999,
+            311.42668000000003,
+            802.1315999999999
+          ]
+        }
+      ]
+    },
+    {
+      "page_number": 5,
+      "width": 595.32,
+      "height": 841.92,
+      "text": "Analysis of Revenue\nRevenue Analysis\n4Q25 3Q25 4Q24\nBy Geography\nChina 87.6% 86.2% 89.1%\nAmerica 10.3% 10.8% 8.9%\nEurasia 2.1% 3.0% 2.0%\n4Q25 3Q25 4Q24\nBy Service Type\nWafers 92.4% 95.2% 92.5%\nOthers 7.6% 4.8% 7.5%\nWafer Revenue Analysis\nBy Application 4Q25 3Q25 4Q24\nSmartphone 21.5% 21.5% 24.2%\nComputer and Tablet 11.8% 15.2% 19.1%\nConsumer Electronics 47.3% 43.4% 40.2%\nConnectivity and IoT 7.2% 8.0% 8.3%\nIndustrial and Automotive 12.2% 11.9% 8.2%\n4Q25 3Q25 4Q24\nBy Size\n8” wafers 22.8% 23.0% 19.4%\n12” wafers 77.2% 77.0% 80.6%\nCapacity\n Monthly capacity increased to 1,058,750 standard logic 8-inch equivalent wafers in 4Q25 from\n1,022,750 standard logic 8-inch equivalent wafers in 3Q25.\nShipment and Utilization\n4Q25 3Q25 QoQ 4Q24 YoY\nWafer shipments(1) 2,514,970 2,499,465 0.6% 1,991,761 26.3%\nUtilization rate(2) 95.7% 95.8% 85.5%\nNotes:\n(1) Based on standard logic 8-inch equivalent wafers.\n(2) Based on total wafers out divided by estimated total quarterly capacity.\nCapex Summary\n Capital expenditure was $2,407.5 million in 4Q25, compared to $2,394.2 million in 3Q25. The total\ncapital expenditure in 2025 was $8.1 billion.\n- 5 -",
+      "text_lines": [
+        {
+          "text": "Analysis of Revenue",
+          "bbox": [
+            72.024,
+            69.9416,
+            199.01903999999996,
+            82.90159999999992
+          ]
+        },
+        {
+          "text": "Revenue Analysis",
+          "bbox": [
+            77.424,
+            97.39160000000004,
+            162.82103999999998,
+            107.35159999999996
+          ]
+        },
+        {
+          "text": "4Q25 3Q25 4Q24",
+          "bbox": [
+            320.23,
+            110.35159999999996,
+            443.61208,
+            120.31159999999988
+          ]
+        },
+        {
+          "text": "By Geography",
+          "bbox": [
+            77.424,
+            114.3116,
+            145.67988,
+            124.27159999999992
+          ]
+        },
+        {
+          "text": "China 87.6% 86.2% 89.1%",
+          "bbox": [
+            77.424,
+            127.39160000000004,
+            443.5554,
+            137.35159999999996
+          ]
+        },
+        {
+          "text": "America 10.3% 10.8% 8.9%",
+          "bbox": [
+            77.424,
+            140.95159999999998,
+            443.58544,
+            150.9115999999999
+          ]
+        },
+        {
+          "text": "Eurasia 2.1% 3.0% 2.0%",
+          "bbox": [
+            77.424,
+            154.39160000000004,
+            443.58544,
+            164.35159999999996
+          ]
+        },
+        {
+          "text": "4Q25 3Q25 4Q24",
+          "bbox": [
+            320.23,
+            167.35159999999996,
+            443.61208,
+            177.31159999999988
+          ]
+        },
+        {
+          "text": "By Service Type",
+          "bbox": [
+            77.424,
+            171.3116,
+            154.55424000000002,
+            181.27159999999992
+          ]
+        },
+        {
+          "text": "Wafers 92.4% 95.2% 92.5%",
+          "bbox": [
+            77.424,
+            184.39160000000004,
+            443.5554,
+            194.35159999999996
+          ]
+        },
+        {
+          "text": "Others 7.6% 4.8% 7.5%",
+          "bbox": [
+            77.424,
+            197.95159999999998,
+            443.58544,
+            207.9115999999999
+          ]
+        },
+        {
+          "text": "Wafer Revenue Analysis",
+          "bbox": [
+            77.424,
+            212.83159999999998,
+            193.40820000000002,
+            222.7915999999999
+          ]
+        },
+        {
+          "text": "By Application 4Q25 3Q25 4Q24",
+          "bbox": [
+            77.424,
+            224.83159999999998,
+            443.61208,
+            237.5515999999999
+          ]
+        },
+        {
+          "text": "Smartphone 21.5% 21.5% 24.2%",
+          "bbox": [
+            77.424,
+            240.70159999999998,
+            443.5554,
+            250.6615999999999
+          ]
+        },
+        {
+          "text": "Computer and Tablet 11.8% 15.2% 19.1%",
+          "bbox": [
+            77.424,
+            254.26160000000004,
+            443.5554,
+            264.22159999999997
+          ]
+        },
+        {
+          "text": "Consumer Electronics 47.3% 43.4% 40.2%",
+          "bbox": [
+            77.424,
+            267.7016,
+            443.5554,
+            277.6615999999999
+          ]
+        },
+        {
+          "text": "Connectivity and IoT 7.2% 8.0% 8.3%",
+          "bbox": [
+            77.424,
+            281.26160000000004,
+            443.58544,
+            291.22159999999997
+          ]
+        },
+        {
+          "text": "Industrial and Automotive 12.2% 11.9% 8.2%",
+          "bbox": [
+            77.424,
+            294.7016,
+            443.58544,
+            304.6615999999999
+          ]
+        },
+        {
+          "text": "4Q25 3Q25 4Q24",
+          "bbox": [
+            320.23,
+            307.5416,
+            443.61208,
+            317.50159999999994
+          ]
+        },
+        {
+          "text": "By Size",
+          "bbox": [
+            77.424,
+            312.9416,
+            112.82184000000002,
+            322.9015999999999
+          ]
+        },
+        {
+          "text": "8” wafers 22.8% 23.0% 19.4%",
+          "bbox": [
+            77.424,
+            325.5416,
+            443.5554,
+            335.5016
+          ]
+        },
+        {
+          "text": "12” wafers 77.2% 77.0% 80.6%",
+          "bbox": [
+            77.424,
+            338.0216,
+            443.5554,
+            347.9816
+          ]
+        },
+        {
+          "text": "Capacity",
+          "bbox": [
+            72.024,
+            360.13159999999993,
+            126.2616,
+            373.09159999999997
+          ]
+        },
+        {
+          "text": " Monthly capacity increased to 1,058,750 standard logic 8-inch equivalent wafers in 4Q25 from",
+          "bbox": [
+            72.024,
+            386.0917999999999,
+            533.14948,
+            396.10159999999996
+          ]
+        },
+        {
+          "text": "1,022,750 standard logic 8-inch equivalent wafers in 3Q25.",
+          "bbox": [
+            93.024,
+            397.68159999999995,
+            353.71888,
+            407.6416
+          ]
+        },
+        {
+          "text": "Shipment and Utilization",
+          "bbox": [
+            72.024,
+            418.7115999999999,
+            223.61144000000002,
+            431.67159999999996
+          ]
+        },
+        {
+          "text": "4Q25 3Q25 QoQ 4Q24 YoY",
+          "bbox": [
+            301.03,
+            445.2015999999999,
+            530.16184,
+            455.16159999999996
+          ]
+        },
+        {
+          "text": "Wafer shipments(1) 2,514,970 2,499,465 0.6% 1,991,761 26.3%",
+          "bbox": [
+            73.944,
+            461.1508,
+            529.9853999999999,
+            471.3616
+          ]
+        },
+        {
+          "text": "Utilization rate(2) 95.7% 95.8% 85.5%",
+          "bbox": [
+            73.944,
+            475.3108,
+            486.54540000000003,
+            485.5216
+          ]
+        },
+        {
+          "text": "Notes:",
+          "bbox": [
+            72.024,
+            497.70231999999993,
+            95.25912,
+            505.74231999999995
+          ]
+        },
+        {
+          "text": "(1) Based on standard logic 8-inch equivalent wafers.",
+          "bbox": [
+            72.024,
+            506.94231999999994,
+            267.24512,
+            514.98232
+          ]
+        },
+        {
+          "text": "(2) Based on total wafers out divided by estimated total quarterly capacity.",
+          "bbox": [
+            72.024,
+            516.06232,
+            340.10512,
+            524.10232
+          ]
+        },
+        {
+          "text": "Capex Summary",
+          "bbox": [
+            72.024,
+            535.3516,
+            173.99327999999997,
+            548.3116
+          ]
+        },
+        {
+          "text": " Capital expenditure was $2,407.5 million in 4Q25, compared to $2,394.2 million in 3Q25. The total",
+          "bbox": [
+            72.024,
+            561.3417999999999,
+            533.30524,
+            571.3516
+          ]
+        },
+        {
+          "text": "capital expenditure in 2025 was $8.1 billion.",
+          "bbox": [
+            93.024,
+            572.9115999999999,
+            286.36628,
+            582.8716
+          ]
+        },
+        {
+          "text": "- 5 -",
+          "bbox": [
+            293.69,
+            792.1715999999999,
+            311.42668000000003,
+            802.1315999999999
+          ]
+        }
+      ],
+      "tables": [
+        {
+          "table_number": 1,
+          "bbox": [
+            72.05955555555556,
+            94.93999999999994,
+            449.11540449999995,
+            348.5642914285714
+          ],
+          "rows": [
+            [
+              "",
+              "Revenue Analysis",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              ""
+            ],
+            [
+              "By Geography",
+              null,
+              null,
+              "4Q25",
+              "4Q25",
+              null,
+              "3Q25",
+              "3Q25",
+              null,
+              "4Q24",
+              "4Q24",
+              null
+            ],
+            [
+              "China\nAmerica\nEurasia",
+              null,
+              null,
+              "",
+              "87.6%",
+              "",
+              "",
+              "86.2%",
+              "",
+              "89.1%\n8.9%\n2.0%",
+              null,
+              null
+            ],
+            [
+              null,
+              null,
+              null,
+              "",
+              "10.3%",
+              "",
+              "",
+              "10.8%",
+              "",
+              null,
+              null,
+              null
+            ],
+            [
+              null,
+              null,
+              null,
+              "",
+              "2.1%",
+              "",
+              "",
+              "3.0%",
+              "",
+              null,
+              null,
+              null
+            ],
+            [
+              "By Service Type",
+              null,
+              null,
+              "4Q25",
+              "4Q25",
+              null,
+              "3Q25",
+              "3Q25",
+              null,
+              "4Q24",
+              null,
+              null
+            ],
+            [
+              "Wafers\nOthers",
+              null,
+              null,
+              "",
+              "92.4%",
+              "",
+              "",
+              "95.2%",
+              "",
+              "92.5%\n7.5%",
+              null,
+              null
+            ],
+            [
+              null,
+              null,
+              null,
+              "",
+              "7.6%",
+              "",
+              "",
+              "4.8%",
+              "",
+              null,
+              null,
+              null
+            ],
+            [
+              "",
+              "Wafer Revenue Analysis",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              ""
+            ],
+            [
+              "",
+              "By Application",
+              "",
+              "",
+              "4Q25",
+              "",
+              "",
+              "3Q25",
+              "",
+              "",
+              "4Q24",
+              ""
+            ],
+            [
+              "Smartphone\nComputer and Tablet\nConsumer Electronics\nConnectivity and IoT\nIndustrial and Automotive",
+              null,
+              null,
+              "",
+              "21.5%",
+              "",
+              "",
+              "21.5%",
+              "",
+              "24.2%\n19.1%\n40.2%\n8.3%\n8.2%",
+              null,
+              null
+            ],
+            [
+              null,
+              null,
+              null,
+              "",
+              "11.8%",
+              "",
+              "",
+              "15.2%",
+              "",
+              null,
+              null,
+              null
+            ],
+            [
+              null,
+              null,
+              null,
+              "",
+              "47.3%",
+              "",
+              "",
+              "43.4%",
+              "",
+              null,
+              null,
+              null
+            ],
+            [
+              null,
+              null,
+              null,
+              "",
+              "7.2%",
+              "",
+              "",
+              "8.0%",
+              "",
+              null,
+              null,
+              null
+            ],
+            [
+              null,
+              null,
+              null,
+              "",
+              "12.2%",
+              "",
+              "",
+              "11.9%",
+              "",
+              null,
+              null,
+              null
+            ],
+            [
+              "By Size",
+              null,
+              null,
+              "4Q25",
+              "4Q25",
+              null,
+              "3Q25",
+              "3Q25",
+              null,
+              "4Q24",
+              null,
+              null
+            ],
+            [
+              null,
+              "By Size",
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            [
+              "",
+              "8” wafers",
+              "",
+              "",
+              "22.8%",
+              "",
+              "",
+              "23.0%",
+              "",
+              "19.4%\n80.6%",
+              null,
+              null
+            ],
+            [
+              "",
+              "12” wafers",
+              "",
+              "",
+              "77.2%",
+              "",
+              "",
+              "77.0%",
+              "",
+              null,
+              null,
+              null
+            ]
+          ]
+        },
+        {
+          "table_number": 2,
+          "bbox": [
+            72.05955555555556,
+            443.6242814285714,
+            535.41999,
+            487.12429428571426
+          ],
+          "rows": [
+            [
+              "",
+              "",
+              "4Q25",
+              "",
+              "3Q25 QoQ 4Q24 YoY"
+            ],
+            [
+              "Wafer shipments(1)\nUtilization rate(2)",
+              "",
+              "2,514,970",
+              "",
+              "2,499,465 0.6% 1,991,761 26.3%\n95.8% 85.5%"
+            ],
+            [
+              null,
+              "",
+              "95.7%",
+              "",
+              null
+            ]
+          ]
+        }
+      ],
+      "section_candidates": [
+        "4Q25 3Q25 4Q24",
+        "4Q25 3Q25 4Q24",
+        "4Q25 3Q25 4Q24"
+      ],
+      "footnote_candidates": [
+        {
+          "text": " Capital expenditure was $2,407.5 million in 4Q25, compared to $2,394.2 million in 3Q25. The total",
+          "bbox": [
+            72.024,
+            561.3417999999999,
+            533.30524,
+            571.3516
+          ]
+        },
+        {
+          "text": "capital expenditure in 2025 was $8.1 billion.",
+          "bbox": [
+            93.024,
+            572.9115999999999,
+            286.36628,
+            582.8716
+          ]
+        },
+        {
+          "text": "- 5 -",
+          "bbox": [
+            293.69,
+            792.1715999999999,
+            311.42668000000003,
+            802.1315999999999
+          ]
+        }
+      ]
+    },
+    {
+      "page_number": 6,
+      "width": 595.32,
+      "height": 841.92,
+      "text": "Detailed Financial Analysis\nGross Profit\nAmounts in US$ thousands 4Q25 3Q25 QoQ 4Q24 YoY\nCost of sales 2,010,589 1,859,011 8.2% 1,708,270 17.7%\nDepreciation and amortisation 947,447 804,406 17.8% 788,055 20.2%\nOther manufacturing costs 1,063,142 1,054,605 0.8% 920,215 15.5%\nGross profit 478,121 522,811 -8.5% 499,011 -4.2%\nGross margin 19.2% 22.0% 22.6%\nDepreciation and Amortisation\nAmounts in US$ thousands 4Q25 3Q25 QoQ 4Q24 YoY\nDepreciation and amortisation 1,069,773 995,857 7.4% 849,263 26.0%\nOperating Expenses\nAmounts in US$ thousands 4Q25 3Q25 QoQ 4Q24 YoY\nOperating expenses 179,501 171,742 4.5% 284,544 -36.9%\nResearch and development expenses 239,676 203,147 18.0% 217,035 10.4%\nGeneral and administrative expenses 145,680 42,346 244.0% 166,851 -12.7%\nSelling and marketing expenses 8,109 10,553 -23.2% 11,466 -29.3%\nImpairment losses on financial assets, net (196) 3,769 N/A (502) -61.0%\nOther operating income (213,768) (88,073) 142.7% (110,306) 93.8%\n Research and development expenses increased to $239.7 million in 4Q25 from $203.1 million in\n3Q25. The change was mainly due to the higher level of R&D activities in 4Q25.\n General and administrative expenses increased to $145.7 million in 4Q25 from $42.3 million in\n3Q25. The change was mainly due to the increase in start-up costs in 4Q25.\n The change in other operating income was primarily due to the change in the recognized income of\ngovernment funding during this quarter.\nOther Income, Net\nAmounts in US$ thousands 4Q25 3Q25 QoQ 4Q24 YoY\nOther income, net (72,117) (13,993) 415.4% 140,791 N/A\nInterest income 75,908 99,385 -23.6% 107,850 -29.6%\nFinance costs (108,633) (97,323) 11.6% (75,342) 44.2%\nForeign exchange gain 6,956 5,478 27.0% 4,215 65.0%\nOther (losses)/gains, net (61,896) (16,873) 266.8% 97,363 N/A\nShare of profit or loss of associates and 15,548 (4,660) N/A 6,705 131.9%\na joint venture\n- 6 -",
+      "text_lines": [
+        {
+          "text": "Detailed Financial Analysis",
+          "bbox": [
+            72.024,
+            69.9416,
+            239.45136000000005,
+            82.90159999999992
+          ]
+        },
+        {
+          "text": "Gross Profit",
+          "bbox": [
+            72.024,
+            96.25999999999999,
+            141.40800000000002,
+            108.25999999999999
+          ]
+        },
+        {
+          "text": "Amounts in US$ thousands 4Q25 3Q25 QoQ 4Q24 YoY",
+          "bbox": [
+            75.264,
+            110.23159999999996,
+            529.4418400000001,
+            122.81168000000002
+          ]
+        },
+        {
+          "text": "Cost of sales 2,010,589 1,859,011 8.2% 1,708,270 17.7%",
+          "bbox": [
+            75.264,
+            124.99160000000006,
+            529.2654,
+            136.27159999999992
+          ]
+        },
+        {
+          "text": "Depreciation and amortisation 947,447 804,406 17.8% 788,055 20.2%",
+          "bbox": [
+            80.784,
+            139.15160000000003,
+            529.2654,
+            150.5515999999999
+          ]
+        },
+        {
+          "text": "Other manufacturing costs 1,063,142 1,054,605 0.8% 920,215 15.5%",
+          "bbox": [
+            80.784,
+            153.4316,
+            529.2654,
+            164.71159999999998
+          ]
+        },
+        {
+          "text": "Gross profit 478,121 522,811 -8.5% 499,011 -4.2%",
+          "bbox": [
+            75.264,
+            167.59159999999997,
+            529.26544,
+            178.87159999999994
+          ]
+        },
+        {
+          "text": "Gross margin 19.2% 22.0% 22.6%",
+          "bbox": [
+            75.264,
+            181.75160000000005,
+            485.10540000000003,
+            193.15159999999992
+          ]
+        },
+        {
+          "text": "Depreciation and Amortisation",
+          "bbox": [
+            72.024,
+            208.2199999999999,
+            246.79399999999998,
+            220.2199999999999
+          ]
+        },
+        {
+          "text": "Amounts in US$ thousands 4Q25 3Q25 QoQ 4Q24 YoY",
+          "bbox": [
+            74.664,
+            222.1916,
+            531.48184,
+            234.77167999999995
+          ]
+        },
+        {
+          "text": "Depreciation and amortisation 1,069,773 995,857 7.4% 849,263 26.0%",
+          "bbox": [
+            74.664,
+            238.4216,
+            531.3054,
+            248.38159999999993
+          ]
+        },
+        {
+          "text": "Operating Expenses",
+          "bbox": [
+            72.024,
+            263.44999999999993,
+            188.09599999999998,
+            275.44999999999993
+          ]
+        },
+        {
+          "text": "Amounts in US$ thousands 4Q25 3Q25 QoQ 4Q24 YoY",
+          "bbox": [
+            74.664,
+            277.4216,
+            530.88184,
+            290.00167999999996
+          ]
+        },
+        {
+          "text": "Operating expenses 179,501 171,742 4.5% 284,544 -36.9%",
+          "bbox": [
+            74.664,
+            293.62160000000006,
+            530.7053999999999,
+            303.5816
+          ]
+        },
+        {
+          "text": "Research and development expenses 239,676 203,147 18.0% 217,035 10.4%",
+          "bbox": [
+            80.184,
+            307.7816,
+            530.7053999999999,
+            317.74159999999995
+          ]
+        },
+        {
+          "text": "General and administrative expenses 145,680 42,346 244.0% 166,851 -12.7%",
+          "bbox": [
+            80.184,
+            321.9416,
+            530.7053999999999,
+            331.9016
+          ]
+        },
+        {
+          "text": "Selling and marketing expenses 8,109 10,553 -23.2% 11,466 -29.3%",
+          "bbox": [
+            80.184,
+            336.22159999999997,
+            530.7053999999999,
+            346.1816
+          ]
+        },
+        {
+          "text": "Impairment losses on financial assets, net (196) 3,769 N/A (502) -61.0%",
+          "bbox": [
+            80.184,
+            350.38159999999993,
+            530.7053999999999,
+            360.34159999999997
+          ]
+        },
+        {
+          "text": "Other operating income (213,768) (88,073) 142.7% (110,306) 93.8%",
+          "bbox": [
+            80.184,
+            364.54159999999996,
+            530.7053999999999,
+            374.5016
+          ]
+        },
+        {
+          "text": " Research and development expenses increased to $239.7 million in 4Q25 from $203.1 million in",
+          "bbox": [
+            72.024,
+            389.33179999999993,
+            533.1295600000001,
+            399.34159999999997
+          ]
+        },
+        {
+          "text": "3Q25. The change was mainly due to the higher level of R&D activities in 4Q25.",
+          "bbox": [
+            93.024,
+            400.92159999999996,
+            445.90888,
+            410.8816
+          ]
+        },
+        {
+          "text": " General and administrative expenses increased to $145.7 million in 4Q25 from $42.3 million in",
+          "bbox": [
+            72.024,
+            423.91179999999997,
+            533.1266800000001,
+            433.9216
+          ]
+        },
+        {
+          "text": "3Q25. The change was mainly due to the increase in start-up costs in 4Q25.",
+          "bbox": [
+            93.024,
+            435.48159999999996,
+            429.82888,
+            445.4416
+          ]
+        },
+        {
+          "text": " The change in other operating income was primarily due to the change in the recognized income of",
+          "bbox": [
+            72.024,
+            458.35179999999997,
+            532.5856399999999,
+            468.3616
+          ]
+        },
+        {
+          "text": "government funding during this quarter.",
+          "bbox": [
+            93.024,
+            469.92159999999996,
+            267.25427999999994,
+            479.8816
+          ]
+        },
+        {
+          "text": "Other Income, Net",
+          "bbox": [
+            72.024,
+            493.1499999999999,
+            175.46,
+            505.1499999999999
+          ]
+        },
+        {
+          "text": "Amounts in US$ thousands 4Q25 3Q25 QoQ 4Q24 YoY",
+          "bbox": [
+            77.424,
+            507.12159999999994,
+            531.24184,
+            519.7016799999999
+          ]
+        },
+        {
+          "text": "Other income, net (72,117) (13,993) 415.4% 140,791 N/A",
+          "bbox": [
+            77.424,
+            523.3216,
+            531.14332,
+            533.2816
+          ]
+        },
+        {
+          "text": "Interest income 75,908 99,385 -23.6% 107,850 -29.6%",
+          "bbox": [
+            82.944,
+            537.4816,
+            531.0654,
+            547.4416
+          ]
+        },
+        {
+          "text": "Finance costs (108,633) (97,323) 11.6% (75,342) 44.2%",
+          "bbox": [
+            82.944,
+            551.6415999999999,
+            531.0654,
+            561.6016
+          ]
+        },
+        {
+          "text": "Foreign exchange gain 6,956 5,478 27.0% 4,215 65.0%",
+          "bbox": [
+            82.944,
+            565.9515999999999,
+            531.0654,
+            575.9115999999999
+          ]
+        },
+        {
+          "text": "Other (losses)/gains, net (61,896) (16,873) 266.8% 97,363 N/A",
+          "bbox": [
+            82.944,
+            580.1116,
+            531.14332,
+            590.0716
+          ]
+        },
+        {
+          "text": "Share of profit or loss of associates and 15,548 (4,660) N/A 6,705 131.9%",
+          "bbox": [
+            82.944,
+            592.9516,
+            531.0741999999999,
+            602.9115999999999
+          ]
+        },
+        {
+          "text": "a joint venture",
+          "bbox": [
+            89.424,
+            604.4716,
+            152.0226,
+            614.4315999999999
+          ]
+        },
+        {
+          "text": "- 6 -",
+          "bbox": [
+            293.69,
+            792.1715999999999,
+            311.42668000000003,
+            802.1315999999999
+          ]
+        }
+      ],
+      "tables": [
+        {
+          "table_number": 1,
+          "bbox": [
+            72.02400000000002,
+            108.65428571428572,
+            535.9981895454546,
+            194.5485714285714
+          ],
+          "rows": [
+            [
+              "Amounts in US$ thousands",
+              "",
+              "4Q25",
+              "",
+              "3Q25 QoQ 4Q24 YoY"
+            ],
+            [
+              "Cost of sales\nDepreciation and amortisation\nOther manufacturing costs\nGross profit\nGross margin",
+              "",
+              "2,010,589",
+              "",
+              "1,859,011 8.2% 1,708,270 17.7%\n804,406 17.8% 788,055 20.2%\n1,054,605 0.8% 920,215 15.5%\n522,811 -8.5% 499,011 -4.2%\n22.0% 22.6%"
+            ],
+            [
+              null,
+              "",
+              "947,447",
+              "",
+              null
+            ],
+            [
+              null,
+              "",
+              "1,063,142",
+              "",
+              null
+            ],
+            [
+              null,
+              "",
+              "478,121",
+              "",
+              null
+            ],
+            [
+              null,
+              "",
+              "19.2%",
+              "",
+              null
+            ]
+          ]
+        },
+        {
+          "table_number": 2,
+          "bbox": [
+            72.02400000000002,
+            220.61428571428564,
+            535.9981895454546,
+            249.88142857142856
+          ],
+          "rows": [
+            [
+              "Amounts in US$ thousands",
+              "",
+              "4Q25",
+              "",
+              "3Q25 QoQ 4Q24 YoY"
+            ],
+            [
+              "Depreciation and amortisation",
+              "",
+              "1,069,773",
+              "",
+              "995,857 7.4% 849,263 26.0%"
+            ]
+          ]
+        },
+        {
+          "table_number": 3,
+          "bbox": [
+            72.02400000000002,
+            275.8442814285714,
+            535.9981895454546,
+            376.1042814285714
+          ],
+          "rows": [
+            [
+              "Amounts in US$ thousands",
+              "",
+              "4Q25",
+              "",
+              "3Q25 QoQ 4Q24 YoY"
+            ],
+            [
+              "Operating expenses\nResearch and development expenses\nGeneral and administrative expenses\nSelling and marketing expenses\nImpairment losses on financial assets, net\nOther operating income",
+              "",
+              "179,501",
+              "",
+              "171,742 4.5% 284,544 -36.9%\n203,147 18.0% 217,035 10.4%\n42,346 244.0% 166,851 -12.7%\n10,553 -23.2% 11,466 -29.3%\n3,769 N/A (502) -61.0%\n(88,073) 142.7% (110,306) 93.8%"
+            ],
+            [
+              null,
+              "",
+              "239,676",
+              "",
+              null
+            ],
+            [
+              null,
+              "",
+              "145,680",
+              "",
+              null
+            ],
+            [
+              null,
+              "",
+              "8,109",
+              "",
+              null
+            ],
+            [
+              null,
+              "",
+              "(196)",
+              "",
+              null
+            ],
+            [
+              null,
+              "",
+              "(213,768)",
+              "",
+              null
+            ]
+          ]
+        },
+        {
+          "table_number": 4,
+          "bbox": [
+            72.02400000000002,
+            505.5442814285714,
+            535.9981895454546,
+            614.7215476923077
+          ],
+          "rows": [
+            [
+              "Amounts in US$ thousands",
+              "",
+              "4Q25",
+              "",
+              "3Q25 QoQ 4Q24 YoY"
+            ],
+            [
+              "Other income, net\nInterest income\nFinance costs\nForeign exchange gain\nOther (losses)/gains, net\nShare of profit or loss of associates and\na joint venture",
+              "",
+              "(72,117)",
+              "",
+              "(13,993) 415.4% 140,791 N/A\n99,385 -23.6% 107,850 -29.6%\n(97,323) 11.6% (75,342) 44.2%\n5,478 27.0% 4,215 65.0%\n(16,873) 266.8% 97,363 N/A\n(4,660) N/A 6,705 131.9%"
+            ],
+            [
+              null,
+              "",
+              "75,908",
+              "",
+              null
+            ],
+            [
+              null,
+              "",
+              "(108,633)",
+              "",
+              null
+            ],
+            [
+              null,
+              "",
+              "6,956",
+              "",
+              null
+            ],
+            [
+              null,
+              "",
+              "(61,896)",
+              "",
+              null
+            ],
+            [
+              null,
+              "15,548",
+              "15,548",
+              null,
+              null
+            ]
+          ]
+        }
+      ],
+      "section_candidates": [],
+      "footnote_candidates": [
+        {
+          "text": "Finance costs (108,633) (97,323) 11.6% (75,342) 44.2%",
+          "bbox": [
+            82.944,
+            551.6415999999999,
+            531.0654,
+            561.6016
+          ]
+        },
+        {
+          "text": "Foreign exchange gain 6,956 5,478 27.0% 4,215 65.0%",
+          "bbox": [
+            82.944,
+            565.9515999999999,
+            531.0654,
+            575.9115999999999
+          ]
+        },
+        {
+          "text": "Other (losses)/gains, net (61,896) (16,873) 266.8% 97,363 N/A",
+          "bbox": [
+            82.944,
+            580.1116,
+            531.14332,
+            590.0716
+          ]
+        },
+        {
+          "text": "Share of profit or loss of associates and 15,548 (4,660) N/A 6,705 131.9%",
+          "bbox": [
+            82.944,
+            592.9516,
+            531.0741999999999,
+            602.9115999999999
+          ]
+        },
+        {
+          "text": "a joint venture",
+          "bbox": [
+            89.424,
+            604.4716,
+            152.0226,
+            614.4315999999999
+          ]
+        },
+        {
+          "text": "- 6 -",
+          "bbox": [
+            293.69,
+            792.1715999999999,
+            311.42668000000003,
+            802.1315999999999
+          ]
+        }
+      ]
+    },
+    {
+      "page_number": 7,
+      "width": 595.32,
+      "height": 841.92,
+      "text": "EBITDA\nAmounts in US$ thousands 4Q25 3Q25 4Q24\nProfit for the period 203,375 315,466 270,946\nFinance costs 108,633 97,323 75,342\nDepreciation and amortisation 1,069,773 995,857 849,263\nIncome tax expense 23,128 21,610 84,312\nEBITDA 1,404,909 1,430,256 1,279,863\nProfit margin 8.2% 13.2% 12.3%\nEBITDA margin 56.5% 60.0% 58.0%\nLiquidity\nAmounts in US$ thousands 4Q25 3Q25\nInventories 3,629,802 3,490,757\nPrepayment and prepaid operating 67,518 82,912\nexpenses\nTrade and other receivables 1,432,684 1,376,558\nFinancial assets at fair value through profit 380,857 381,981\nor loss\nFinancial assets at amortised cost 4,150,600 5,308,072\nDerivative financial instruments 87,151 18,677\nCash and cash equivalents 5,872,500 3,481,713\nAssets classified as held-for-sale 3,917 3,917\nTotal current assets 15,625,029 14,144,587\nTrade and other payables 2,965,981 2,968,329\nContract liabilities 599,378 717,899\nBorrowings 2,593,077 3,595,623\nLease liabilities 7,493 10,759\nDeferred income 188,930 189,903\nAccrued liabilities 409,749 422,786\nDerivative financial instruments 18,994 82,419\nCurrent tax liabilities 33,462 28,156\nTotal current liabilities 6,817,064 8,015,874\nCash ratio(1) 0.9 0.4\nQuick ratio(2) 1.8 1.3\nCurrent ratio(3) 2.3 1.8\nNotes:\n(1) Cash and cash equivalents divided by total current liabilities.\n(2) Current assets excluding inventories divided by total current liabilities.\n(3) Total current assets divided by total current liabilities.\n- 7 -",
+      "text_lines": [
+        {
+          "text": "EBITDA",
+          "bbox": [
+            72.024,
+            69.7399999999999,
+            116.676,
+            81.7399999999999
+          ]
+        },
+        {
+          "text": "Amounts in US$ thousands 4Q25 3Q25 4Q24",
+          "bbox": [
+            77.424,
+            95.23159999999996,
+            463.68208,
+            107.81168000000002
+          ]
+        },
+        {
+          "text": "Profit for the period 203,375 315,466 270,946",
+          "bbox": [
+            77.424,
+            110.59159999999997,
+            463.65544,
+            120.5515999999999
+          ]
+        },
+        {
+          "text": "Finance costs 108,633 97,323 75,342",
+          "bbox": [
+            77.424,
+            123.07159999999999,
+            463.67752,
+            133.0315999999999
+          ]
+        },
+        {
+          "text": "Depreciation and amortisation 1,069,773 995,857 849,263",
+          "bbox": [
+            77.424,
+            135.5516,
+            463.65544,
+            145.51159999999993
+          ]
+        },
+        {
+          "text": "Income tax expense 23,128 21,610 84,312",
+          "bbox": [
+            77.424,
+            148.27160000000003,
+            463.67752,
+            158.23159999999996
+          ]
+        },
+        {
+          "text": "EBITDA 1,404,909 1,430,256 1,279,863",
+          "bbox": [
+            77.424,
+            161.11159999999995,
+            463.65160000000003,
+            171.07159999999988
+          ]
+        },
+        {
+          "text": "Profit margin 8.2% 13.2% 12.3%",
+          "bbox": [
+            77.424,
+            174.1916,
+            463.61644,
+            184.15159999999992
+          ]
+        },
+        {
+          "text": "EBITDA margin 56.5% 60.0% 58.0%",
+          "bbox": [
+            77.424,
+            187.39160000000004,
+            463.61644,
+            197.35159999999996
+          ]
+        },
+        {
+          "text": "Liquidity",
+          "bbox": [
+            72.024,
+            228.40999999999997,
+            122.02799999999999,
+            240.40999999999997
+          ]
+        },
+        {
+          "text": "Amounts in US$ thousands 4Q25 3Q25",
+          "bbox": [
+            77.424,
+            242.38160000000005,
+            399.81208,
+            254.96168
+          ]
+        },
+        {
+          "text": "Inventories 3,629,802 3,490,757",
+          "bbox": [
+            77.424,
+            258.4616,
+            399.79168,
+            268.4215999999999
+          ]
+        },
+        {
+          "text": "Prepayment and prepaid operating 67,518 82,912",
+          "bbox": [
+            77.424,
+            271.4216,
+            399.80752,
+            281.38159999999993
+          ]
+        },
+        {
+          "text": "expenses",
+          "bbox": [
+            84.384,
+            282.8216,
+            127.03272000000001,
+            292.7815999999999
+          ]
+        },
+        {
+          "text": "Trade and other receivables 1,432,684 1,376,558",
+          "bbox": [
+            77.424,
+            295.6616,
+            399.79168,
+            305.62159999999994
+          ]
+        },
+        {
+          "text": "Financial assets at fair value through profit 380,857 381,981",
+          "bbox": [
+            77.424,
+            308.50160000000005,
+            399.78544,
+            318.5816
+          ]
+        },
+        {
+          "text": "or loss",
+          "bbox": [
+            83.784,
+            320.02160000000003,
+            113.1162,
+            329.9816
+          ]
+        },
+        {
+          "text": "Financial assets at amortised cost 4,150,600 5,308,072",
+          "bbox": [
+            77.424,
+            332.86159999999995,
+            399.79168,
+            342.8216
+          ]
+        },
+        {
+          "text": "Derivative financial instruments 87,151 18,677",
+          "bbox": [
+            77.424,
+            347.1415999999999,
+            399.80752,
+            357.10159999999996
+          ]
+        },
+        {
+          "text": "Cash and cash equivalents 5,872,500 3,481,713",
+          "bbox": [
+            77.424,
+            361.30159999999995,
+            399.79168,
+            371.2616
+          ]
+        },
+        {
+          "text": "Assets classified as held-for-sale 3,917 3,917",
+          "bbox": [
+            77.424,
+            375.4616,
+            399.79972,
+            385.4216
+          ]
+        },
+        {
+          "text": "Total current assets 15,625,029 14,144,587",
+          "bbox": [
+            77.424,
+            389.62159999999994,
+            399.78952,
+            399.5816
+          ]
+        },
+        {
+          "text": "Trade and other payables 2,965,981 2,968,329",
+          "bbox": [
+            77.424,
+            418.0815999999999,
+            399.79168,
+            428.04159999999996
+          ]
+        },
+        {
+          "text": "Contract liabilities 599,378 717,899",
+          "bbox": [
+            77.424,
+            432.36159999999995,
+            399.78544,
+            442.3216
+          ]
+        },
+        {
+          "text": "Borrowings 2,593,077 3,595,623",
+          "bbox": [
+            77.424,
+            446.5216,
+            399.79168,
+            456.4816
+          ]
+        },
+        {
+          "text": "Lease liabilities 7,493 10,759",
+          "bbox": [
+            77.424,
+            460.68159999999995,
+            399.80752,
+            470.6416
+          ]
+        },
+        {
+          "text": "Deferred income 188,930 189,903",
+          "bbox": [
+            77.424,
+            474.9616,
+            399.78544,
+            484.9216
+          ]
+        },
+        {
+          "text": "Accrued liabilities 409,749 422,786",
+          "bbox": [
+            77.424,
+            489.12159999999994,
+            399.78544,
+            499.0816
+          ]
+        },
+        {
+          "text": "Derivative financial instruments 18,994 82,419",
+          "bbox": [
+            77.424,
+            503.28159999999997,
+            399.80752,
+            513.2416000000001
+          ]
+        },
+        {
+          "text": "Current tax liabilities 33,462 28,156",
+          "bbox": [
+            77.424,
+            517.5616,
+            399.80752,
+            527.5216
+          ]
+        },
+        {
+          "text": "Total current liabilities 6,817,064 8,015,874",
+          "bbox": [
+            77.424,
+            531.6016,
+            399.79168,
+            541.5616
+          ]
+        },
+        {
+          "text": "Cash ratio(1) 0.9 0.4",
+          "bbox": [
+            77.424,
+            559.9408,
+            399.6788,
+            570.1515999999999
+          ]
+        },
+        {
+          "text": "Quick ratio(2) 1.8 1.3",
+          "bbox": [
+            77.424,
+            574.1007999999999,
+            399.6788,
+            584.3116
+          ]
+        },
+        {
+          "text": "Current ratio(3) 2.3 1.8",
+          "bbox": [
+            77.424,
+            588.2608,
+            399.6788,
+            598.4716
+          ]
+        },
+        {
+          "text": "Notes:",
+          "bbox": [
+            72.024,
+            615.21232,
+            95.25912,
+            623.2523199999999
+          ]
+        },
+        {
+          "text": "(1) Cash and cash equivalents divided by total current liabilities.",
+          "bbox": [
+            72.024,
+            624.45232,
+            303.62512,
+            632.49232
+          ]
+        },
+        {
+          "text": "(2) Current assets excluding inventories divided by total current liabilities.",
+          "bbox": [
+            72.024,
+            633.6923199999999,
+            336.20075999999966,
+            641.73232
+          ]
+        },
+        {
+          "text": "(3) Total current assets divided by total current liabilities.",
+          "bbox": [
+            72.024,
+            642.81232,
+            277.71716,
+            650.85232
+          ]
+        },
+        {
+          "text": "- 7 -",
+          "bbox": [
+            293.69,
+            792.1715999999999,
+            311.42668000000003,
+            802.1315999999999
+          ]
+        }
+      ],
+      "tables": [
+        {
+          "table_number": 1,
+          "bbox": [
+            72.024,
+            93.668,
+            469.05998999999997,
+            198.7039999999999
+          ],
+          "rows": [
+            [
+              "Amounts in US$ thousands",
+              "4Q25",
+              "",
+              "3Q25 4Q24"
+            ],
+            [
+              "Profit for the period\nFinance costs\nDepreciation and amortisation\nIncome tax expense\nEBITDA\nProfit margin\nEBITDA margin",
+              "203,375",
+              "",
+              "315,466 270,946\n97,323 75,342\n995,857 849,263\n21,610 84,312\n1,430,256 1,279,863\n13.2% 12.3%\n60.0% 58.0%"
+            ],
+            [
+              null,
+              "108,633",
+              "",
+              null
+            ],
+            [
+              null,
+              "1,069,773",
+              "",
+              null
+            ],
+            [
+              null,
+              "23,128",
+              "",
+              null
+            ],
+            [
+              null,
+              "1,404,909",
+              "",
+              null
+            ],
+            [
+              null,
+              "8.2%",
+              "",
+              null
+            ],
+            [
+              null,
+              "56.5%",
+              "",
+              null
+            ]
+          ]
+        },
+        {
+          "table_number": 2,
+          "bbox": [
+            72.024,
+            240.82999999999998,
+            405.190005,
+            599.9800075
+          ],
+          "rows": [
+            [
+              "Amounts in US$ thousands",
+              "4Q25",
+              "",
+              "3Q25"
+            ],
+            [
+              "Inventories\nPrepayment and prepaid operating\nexpenses\nTrade and other receivables\nFinancial assets at fair value through profit\nor loss\nFinancial assets at amortised cost\nDerivative financial instruments\nCash and cash equivalents\nAssets classified as held-for-sale\nTotal current assets\nTrade and other payables\nContract liabilities\nBorrowings\nLease liabilities\nDeferred income\nAccrued liabilities\nDerivative financial instruments\nCurrent tax liabilities\nTotal current liabilities\nCash ratio(1)\nQuick ratio(2)\nCurrent ratio(3)",
+              "3,629,802",
+              "",
+              "3,490,757\n82,912\n1,376,558\n381,981\n5,308,072\n18,677\n3,481,713\n3,917\n14,144,587\n2,968,329\n717,899\n3,595,623\n10,759\n189,903\n422,786\n82,419\n28,156\n8,015,874\n0.4\n1.3\n1.8"
+            ],
+            [
+              null,
+              "67,518",
+              null,
+              null
+            ],
+            [
+              null,
+              "4,150,600",
+              "",
+              null
+            ],
+            [
+              null,
+              "87,151",
+              "",
+              null
+            ],
+            [
+              null,
+              "5,872,500",
+              "",
+              null
+            ],
+            [
+              null,
+              "3,917",
+              "",
+              null
+            ],
+            [
+              null,
+              "15,625,029",
+              "",
+              null
+            ],
+            [
+              null,
+              "",
+              "",
+              null
+            ],
+            [
+              null,
+              "2,965,981",
+              "",
+              null
+            ],
+            [
+              null,
+              "599,378",
+              "",
+              null
+            ],
+            [
+              null,
+              "2,593,077",
+              "",
+              null
+            ],
+            [
+              null,
+              "7,493",
+              "",
+              null
+            ],
+            [
+              null,
+              "188,930",
+              "",
+              null
+            ],
+            [
+              null,
+              "409,749",
+              "",
+              null
+            ],
+            [
+              null,
+              "18,994",
+              "",
+              null
+            ],
+            [
+              null,
+              "33,462",
+              "",
+              null
+            ],
+            [
+              null,
+              "6,817,064",
+              "",
+              null
+            ],
+            [
+              null,
+              "",
+              "",
+              null
+            ],
+            [
+              null,
+              "0.9",
+              "",
+              null
+            ],
+            [
+              null,
+              "1.8",
+              "",
+              null
+            ],
+            [
+              null,
+              "2.3",
+              "",
+              null
+            ]
+          ]
+        },
+        {
+          "table_number": 3,
+          "bbox": [
+            276.95,
+            293.33,
+            339.854,
+            318.65
+          ],
+          "rows": [
+            [
+              "1,432,684",
+              ""
+            ],
+            [
+              "380,857",
+              null
+            ]
+          ]
+        }
+      ],
+      "section_candidates": [
+        "EBITDA",
+        "EBITDA 1,404,909 1,430,256 1,279,863"
+      ],
+      "footnote_candidates": [
+        {
+          "text": "Cash ratio(1) 0.9 0.4",
+          "bbox": [
+            77.424,
+            559.9408,
+            399.6788,
+            570.1515999999999
+          ]
+        },
+        {
+          "text": "Quick ratio(2) 1.8 1.3",
+          "bbox": [
+            77.424,
+            574.1007999999999,
+            399.6788,
+            584.3116
+          ]
+        },
+        {
+          "text": "Current ratio(3) 2.3 1.8",
+          "bbox": [
+            77.424,
+            588.2608,
+            399.6788,
+            598.4716
+          ]
+        },
+        {
+          "text": "Notes:",
+          "bbox": [
+            72.024,
+            615.21232,
+            95.25912,
+            623.2523199999999
+          ]
+        },
+        {
+          "text": "(1) Cash and cash equivalents divided by total current liabilities.",
+          "bbox": [
+            72.024,
+            624.45232,
+            303.62512,
+            632.49232
+          ]
+        },
+        {
+          "text": "(2) Current assets excluding inventories divided by total current liabilities.",
+          "bbox": [
+            72.024,
+            633.6923199999999,
+            336.20075999999966,
+            641.73232
+          ]
+        },
+        {
+          "text": "(3) Total current assets divided by total current liabilities.",
+          "bbox": [
+            72.024,
+            642.81232,
+            277.71716,
+            650.85232
+          ]
+        },
+        {
+          "text": "- 7 -",
+          "bbox": [
+            293.69,
+            792.1715999999999,
+            311.42668000000003,
+            802.1315999999999
+          ]
+        }
+      ]
+    },
+    {
+      "page_number": 8,
+      "width": 595.32,
+      "height": 841.92,
+      "text": "Capital Structure\nAmounts in US$ thousands 4Q25 3Q25\nCash and cash equivalents 5,872,500 3,481,713\nFinancial assets at fair value through 380,857 381,981\nprofit or loss - current(1)\nFinancial assets at amortised cost(2) 5,682,865 7,521,544\nTotal cash on hand 11,936,222 11,385,238\nBorrowings - current 2,593,077 3,595,623\nBorrowings - non-current 9,994,773 7,912,678\nLease liabilities 8,331 11,867\nTotal debt 12,596,181 11,520,168\nNet debt(3) 659,959 134,930\nEquity 35,020,523 33,076,364\nDebt to equity ratio(4) 36.0% 34.8%\nNet debt to equity ratio(5) 1.9% 0.4%\nNotes:\n(1) Mainly contain structural deposits and monetary funds.\n(2) Mainly contain bank deposits over 3 months.\n(3) Total debt minus total cash on hand.\n(4) Total debt divided by equity.\n(5) Net debt divided by equity.\nCash Flow\nAmounts in US$ thousands 4Q25 3Q25\nNet cash generated from operating activities 1,343,934 941,112\nNet cash used in investing activities (1,546,087) (2,062,136)\nNet cash generated from/(used in) financing 2,561,778 (489,594)\nactivities\nEffect of exchange rate changes 31,162 9,656\nNet increase/(decrease) in cash and cash 2,390,787 (1,600,962)\nequivalents\n- 8 -",
+      "text_lines": [
+        {
+          "text": "Capital Structure",
+          "bbox": [
+            72.024,
+            69.7399999999999,
+            168.768,
+            81.7399999999999
+          ]
+        },
+        {
+          "text": "Amounts in US$ thousands 4Q25 3Q25",
+          "bbox": [
+            77.664,
+            83.71159999999998,
+            413.85208,
+            96.41167999999993
+          ]
+        },
+        {
+          "text": "Cash and cash equivalents 5,872,500 3,481,713",
+          "bbox": [
+            77.664,
+            99.91160000000002,
+            413.95168,
+            109.87159999999994
+          ]
+        },
+        {
+          "text": "Financial assets at fair value through 380,857 381,981",
+          "bbox": [
+            77.664,
+            112.75160000000005,
+            413.94543999999996,
+            122.71159999999998
+          ]
+        },
+        {
+          "text": "profit or loss - current(1)",
+          "bbox": [
+            87.624,
+            124.02080000000001,
+            190.01288,
+            134.23159999999996
+          ]
+        },
+        {
+          "text": "Financial assets at amortised cost(2) 5,682,865 7,521,544",
+          "bbox": [
+            77.664,
+            136.86079999999993,
+            413.95168,
+            147.07159999999988
+          ]
+        },
+        {
+          "text": "Total cash on hand 11,936,222 11,385,238",
+          "bbox": [
+            77.664,
+            151.15160000000003,
+            413.94951999999995,
+            161.11159999999995
+          ]
+        },
+        {
+          "text": "Borrowings - current 2,593,077 3,595,623",
+          "bbox": [
+            77.664,
+            179.71159999999998,
+            413.95168,
+            189.6715999999999
+          ]
+        },
+        {
+          "text": "Borrowings - non-current 9,994,773 7,912,678",
+          "bbox": [
+            77.664,
+            193.87160000000006,
+            413.95168,
+            203.83159999999998
+          ]
+        },
+        {
+          "text": "Lease liabilities 8,331 11,867",
+          "bbox": [
+            77.664,
+            208.03160000000003,
+            413.96752000000004,
+            217.99159999999995
+          ]
+        },
+        {
+          "text": "Total debt 12,596,181 11,520,168",
+          "bbox": [
+            77.664,
+            222.1916,
+            413.94951999999995,
+            232.15159999999992
+          ]
+        },
+        {
+          "text": "Net debt(3) 659,959 134,930",
+          "bbox": [
+            77.664,
+            250.4108,
+            413.94543999999996,
+            260.62159999999994
+          ]
+        },
+        {
+          "text": "Equity 35,020,523 33,076,364",
+          "bbox": [
+            77.664,
+            264.9416,
+            413.94951999999995,
+            274.9015999999999
+          ]
+        },
+        {
+          "text": "Debt to equity ratio(4) 36.0% 34.8%",
+          "bbox": [
+            77.664,
+            278.85079999999994,
+            413.79540000000003,
+            289.0615999999999
+          ]
+        },
+        {
+          "text": "Net debt to equity ratio(5) 1.9% 0.4%",
+          "bbox": [
+            77.664,
+            293.0108,
+            413.79544,
+            303.22159999999997
+          ]
+        },
+        {
+          "text": "Notes:",
+          "bbox": [
+            72.024,
+            317.68232,
+            95.25912,
+            325.72231999999997
+          ]
+        },
+        {
+          "text": "(1) Mainly contain structural deposits and monetary funds.",
+          "bbox": [
+            72.024,
+            326.92232,
+            283.56512,
+            334.96232
+          ]
+        },
+        {
+          "text": "(2) Mainly contain bank deposits over 3 months.",
+          "bbox": [
+            72.024,
+            336.16231999999997,
+            247.8959999999999,
+            344.20232
+          ]
+        },
+        {
+          "text": "(3) Total debt minus total cash on hand.",
+          "bbox": [
+            72.024,
+            345.28231999999997,
+            219.00512,
+            353.32232
+          ]
+        },
+        {
+          "text": "(4) Total debt divided by equity.",
+          "bbox": [
+            72.024,
+            354.52232,
+            189.647,
+            362.56232
+          ]
+        },
+        {
+          "text": "(5) Net debt divided by equity.",
+          "bbox": [
+            72.024,
+            363.76231999999993,
+            184.40707999999998,
+            371.80231999999995
+          ]
+        },
+        {
+          "text": "Cash Flow",
+          "bbox": [
+            72.024,
+            385.12999999999994,
+            132.096,
+            397.12999999999994
+          ]
+        },
+        {
+          "text": "Amounts in US$ thousands 4Q25 3Q25",
+          "bbox": [
+            77.424,
+            399.12159999999994,
+            412.53207999999995,
+            411.58167999999995
+          ]
+        },
+        {
+          "text": "Net cash generated from operating activities 1,343,934 941,112",
+          "bbox": [
+            77.424,
+            415.0815999999999,
+            412.50543999999996,
+            425.04159999999996
+          ]
+        },
+        {
+          "text": "Net cash used in investing activities (1,546,087) (2,062,136)",
+          "bbox": [
+            77.424,
+            429.24159999999995,
+            412.3354,
+            439.2016
+          ]
+        },
+        {
+          "text": "Net cash generated from/(used in) financing 2,561,778 (489,594)",
+          "bbox": [
+            77.424,
+            441.9616,
+            412.34668,
+            451.9216
+          ]
+        },
+        {
+          "text": "activities",
+          "bbox": [
+            87.384,
+            453.48159999999996,
+            125.59056000000001,
+            463.4416
+          ]
+        },
+        {
+          "text": "Effect of exchange rate changes 31,162 9,656",
+          "bbox": [
+            77.424,
+            466.32159999999993,
+            412.51972,
+            476.28159999999997
+          ]
+        },
+        {
+          "text": "Net increase/(decrease) in cash and cash 2,390,787 (1,600,962)",
+          "bbox": [
+            77.424,
+            479.04159999999996,
+            412.34668,
+            489.0016
+          ]
+        },
+        {
+          "text": "equivalents",
+          "bbox": [
+            87.384,
+            490.56159999999994,
+            137.8314,
+            500.5216
+          ]
+        },
+        {
+          "text": "- 8 -",
+          "bbox": [
+            293.69,
+            792.1715999999999,
+            311.42668000000003,
+            802.1315999999999
+          ]
+        }
+      ],
+      "tables": [
+        {
+          "table_number": 1,
+          "bbox": [
+            72.19542857142858,
+            82.15999999999994,
+            418.90429071428576,
+            304.72999624999994
+          ],
+          "rows": [
+            [
+              "Amounts in US$ thousands",
+              "",
+              "4Q25",
+              "",
+              "3Q25"
+            ],
+            [
+              "Cash and cash equivalents\nFinancial assets at fair value through\nprofit or loss - current(1)\nFinancial assets at amortised cost(2)\nTotal cash on hand\nBorrowings - current\nBorrowings - non-current\nLease liabilities\nTotal debt\nNet debt(3)\nEquity\nDebt to equity ratio(4)\nNet debt to equity ratio(5)",
+              "",
+              "5,872,500",
+              "",
+              "3,481,713\n381,981\n7,521,544\n11,385,238\n3,595,623\n7,912,678\n11,867\n11,520,168\n134,930\n33,076,364\n34.8%\n0.4%"
+            ],
+            [
+              null,
+              "380,857",
+              "380,857",
+              null,
+              null
+            ],
+            [
+              null,
+              "",
+              "5,682,865",
+              "",
+              null
+            ],
+            [
+              null,
+              "",
+              "11,936,222",
+              "",
+              null
+            ],
+            [
+              null,
+              "",
+              "",
+              "",
+              null
+            ],
+            [
+              null,
+              "",
+              "2,593,077",
+              "",
+              null
+            ],
+            [
+              null,
+              "",
+              "9,994,773",
+              "",
+              null
+            ],
+            [
+              null,
+              "",
+              "8,331",
+              "",
+              null
+            ],
+            [
+              null,
+              "",
+              "12,596,181",
+              "",
+              null
+            ],
+            [
+              null,
+              "",
+              "",
+              "",
+              null
+            ],
+            [
+              null,
+              "",
+              "659,959",
+              "",
+              null
+            ],
+            [
+              null,
+              "",
+              "35,020,523",
+              "",
+              null
+            ],
+            [
+              null,
+              "",
+              "36.0%",
+              "",
+              null
+            ],
+            [
+              null,
+              "",
+              "1.9%",
+              "",
+              null
+            ]
+          ]
+        },
+        {
+          "table_number": 2,
+          "bbox": [
+            72.19542857142858,
+            397.54900749999996,
+            418.90429071428576,
+            500.7957228571428
+          ],
+          "rows": [
+            [
+              "Amounts in US$ thousands",
+              "",
+              "4Q25",
+              "",
+              "3Q25"
+            ],
+            [
+              "Net cash generated from operating activities\nNet cash used in investing activities\nNet cash generated from/(used in) financing\nactivities\nEffect of exchange rate changes\nNet increase/(decrease) in cash and cash\nequivalents",
+              "",
+              "1,343,934",
+              "",
+              "941,112\n(2,062,136)\n(489,594)\n9,656\n(1,600,962)"
+            ],
+            [
+              null,
+              "",
+              "(1,546,087)",
+              "",
+              null
+            ],
+            [
+              null,
+              "2,561,778",
+              "2,561,778",
+              null,
+              null
+            ],
+            [
+              null,
+              "",
+              "31,162",
+              "",
+              null
+            ],
+            [
+              null,
+              "2,390,787",
+              "2,390,787",
+              null,
+              null
+            ]
+          ]
+        }
+      ],
+      "section_candidates": [],
+      "footnote_candidates": [
+        {
+          "text": "- 8 -",
+          "bbox": [
+            293.69,
+            792.1715999999999,
+            311.42668000000003,
+            802.1315999999999
+          ]
+        }
+      ]
+    },
+    {
+      "page_number": 9,
+      "width": 595.32,
+      "height": 841.92,
+      "text": "Semiconductor Manufacturing International Corporation\nCONDENSED CONSOLIDATED STATEMENT OF PROFIT OR LOSS AND OTHER COMPREHENSIVE INCOME\n(In US$ thousands)\nFor the three months ended\nDecember 31, 2025 September 30, 2025\n(Unaudited) (Unaudited)\nRevenue 2,488,710 2,381,822\nCost of sales (2,010,589) (1,859,011)\nGross profit 478,121 522,811\nResearch and development expenses (239,676) (203,147)\nSelling and marketing expenses (8,109) (10,553)\nGeneral and administration expenses (145,680) (42,346)\nImpairment losses on financial assets, net 196 (3,769)\nOther operating income 213,768 88,073\nOperating expenses (179,501) (171,742)\nProfit from operations 298,620 351,069\nOther income, net (72,117) (13,993)\nProfit before tax 226,503 337,076\nIncome tax expense (23,128) (21,610)\nProfit for the period 203,375 315,466\nOther comprehensive income:\nItems that may be reclassified to profit or loss in subsequent periods\nExchange differences on translating foreign operations 15,247 11,663\nCash flow hedges 72,286 (30,719)\nTotal comprehensive income for the period 290,908 296,410\nProfit for the period attributable to:\nOwners of the Company 172,851 191,758\nNon-controlling interests 30,524 123,708\n203,375 315,466\nTotal comprehensive income for the period attributable to:\nOwners of the Company 260,443 172,702\nNon-controlling interests 30,465 123,708\n290,908 296,410\n- 9 -",
+      "text_lines": [
+        {
+          "text": "Semiconductor Manufacturing International Corporation",
+          "bbox": [
+            173.18,
+            36.89160000000004,
+            418.67407999999983,
+            46.85159999999996
+          ]
+        },
+        {
+          "text": "CONDENSED CONSOLIDATED STATEMENT OF PROFIT OR LOSS AND OTHER COMPREHENSIVE INCOME",
+          "bbox": [
+            42.24,
+            48.41160000000002,
+            549.5438800000001,
+            58.371599999999944
+          ]
+        },
+        {
+          "text": "(In US$ thousands)",
+          "bbox": [
+            257.21,
+            59.729999999999905,
+            334.781,
+            68.7299999999999
+          ]
+        },
+        {
+          "text": "For the three months ended",
+          "bbox": [
+            384.19,
+            94.06999999999994,
+            503.25100000000003,
+            103.06999999999994
+          ]
+        },
+        {
+          "text": "December 31, 2025 September 30, 2025",
+          "bbox": [
+            349.75,
+            107.26999999999998,
+            544.0840000000001,
+            116.26999999999998
+          ]
+        },
+        {
+          "text": "(Unaudited) (Unaudited)",
+          "bbox": [
+            380.71,
+            120.1099999999999,
+            544.0569999999999,
+            129.1099999999999
+          ]
+        },
+        {
+          "text": "Revenue 2,488,710 2,381,822",
+          "bbox": [
+            37.44,
+            146.26999999999998,
+            544.0930000000001,
+            155.26999999999998
+          ]
+        },
+        {
+          "text": "Cost of sales (2,010,589) (1,859,011)",
+          "bbox": [
+            37.44,
+            158.9899999999999,
+            544.1229999999999,
+            167.9899999999999
+          ]
+        },
+        {
+          "text": "Gross profit 478,121 522,811",
+          "bbox": [
+            42.48,
+            172.30999999999995,
+            543.991,
+            181.30999999999995
+          ]
+        },
+        {
+          "text": "Research and development expenses (239,676) (203,147)",
+          "bbox": [
+            37.44,
+            185.51,
+            544.012,
+            194.51
+          ]
+        },
+        {
+          "text": "Selling and marketing expenses (8,109) (10,553)",
+          "bbox": [
+            37.44,
+            198.3499999999999,
+            544.021,
+            207.3499999999999
+          ]
+        },
+        {
+          "text": "General and administration expenses (145,680) (42,346)",
+          "bbox": [
+            37.44,
+            211.06999999999994,
+            544.021,
+            220.06999999999994
+          ]
+        },
+        {
+          "text": "Impairment losses on financial assets, net 196 (3,769)",
+          "bbox": [
+            37.44,
+            223.78999999999996,
+            544.1379999999999,
+            232.78999999999996
+          ]
+        },
+        {
+          "text": "Other operating income 213,768 88,073",
+          "bbox": [
+            37.44,
+            236.53999999999996,
+            544.0000000000001,
+            245.53999999999996
+          ]
+        },
+        {
+          "text": "Operating expenses (179,501) (171,742)",
+          "bbox": [
+            42.48,
+            249.8599999999999,
+            544.012,
+            258.8599999999999
+          ]
+        },
+        {
+          "text": "Profit from operations 298,620 351,069",
+          "bbox": [
+            37.44,
+            263.05999999999995,
+            543.991,
+            272.05999999999995
+          ]
+        },
+        {
+          "text": "Other income, net (72,117) (13,993)",
+          "bbox": [
+            37.44,
+            275.78,
+            544.024,
+            284.78
+          ]
+        },
+        {
+          "text": "Profit before tax 226,503 337,076",
+          "bbox": [
+            37.44,
+            289.0999999999999,
+            543.991,
+            298.0999999999999
+          ]
+        },
+        {
+          "text": "Income tax expense (23,128) (21,610)",
+          "bbox": [
+            37.44,
+            301.81999999999994,
+            544.021,
+            310.81999999999994
+          ]
+        },
+        {
+          "text": "Profit for the period 203,375 315,466",
+          "bbox": [
+            37.44,
+            314.78,
+            543.991,
+            323.78
+          ]
+        },
+        {
+          "text": "Other comprehensive income:",
+          "bbox": [
+            37.44,
+            342.0199999999999,
+            157.42800000000003,
+            351.0199999999999
+          ]
+        },
+        {
+          "text": "Items that may be reclassified to profit or loss in subsequent periods",
+          "bbox": [
+            37.44,
+            354.722,
+            308.669,
+            363.722
+          ]
+        },
+        {
+          "text": "Exchange differences on translating foreign operations 15,247 11,663",
+          "bbox": [
+            42.48,
+            367.5799999999999,
+            544.0000000000001,
+            376.5799999999999
+          ]
+        },
+        {
+          "text": "Cash flow hedges 72,286 (30,719)",
+          "bbox": [
+            42.48,
+            380.29999999999995,
+            544.021,
+            389.29999999999995
+          ]
+        },
+        {
+          "text": "Total comprehensive income for the period 290,908 296,410",
+          "bbox": [
+            37.44,
+            393.3999999999999,
+            543.991,
+            402.3999999999999
+          ]
+        },
+        {
+          "text": "Profit for the period attributable to:",
+          "bbox": [
+            37.44,
+            420.63999999999993,
+            173.642,
+            429.63999999999993
+          ]
+        },
+        {
+          "text": "Owners of the Company 172,851 191,758",
+          "bbox": [
+            42.48,
+            433.35999999999996,
+            543.991,
+            442.35999999999996
+          ]
+        },
+        {
+          "text": "Non-controlling interests 30,524 123,708",
+          "bbox": [
+            42.48,
+            446.0799999999999,
+            543.991,
+            455.0799999999999
+          ]
+        },
+        {
+          "text": "203,375 315,466",
+          "bbox": [
+            398.11,
+            459.3999999999999,
+            543.991,
+            468.3999999999999
+          ]
+        },
+        {
+          "text": "Total comprehensive income for the period attributable to:",
+          "bbox": [
+            37.44,
+            473.55999999999995,
+            267.35399999999987,
+            482.55999999999995
+          ]
+        },
+        {
+          "text": "Owners of the Company 260,443 172,702",
+          "bbox": [
+            42.48,
+            486.3999999999999,
+            543.991,
+            495.3999999999999
+          ]
+        },
+        {
+          "text": "Non-controlling interests 30,465 123,708",
+          "bbox": [
+            42.48,
+            499.11999999999995,
+            543.991,
+            508.11999999999995
+          ]
+        },
+        {
+          "text": "290,908 296,410",
+          "bbox": [
+            398.11,
+            512.3199999999999,
+            544.024,
+            521.3199999999999
+          ]
+        },
+        {
+          "text": "- 9 -",
+          "bbox": [
+            287.09,
+            792.1715999999999,
+            304.82668,
+            802.1315999999999
+          ]
+        }
+      ],
+      "tables": [],
+      "section_candidates": [
+        "CONDENSED CONSOLIDATED STATEMENT OF PROFIT OR LOSS AND OTHER COMPREHENSIVE INCOME"
+      ],
+      "footnote_candidates": [
+        {
+          "text": "- 9 -",
+          "bbox": [
+            287.09,
+            792.1715999999999,
+            304.82668,
+            802.1315999999999
+          ]
+        }
+      ]
+    },
+    {
+      "page_number": 10,
+      "width": 595.32,
+      "height": 841.92,
+      "text": "Semiconductor Manufacturing International Corporation\nCONDENSED CONSOLIDATED STATEMENT OF FINANCIAL POSITION\n(In US$ thousands)\nAs of\nDecember 31, 2025 September 30, 2025\n(Unaudited) (Unaudited)\nASSETS\nNon-current assets\nProperty, plant and equipment 32,557,778 31,213,807\nRight-of-use assets 374,956 380,556\nIntangible assets 20,397 21,887\nInvestments in associates 1,309,570 1,274,591\nInvestment in a joint venture 79 78\nDeferred tax assets 35,212 31,397\nFinancial assets at fair value through profit or loss 810,501 140,685\nFinancial assets at amortised cost 1,532,265 2,213,472\nOther assets 5,521 5,492\nTotal non-current assets 36,646,279 35,281,965\nCurrent assets\nInventories 3,629,802 3,490,757\nPrepayment and prepaid operating expenses 67,518 82,912\nTrade and other receivables 1,432,684 1,376,558\nFinancial assets at fair value through profit or loss 380,857 381,981\nFinancial assets at amortised cost 4,150,600 5,308,072\nDerivative financial instruments 87,151 18,677\nCash and cash equivalents 5,872,500 3,481,713\n15,621,112 14,140,670\nAssets classified as held-for-sale 3,917 3,917\nTotal current assets 15,625,029 14,144,587\nTOTAL ASSETS 52,271,308 49,426,552\n- 10 -",
+      "text_lines": [
+        {
+          "text": "Semiconductor Manufacturing International Corporation",
+          "bbox": [
+            171.26,
+            36.89160000000004,
+            416.7540799999999,
+            46.85159999999996
+          ]
+        },
+        {
+          "text": "CONDENSED CONSOLIDATED STATEMENT OF FINANCIAL POSITION",
+          "bbox": [
+            128.42,
+            48.41160000000002,
+            459.54596,
+            58.371599999999944
+          ]
+        },
+        {
+          "text": "(In US$ thousands)",
+          "bbox": [
+            255.29,
+            59.729999999999905,
+            332.87000000000006,
+            68.7299999999999
+          ]
+        },
+        {
+          "text": "As of",
+          "bbox": [
+            421.18,
+            105.1099999999999,
+            443.59900000000005,
+            114.1099999999999
+          ]
+        },
+        {
+          "text": "December 31, 2025 September 30, 2025",
+          "bbox": [
+            331.87,
+            119.75,
+            547.5640000000001,
+            128.75
+          ]
+        },
+        {
+          "text": "(Unaudited) (Unaudited)",
+          "bbox": [
+            362.83,
+            134.02999999999997,
+            547.612,
+            143.02999999999997
+          ]
+        },
+        {
+          "text": "ASSETS",
+          "bbox": [
+            33.72,
+            148.66999999999996,
+            69.594,
+            157.66999999999996
+          ]
+        },
+        {
+          "text": "Non-current assets",
+          "bbox": [
+            33.72,
+            162.9319999999999,
+            109.78200000000001,
+            171.9319999999999
+          ]
+        },
+        {
+          "text": "Property, plant and equipment 32,557,778 31,213,807",
+          "bbox": [
+            38.76,
+            177.3499999999999,
+            547.465,
+            186.3499999999999
+          ]
+        },
+        {
+          "text": "Right-of-use assets 374,956 380,556",
+          "bbox": [
+            38.76,
+            191.51,
+            547.471,
+            200.51
+          ]
+        },
+        {
+          "text": "Intangible assets 20,397 21,887",
+          "bbox": [
+            38.76,
+            205.66999999999996,
+            547.4800000000001,
+            214.66999999999996
+          ]
+        },
+        {
+          "text": "Investments in associates 1,309,570 1,274,591",
+          "bbox": [
+            38.76,
+            219.94999999999993,
+            547.573,
+            228.94999999999993
+          ]
+        },
+        {
+          "text": "Investment in a joint venture 79 78",
+          "bbox": [
+            38.76,
+            234.14,
+            547.504,
+            243.14
+          ]
+        },
+        {
+          "text": "Deferred tax assets 35,212 31,397",
+          "bbox": [
+            38.76,
+            248.29999999999995,
+            547.4800000000001,
+            257.29999999999995
+          ]
+        },
+        {
+          "text": "Financial assets at fair value through profit or loss 810,501 140,685",
+          "bbox": [
+            38.76,
+            262.5799999999999,
+            547.471,
+            271.5799999999999
+          ]
+        },
+        {
+          "text": "Financial assets at amortised cost 1,532,265 2,213,472",
+          "bbox": [
+            38.76,
+            276.7399999999999,
+            547.573,
+            285.7399999999999
+          ]
+        },
+        {
+          "text": "Other assets 5,521 5,492",
+          "bbox": [
+            38.76,
+            290.9,
+            547.4770000000001,
+            299.9
+          ]
+        },
+        {
+          "text": "Total non-current assets 36,646,279 35,281,965",
+          "bbox": [
+            33.72,
+            305.65999999999997,
+            547.465,
+            314.65999999999997
+          ]
+        },
+        {
+          "text": "Current assets",
+          "bbox": [
+            33.72,
+            334.44199999999995,
+            92.28299999999999,
+            343.44199999999995
+          ]
+        },
+        {
+          "text": "Inventories 3,629,802 3,490,757",
+          "bbox": [
+            38.76,
+            348.73999999999995,
+            547.573,
+            357.73999999999995
+          ]
+        },
+        {
+          "text": "Prepayment and prepaid operating expenses 67,518 82,912",
+          "bbox": [
+            38.76,
+            362.8999999999999,
+            547.4800000000001,
+            371.8999999999999
+          ]
+        },
+        {
+          "text": "Trade and other receivables 1,432,684 1,376,558",
+          "bbox": [
+            38.76,
+            377.17999999999995,
+            547.573,
+            386.17999999999995
+          ]
+        },
+        {
+          "text": "Financial assets at fair value through profit or loss 380,857 381,981",
+          "bbox": [
+            38.76,
+            391.3399999999999,
+            547.471,
+            400.3399999999999
+          ]
+        },
+        {
+          "text": "Financial assets at amortised cost 4,150,600 5,308,072",
+          "bbox": [
+            38.76,
+            405.5199999999999,
+            547.573,
+            414.5199999999999
+          ]
+        },
+        {
+          "text": "Derivative financial instruments 87,151 18,677",
+          "bbox": [
+            38.76,
+            419.79999999999995,
+            547.4800000000001,
+            428.79999999999995
+          ]
+        },
+        {
+          "text": "Cash and cash equivalents 5,872,500 3,481,713",
+          "bbox": [
+            38.76,
+            433.9599999999999,
+            547.573,
+            442.9599999999999
+          ]
+        },
+        {
+          "text": "15,621,112 14,140,670",
+          "bbox": [
+            367.75,
+            448.71999999999997,
+            547.465,
+            457.71999999999997
+          ]
+        },
+        {
+          "text": "Assets classified as held-for-sale 3,917 3,917",
+          "bbox": [
+            38.76,
+            462.87999999999994,
+            547.4770000000001,
+            471.87999999999994
+          ]
+        },
+        {
+          "text": "Total current assets 15,625,029 14,144,587",
+          "bbox": [
+            33.72,
+            477.5199999999999,
+            547.465,
+            486.5199999999999
+          ]
+        },
+        {
+          "text": "TOTAL ASSETS 52,271,308 49,426,552",
+          "bbox": [
+            33.72,
+            492.03999999999996,
+            547.465,
+            501.03999999999996
+          ]
+        },
+        {
+          "text": "- 10 -",
+          "bbox": [
+            282.41,
+            796.4916,
+            305.66668000000004,
+            806.4516
+          ]
+        }
+      ],
+      "tables": [],
+      "section_candidates": [
+        "CONDENSED CONSOLIDATED STATEMENT OF FINANCIAL POSITION",
+        "ASSETS",
+        "TOTAL ASSETS 52,271,308 49,426,552"
+      ],
+      "footnote_candidates": [
+        {
+          "text": "- 10 -",
+          "bbox": [
+            282.41,
+            796.4916,
+            305.66668000000004,
+            806.4516
+          ]
+        }
+      ]
+    },
+    {
+      "page_number": 11,
+      "width": 595.32,
+      "height": 841.92,
+      "text": "Semiconductor Manufacturing International Corporation\nCONDENSED CONSOLIDATED STATEMENT OF FINANCIAL POSITION\n(In US$ thousands)\nAs of\nDecember 31, 2025 September 30, 2025\n(Unaudited) (Unaudited)\nEQUITY AND LIABILITIES\nCapital and reserves\nOrdinary shares 32,002 31,999\nShare premium 14,394,785 14,393,091\nOther reserves 154,677 155,840\nRetained earnings 6,858,206 6,685,355\nEquity attributable to owners of the Company 21,439,670 21,266,285\nNon-controlling interests 13,580,853 11,810,079\nTotal equity 35,020,523 33,076,364\nNon-current liabilities\nBorrowings 9,994,773 7,912,678\nLease liabilities 838 1,108\nDeferred tax liabilities 60,207 62,391\nDeferred income 377,903 358,137\nTotal non-current liabilities 10,433,721 8,334,314\nCurrent liabilities\nTrade and other payables 2,965,981 2,968,329\nContract liabilities 599,378 717,899\nBorrowings 2,593,077 3,595,623\nLease liabilities 7,493 10,759\nDeferred income 188,930 189,903\nAccrued liabilities 409,749 422,786\nDerivative financial instruments 18,994 82,419\nCurrent tax liabilities 33,462 28,156\nTotal current liabilities 6,817,064 8,015,874\nTotal liabilities 17,250,785 16,350,188\nTOTAL EQUITY AND LIABILITIES 52,271,308 49,426,552\n- 11 -",
+      "text_lines": [
+        {
+          "text": "Semiconductor Manufacturing International Corporation",
+          "bbox": [
+            171.26,
+            36.89160000000004,
+            416.79799999999994,
+            46.85159999999996
+          ]
+        },
+        {
+          "text": "CONDENSED CONSOLIDATED STATEMENT OF FINANCIAL POSITION",
+          "bbox": [
+            128.42,
+            48.41160000000002,
+            459.54596,
+            58.371599999999944
+          ]
+        },
+        {
+          "text": "(In US$ thousands)",
+          "bbox": [
+            255.29,
+            59.729999999999905,
+            332.861,
+            68.7299999999999
+          ]
+        },
+        {
+          "text": "As of",
+          "bbox": [
+            407.35,
+            93.58999999999992,
+            429.76900000000006,
+            102.58999999999992
+          ]
+        },
+        {
+          "text": "December 31, 2025 September 30, 2025",
+          "bbox": [
+            321.07,
+            108.34999999999991,
+            552.004,
+            117.34999999999991
+          ]
+        },
+        {
+          "text": "(Unaudited) (Unaudited)",
+          "bbox": [
+            352.03,
+            122.50999999999999,
+            552.0519999999999,
+            131.51
+          ]
+        },
+        {
+          "text": "EQUITY AND LIABILITIES",
+          "bbox": [
+            36.36,
+            137.26999999999998,
+            145.755,
+            146.26999999999998
+          ]
+        },
+        {
+          "text": "Capital and reserves",
+          "bbox": [
+            36.36,
+            151.53199999999993,
+            118.926,
+            160.53199999999993
+          ]
+        },
+        {
+          "text": "Ordinary shares 32,002 31,999",
+          "bbox": [
+            41.4,
+            165.82999999999993,
+            551.9200000000001,
+            174.82999999999993
+          ]
+        },
+        {
+          "text": "Share premium 14,394,785 14,393,091",
+          "bbox": [
+            46.92,
+            180.1099999999999,
+            551.9050000000001,
+            189.1099999999999
+          ]
+        },
+        {
+          "text": "Other reserves 154,677 155,840",
+          "bbox": [
+            46.32,
+            194.26999999999998,
+            551.9110000000001,
+            203.26999999999998
+          ]
+        },
+        {
+          "text": "Retained earnings 6,858,206 6,685,355",
+          "bbox": [
+            41.4,
+            208.42999999999995,
+            552.013,
+            217.42999999999995
+          ]
+        },
+        {
+          "text": "Equity attributable to owners of the Company 21,439,670 21,266,285",
+          "bbox": [
+            41.4,
+            223.18999999999994,
+            551.9050000000001,
+            232.18999999999994
+          ]
+        },
+        {
+          "text": "Non-controlling interests 13,580,853 11,810,079",
+          "bbox": [
+            41.4,
+            237.38,
+            551.9050000000001,
+            246.38
+          ]
+        },
+        {
+          "text": "Total equity 35,020,523 33,076,364",
+          "bbox": [
+            36.36,
+            252.14,
+            551.9050000000001,
+            261.14
+          ]
+        },
+        {
+          "text": "Non-current liabilities",
+          "bbox": [
+            36.36,
+            280.9219999999999,
+            120.35099999999998,
+            289.9219999999999
+          ]
+        },
+        {
+          "text": "Borrowings 9,994,773 7,912,678",
+          "bbox": [
+            41.4,
+            295.2199999999999,
+            552.013,
+            304.2199999999999
+          ]
+        },
+        {
+          "text": "Lease liabilities 838 1,108",
+          "bbox": [
+            41.4,
+            309.38,
+            551.917,
+            318.38
+          ]
+        },
+        {
+          "text": "Deferred tax liabilities 60,207 62,391",
+          "bbox": [
+            41.4,
+            323.65999999999997,
+            551.9200000000001,
+            332.65999999999997
+          ]
+        },
+        {
+          "text": "Deferred income 377,903 358,137",
+          "bbox": [
+            41.4,
+            337.81999999999994,
+            551.9110000000001,
+            346.81999999999994
+          ]
+        },
+        {
+          "text": "Total non-current liabilities 10,433,721 8,334,314",
+          "bbox": [
+            36.36,
+            352.4599999999999,
+            552.013,
+            361.4599999999999
+          ]
+        },
+        {
+          "text": "Current liabilities",
+          "bbox": [
+            36.36,
+            381.24199999999996,
+            102.84299999999998,
+            390.24199999999996
+          ]
+        },
+        {
+          "text": "Trade and other payables 2,965,981 2,968,329",
+          "bbox": [
+            41.4,
+            395.542,
+            552.013,
+            404.67999999999995
+          ]
+        },
+        {
+          "text": "Contract liabilities 599,378 717,899",
+          "bbox": [
+            41.4,
+            409.8399999999999,
+            551.9110000000001,
+            418.8399999999999
+          ]
+        },
+        {
+          "text": "Borrowings 2,593,077 3,595,623",
+          "bbox": [
+            41.4,
+            423.99999999999994,
+            552.013,
+            432.99999999999994
+          ]
+        },
+        {
+          "text": "Lease liabilities 7,493 10,759",
+          "bbox": [
+            41.4,
+            438.28,
+            551.9200000000001,
+            447.28
+          ]
+        },
+        {
+          "text": "Deferred income 188,930 189,903",
+          "bbox": [
+            41.4,
+            452.43999999999994,
+            551.9110000000001,
+            461.43999999999994
+          ]
+        },
+        {
+          "text": "Accrued liabilities 409,749 422,786",
+          "bbox": [
+            41.4,
+            466.59999999999997,
+            551.9110000000001,
+            475.59999999999997
+          ]
+        },
+        {
+          "text": "Derivative financial instruments 18,994 82,419",
+          "bbox": [
+            41.4,
+            480.87999999999994,
+            551.9200000000001,
+            489.87999999999994
+          ]
+        },
+        {
+          "text": "Current tax liabilities 33,462 28,156",
+          "bbox": [
+            41.4,
+            495.03999999999996,
+            551.9200000000001,
+            504.03999999999996
+          ]
+        },
+        {
+          "text": "Total current liabilities 6,817,064 8,015,874",
+          "bbox": [
+            36.36,
+            509.67999999999995,
+            552.013,
+            518.68
+          ]
+        },
+        {
+          "text": "Total liabilities 17,250,785 16,350,188",
+          "bbox": [
+            36.36,
+            524.4399999999999,
+            551.9050000000001,
+            533.4399999999999
+          ]
+        },
+        {
+          "text": "TOTAL EQUITY AND LIABILITIES 52,271,308 49,426,552",
+          "bbox": [
+            36.36,
+            538.8399999999999,
+            551.9050000000001,
+            547.8399999999999
+          ]
+        },
+        {
+          "text": "- 11 -",
+          "bbox": [
+            282.41,
+            796.4916,
+            305.66668000000004,
+            806.4516
+          ]
+        }
+      ],
+      "tables": [],
+      "section_candidates": [
+        "CONDENSED CONSOLIDATED STATEMENT OF FINANCIAL POSITION",
+        "EQUITY AND LIABILITIES",
+        "TOTAL EQUITY AND LIABILITIES 52,271,308 49,426,552"
+      ],
+      "footnote_candidates": [
+        {
+          "text": "- 11 -",
+          "bbox": [
+            282.41,
+            796.4916,
+            305.66668000000004,
+            806.4516
+          ]
+        }
+      ]
+    },
+    {
+      "page_number": 12,
+      "width": 595.32,
+      "height": 841.92,
+      "text": "Semiconductor Manufacturing International Corporation\nCONDENSED CONSOLIDATED STATEMENT OF CASH FLOWS\n(In US$ thousands)\nFor the three months ended\nDecember 31, 2025 September 30, 2025\n(Unaudited) (Unaudited)\nOperating activities:\nProfit for the period 203,375 315,466\nDepreciation and amortisation 1,069,773 995,857\nShare of profit or loss of associates and a joint venture (15,548) 4,660\nOther losses, net 61,896 16,873\nChanges in working capital and others 24,438 (391,744)\nNet cash generated from operating activities 1,343,934 941,112\nInvesting activities:\nAcquisition of financial assets at fair value through profit or (693,519) (65,922)\nloss\nProceeds from sale of financial assets at fair value through 35,100 71,118\nprofit or loss\nAcquisition of financial assets at amortised cost (461,312) (150,473)\nProceeds from maturity of financial assets at amortised cost 2,085,076 528,200\nAcquisition of property, plant and equipment (2,506,484) (2,474,789)\nProceeds from disposal of property, plant and equipment 2,498 137\nAcquisition of intangible assets (66) (3,579)\nProceeds from disposal of land-use right - 27,597\nCapital injection in associates (26,941) (21,060)\nProceeds from sale of equity interests in associates 13,732 22,952\nDividends received from associates - 4,664\nProceeds from/(payments for) settlement of derivative 5,829 (981)\nfinancial instruments\nNet cash used in investing activities (1,546,087) (2,062,136)\nFinancing activities:\nProceeds from borrowings 3,622,112 224,871\nRepayment of borrowings (2,685,356) (727,255)\nRepayment of the principal portion of the lease liabilities (3,549) (3,463)\nProceeds from issue of shares under share incentive plans 549 34,846\nCapital injection from non-controlling interests 1,646,967 -\nPayments for settlement of derivative financial instruments (18,945) (18,593)\nNet cash generated from/(used in) financing activities 2,561,778 (489,594)\nEffects of exchange rate changes on cash and cash 31,162 9,656\nequivalents\nNet increase/(decrease) in cash and cash equivalents 2,390,787 (1,600,962)\nCash and cash equivalents at the beginning of the period 3,481,713 5,082,675\nCash and cash equivalents at the end of the period 5,872,500 3,481,713\n- 12 -",
+      "text_lines": [
+        {
+          "text": "Semiconductor Manufacturing International Corporation",
+          "bbox": [
+            171.26,
+            36.771600000000035,
+            416.7540799999999,
+            46.73159999999996
+          ]
+        },
+        {
+          "text": "CONDENSED CONSOLIDATED STATEMENT OF CASH FLOWS",
+          "bbox": [
+            146.9,
+            48.29160000000002,
+            441.62332000000004,
+            58.25159999999994
+          ]
+        },
+        {
+          "text": "(In US$ thousands)",
+          "bbox": [
+            255.41,
+            59.6099999999999,
+            332.984,
+            68.6099999999999
+          ]
+        },
+        {
+          "text": "For the three months ended",
+          "bbox": [
+            364.63,
+            94.54999999999995,
+            483.69100000000003,
+            103.54999999999995
+          ]
+        },
+        {
+          "text": "December 31, 2025 September 30, 2025",
+          "bbox": [
+            324.79,
+            109.18999999999994,
+            543.484,
+            118.18999999999994
+          ]
+        },
+        {
+          "text": "(Unaudited) (Unaudited)",
+          "bbox": [
+            355.75,
+            123.34999999999991,
+            543.433,
+            132.3499999999999
+          ]
+        },
+        {
+          "text": "Operating activities:",
+          "bbox": [
+            33.72,
+            137.9899999999999,
+            120.29100000000001,
+            146.9899999999999
+          ]
+        },
+        {
+          "text": "Profit for the period 203,375 315,466",
+          "bbox": [
+            38.76,
+            152.39,
+            543.391,
+            161.39
+          ]
+        },
+        {
+          "text": "Depreciation and amortisation 1,069,773 995,857",
+          "bbox": [
+            38.76,
+            166.54999999999995,
+            543.391,
+            175.54999999999995
+          ]
+        },
+        {
+          "text": "Share of profit or loss of associates and a joint venture (15,548) 4,660",
+          "bbox": [
+            38.76,
+            180.70999999999992,
+            543.397,
+            189.70999999999992
+          ]
+        },
+        {
+          "text": "Other losses, net 61,896 16,873",
+          "bbox": [
+            38.76,
+            194.8699999999999,
+            543.4000000000001,
+            203.8699999999999
+          ]
+        },
+        {
+          "text": "Changes in working capital and others 24,438 (391,744)",
+          "bbox": [
+            38.76,
+            209.02999999999997,
+            543.4119999999999,
+            218.02999999999997
+          ]
+        },
+        {
+          "text": "Net cash generated from operating activities 1,343,934 941,112",
+          "bbox": [
+            33.72,
+            223.42999999999995,
+            543.391,
+            232.42999999999995
+          ]
+        },
+        {
+          "text": "Investing activities:",
+          "bbox": [
+            33.72,
+            252.26,
+            117.27600000000001,
+            261.26
+          ]
+        },
+        {
+          "text": "Acquisition of financial assets at fair value through profit or (693,519) (65,922)",
+          "bbox": [
+            38.76,
+            264.7399999999999,
+            543.4209999999999,
+            274.81999999999994
+          ]
+        },
+        {
+          "text": "loss",
+          "bbox": [
+            44.52,
+            276.14,
+            60.522000000000006,
+            285.14
+          ]
+        },
+        {
+          "text": "Proceeds from sale of financial assets at fair value through 35,100 71,118",
+          "bbox": [
+            38.76,
+            287.41999999999996,
+            543.4000000000001,
+            297.5
+          ]
+        },
+        {
+          "text": "profit or loss",
+          "bbox": [
+            44.52,
+            298.81999999999994,
+            93.49799999999999,
+            307.81999999999994
+          ]
+        },
+        {
+          "text": "Acquisition of financial assets at amortised cost (461,312) (150,473)",
+          "bbox": [
+            38.76,
+            312.02,
+            543.457,
+            321.02
+          ]
+        },
+        {
+          "text": "Proceeds from maturity of financial assets at amortised cost 2,085,076 528,200",
+          "bbox": [
+            38.76,
+            326.17999999999995,
+            543.391,
+            335.17999999999995
+          ]
+        },
+        {
+          "text": "Acquisition of property, plant and equipment (2,506,484) (2,474,789)",
+          "bbox": [
+            38.76,
+            340.3399999999999,
+            543.5229999999999,
+            349.3399999999999
+          ]
+        },
+        {
+          "text": "Proceeds from disposal of property, plant and equipment 2,498 137",
+          "bbox": [
+            38.76,
+            354.61999999999995,
+            543.4240000000001,
+            363.61999999999995
+          ]
+        },
+        {
+          "text": "Acquisition of intangible assets (66) (3,579)",
+          "bbox": [
+            38.76,
+            368.78,
+            543.577,
+            377.78
+          ]
+        },
+        {
+          "text": "Proceeds from disposal of land-use right - 27,597",
+          "bbox": [
+            38.76,
+            382.93999999999994,
+            543.4000000000001,
+            391.93999999999994
+          ]
+        },
+        {
+          "text": "Capital injection in associates (26,941) (21,060)",
+          "bbox": [
+            38.76,
+            397.23999999999995,
+            543.457,
+            406.23999999999995
+          ]
+        },
+        {
+          "text": "Proceeds from sale of equity interests in associates 13,732 22,952",
+          "bbox": [
+            38.76,
+            411.28,
+            543.4000000000001,
+            420.28
+          ]
+        },
+        {
+          "text": "Dividends received from associates - 4,664",
+          "bbox": [
+            38.76,
+            425.55999999999995,
+            543.397,
+            434.55999999999995
+          ]
+        },
+        {
+          "text": "Proceeds from/(payments for) settlement of derivative 5,829 (981)",
+          "bbox": [
+            38.76,
+            437.79999999999995,
+            543.427,
+            446.79999999999995
+          ]
+        },
+        {
+          "text": "financial instruments",
+          "bbox": [
+            42.72,
+            448.11999999999995,
+            124.75500000000001,
+            457.11999999999995
+          ]
+        },
+        {
+          "text": "Net cash used in investing activities (1,546,087) (2,062,136)",
+          "bbox": [
+            33.72,
+            460.71999999999997,
+            543.526,
+            469.71999999999997
+          ]
+        },
+        {
+          "text": "Financing activities:",
+          "bbox": [
+            33.72,
+            489.5199999999999,
+            120.28200000000001,
+            498.5199999999999
+          ]
+        },
+        {
+          "text": "Proceeds from borrowings 3,622,112 224,871",
+          "bbox": [
+            38.76,
+            503.91999999999996,
+            543.391,
+            512.92
+          ]
+        },
+        {
+          "text": "Repayment of borrowings (2,685,356) (727,255)",
+          "bbox": [
+            38.76,
+            518.0799999999999,
+            543.4119999999999,
+            527.0799999999999
+          ]
+        },
+        {
+          "text": "Repayment of the principal portion of the lease liabilities (3,549) (3,463)",
+          "bbox": [
+            38.76,
+            532.24,
+            543.577,
+            541.24
+          ]
+        },
+        {
+          "text": "Proceeds from issue of shares under share incentive plans 549 34,846",
+          "bbox": [
+            38.76,
+            546.3999999999999,
+            543.4000000000001,
+            555.3999999999999
+          ]
+        },
+        {
+          "text": "Capital injection from non-controlling interests 1,646,967 -",
+          "bbox": [
+            38.76,
+            560.5899999999999,
+            543.457,
+            569.5899999999999
+          ]
+        },
+        {
+          "text": "Payments for settlement of derivative financial instruments (18,945) (18,593)",
+          "bbox": [
+            38.76,
+            574.75,
+            543.4209999999999,
+            583.75
+          ]
+        },
+        {
+          "text": "Net cash generated from/(used in) financing activities 2,561,778 (489,594)",
+          "bbox": [
+            33.72,
+            589.15,
+            543.4119999999999,
+            598.15
+          ]
+        },
+        {
+          "text": "Effects of exchange rate changes on cash and cash 31,162 9,656",
+          "bbox": [
+            38.76,
+            616.27,
+            543.397,
+            625.27
+          ]
+        },
+        {
+          "text": "equivalents",
+          "bbox": [
+            45.0,
+            626.5899999999999,
+            90.477,
+            635.5899999999999
+          ]
+        },
+        {
+          "text": "Net increase/(decrease) in cash and cash equivalents 2,390,787 (1,600,962)",
+          "bbox": [
+            33.72,
+            652.99,
+            543.5229999999999,
+            661.99
+          ]
+        },
+        {
+          "text": "Cash and cash equivalents at the beginning of the period 3,481,713 5,082,675",
+          "bbox": [
+            33.72,
+            667.15,
+            543.373,
+            676.15
+          ]
+        },
+        {
+          "text": "Cash and cash equivalents at the end of the period 5,872,500 3,481,713",
+          "bbox": [
+            33.72,
+            681.55,
+            543.493,
+            690.55
+          ]
+        },
+        {
+          "text": "- 12 -",
+          "bbox": [
+            282.41,
+            796.7316,
+            305.66668000000004,
+            806.6916
+          ]
+        }
+      ],
+      "tables": [],
+      "section_candidates": [
+        "CONDENSED CONSOLIDATED STATEMENT OF CASH FLOWS"
+      ],
+      "footnote_candidates": [
+        {
+          "text": "Capital injection from non-controlling interests 1,646,967 -",
+          "bbox": [
+            38.76,
+            560.5899999999999,
+            543.457,
+            569.5899999999999
+          ]
+        },
+        {
+          "text": "Payments for settlement of derivative financial instruments (18,945) (18,593)",
+          "bbox": [
+            38.76,
+            574.75,
+            543.4209999999999,
+            583.75
+          ]
+        },
+        {
+          "text": "Net cash generated from/(used in) financing activities 2,561,778 (489,594)",
+          "bbox": [
+            33.72,
+            589.15,
+            543.4119999999999,
+            598.15
+          ]
+        },
+        {
+          "text": "Effects of exchange rate changes on cash and cash 31,162 9,656",
+          "bbox": [
+            38.76,
+            616.27,
+            543.397,
+            625.27
+          ]
+        },
+        {
+          "text": "equivalents",
+          "bbox": [
+            45.0,
+            626.5899999999999,
+            90.477,
+            635.5899999999999
+          ]
+        },
+        {
+          "text": "Net increase/(decrease) in cash and cash equivalents 2,390,787 (1,600,962)",
+          "bbox": [
+            33.72,
+            652.99,
+            543.5229999999999,
+            661.99
+          ]
+        },
+        {
+          "text": "Cash and cash equivalents at the beginning of the period 3,481,713 5,082,675",
+          "bbox": [
+            33.72,
+            667.15,
+            543.373,
+            676.15
+          ]
+        },
+        {
+          "text": "Cash and cash equivalents at the end of the period 5,872,500 3,481,713",
+          "bbox": [
+            33.72,
+            681.55,
+            543.493,
+            690.55
+          ]
+        },
+        {
+          "text": "- 12 -",
+          "bbox": [
+            282.41,
+            796.7316,
+            305.66668000000004,
+            806.6916
+          ]
+        }
+      ]
+    },
+    {
+      "page_number": 13,
+      "width": 595.32,
+      "height": 841.92,
+      "text": "By order of the Board\nSemiconductor Manufacturing International Corporation\nCompany Secretary / Board Secretary\nGuo Guangli\nShanghai, February 10, 2026\nAs at the date of this announcement, the directors of the Company are:\nExecutive Director\nLIU Xunfeng\nNon-executive Directors\nLU Guoqing\nCHEN Shanzhi\nYANG Lumin\nHUANG Dengshan\nIndependent Non-executive Directors\nFAN Ren Da Anthony\nLIU Ming\nWU Hanming\nCHEN Xinyuan\n- 13 -",
+      "text_lines": [
+        {
+          "text": "By order of the Board",
+          "bbox": [
+            338.83,
+            69.55160000000001,
+            433.67908,
+            79.51159999999993
+          ]
+        },
+        {
+          "text": "Semiconductor Manufacturing International Corporation",
+          "bbox": [
+            252.65,
+            80.95159999999998,
+            519.7684,
+            90.91159999999991
+          ]
+        },
+        {
+          "text": "Company Secretary / Board Secretary",
+          "bbox": [
+            301.99,
+            92.4516799999999,
+            470.48032000000006,
+            102.41167999999993
+          ]
+        },
+        {
+          "text": "Guo Guangli",
+          "bbox": [
+            356.35,
+            103.87160000000006,
+            416.28928,
+            113.83159999999998
+          ]
+        },
+        {
+          "text": "Shanghai, February 10, 2026",
+          "bbox": [
+            72.024,
+            127.03160000000003,
+            201.4934,
+            136.99159999999995
+          ]
+        },
+        {
+          "text": "As at the date of this announcement, the directors of the Company are:",
+          "bbox": [
+            72.024,
+            150.0716,
+            385.7938799999997,
+            160.0315999999999
+          ]
+        },
+        {
+          "text": "Executive Director",
+          "bbox": [
+            72.024,
+            173.47159999999997,
+            164.86116000000004,
+            183.4315999999999
+          ]
+        },
+        {
+          "text": "LIU Xunfeng",
+          "bbox": [
+            72.024,
+            191.59159999999997,
+            130.59876,
+            201.5515999999999
+          ]
+        },
+        {
+          "text": "Non-executive Directors",
+          "bbox": [
+            72.024,
+            227.47159999999997,
+            193.51296000000002,
+            237.4315999999999
+          ]
+        },
+        {
+          "text": "LU Guoqing",
+          "bbox": [
+            72.024,
+            245.62160000000006,
+            128.08884,
+            255.58159999999998
+          ]
+        },
+        {
+          "text": "CHEN Shanzhi",
+          "bbox": [
+            72.024,
+            263.62160000000006,
+            142.47332,
+            273.5816
+          ]
+        },
+        {
+          "text": "YANG Lumin",
+          "bbox": [
+            72.024,
+            281.62160000000006,
+            132.31188,
+            291.5816
+          ]
+        },
+        {
+          "text": "HUANG Dengshan",
+          "bbox": [
+            72.024,
+            299.62160000000006,
+            160.439,
+            309.5816
+          ]
+        },
+        {
+          "text": "Independent Non-executive Directors",
+          "bbox": [
+            72.024,
+            335.50159999999994,
+            259.3884800000001,
+            345.4616
+          ]
+        },
+        {
+          "text": "FAN Ren Da Anthony",
+          "bbox": [
+            72.024,
+            353.62159999999994,
+            172.10208000000003,
+            363.5816
+          ]
+        },
+        {
+          "text": "LIU Ming",
+          "bbox": [
+            72.024,
+            371.62159999999994,
+            114.07512000000001,
+            381.5816
+          ]
+        },
+        {
+          "text": "WU Hanming",
+          "bbox": [
+            72.024,
+            389.62159999999994,
+            134.10467999999997,
+            399.5816
+          ]
+        },
+        {
+          "text": "CHEN Xinyuan",
+          "bbox": [
+            72.024,
+            407.6415999999999,
+            142.36151999999998,
+            417.60159999999996
+          ]
+        },
+        {
+          "text": "- 13 -",
+          "bbox": [
+            286.01,
+            796.4916,
+            309.26668,
+            806.4516
+          ]
+        }
+      ],
+      "tables": [],
+      "section_candidates": [],
+      "footnote_candidates": [
+        {
+          "text": "- 13 -",
+          "bbox": [
+            286.01,
+            796.4916,
+            309.26668,
+            806.4516
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1228 @@
+snapshot_id: smic-a283e95e2c9e8068
+report_rule_version: smic-v3-report-v1
+report_form: FULL_REPORT
+execution_mode: FROZEN_REPLAY
+narrative_numeric_sanitization:
+  scanned_field_paths:
+  - findings[].finding_statement
+  - findings[].supporting_evidence[].note
+  - findings[].counter_evidence[].note
+  - findings[].limitations[]
+  - findings[].alternative_explanations[]
+  - findings[].management_assertions[].statement
+  - cross_attribution[].entries[].overlap_note
+  - findings[].supporting_evidence[].overlap_note
+  - findings[].counter_evidence[].overlap_note
+  - findings[].gaps[]
+  - findings[].watch_indicators[].indicator
+  - findings[].watch_indicators[].judgment_logic
+  - challenges[].question
+  - challenges[].reason
+  scanned_fields: 14
+  detected_mentions: 442
+  omitted_sentences:
+  - dimension_id: D1_PROFITABILITY_CHANGE
+    field_path: findings[].finding_statement
+    matched_text: 年度层面，2025 财年毛利率为 21.0%，2024 财年为 18.0%；
+    matched_numeric_tokens:
+    - '2025'
+    - 21.0%
+    - '2024'
+    - 18.0%
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D1_PROFITABILITY_CHANGE
+    field_path: findings[].finding_statement
+    matched_text: 同期毛利由 1,447,968 千美元升至 1,956,599 千美元（+35.1%），经营利润由 473,900 千美元升至
+      1,109,937 千美元，净利率由 9.1% 升至 10.6%，四项年度指标方向一致向上。
+    matched_numeric_tokens:
+    - 1,447,968
+    - 1,956,599
+    - 35.1%
+    - 473,900
+    - 1,109,937
+    - 9.1%
+    - 10.6%
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D1_PROFITABILITY_CHANGE
+    field_path: findings[].finding_statement
+    matched_text: 季度层面则并不单调：2025 年第一季度毛利率 22.5%，第二季度 20.4%，第三季度 22.0%，第四季度回落至 19.2%，2026
+      年第一季度回升至 20.1%，即最近两个季度的毛利率仍低于 2025 年第一季度水平。
+    matched_numeric_tokens:
+    - '2025'
+    - 22.5%
+    - 20.4%
+    - 22.0%
+    - 19.2%
+    - '2026'
+    - 20.1%
+    - '2025'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D1_PROFITABILITY_CHANGE
+    field_path: findings[].finding_statement
+    matched_text: 与此同时，2025 年第四季度毛利环比与同比均下降，2026 年第一季度经营利润环比与同比亦均下降。
+    matched_numeric_tokens:
+    - '2025'
+    - '2026'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D1_PROFITABILITY_CHANGE
+    field_path: findings[].finding_statement
+    matched_text: 可验证的变化是「年度盈利能力上台阶、季度盈利能力在 2025 年下半年起走弱并未恢复到 2025 年初水平」，而非单一方向的持续改善。
+    matched_numeric_tokens:
+    - '2025'
+    - '2025'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D1_PROFITABILITY_CHANGE
+    field_path: findings[].supporting_evidence[].note
+    matched_text: 2025 年报主要财务指标表列示「Gross margin 21.0% 18.0% Increased by 3.0」，为年度毛利率同口径逐年对比的直接记录。
+    matched_numeric_tokens:
+    - '2025'
+    - 21.0%
+    - 18.0%
+    - '3.0'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D1_PROFITABILITY_CHANGE
+    field_path: findings[].supporting_evidence[].note
+    matched_text: 2025 年报管理层讨论表列示「Gross profit 1,956,599 1,447,968 35.1」，给出年度毛利绝对额与变动幅度。
+    matched_numeric_tokens:
+    - '2025'
+    - 1,956,599
+    - 1,447,968
+    - '35.1'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D1_PROFITABILITY_CHANGE
+    field_path: findings[].supporting_evidence[].note
+    matched_text: 2025 年报利润表列示「Profit from operations 1,109,937 473,900」，为经营层面盈利的年度对比。
+    matched_numeric_tokens:
+    - '2025'
+    - 1,109,937
+    - 473,900
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D1_PROFITABILITY_CHANGE
+    field_path: findings[].supporting_evidence[].note
+    matched_text: 2025 年报主要财务指标表列示「Net margin 10.6% 9.1% Increased by 1.5 17.8%」，为年度净利率的同口径对比。
+    matched_numeric_tokens:
+    - '2025'
+    - 10.6%
+    - 9.1%
+    - '1.5'
+    - 17.8%
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D1_PROFITABILITY_CHANGE
+    field_path: findings[].supporting_evidence[].note
+    matched_text: 2025 年第一季度毛利率 22.5%（IFRS、美元口径），构成季度序列的起点水平。
+    matched_numeric_tokens:
+    - '2025'
+    - 22.5%
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D1_PROFITABILITY_CHANGE
+    field_path: findings[].supporting_evidence[].note
+    matched_text: 2025 年第四季度毛利率 19.2%（IFRS、美元口径），为五个季度中的最低值。
+    matched_numeric_tokens:
+    - '2025'
+    - 19.2%
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D1_PROFITABILITY_CHANGE
+    field_path: findings[].supporting_evidence[].note
+    matched_text: 2026 年第一季度毛利率 20.1%（IFRS、美元口径），显示环比回升但仍低于 2025 年第一季度的 22.5%。
+    matched_numeric_tokens:
+    - '2026'
+    - 20.1%
+    - '2025'
+    - 22.5%
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D1_PROFITABILITY_CHANGE
+    field_path: findings[].supporting_evidence[].note
+    matched_text: 2026 年第一季度研发费用 187.1 百万美元，作为费用侧的背景信息；
+    matched_numeric_tokens:
+    - '2026'
+    - '187.1'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D1_PROFITABILITY_CHANGE
+    field_path: findings[].counter_evidence[].note
+    matched_text: 2025 年第四季度业绩表列示「Gross profit 478,121 522,811 -8.5% 499,011 -4.2%」，该季毛利环比与同比双降，与「年度改善即持续改善」的读法相反。
+    matched_numeric_tokens:
+    - '2025'
+    - 478,121
+    - 522,811
+    - 8.5%
+    - 499,011
+    - 4.2%
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D1_PROFITABILITY_CHANGE
+    field_path: findings[].counter_evidence[].note
+    matched_text: 2026 年第一季度业绩表列示「Profit from operations 247,792 298,620 -17.0% 309,571
+      -20.0%」，最新季度经营利润环比与同比双降，年度改善未延续到最新可得季度。
+    matched_numeric_tokens:
+    - '2026'
+    - 247,792
+    - 298,620
+    - 17.0%
+    - 309,571
+    - 20.0%
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D1_PROFITABILITY_CHANGE
+    field_path: findings[].alternative_explanations[]
+    matched_text: 净利率与经营利润与其他收益/损失的波动同期并存（如 4Q25 其他收益净额为 -72,117 千美元、1Q26 为 +7,539
+      千美元），年度综合盈利率的改善幅度可能被非经营项放大或压缩。
+    matched_numeric_tokens:
+    - '4'
+    - '25'
+    - 72,117
+    - '1'
+    - '26'
+    - 7,539
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D1_PROFITABILITY_CHANGE
+    field_path: findings[].limitations[]
+    matched_text: 候选集中大量 CAS 口径数值记录被标注为 FISCAL_YEAR 2025-01-01..2025-12-31，但来源为 SG_SMIC_2025_H1
+      半年度材料，属于已知的期间标注缺陷；
+    matched_numeric_tokens:
+    - '2025'
+    - '01'
+    - '01'
+    - '2025'
+    - '12'
+    - '31'
+    - '2025'
+    - '1'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D1_PROFITABILITY_CHANGE
+    field_path: findings[].limitations[]
+    matched_text: 同组记录还出现 REVENUE = -6 CNY、COST_OF_SALES = -2 CNY、REVENUE = 23.1 CNY
+      等量级明显不合理的值，本判断未采用任何该组记录。
+    matched_numeric_tokens:
+    - '6'
+    - '2'
+    - '23.1'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D1_PROFITABILITY_CHANGE
+    field_path: findings[].limitations[]
+    matched_text: 部分数值记录的指标名与单位/量级不一致，例如 GROSS_MARGIN 被标注为 MONEY USD 且取值 1859011、2、3、25
+      等，这些记录无法作为口径统一后的盈利率使用，已全部排除。
+    matched_numeric_tokens:
+    - '1859011'
+    - '2'
+    - '3'
+    - '25'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D1_PROFITABILITY_CHANGE
+    field_path: findings[].limitations[]
+    matched_text: 同一季度的同一指标在不同来源组中重复出现（如 4Q25 毛利率 19.2% 同时来自 SG_SMIC_2025_Q4_RESULTS
+      与 SG_SMIC_2026_Q1_DISCLOSURE），本判断按单一事实计一次，未因重复来源加重结论强度。
+    matched_numeric_tokens:
+    - '4'
+    - '25'
+    - 19.2%
+    - '2025'
+    - '4'
+    - '2026'
+    - '1'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D1_PROFITABILITY_CHANGE
+    field_path: findings[].limitations[]
+    matched_text: 可用的同口径序列仅覆盖 IFRS 美元口径的 2025 年第一季度至 2026 年第一季度共五个季度，以及 2023—2025
+      三个财年，窗口偏短，季度层面的方向判断对端点取值敏感。
+    matched_numeric_tokens:
+    - '2025'
+    - '2026'
+    - '2023'
+    - '2025'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D1_PROFITABILITY_CHANGE
+    field_path: findings[].gaps[]
+    matched_text: 缺少 2026 财年完整年度口径数据，最新年度层面的变化只能以 2025 财年为终点。
+    matched_numeric_tokens:
+    - '2026'
+    - '2025'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D1_PROFITABILITY_CHANGE
+    field_path: findings[].management_assertions[].statement
+    matched_text: 公司称（2026 年第一季度业绩公告）："Gross margin was 20.1% in 1Q26, compared to
+      19.2% in 4Q25, due to the product mix change and"，该句在同一材料中以 EVID_dbe5d61b66a43b6da49dc305
+      续接 "the increase of average selling price in 1Q26."，属公司自述的成因说明，未经本维度独立核验。
+    matched_numeric_tokens:
+    - '2026'
+    - 20.1%
+    - '1'
+    - '26'
+    - 19.2%
+    - '4'
+    - '25'
+    - '5'
+    - '61'
+    - '66'
+    - '43'
+    - '6'
+    - '49'
+    - '305'
+    - '1'
+    - '26'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D1_PROFITABILITY_CHANGE
+    field_path: findings[].management_assertions[].statement
+    matched_text: 公司称（2025 年第四季度业绩公告）："Gross margin was 19.2% in 4Q25, compared to
+      22.0% in 3Q25, due to the increase in depreciation."，属公司自述的成因说明，未经本维度独立核验。
+    matched_numeric_tokens:
+    - '2025'
+    - 19.2%
+    - '4'
+    - '25'
+    - 22.0%
+    - '3'
+    - '25'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D1_PROFITABILITY_CHANGE
+    field_path: findings[].management_assertions[].statement
+    matched_text: 年报称（2025 年年报管理层讨论），年度毛利变化归因于 "to the increase in wafer shipment,
+      the increase in capacity utilisation rate and the product mix change for this
+      year."，属公司自述的成因说明，未经本维度独立核验。
+    matched_numeric_tokens:
+    - '2025'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D1_PROFITABILITY_CHANGE
+    field_path: findings[].management_assertions[].statement
+    matched_text: 公司称（2025 年第四季度业绩公告的管理层评论）给出前瞻性指引："gross margin is expected to be
+      in the range of 18% to 20%."，属公司对未来期间的预期陈述，不是已发生的可核验事实。
+    matched_numeric_tokens:
+    - '2025'
+    - 18%
+    - 20%
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D3_MIX_EFFECT
+    field_path: findings[].finding_statement
+    matched_text: 经质询后重述：本维度可承重的数值指标只有一条 FY2025 的 ASP_SOURCE_REPORTED（6482 CNY），无同口径跨期可比值；
+    matched_numeric_tokens:
+    - '2025'
+    - '6482'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D3_MIX_EFFECT
+    field_path: findings[].finding_statement
+    matched_text: 应用结构占比在 2025 年报中确有可观察位移（智能手机 37.8% 升至 43.2%，消费电子 27.8% 降至 23.1%），而按尺寸划分的
+      12 英寸占比在两年间基本持平。
+    matched_numeric_tokens:
+    - '2025'
+    - 37.8%
+    - 43.2%
+    - 27.8%
+    - 23.1%
+    - '12'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D3_MIX_EFFECT
+    field_path: findings[].supporting_evidence[].note
+    matched_text: 本维度白名单内唯一可承重的量化观测：FY2025（CAS 口径）ASP_SOURCE_REPORTED = 6482 CNY。
+    matched_numeric_tokens:
+    - '2025'
+    - '6482'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D3_MIX_EFFECT
+    field_path: findings[].supporting_evidence[].note
+    matched_text: 2025 年年报按应用划分：消费电子占比 43.2%（上年 37.8%）。
+    matched_numeric_tokens:
+    - '2025'
+    - 43.2%
+    - 37.8%
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D3_MIX_EFFECT
+    field_path: findings[].supporting_evidence[].note
+    matched_text: 2025 年年报按应用划分：智能手机占比 23.1%（上年 27.8%）。
+    matched_numeric_tokens:
+    - '2025'
+    - 23.1%
+    - 27.8%
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D3_MIX_EFFECT
+    field_path: findings[].supporting_evidence[].note
+    matched_text: 2025 年年报按尺寸划分：12 吋占比 77.1%（上年 77.3%）。
+    matched_numeric_tokens:
+    - '2025'
+    - '12'
+    - 77.1%
+    - 77.3%
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D3_MIX_EFFECT
+    field_path: findings[].counter_evidence[].note
+    matched_text: 2025 年第四季度公告原文：「Gross margin was 19.2% in 4Q25, compared to 22.0%
+      in 3Q25, due to the increase in depreciation.」。
+    matched_numeric_tokens:
+    - '2025'
+    - 19.2%
+    - '4'
+    - '25'
+    - 22.0%
+    - '3'
+    - '25'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D3_MIX_EFFECT
+    field_path: findings[].counter_evidence[].note
+    matched_text: 2023 年年报：「During the process of continuous high investments, the
+      Company's gross margin is under the pressure of high depreciation」。
+    matched_numeric_tokens:
+    - '2023'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D3_MIX_EFFECT
+    field_path: findings[].counter_evidence[].note
+    matched_text: 2025 年第四季度公告：「growth was mainly due to the increase in wafer shipment
+      and product mix change in 4Q25.」。
+    matched_numeric_tokens:
+    - '2025'
+    - '4'
+    - '25'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D3_MIX_EFFECT
+    field_path: findings[].alternative_explanations[]
+    matched_text: 产能利用率与出货量变化：2025 与 2023 年年报的毛利说明均把利用率、出货量与结构并列，规模效应本身足以解释同方向的毛利变动。
+    matched_numeric_tokens:
+    - '2025'
+    - '2023'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D3_MIX_EFFECT
+    field_path: findings[].limitations[]
+    matched_text: 本维度白名单仅含 ASP_SOURCE_REPORTED，且集内仅有一条可承重记录（FY2025，6482 CNY）；
+    matched_numeric_tokens:
+    - '2025'
+    - '6482'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D3_MIX_EFFECT
+    field_path: findings[].limitations[]
+    matched_text: 「制程结构」一侧证据薄弱：按尺寸划分的占比在 2025 与 2024 年间几乎持平，集内亦无按制程节点的收入、成本或毛利拆分。
+    matched_numeric_tokens:
+    - '2025'
+    - '2024'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D3_MIX_EFFECT
+    field_path: findings[].limitations[]
+    matched_text: 各期表述方向不一致（4Q25 毛利率变动说明未提结构，1Q26 则提及），跨期稳定的关系无法在本证据集内建立。
+    matched_numeric_tokens:
+    - '4'
+    - '25'
+    - '1'
+    - '26'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D4_CAPEX_CONVERSION
+    field_path: findings[].finding_statement
+    matched_text: 在候选证据集内，公司季度资本开支自2025Q2至2025Q4维持在较高水平（1,885.1、2,394.2、2,407.5百万美元），2026Q1回落至1,562.8百万美元；
+    matched_numeric_tokens:
+    - '2025'
+    - '2'
+    - '2025'
+    - '4'
+    - 1,885.1
+    - 2,394.2
+    - 2,407.5
+    - '2026'
+    - '1'
+    - 1,562.8
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D4_CAPEX_CONVERSION
+    field_path: findings[].finding_statement
+    matched_text: 与此同时，可观察的产能与出货口径同步走高：月产能从2025Q4的1,058,750片标准逻辑8英寸约当晶圆继续上行，2025年末月产能约1,059千片较上年末增加，
+      2025年收入同比增长16.2%至9,327百万美元。
+    matched_numeric_tokens:
+    - '2025'
+    - '4'
+    - 1,058,750
+    - '8'
+    - '2025'
+    - 1,059
+    - '2025'
+    - 16.2%
+    - 9,327
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D4_CAPEX_CONVERSION
+    field_path: findings[].supporting_evidence[].note
+    matched_text: 2025Q2 资本开支 1,885.1 百万美元，构成本维度支出强度时间序列的起点。
+    matched_numeric_tokens:
+    - '2025'
+    - '2'
+    - 1,885.1
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D4_CAPEX_CONVERSION
+    field_path: findings[].supporting_evidence[].overlap_note
+    matched_text: 同一资本开支数字也出现在 D2（盈利/成本结构）候选集中，在那里它被用于观察折旧与毛利的成本侧含义；
+    matched_numeric_tokens:
+    - '2'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D4_CAPEX_CONVERSION
+    field_path: findings[].supporting_evidence[].note
+    matched_text: 2025Q3 资本开支 2,394.2 百万美元，较上一季度上行。
+    matched_numeric_tokens:
+    - '2025'
+    - '3'
+    - 2,394.2
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D4_CAPEX_CONVERSION
+    field_path: findings[].supporting_evidence[].overlap_note
+    matched_text: 该数字与 D2 候选集重叠，也可能与产能利用率维度相关；
+    matched_numeric_tokens:
+    - '2'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D4_CAPEX_CONVERSION
+    field_path: findings[].supporting_evidence[].note
+    matched_text: 2025Q4 资本开支 2,407.5 百万美元，全年维持高位。
+    matched_numeric_tokens:
+    - '2025'
+    - '4'
+    - 2,407.5
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D4_CAPEX_CONVERSION
+    field_path: findings[].supporting_evidence[].overlap_note
+    matched_text: 同一季度资本开支在 D2 中作为成本与折旧基数的前置输入出现；
+    matched_numeric_tokens:
+    - '2'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D4_CAPEX_CONVERSION
+    field_path: findings[].supporting_evidence[].note
+    matched_text: 2026Q1 资本开支 1,562.8 百万美元，较2025Q4明显回落，说明投入节奏并非单向上行。
+    matched_numeric_tokens:
+    - '2026'
+    - '1'
+    - 1,562.8
+    - '2025'
+    - '4'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D4_CAPEX_CONVERSION
+    field_path: findings[].supporting_evidence[].overlap_note
+    matched_text: 该数字同样进入 D2 与周期性维度的候选集；
+    matched_numeric_tokens:
+    - '2'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D4_CAPEX_CONVERSION
+    field_path: findings[].supporting_evidence[].note
+    matched_text: 4Q25 月产能升至 1,058,750 片标准逻辑8英寸约当晶圆，为同期可观察的产能口径。
+    matched_numeric_tokens:
+    - '4'
+    - '25'
+    - 1,058,750
+    - '8'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D4_CAPEX_CONVERSION
+    field_path: findings[].supporting_evidence[].note
+    matched_text: 2025年末月产能约 1,059 千片标准逻辑8英寸约当晶圆，较上年末增加。
+    matched_numeric_tokens:
+    - '2025'
+    - 1,059
+    - '8'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D4_CAPEX_CONVERSION
+    field_path: findings[].supporting_evidence[].note
+    matched_text: 2025年收入同比增长16.2%至 9,327 百万美元，与同期持续的资本开支并行出现。
+    matched_numeric_tokens:
+    - '2025'
+    - 16.2%
+    - 9,327
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D4_CAPEX_CONVERSION
+    field_path: findings[].supporting_evidence[].note
+    matched_text: 2025年年报披露，报告期内大部分资本开支用于产能扩张，说明支出用途的自述口径。
+    matched_numeric_tokens:
+    - '2025'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D4_CAPEX_CONVERSION
+    field_path: findings[].counter_evidence[].note
+    matched_text: 1Q26 产能利用率降至 93.1%（4Q25 为 95.7%），在月产能继续上行的同期出现，说明新增产能未被同比例消化。
+    matched_numeric_tokens:
+    - '1'
+    - '26'
+    - 93.1%
+    - '4'
+    - '25'
+    - 95.7%
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D4_CAPEX_CONVERSION
+    field_path: findings[].counter_evidence[].note
+    matched_text: 1Q26 晶圆出货 2,509,137 片，环比 -0.2%，与同期产能扩张方向不一致。
+    matched_numeric_tokens:
+    - '1'
+    - '26'
+    - 2,509,137
+    - 0.2%
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D4_CAPEX_CONVERSION
+    field_path: findings[].alternative_explanations[]
+    matched_text: 产能口径的上行可能包含前期（2023—2024年）投入在本期完工转固的部分，与本期支出的期间对应关系无法从候选集中分离。
+    matched_numeric_tokens:
+    - '2023'
+    - '2024'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D4_CAPEX_CONVERSION
+    field_path: findings[].alternative_explanations[]
+    matched_text: 2026Q1 资本开支回落可能仅反映设备交付与付款的时点分布，而非投入强度的实质变化。
+    matched_numeric_tokens:
+    - '2026'
+    - '1'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D4_CAPEX_CONVERSION
+    field_path: findings[].limitations[]
+    matched_text: 候选集中被标为承重指标的折旧记录（如 EVID_28c333bb3006b183a5e34b57、EVID_12b2fee4fb7d5c9af0453f08）均来自
+      SG_SMIC_2025_H1 来源组却被标注为 FISCAL_YEAR 2025 全年，存在已知的期间标注缺陷，不能据以计算折旧压力。
+    matched_numeric_tokens:
+    - '28'
+    - '333'
+    - '3006'
+    - '183'
+    - '5'
+    - '34'
+    - '57'
+    - '12'
+    - '2'
+    - '4'
+    - '7'
+    - '5'
+    - '9'
+    - '0453'
+    - 08
+    - '2025'
+    - '1'
+    - '2025'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D4_CAPEX_CONVERSION
+    field_path: findings[].limitations[]
+    matched_text: 同一 DEPRECIATION_EXPENSE 指标下同时存在百分比型（如 20、-10、33、5）与金额型（如 12591292、17418192、10959127）记录，量纲与符号互不自洽，数值不可用于任何折旧水平或折旧率推断。
+    matched_numeric_tokens:
+    - '20'
+    - '10'
+    - '33'
+    - '5'
+    - '12591292'
+    - '17418192'
+    - '10959127'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D4_CAPEX_CONVERSION
+    field_path: findings[].limitations[]
+    matched_text: CAPITAL_EXPENDITURE_INCURRED 存在明显异常记录，如 EVID_c8f346e6274da4b8081b8cbf
+      与 EVID_f0a136a096fb7ca516f1d011 均为 -3 CNY 的年度值，属实现缺陷，本判断未据其推理。
+    matched_numeric_tokens:
+    - '8'
+    - '346'
+    - '6274'
+    - '4'
+    - '8081'
+    - '8'
+    - '0'
+    - '136'
+    - 096
+    - '7'
+    - '516'
+    - '1'
+    - '011'
+    - '3'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D4_CAPEX_CONVERSION
+    field_path: findings[].limitations[]
+    matched_text: 部分季度资本开支记录的期间标签与数值不一致（例如 EVID_92440a787b18fafed9a2e2a5 将 2,394.2
+      标为 2025Q4、EVID_cdd47d44bf7d8de27c3e8a0d 将 1,885.1 标为 2025Q3），本判断以各季度公告原文中与季度直接对应的数值为准。
+    matched_numeric_tokens:
+    - '92440'
+    - '787'
+    - '18'
+    - '9'
+    - '2'
+    - '2'
+    - '5'
+    - 2,394.2
+    - '2025'
+    - '4'
+    - '47'
+    - '44'
+    - '7'
+    - '8'
+    - '27'
+    - '3'
+    - '8'
+    - '0'
+    - 1,885.1
+    - '2025'
+    - '3'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D5_CYCLE_EXPLANATION
+    field_path: findings[].finding_statement
+    matched_text: 这些文字命题确实刻画了行业周期的方向：年报文本描述 2023 年半导体行业处于下行周期、终端需求走弱、供需出现结构性调整、芯片库存处于高位且库存消化速度慢于产业链各环节的生产与采购速度；
+    matched_numeric_tokens:
+    - '2023'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D5_CYCLE_EXPLANATION
+    field_path: findings[].finding_statement
+    matched_text: 同期文本也描述 2023 年下半年终端需求出现复苏迹象、2024 年产业整体显现复苏迹象、2025 年行业延续增长。
+    matched_numeric_tokens:
+    - '2023'
+    - '2024'
+    - '2025'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D5_CYCLE_EXPLANATION
+    field_path: findings[].finding_statement
+    matched_text: 与这些周期描述同时出现的，是公司层面收入方向的文字表述（2023 年收入同比下降、2025 年收入与晶圆收入同比上升）。
+    matched_numeric_tokens:
+    - '2023'
+    - '2025'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D5_CYCLE_EXPLANATION
+    field_path: findings[].supporting_evidence[].note
+    matched_text: 2023 年年报文本描述半导体行业进入下行周期，并同时提及全球经济疲软与市场需求走弱的背景，是本维度周期方向的基础文字命题。
+    matched_numeric_tokens:
+    - '2023'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D5_CYCLE_EXPLANATION
+    field_path: findings[].supporting_evidence[].note
+    matched_text: 文本表述 2023 年下半年终端需求出现复苏迹象，同时整体供应链仍处于调整状态，说明周期在期内并非单向。
+    matched_numeric_tokens:
+    - '2023'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D5_CYCLE_EXPLANATION
+    field_path: findings[].supporting_evidence[].note
+    matched_text: 2024 年年报文本表述全球半导体行业显现复苏迹象，为跨年度周期方向提供连续的文字背景。
+    matched_numeric_tokens:
+    - '2024'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D5_CYCLE_EXPLANATION
+    field_path: findings[].supporting_evidence[].note
+    matched_text: 中文年报文本表述库存消化仍为 2023 年半导体行业主旋律，与英文材料中的库存描述在同一期间相互印证。
+    matched_numeric_tokens:
+    - '2023'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D6_NONCORE_EXPLANATION
+    field_path: findings[].finding_statement
+    matched_text: 中国企业会计准则口径下，计入当期损益的政府补助 2023 年为 1,677,347 千元，2024 年为 1,333,945 千元，2025
+      年为 1,582,524 千元， 呈现先降后升的波动；
+    matched_numeric_tokens:
+    - '2023'
+    - 1,677,347
+    - '2024'
+    - 1,333,945
+    - '2025'
+    - 1,582,524
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D6_NONCORE_EXPLANATION
+    field_path: findings[].finding_statement
+    matched_text: 国际财务报告准则口径的非经常性损益披露中，政府补助 2025 年为 222,637 千美元、2024 年为 187,686 千美元、
+      2023 年为 236,425 千美元，同期非经常性损益合计分别为 109,575、123,818、436,563 千美元，而当年利润分别为 988,944
+      与 729,993 千美元， 可见补助规模与利润规模处于同一数量级，非核心项目在报表利润中占有可观份额。
+    matched_numeric_tokens:
+    - '2025'
+    - 222,637
+    - '2024'
+    - 187,686
+    - '2023'
+    - 236,425
+    - 109,575
+    - 123,818
+    - 436,563
+    - 988,944
+    - 729,993
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D6_NONCORE_EXPLANATION
+    field_path: findings[].supporting_evidence[].note
+    matched_text: 中国企业会计准则口径 2023 财年计入当期损益的政府补助为 1,677,347 千元，构成非核心损益基线。
+    matched_numeric_tokens:
+    - '2023'
+    - 1,677,347
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D6_NONCORE_EXPLANATION
+    field_path: findings[].supporting_evidence[].overlap_note
+    matched_text: 该金额同时包含在 D1 所分析的报表利润之内，也与可持续性维度相关；
+    matched_numeric_tokens:
+    - '1'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D6_NONCORE_EXPLANATION
+    field_path: findings[].supporting_evidence[].overlap_note
+    matched_text: 在本维度中它被用作衡量非核心项目自身规模与年度间波动的口径， 而非用来重复评价利润水平本身，在此意义上不构成对 D1 的重复计数。
+    matched_numeric_tokens:
+    - '1'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D6_NONCORE_EXPLANATION
+    field_path: findings[].supporting_evidence[].note
+    matched_text: 2024 财年计入当期损益的政府补助为 1,333,945 千元，较 2023 年下降。
+    matched_numeric_tokens:
+    - '2024'
+    - 1,333,945
+    - '2023'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D6_NONCORE_EXPLANATION
+    field_path: findings[].supporting_evidence[].overlap_note
+    matched_text: 同一笔补助已计入 D1 所使用的报表利润，本维度仅取其年度间的方向与幅度用于判断非核心因素的变动， 不再对利润总额做第二次加权，故非重复计数。
+    matched_numeric_tokens:
+    - '1'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D6_NONCORE_EXPLANATION
+    field_path: findings[].supporting_evidence[].note
+    matched_text: 2025 财年计入当期损益的政府补助为 1,582,524 千元，较 2024 年回升。
+    matched_numeric_tokens:
+    - '2025'
+    - 1,582,524
+    - '2024'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D6_NONCORE_EXPLANATION
+    field_path: findings[].supporting_evidence[].overlap_note
+    matched_text: 该数字亦位于 D1 的利润口径内部，并可能与资本开支维度的设备类补助相关；
+    matched_numeric_tokens:
+    - '1'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D6_NONCORE_EXPLANATION
+    field_path: findings[].supporting_evidence[].note
+    matched_text: 2023 财年其他营业收入为 2,577,275 千元，是承载政府补助确认的报表科目。
+    matched_numeric_tokens:
+    - '2023'
+    - 2,577,275
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D6_NONCORE_EXPLANATION
+    field_path: findings[].supporting_evidence[].overlap_note
+    matched_text: 其他营业收入同样进入 D1 的利润构成，并与递延收益释放节奏、进而与折旧口径存在联系；
+    matched_numeric_tokens:
+    - '1'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D6_NONCORE_EXPLANATION
+    field_path: findings[].supporting_evidence[].note
+    matched_text: 2025 年年报非经常性损益表列示政府补助 222,637、187,686、236,425 千美元（2025/2024/2023）。
+    matched_numeric_tokens:
+    - '2025'
+    - 222,637
+    - 187,686
+    - 236,425
+    - '2025'
+    - '2024'
+    - '2023'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D6_NONCORE_EXPLANATION
+    field_path: findings[].supporting_evidence[].note
+    matched_text: 同表非经常性损益合计为 109,575、123,818、436,563 千美元，可与补助金额对照观察非核心项目的净影响。
+    matched_numeric_tokens:
+    - 109,575
+    - 123,818
+    - 436,563
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D6_NONCORE_EXPLANATION
+    field_path: findings[].supporting_evidence[].note
+    matched_text: 2025 与 2024 年度利润分别为 988,944 与 729,993 千美元，用于比较补助与利润的数量级。
+    matched_numeric_tokens:
+    - '2025'
+    - '2024'
+    - 988,944
+    - 729,993
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D6_NONCORE_EXPLANATION
+    field_path: findings[].supporting_evidence[].note
+    matched_text: 2025 年年报附注载明集团收到政府资助 193.0 百万美元（2024 年为 261.8 百万美元）并确认相应收入，收到额与确认额并不同步。
+    matched_numeric_tokens:
+    - '2025'
+    - '193.0'
+    - '2024'
+    - '261.8'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D6_NONCORE_EXPLANATION
+    field_path: findings[].counter_evidence[].note
+    matched_text: 2025 年年报在解释息税折旧摊销前利润及其利润率变化时，指向晶圆出货量、产能利用率与产品结构，未把政府补助列为主要说明口径。
+    matched_numeric_tokens:
+    - '2025'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D6_NONCORE_EXPLANATION
+    field_path: findings[].counter_evidence[].note
+    matched_text: 2024 年年报对息税折旧摊销前利润变化的说明同样落在晶圆出货量与产品结构上，与非核心因素主导的判断不一致。
+    matched_numeric_tokens:
+    - '2024'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D6_NONCORE_EXPLANATION
+    field_path: findings[].counter_evidence[].note
+    matched_text: 2024 年年报将息税折旧摊销前利润率的下降与其增速低于收入增速并列说明，属于经营口径而非非核心项目口径。
+    matched_numeric_tokens:
+    - '2024'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D6_NONCORE_EXPLANATION
+    field_path: findings[].limitations[]
+    matched_text: 部分上游数值记录存在期间标注缺陷：多条来自 2025 年半年度报告与第三季度报告的记录被标注为 FISCAL_YEAR 2025，其数值不应按全年口径理解。
+    matched_numeric_tokens:
+    - '2025'
+    - '2025'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D6_NONCORE_EXPLANATION
+    field_path: findings[].limitations[]
+    matched_text: 候选集合内出现明显不合常理的数值，如其他营业收入 40.3 与营业收入 -6625、-65467、-518163 千元，这些应视为口径或抽取缺陷，不据以推理。
+    matched_numeric_tokens:
+    - '40.3'
+    - '6625'
+    - '65467'
+    - '518163'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D6_NONCORE_EXPLANATION
+    field_path: findings[].limitations[]
+    matched_text: 2024 财年的其他营业收入在数值记录中缺位，三年科目层面的连续对照并不完整。
+    matched_numeric_tokens:
+    - '2024'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D7_SUSTAINABILITY_EVIDENCE
+    field_path: findings[].finding_statement
+    matched_text: 在本维度的封闭候选证据集中，盈利能力改善本身在时间与口径上具有一定的可观察性：2025 年全年收入同比增长 16.2%、毛利率提升
+      3.0 个百分点至 21.0%，2024 年全年收入同比增长 27.0%，同期年化产能利用率提升 8 个百分点至 93.5%，第四季度产能利用率为 95.7%；
+    matched_numeric_tokens:
+    - '2025'
+    - 16.2%
+    - '3.0'
+    - 21.0%
+    - '2024'
+    - 27.0%
+    - '8'
+    - 93.5%
+    - 95.7%
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D7_SUSTAINABILITY_EVIDENCE
+    field_path: findings[].finding_statement
+    matched_text: 季度层面 2025 年 Q2 至 Q4 毛利率依次为 20.4%、22.0%、19.2%，第四季度环比回落。
+    matched_numeric_tokens:
+    - '2025'
+    - '2'
+    - '4'
+    - 20.4%
+    - 22.0%
+    - 19.2%
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D7_SUSTAINABILITY_EVIDENCE
+    field_path: findings[].finding_statement
+    matched_text: 真正指向经营机制的披露仅有年报中「通过优化产品组合、提高产能利用率、精进工艺 提升整体盈利能力」这一句，2024 与 2025
+      两版年报措辞几乎一致，属于通用性机制表述，未附带可核验的产品结构、价格、单位成本或费用拆分数据；
+    matched_numeric_tokens:
+    - '2024'
+    - '2025'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D7_SUSTAINABILITY_EVIDENCE
+    field_path: findings[].supporting_evidence[].note
+    matched_text: 2025 年年报披露公司通过优化产品组合、提高产能利用率、精进工艺来提升整体盈利能力，是本证据集中唯一直接描述盈利机制的公司披露。
+    matched_numeric_tokens:
+    - '2025'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D7_SUSTAINABILITY_EVIDENCE
+    field_path: findings[].supporting_evidence[].note
+    matched_text: 2024 年年报中出现措辞几乎相同的盈利机制表述，可用于检验该机制披露在跨年度上的稳定性，同时也说明其为跨年重复的模板化语句。
+    matched_numeric_tokens:
+    - '2024'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D7_SUSTAINABILITY_EVIDENCE
+    field_path: findings[].supporting_evidence[].note
+    matched_text: 2025 年第四季度毛利率 19.2%、产能利用率 95.7%，作为期末经营负荷与结果指标的背景读数。
+    matched_numeric_tokens:
+    - '2025'
+    - 19.2%
+    - 95.7%
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D7_SUSTAINABILITY_EVIDENCE
+    field_path: findings[].supporting_evidence[].note
+    matched_text: 年化产能利用率同比提升 8 个百分点，与全年结果指标改善处于同一期间，仅作背景，不作为机制证明。
+    matched_numeric_tokens:
+    - '8'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D7_SUSTAINABILITY_EVIDENCE
+    field_path: findings[].supporting_evidence[].note
+    matched_text: 与上一条同段落，给出年化产能利用率的具体水平 93.5%。
+    matched_numeric_tokens:
+    - 93.5%
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D7_SUSTAINABILITY_EVIDENCE
+    field_path: findings[].supporting_evidence[].note
+    matched_text: 2025 年全年收入同比增长 16.2% 至 93.27 亿美元、毛利率提升，属结果性指标背景。
+    matched_numeric_tokens:
+    - '2025'
+    - 16.2%
+    - '93.27'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D7_SUSTAINABILITY_EVIDENCE
+    field_path: findings[].supporting_evidence[].note
+    matched_text: 与上一条同段落，毛利率提升 3.0 个百分点至 21.0%，属结果性指标背景。
+    matched_numeric_tokens:
+    - '3.0'
+    - 21.0%
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D7_SUSTAINABILITY_EVIDENCE
+    field_path: findings[].supporting_evidence[].note
+    matched_text: 2024 年年报披露全年收入 80.299 亿美元、同比增长（配合 EVID_d8c508fc157986f29f4221ed
+      的 27.0%），提供更早期的结果指标基线。
+    matched_numeric_tokens:
+    - '2024'
+    - '80.299'
+    - '8'
+    - '508'
+    - '157986'
+    - '29'
+    - '4221'
+    - 27.0%
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D7_SUSTAINABILITY_EVIDENCE
+    field_path: findings[].counter_evidence[].note
+    matched_text: 2025 年第四季度毛利率 19.2%，较第三季度 22.0% 环比回落，说明结果指标的改善在季度序列上并不单调。
+    matched_numeric_tokens:
+    - '2025'
+    - 19.2%
+    - 22.0%
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D7_SUSTAINABILITY_EVIDENCE
+    field_path: findings[].counter_evidence[].note
+    matched_text: 2025 年年报在经营风险中单列「业绩波动风险」，与「改善可持续」的命题方向相反。
+    matched_numeric_tokens:
+    - '2025'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D7_SUSTAINABILITY_EVIDENCE
+    field_path: findings[].counter_evidence[].note
+    matched_text: 2025 年年报提示宏观、行业景气、客户需求、供应链价格与研发费用等可能使销售收入、毛利率承受波动。
+    matched_numeric_tokens:
+    - '2025'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D7_SUSTAINABILITY_EVIDENCE
+    field_path: findings[].counter_evidence[].note
+    matched_text: 2025 年年报提示业绩稳定性、经营效率与持续盈利能力可能受到不利影响，属公司自身对可持续性的限定性披露。
+    matched_numeric_tokens:
+    - '2025'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D7_SUSTAINABILITY_EVIDENCE
+    field_path: findings[].alternative_explanations[]
+    matched_text: 结果指标改善可能与行业周期上行同步：年报披露 2024 年半导体市场呈复苏态势、2025 年行业延续增长，周期性因素与公司内部机制在本证据集内无法区分。
+    matched_numeric_tokens:
+    - '2024'
+    - '2025'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D7_SUSTAINABILITY_EVIDENCE
+    field_path: findings[].alternative_explanations[]
+    matched_text: 改善可能伴随产能规模扩张与出货量增长（全年出货约 970 万片、年末产能约 105.9 万片 8 英寸当量），属规模效应而非单位盈利结构的改善。
+    matched_numeric_tokens:
+    - '970'
+    - '105.9'
+    - '8'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D7_SUSTAINABILITY_EVIDENCE
+    field_path: findings[].limitations[]
+    matched_text: 本维度承重指标白名单为空，18 条可用数值全部为结果性指标（收入、销售成本、毛利、毛利率），只能作背景引用，无法承担可持续性论证的重量。
+    matched_numeric_tokens:
+    - '18'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D7_SUSTAINABILITY_EVIDENCE
+    field_path: findings[].limitations[]
+    matched_text: 唯一的机制性披露为年报模板化语句，2024 与 2025 两版措辞高度重合，未提供产品结构、价格、单位成本、费用率等可核验拆分。
+    matched_numeric_tokens:
+    - '2024'
+    - '2025'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D7_SUSTAINABILITY_EVIDENCE
+    field_path: findings[].limitations[]
+    matched_text: 候选集内同一期间存在多条数值不一致的销售成本记录（如 2025 年 Q3 期间同时出现 1859.0 与 1759.3 百万美元），跨期毛利桥的自行推算不具可靠性，故未进行。
+    matched_numeric_tokens:
+    - '2025'
+    - '3'
+    - '1859.0'
+    - '1759.3'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D7_SUSTAINABILITY_EVIDENCE
+    field_path: findings[].management_assertions[].statement
+    matched_text: 公司在 2025 年第四季度业绩材料中表示，2026 年第一季度毛利率预计在 18% 至 20% 区间。
+    matched_numeric_tokens:
+    - '2025'
+    - '2026'
+    - 18%
+    - 20%
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D7_SUSTAINABILITY_EVIDENCE
+    field_path: findings[].management_assertions[].statement
+    matched_text: 公司在 2026 年第一季度业绩材料中表示，第二季度毛利率预计在 20% 至 22% 区间。
+    matched_numeric_tokens:
+    - '2026'
+    - 20%
+    - 22%
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D7_SUSTAINABILITY_EVIDENCE
+    field_path: findings[].management_assertions[].statement
+    matched_text: 公司表示，2026 年资本开支预计与 2025 年大致持平。
+    matched_numeric_tokens:
+    - '2026'
+    - '2025'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D7_SUSTAINABILITY_EVIDENCE
+    field_path: findings[].watch_indicators[].judgment_logic
+    matched_text: 公司披露 2025 年资本开支为 81 亿美元并提示折旧负担与资产减值风险；
+    matched_numeric_tokens:
+    - '2025'
+    - '81'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D1_PROFITABILITY_CHANGE
+    field_path: challenges[].question
+    matched_text: 本维度证据分为 3，依赖「两个以上独立同源组」。
+    matched_numeric_tokens:
+    - '3'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D1_PROFITABILITY_CHANGE
+    field_path: challenges[].question
+    matched_text: 4Q25 毛利率 19.2% 同时出现在 SG_SMIC_2025_Q4_RESULTS 与 SG_SMIC_2026_Q1_DISCLOSURE，是否属于伪多源，从而使证据分虚高？
+    matched_numeric_tokens:
+    - '4'
+    - '25'
+    - 19.2%
+    - '2025'
+    - '4'
+    - '2026'
+    - '1'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D1_PROFITABILITY_CHANGE
+    field_path: challenges[].reason
+    matched_text: 一次定向复核：承重的跨期可比数值是 2025 年报中 FY2025 与 FY2024 的 GROSS_MARGIN 对比，来自年度报告这一次原始披露；
+    matched_numeric_tokens:
+    - '2025'
+    - '2025'
+    - '2024'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D1_PROFITABILITY_CHANGE
+    field_path: challenges[].reason
+    matched_text: 被质疑的 19.2% 重复对已在限制中披露，且未作为跨期比较的承重项，证据分依据不变。
+    matched_numeric_tokens:
+    - 19.2%
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D3_MIX_EFFECT
+    field_path: challenges[].reason
+    matched_text: 按 FR-052 保留为 MANAGEMENT_ASSERTION，移出支撑证据并重述发现。
+    matched_numeric_tokens:
+    - '052'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: EVID_28c333bb3006b183a5e34b57
+    field_path: challenges[].question
+    matched_text: 该折旧记录来源为半年度材料却被标注为 FISCAL_YEAR 2025 全年，且同一 DEPRECIATION_EXPENSE
+      指标在候选集内同时存在百分比型与金额型取值。
+    matched_numeric_tokens:
+    - '2025'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: EVID_28c333bb3006b183a5e34b57
+    field_path: challenges[].question
+    matched_text: 它是否可比、是否已污染 D4 的折旧压力判断？
+    matched_numeric_tokens:
+    - '4'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: EVID_28c333bb3006b183a5e34b57
+    field_path: challenges[].reason
+    matched_text: 一次定向复核确认该记录及同类折旧记录均未进入 D4 的支撑证据，仅在限制中披露；
+    matched_numeric_tokens:
+    - '4'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: EVID_28c333bb3006b183a5e34b57
+    field_path: challenges[].reason
+    matched_text: D4 的证据分来自 CAPITAL_EXPENDITURE_INCURRED 的跨期可比值。
+    matched_numeric_tokens:
+    - '4'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: EVID_28c333bb3006b183a5e34b57
+    field_path: challenges[].reason
+    matched_text: 上游期间标注缺陷已由 04 阶段的 GAP_EVIDENCE_UPSTREAM_PERIOD_MISLABEL 承接，本阶段不重复登记。
+    matched_numeric_tokens:
+    - '04'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D7_SUSTAINABILITY_EVIDENCE
+    field_path: challenges[].question
+    matched_text: 可持续性判断缺少任何经营现金流证据：候选集内 18 条数值全部是结果指标，承重指标白名单为空。
+    matched_numeric_tokens:
+    - '18'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D7_SUSTAINABILITY_EVIDENCE
+    field_path: challenges[].reason
+    matched_text: 一次定向复核确认冻结快照内存在 NET_CASH_FROM_OPERATING_ACTIVITIES 记录，但无一被冻结的 D7
+      查询族命中，因而不在本维度候选集内；
+    matched_numeric_tokens:
+    - '7'
+    action: OMITTED_WHOLE_SENTENCE
+  - dimension_id: D7_SUSTAINABILITY_EVIDENCE
+    field_path: challenges[].reason
+    matched_text: 03 查询族已冻结，本阶段不得改动。
+    matched_numeric_tokens:
+    - '03'
+    action: OMITTED_WHOLE_SENTENCE
+  leaked_unbound_numeric_mentions: 0
+  status: PASS
+  leaked_samples: []
+  scanned_prose_blocks: 238
+  fixed_text_blocks: 16
+  declared_paths_match_render_sites: true
+  declared_paths_without_render_site: []
+  field_paths_exercised_this_run:
+  - challenges[].question
+  - challenges[].reason
+  - cross_attribution[].entries[].overlap_note
+  - findings[].alternative_explanations[]
+  - findings[].counter_evidence[].note
+  - findings[].finding_statement
+  - findings[].gaps[]
+  - findings[].limitations[]
+  - findings[].management_assertions[].statement
+  - findings[].supporting_evidence[].note
+  - findings[].supporting_evidence[].overlap_note
+  - findings[].watch_indicators[].indicator
+  - findings[].watch_indicators[].judgment_logic
+evidence_tables:
+  D1_PROFITABILITY_CHANGE:
+    numeric_rows: 4
+    text_rows: 10
+  D2_UTILIZATION_EFFECT:
+    numeric_rows: 1
+    text_rows: 10
+  D3_MIX_EFFECT:
+    numeric_rows: 1
+    text_rows: 10
+  D4_CAPEX_CONVERSION:
+    numeric_rows: 4
+    text_rows: 7
+  D5_CYCLE_EXPLANATION:
+    numeric_rows: 0
+    text_rows: 11
+  D6_NONCORE_EXPLANATION:
+    numeric_rows: 4
+    text_rows: 7
+  D7_SUSTAINABILITY_EVIDENCE:
+    numeric_rows: 1
+    text_rows: 15
+traceability:
+  rows_checked: 85
+  unresolved: []
+conflict_and_quarantine:
+  quarantined_in_evidence_tables: 0
+  quarantined_count: 0
+  detected_conflict_groups: 0
+  unresolved_conflict_groups: 0
+scope_recognition:
+  examples:
+  - id: Q1
+    label: IN_SCOPE
+    action: ANSWER
+    reproduced_in_report: true
+  - id: Q2
+    label: IN_SCOPE
+    action: ANSWER
+    reproduced_in_report: true
+  - id: Q3
+    label: IN_SCOPE
+    action: ANSWER
+    reproduced_in_report: true
+  - id: Q4
+    label: OUT_OF_SCOPE_FORBIDDEN_OUTPUT
+    action: REFUSE
+    reproduced_in_report: false
+  - id: Q5
+    label: OUT_OF_SCOPE_OTHER_SUBJECT
+    action: DISCLAIM
+    reproduced_in_report: true
+  - id: Q6
+    label: OUT_OF_SCOPE_BEYOND_AS_OF
+    action: DISCLAIM
+    reproduced_in_report: true
+forbidden_output_scan:
+  terms_checked: 26
+  hits: []
+prohibited_external_artifacts:
+  pdf: NOT_GENERATED
+  html: NOT_GENERATED
+  dashboard: NOT_GENERATED
+  api: NOT_GENERATED
+government_funding_dual_basis:
+  reported_basis_records: 15
+  sensitivity_records: 0
+  gap_id: GAP_REPORT_GOVERNMENT_FUNDING_SENSITIVITY_ABSENT
+gap_summary:
+  total: 4922
+  detailed: 10
+  aggregated: 4912
+  by_priority:
+    P1: 4915
+    P2: 7
+formula_recomputation:
+  checked: 7
+  recomputed_match: 4
+  unknown: 3
+  mismatched: []
+report_validation_status: PASS
