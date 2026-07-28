@@ -14,6 +14,9 @@ single-stock-demo-v3/*.partial
 
 tmp/
 
+# Local PDF text extraction scratch file; it is unrelated to the frozen Demo inputs.
+pdfdump.txt
+
 # The run directory is rebuildable output: `validate_demo_run.py preflight` empties it and
 # the seven stages regenerate it. The bulk artefacts (95 MB of context, facts and evidence)
 # stay out of version control; the three small byte-stable files that are the ticket's
