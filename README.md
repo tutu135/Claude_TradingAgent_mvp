@@ -113,6 +113,28 @@ git checkout <提供方给出的提交SHA>
 
 `.gitattributes` 已将受管文本固定为 LF。不要用编辑器批量改写冻结输入的换行或编码，否则哈希校验会失败。
 
+### 让 Agent 代为执行
+
+本仓库将七阶段顺序保存在版本管理的编排 Skill 中：
+
+```text
+.agents/skills/single-stock-research-orchestrator/SKILL.md
+.claude/skills/single-stock-research-orchestrator/SKILL.md
+```
+
+在支持读取本地 Skill 且拥有终端执行权限的 Agent（例如 Codex）中，完成前述安装、固定版本与材料放置后，可以直接发送以下指令：
+
+```text
+请在当前仓库使用 single-stock-research-orchestrator Skill，按 FROZEN_REPLAY 完整重放当前 SMIC v3 黄金案例。
+先运行 preflight；只有通过后才执行第 1–6 阶段；完成 gate、报告生成和 finalize-manifest。
+不得联网、不得重新调用模型、不得修改 single-stock-demo-v3/ 或 frozen-analysis-inputs/。
+最后报告 run-integrity.yaml、run-gate.yaml、report-validation.yaml 与 report.md 的结果。
+```
+
+若 Agent 不能自动发现仓库 Skill，可先要求它读取 `AGENTS.md`、`CONTEXT.md` 和 `.agents/skills/single-stock-research-orchestrator/SKILL.md`，再执行同一任务。Skill 只是受版本控制的执行指引；真正执行命令的是拥有终端工具的 Agent。没有终端权限的聊天 Agent 只能解释命令，不能完成重放。
+
+Agent 的可写范围仅限 `single-stock-demo-run/`。它应按 Skill 内的固定顺序调用现有 Python 脚本，不能把顺序改造成新的工作流程序，不能更新快照、补充实时材料、重跑模型判断，或绕过任何哈希与门禁失败。
+
 ### 执行步骤
 
 以下命令必须在仓库根目录执行，且顺序不可调整。`FROZEN_REPLAY` 不联网、不重新调用模型；分析与质询读取已纳入仓库并受哈希保护的冻结判断输入。
